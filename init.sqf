@@ -189,7 +189,7 @@ f_wound_extraFAK = 2;
 
 [] execVM "f\ace3\ACE3_clientInit.sqf";
 
-// F3 - JIP setup (PA version)
+// F3 - JIP setup (CA version)
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
 // Note: if you want respawn, go to description.ext and remove "f_spectator" from respawnTemplates[]
@@ -209,24 +209,24 @@ if (!isdedicated) then {
 
 // ====================================================================================
 
-// PA - Thermals
+// CA - Thermals
 // Disable thermal sights for everything
 //player addEventHandler ["WeaponAssembled",{(_this select 1) disableTIEquipment true}];
-//[] execVM "pa\disableThermals.sqf";
+//[] execVM "ca\disableThermals.sqf";
 
 // KK - Who's Marking?
 // Show who is messing with markers
 // seems to mess up AGM markers
-//[] execVM "pa\KK_whosMarking.sqf";
+//[] execVM "ca\KK_whosMarking.sqf";
 
 // PabstMirror - Mission Intro
 // Credits: PabstMirror
-[] execVM "pa\PM_missionIntro.sqf";
+[] execVM "ca\PM_missionIntro.sqf";
 
-// PA - Force First Person
+// CA - Force First Person
 // Disable 3PV regardless of server settings
-//[] execVM "pa\forceFirstPerson.sqf";
+//[] execVM "ca\forceFirstPerson.sqf";
 
 // WS - AI Flashlights
 // Credits: Wolfenswan
-// [] execVM "pa\forceFlashLightAI.sqf";
+// [] execVM "ca\forceFlashLightAI.sqf";
