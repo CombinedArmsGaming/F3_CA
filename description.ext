@@ -12,7 +12,7 @@ class Header
 	// CTF		|	Capture The Flag (or, nuke)
 	// SC		|	Sector Control (Think insurgency - the red/green squares)
 	// RPG		|	Skyrim
-	// Sandbox	|	Free Game type, think Dark Ripoff
+	// Sandbox	|	Free Game type, think Shady Swindle
 	// Seize	|	Seize a location
 	// Defend	|	Defend a location
 	gameType = Coop;
@@ -26,9 +26,9 @@ class Header
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
 onLoadName = "*** Insert mission name here. ***";
-onLoadMission = "Made with the F3_PA Mission Development Framework";
+onLoadMission = "Made with the F3_CA Mission Development Framework";
 author = "*** Insert mission author name here. ***";
-loadScreen = "project.paa";
+//loadScreen = "project.paa";
 
 // ============================================================================================
 
@@ -56,20 +56,20 @@ respawnDialog = 0;
 
 // ============================================================================================
 
-// PA - RotorLib Simulation Setting
+// CA - RotorLib Simulation Setting
 // 0 - default: player options, 1 - all on, 2 - all off.
 
 forceRotorLibSimulation = 0;
 
 // ============================================================================================
 
-// PA - Disable playableunits AI
+// CA - Disable playableunits AI
 
 disabledAI = true;
 
 // ============================================================================================
 
-//PA Remove corpse manager
+// CA Remove corpse manager
 
 corpseManagerMode = 1;
 corpseLimit = 15;
