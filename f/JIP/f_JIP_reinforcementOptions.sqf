@@ -74,7 +74,7 @@ _notAlone = false;
 
 if (isNil "tpAction" && _notAlone) then {
 	["JIP",["Teleport to Group available"]] call BIS_fnc_showNotification;
-	tpAction = player addAction ["<t color='#dddd00'>Teleport to Group", "pa\jipTeleport.sqf",[],6,true,false,"","_target == player"];
+	tpAction = player addAction ["<t color='#dddd00'>Teleport to Group", "ca\jipTeleport.sqf",[],6,true,false,"","_target == player"];
 	[tpAction,player] spawn 
 	{
 		private ["_startPos"];
