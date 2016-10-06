@@ -1,0 +1,1 @@
+onMapSingleClick " hint ""Moving players""; [_pos] execVM ""f\safeStart\f_safeEnd.sqf""; onMapSingleClick "" "";";
