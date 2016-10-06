@@ -2,7 +2,7 @@
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================
 
-// F3 PA - Only execute on Server & BIS_Fnc change
+// F3 CA - Only execute on Server & BIS_Fnc change
 if (!isServer) ExitWith {};
 
 // DECLARE VARIABLES AND FUNCTIONS
