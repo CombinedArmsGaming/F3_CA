@@ -586,18 +586,18 @@ class CfgSounds
 // Custom Music - Can generally be stopped, but plays globally. Cannot be played in 3D
 // from an object but is affected by the Music volume slider.
 
-class CfgMusic
-{
-	tracks[]={};
-
-	class MarsIntro
-	{
-		name = "";
-		sound[] = {"\music\filename.ogg", db+0, 1.0};
-	};
-	class Ludwig9
-	{
-		name = "";
-		sound[] = {"\music\filename.ogg", db+10, 1.0};
-	};
-};
+//class CfgMusic
+//{
+//	tracks[]={};
+//
+//	class MarsIntro
+//	{
+//		name = "";
+//		sound[] = {"\music\filename.ogg", db+0, 1.0};
+//	};
+//	class Ludwig9
+//	{
+//		name = "";
+//		sound[] = {"\music\filename.ogg", db+10, 1.0};
+//	};
+//};
