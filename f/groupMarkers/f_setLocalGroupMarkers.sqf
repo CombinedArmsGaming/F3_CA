@@ -428,4 +428,5 @@ switch (_unitfaction) do
 
 // ====================================================================================
 
-
+// sleep for 10 seconds so f\briefing\f_orbatNotes.sqf can get generated correctly
+uiSleep 10;

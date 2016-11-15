@@ -54,6 +54,14 @@ if (isnil "_grp") exitWith {};
 
 // ====================================================================================
 
+// Create groupID
+// Allows for defining it based on mapmarkers, which is a shorthand identifier anyways.
+
+_grp setGroupId [format ["%1",_mkrText],"GroupColor0"];
+
+// ====================================================================================
+
+
 // CREATE MARKER
 // Depending on the value of _mkrType a different type of marker is created.
 
@@ -197,5 +205,3 @@ while {{!isNull _x} count units _grp > 0} do
 
 
 // ====================================================================================
-
-

@@ -222,7 +222,7 @@ class Params
 
 // ============================================================================================
 
-	
+
 // ============================================================================================
 
 // F3 - Mission Timer/Safe Start
@@ -465,19 +465,6 @@ class CfgFunctions
 		{
 			file="f\ace3";
 		};
-		class medical
-		{
-			file="f\medical";
-			class medicalPreInit
-			{
-				preInit = 1;
-			};
-		};
-		class setGroupID
-		{
-			file = "f\setGroupID";
-			class setGroupID{};
-		};
 		class missionConditions
 		{
 			file = "f\missionConditions";
@@ -564,8 +551,8 @@ class CfgUnitInsignia {
 	#include "f\assignGear\insignia\define.hpp"
 };
 
-// Custom Sounds - Be advised, if you use a cfgSound in a mission, 
-// it will play until the file stops, Sounds cannot be interrupted 
+// Custom Sounds - Be advised, if you use a cfgSound in a mission,
+// it will play until the file stops, Sounds cannot be interrupted
 // unless the object playing the sound is killed or otherwise destroyed.
 // Sound files can be played in 3D, and are an effect for volume purposes.
 
@@ -578,7 +565,7 @@ class CfgUnitInsignia {
 //		name = "my_wolf_sound";
 //		// filename, volume, pitch
 //		sound[] = {"fx\wolf1.ogg", 1, 1};
-//		// subtitle delay in seconds, subtitle text 
+//		// subtitle delay in seconds, subtitle text
 //		titles[] = {1, "*wolf growls*"};
 //	};
 //};
