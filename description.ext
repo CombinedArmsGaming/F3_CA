@@ -28,7 +28,7 @@ class Header
 onLoadName = "*** Insert mission name here. ***";
 onLoadMission = "Made with the F3_CA Mission Development Framework";
 author = "*** Insert mission author name here. ***";
-loadScreen = "ca.jpg";
+loadScreen = "ca_logo_large.jpg";
 
 // ============================================================================================
 
@@ -222,7 +222,7 @@ class Params
 
 // ============================================================================================
 
-	
+
 // ============================================================================================
 
 // F3 - Mission Timer/Safe Start
@@ -465,19 +465,6 @@ class CfgFunctions
 		{
 			file="f\ace3";
 		};
-		class medical
-		{
-			file="f\medical";
-			class medicalPreInit
-			{
-				preInit = 1;
-			};
-		};
-		class setGroupID
-		{
-			file = "f\setGroupID";
-			class setGroupID{};
-		};
 		class missionConditions
 		{
 			file = "f\missionConditions";
@@ -564,40 +551,40 @@ class CfgUnitInsignia {
 	#include "f\assignGear\insignia\define.hpp"
 };
 
-// Custom Sounds - Be advised, if you use a cfgSound in a mission, 
-// it will play until the file stops, Sounds cannot be interrupted 
+// Custom Sounds - Be advised, if you use a cfgSound in a mission,
+// it will play until the file stops, Sounds cannot be interrupted
 // unless the object playing the sound is killed or otherwise destroyed.
 // Sound files can be played in 3D, and are an effect for volume purposes.
 
-class CfgSounds
-{
-	sounds[] = {};
-	class wolf1
-	{
-		// how the sound is referred to in the editor (e.g. trigger effects)
-		name = "my_wolf_sound";
-		// filename, volume, pitch
-		sound[] = {"fx\wolf1.ogg", 1, 1};
-		// subtitle delay in seconds, subtitle text 
-		titles[] = {1, "*wolf growls*"};
-	};
-};
+//class CfgSounds
+//{
+//	sounds[] = {};
+//	class wolf1
+//	{
+//		// how the sound is referred to in the editor (e.g. trigger effects)
+//		name = "my_wolf_sound";
+//		// filename, volume, pitch
+//		sound[] = {"fx\wolf1.ogg", 1, 1};
+//		// subtitle delay in seconds, subtitle text
+//		titles[] = {1, "*wolf growls*"};
+//	};
+//};
 
 // Custom Music - Can generally be stopped, but plays globally. Cannot be played in 3D
 // from an object but is affected by the Music volume slider.
 
-class CfgMusic
-{
-	tracks[]={};
-
-	class MarsIntro
-	{
-		name = "";
-		sound[] = {"\music\filename.ogg", db+0, 1.0};
-	};
-	class Ludwig9
-	{
-		name = "";
-		sound[] = {"\music\filename.ogg", db+10, 1.0};
-	};
-};
+//class CfgMusic
+//{
+//	tracks[]={};
+//
+//	class MarsIntro
+//	{
+//		name = "";
+//		sound[] = {"\music\filename.ogg", db+0, 1.0};
+//	};
+//	class Ludwig9
+//	{
+//		name = "";
+//		sound[] = {"\music\filename.ogg", db+10, 1.0};
+//	};
+//};

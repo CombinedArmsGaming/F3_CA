@@ -38,7 +38,7 @@ if (_cntFAK > 14 || {_cntMediKit > 1}) exitWith // Platoon sized Cargo
 {
     _cntFAK = _cntFAK min 25; _cntFAK = _cntFAK max 8;
     _unit addItemCargoGlobal ["ACE_fieldDressing", (_cntFAK * 2)];
-    _unit addItemCargoGlobal ["ACE_packingBandage", (_cntFAK * 2)]
+    _unit addItemCargoGlobal ["ACE_packingBandage", (_cntFAK * 2)];
     _unit addItemCargoGlobal ["ACE_tourniquet", _cntFAK];
     _unit addItemCargoGlobal ["ACE_morphine", _cntFAK];
     _unit addItemCargoGlobal ["ACE_epinephrine", _cntFAK];
@@ -49,7 +49,7 @@ if (_cntFak > 7 || {_cntMediKit > 0}) exitWith // Squad sized Cargo
 {
      _cntFAK = _cntFAK min 14; _cntFAK = _cntFAK max 4;
     _unit addItemCargoGlobal ["ACE_fieldDressing", (_cntFAK * 2)];
-    _unit addItemCargoGlobal ["ACE_packingBandage", (_cntFAK * 2)]
+    _unit addItemCargoGlobal ["ACE_packingBandage", (_cntFAK * 2)];
     _unit addItemCargoGlobal ["ACE_tourniquet", _cntFAK];
     _unit addItemCargoGlobal ["ACE_morphine", _cntFAK];
     _unit addItemCargoGlobal ["ACE_epinephrine", _cntFAK];
@@ -59,7 +59,7 @@ if (_cntFak > 7 || {_cntMediKit > 0}) exitWith // Squad sized Cargo
 if (_cntFAK > 0) exitWith // Fireteam sized Cargo
 {
     _unit addItemCargoGlobal ["ACE_fieldDressing", (_cntFAK * 2)];
-    _unit addItemCargoGlobal ["ACE_packingBandage", (_cntFAK * 2)]
+    _unit addItemCargoGlobal ["ACE_packingBandage", (_cntFAK * 2)];
     _unit addItemCargoGlobal ["ACE_tourniquet", _cntFAK];
     _unit addItemCargoGlobal ["ACE_morphine", _cntFAK];
     _unit addItemCargoGlobal ["ACE_bodyBag", 1];

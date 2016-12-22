@@ -172,6 +172,22 @@ _bagmtrag = "I_Mortar_01_support_F";		// used by Mortar assistant gunner
 _baghsamg = "I_AA_01_weapon_F";				// used by Heavy SAM gunner
 _baghsamag = "I_HMG_01_support_F";			// used by Heavy SAM assistant gunner
 
+//TFR RADIO BACKPACK
+//Check if TFR is the radio addon is used
+if(f_var_radios == 2) then {
+	//Designate radio backpack that is to be used.
+	_bagradio = TF_defaultGuerBackpack;  //Remember to use "" for classnames eg "tf_rt1523g_sage"
+
+		// Unit types you want to give long-range radios if previous is
+		// E.G: ["co", "m"] would give the CO and all medics  long-range radios
+		f_radios_settings_tfr_backpackRadios = ["co","dc"];
+
+				if(_typeOfUnit in f_radios_settings_tfr_backpackRadios) then {
+					_bagsmall = _bagradio;
+					_bagmedium = _bagradio;
+					_baglarge = _bagradio;
+				};
+};
 // ====================================================================================
 
 // UNIQUE, ROLE-SPECIFIC EQUIPMENT

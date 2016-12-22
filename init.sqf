@@ -33,13 +33,6 @@ f_script_briefing = [] execVM "briefing.sqf";
 
 // ====================================================================================
 
-// F3 - F3 Folk ARPS Group IDs
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-f_script_setGroupIDs = [] execVM "f\setGroupID\f_setGroupIDs.sqf";
-
-// ====================================================================================
-
 // F3 - Buddy Team Colours
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
@@ -195,14 +188,14 @@ f_wound_extraFAK = 2;
 // Note: if you want respawn, go to description.ext and remove "f_spectator" from respawnTemplates[]
 // Note: respawn_west etc. markers are mandatory. When not using respawn, place these markers somewhere players will not go
 f_var_JIP_JIPMenu = true;		// Do JIP players get the JIP menu?
-f_var_JIP_RespawnMenu = false;	// Do respawning players get the JIP menu? 
+f_var_JIP_RespawnMenu = false;	// Do respawning players get the JIP menu?
 f_var_JIP_RemoveCorpse = false;	// Remove the old corpse of respawning players?
 f_var_JIP_Spectate = false;		// JIP players go into spectate straight away?
 
 // WARNING: DO NOT DISABLE THIS COMPONENT
 if (!isdedicated) then {
 	[]spawn {
-		waitUntil {sleep 0.1; !isNull player}; 
+		waitUntil {sleep 0.1; !isNull player};
 		player addEventHandler ["killed", "['F_ScreenSetup'] call BIS_fnc_blackOut"];
 	};
 };
