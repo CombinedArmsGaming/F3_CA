@@ -219,6 +219,15 @@
       <Key ID="STR_f_mapClickTeleportDone">
         <English> You have been moved to the selected location. </English>
       </Key>
+      <Key ID="STR_f_mapClickSupplyDropAction">
+        <English> Supply Drop </English>
+      </Key>
+      <Key ID="STR_f_mapClickSupplyDropSelect">
+        <English> Click on the map to set Supply Drop coordinates. </English>
+      </Key>
+      <Key ID="STR_f_mapClickSupplyDropDone">
+        <English> Supplies have been dropped at the selected location. </English>
+      </Key>
        <Key ID="STR_f_mapClickHALOAction">
         <English> HALO </English>
       </Key>

@@ -133,6 +133,15 @@ class cfgNotifications
 		priority = 5;
 	};
 
+	// Notification for the F3 Mapclick Supply Drop component
+	class MapClickSupplyDrop {
+		title= "NOTE";
+		description= "%1";
+		iconPicture = "\A3\ui_f\data\map\markers\military\start_ca.paa";
+		duration = 3;
+		priority = 5;
+	};
+
 	// Notification for the F3 JIP Component
 	class JIP {
 		title= "REINFORCEMENTS";
@@ -507,6 +516,11 @@ class CfgFunctions
 			file = "f\mapClickTeleport";
 			class mapClickTeleportUnit{};
 			class mapClickTeleportGroup{};
+		};
+		class mapClickSupplyDrop
+		{
+			file = "f\mapClickSupplyDrop";
+			class mapClickSupplyDropUnit{};
 		};
 		class zeus
 		{
