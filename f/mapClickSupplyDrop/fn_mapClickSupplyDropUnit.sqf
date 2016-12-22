@@ -52,16 +52,27 @@ _dropitem = createVehicle ["B_CargoNet_01_ammo_F", [0,0,1000], [], 0, "CAN_COLLI
 
 _playerfaction = toLower (faction player);
 
-if (_playerfaction == "blu_f") then {
-	["crate_med",_dropitem,"blu_f"] call f_fnc_assignGear;
-};
+switch (_playerfaction) do
+{
+  case "blu_f":
+  {
+    ["crate_med",_dropitem,"blu_f"] call f_fnc_assignGear;
+  };
 
-if (_playerfaction == "opf_f") then {
-	["crate_med",_dropitem,"opf_f"] call f_fnc_assignGear;
-};
+  case "opf_f":
+  {
+    ["crate_med",_dropitem,"opf_f"] call f_fnc_assignGear;
+  };
 
-if(_playerfaction == "ind_f") then {
-	["crate_med",_dropitem,"ind_f"] call f_fnc_assignGear;
+  case "ind_f":
+  {
+    ["crate_med",_dropitem,"ind_f"] call f_fnc_assignGear;
+  };
+
+  default
+  {
+    ["crate_med",_dropitem,"blu_f"] call f_fnc_assignGear;
+  };
 };
 
 _orgitem = _dropitem;
