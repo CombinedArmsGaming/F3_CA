@@ -99,7 +99,7 @@ hintsilent 'Safety off!' "">
 Force safety off for all players</execute><br/>
 
 |- <execute expression=""[] spawn f_fnc_mapClickSupplyDropUnit;
-hintsilent 'Crate Deployed!' "">
+ "">
 Map Click Supply Drop</execute><br/>
 
 <br/>

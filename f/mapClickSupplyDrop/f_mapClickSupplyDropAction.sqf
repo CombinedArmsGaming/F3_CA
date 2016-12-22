@@ -20,7 +20,7 @@ if (!isDedicated && (isNull player)) then
 // Make sure all global variables are initialized
 if (isNil "f_var_mapClickSupplyDrop_Uses") then {f_var_mapClickSupplyDrop_Uses = 0};
 if (isNil "f_var_mapClickSupplyDrop_Units") then {f_var_mapClickSupplyDrop_Units = []};
-if (isNil "f_var_mapClickSupplyDrop_Height") then {f_var_mapClickSupplyDrop_Height = 0};
+if (isNil "f_var_mapClickSupplyDrop_Height") then {f_var_mapClickSupplyDrop_Height = 1000};
 
 // Make sure that no non-existing units have been parsed
 {

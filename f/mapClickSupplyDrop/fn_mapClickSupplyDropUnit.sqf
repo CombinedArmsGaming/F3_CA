@@ -42,41 +42,73 @@ if (f_var_mapClickSupplyDrop_Height != 0) then {
 	f_var_mapClickSupplyDrop_telePos = [f_var_mapClickSupplyDrop_telePos select 0,f_var_mapClickSupplyDrop_telePos select 1,f_var_mapClickSupplyDrop_Height];
 };
 
-// Move player
-// If the player is in a vehicle and not HALO-ing, the complete vehicle is moved. Otherwise the player is teleported.
-
-if (vehicle player != player && f_var_mapClickSupplyDrop_Height == 0) then {
-	(vehicle player) setPos (f_var_mapClickSupplyDrop_telePos findEmptyPosition [0,150,typeOf (vehicle player)]);
-} else {
-	player setPos f_var_mapClickSupplyDrop_telePos;
-};
-
 openMap false;
 
 ["MapClickSupplyDrop",[f_var_mapClickSupplyDrop_textDone]] call BIS_fnc_showNotification;
 
-// ====================================================================================
+// EXECUTE AIRDROP OF SINGLE CRATE, NO AIRCRAFT
 
-// HALO functionality
-// If the players are parajumping spawn the following code to add a backpack and restore the old backpack on landing
+_dropitem = createVehicle ["B_CargoNet_01_ammo_F", [0,0,1000], [], 0, "CAN_COLLIDE"];
 
-if (f_var_mapClickSupplyDrop_Height > 0) then {
-	[player] spawn {
-		private ["_unit","_bp","_bpi"];
-		_unit = _this select 0;
-		_bp = backpack _unit;
-		_bpi = backPackItems _unit;
+_playerfaction = toLower (faction player);
 
-		removeBackpack _unit;
-		_unit addBackpack "B_parachute";
-		waitUntil {sleep 0.1;isTouchingGround _unit;};
-		removeBackpack _unit;
-		_unit addBackPack _bp;
-		{
-			(unitbackpack _unit) addItemCargoGlobal [_x,1];
-		} forEach _bpi;
-	};
+if (_playerfaction == "blu_f") then {
+	["crate_med",_dropitem,"blu_f"] call f_fnc_assignGear;
 };
+
+if (_playerfaction == "opf_f") then {
+	["crate_med",_dropitem,"opf_f"] call f_fnc_assignGear;
+};
+
+if(_playerfaction == "ind_f") then {
+	["crate_med",_dropitem,"ind_f"] call f_fnc_assignGear;
+};
+
+_orgitem = _dropitem;
+_orgitem allowDammage false;
+
+_drop=.2;
+_delay=.01;
+
+_pos=f_var_mapClickSupplyDrop_telePos;
+_vel=[0,0];
+_vel=[(_vel select 0) min 20,(_vel select 1) min 20,-10];
+
+_dropitem setDir 0;
+_z=(_pos select 2)-2;
+_zoff=((boundingBox _dropitem select 1) select 2);
+_z=_z-_zoff;
+_yoff=((boundingBox _dropitem select 1) select 1);
+_velfact=.5;
+
+_chute = "B_Parachute_02_F" createVehicle [_pos select 0,_pos select 1,_z];
+_chute setvelocity [(_vel select 0)*_velfact,(_vel select 1)*_velfact,10];
+_pos=f_var_mapClickSupplyDrop_telePos;
+_dir=0;
+_pos=[(_pos select 0)-sin(_dir)*_yoff,(_pos select 1)-cos(_dir)*_yoff,_z];
+_chute setpos [_pos select 0, _pos select 1, _z];
+_dropitem setpos [_pos select 0, _pos select 1, _z];
+_dropitem setvelocity [(_vel select 0)*_velfact,(_vel select 1)*_velfact,10];
+
+while {_z > 0.2} do {
+  _dropitem setpos [getpos _dropitem select 0, getpos _dropitem select 1, _z];
+  _z=_z-_drop;
+  _chute setvelocity [velocity _chute select 0,velocity _chute select 1,10];
+  _chute setpos [getpos _dropitem select 0, getpos _dropitem select 1, _z];
+  sleep _delay;
+};
+
+_orgitem setpos [getpos _dropitem select 0, getpos _dropitem select 1, 0];
+_orgitem setVelocity [0,0,0];
+_orgitem setVectorUp [0,0,1];
+_orgitem allowDammage true;
+
+if !(isNull _chute) then {
+  _chute setPos [(getpos _orgitem select 0)+1,(getpos _orgitem select 1)+1,0];
+  _chute setvelocity [0,0,0];
+};
+
+_orgitem setVectorUp [0,0,1];
 
 // ====================================================================================
 
