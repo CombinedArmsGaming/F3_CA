@@ -96,7 +96,13 @@ Force safety on for all players</execute><br/>
 
 |- <execute expression=""[[false],'f_fnc_safety',playableUnits + switchableUnits] call BIS_fnc_MP;
 hintsilent 'Safety off!' "">
-Force safety off for all players</execute><br/><br/>
+Force safety off for all players</execute><br/>
+
+|- <execute expression=""[] spawn f_fnc_mapClickSupplyDropUnit;
+hintsilent 'Crate Deployed!' "">
+Map Click Supply Drop</execute><br/>
+
+<br/>
 ";
 
 // ====================================================================================
