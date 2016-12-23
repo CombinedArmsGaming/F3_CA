@@ -101,11 +101,11 @@ _chute setpos [_pos select 0, _pos select 1, _z];
 _dropitem setpos [_pos select 0, _pos select 1, _z];
 _dropitem setvelocity [(_vel select 0)*_velfact,(_vel select 1)*_velfact,10];
 
+_chute attachTo [_dropitem];
+
 while {_z > 0.2} do {
   _dropitem setpos [getpos _dropitem select 0, getpos _dropitem select 1, _z];
   _z=_z-_drop;
-  _chute setvelocity [velocity _chute select 0,velocity _chute select 1,10];
-  _chute setpos [getpos _dropitem select 0, getpos _dropitem select 1, _z];
   sleep _delay;
 };
 
