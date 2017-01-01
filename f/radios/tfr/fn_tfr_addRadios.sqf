@@ -14,7 +14,7 @@ _typeOfUnit = _unit getVariable ["f_var_assignGear", "NIL"];
 
 switch ((side player)) do { //longrange, shortrange, rifradio
     case (west): {
-      _radio1 = TF_defaultWestBackpack;
+      _radio1 = "tf_rt1523g_sage";
       _radio2 = TF_defaultWestPersonalRadio;
       _radio3 = TF_defaultWestRiflemanRadio;};
     case (east): {
@@ -39,7 +39,6 @@ if(_typeOfUnit != "NIL") then {
   if(!f_radios_settings_tfr_disableRadios) then {
 
 
-    if(!f_radios_settings_tfr_disablehandheldRadios) then {
       // Set the list of units that get a rifleman's radio
       _rifradio = ["ar","aar","rat","samag","mmgag","hmgag","matag","hatag","mtrag","sp","r","car","smg","gren","dmr"];
 
@@ -69,11 +68,11 @@ if(_typeOfUnit != "NIL") then {
           _unit linkItem _radio3;
         };
       };
-
+      
       if ( !(_typeOfUnit in _rifradio) && !(_typeOfUnit in _shortrange) && !(_typeOfUnit in _specialist) ) then {
         _unit linkItem _radio3;
       };
-    };
+
       // Give out LR backpacks according to f\radios\tfr_settings.sqf.
       if(f_radios_settings_tfr_defaultLRBackpacks) then {
         if (_unit == (leader (group _unit))) then {
@@ -84,14 +83,12 @@ if(_typeOfUnit != "NIL") then {
         };
       } else {
         // If unit is in the list of units that receive a long-range radio, do so.
-        /* To use the "old" system uncomment this block, new system is in assignGear.
         if(_typeOfUnit in f_radios_settings_tfr_backpackRadios) then {
           _backpackItems = backpackItems player;
           removeBackpack _unit;
           _unit addBackpack _radio1;
           {player addItemToBackpack _x;} forEach _backpackItems;
         };
-        */
       };
 
   };
