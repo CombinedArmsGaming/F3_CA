@@ -231,3 +231,25 @@ if (!isdedicated) then {
 // WS - AI Flashlights
 // Credits: Wolfenswan
 // [] execVM "ca\forceFlashLightAI.sqf";
+//=========================================================================================
+/*[] execVM "hcount.sqf";
+if (isServer) then {
+	_side = east;
+	//predefined teams
+	_FTA = ["ftl","ar","r","r","r"];
+	_FTB = ["ftl","r","ar","r","r"];
+	//_UAZ = "rhs_uaz_open_MSV_01";
+	//_UAZCrew = ["r","r","r"];
+	
+	//predefined markers
+	_fireteamAParray = ["FT_AP","FT_AP_1","FT_AP_2","FT_AP_3","FT_AP_4","FT_AP_5","FT_AP_6","FT_AP_7","FT_AP_8","FT_AP_9","FT_AP_10"];
+	_fireteamAFarray = ["FT_AF","FT_AF_1","FT_AF_2","FT_AF_3","FT_AF_4","FT_AF_5","FT_AF_6","FT_AF_7","FT_AF_8","FT_AF_9","FT_AF_10"];
+	//_uazarray = ["UAZ_1","UAZ_2"];
+
+	//actually spawn the enemies
+
+	[_fireteamAParray,_FTA,_side,200] remoteExecCall ['p_fnc_masspatrol',headless];
+	[_fireteamAFarray,_FTA,_side] remoteExecCall ['p_fnc_massfortify',headless];
+	//[_uazarray,_UAZ,_side,_UAZCrew,500] remoteExecCall ['p_fnc_massvehicle',headless];
+	
+};*/
