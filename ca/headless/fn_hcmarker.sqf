@@ -32,7 +32,7 @@
   } forEach (entities "HeadlessClient_F");
 
  };
-_mkrname = format ["fpsmarker%1", _sourcestr ]
+_mkrname = format ["fpsmarker%1", _sourcestr ];
 if (_mkrname in allMapMarkers) then {
     _myfpsmarker = _mkrname;
 } else {

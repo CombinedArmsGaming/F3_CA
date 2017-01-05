@@ -34,7 +34,9 @@ _hccounts = [];
   _hccounts pushBack _hcount;
   _x setVariable ["ca_hccount", _hcount, true];
 } forEach _allHCs;
-
+if (count _allHCs == 0) then {
+  missionNamespace setVariable ["ca_hc",false, true];
+};
 missionNamespace setVariable ["ca_hccounts",_hccounts, true];
 missionNamespace setVariable ["ca_hclist",_allHCs, true];
 uisleep 0.1;
