@@ -334,6 +334,14 @@ class Params
 // F3 - End of Params code blocks.
 // WARNING: DO NOT DELETE OR COMMENT OUT THIS CODE BLOCK
 
+	class ca_param_aiside
+	{
+		title = "CA ai default side";
+		values[] = {west,east,independent};
+		default = east;
+		code = "ca_param_aiside = %1";
+	};
+
 };
 
 // ============================================================================================
@@ -444,6 +452,7 @@ class CfgRespawnTemplates
 
 class CfgFunctions
 {
+	#include "ca\config.hpp"
 	class F // Defines the "owner"
 	{
 		class common // category

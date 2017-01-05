@@ -1,15 +1,16 @@
 class CA
 {
-		class core
-			{
-				file = "ca\core";
-				class getpos{};
-			};
-		class spawn
-		{
-			file = "ca\spawn";
-			class spawngroup{};
-		};
+	class core
+	{
+		file = "ca\core";
+		class getpos{};
+		class getdir{};
+	};
+	class spawn
+	{
+		file = "ca\spawn";
+		class spawngroup{};
+	};
 	class headless
 	{
 		file = "ca\headless";

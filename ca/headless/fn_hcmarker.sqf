@@ -10,10 +10,10 @@
  * Nothing
  *
  * Example:
- * [] spawn ca_fnc_hccount;
+ * [] spawn ca_fnc_hcmarker;
  *
  */
-
+if (hasInterface && !isServer) exitWith {};
  private [ "_sourcestr", "_position", "_myfpsmarker", "_myfps", "_localunits", "_localvehicles" ];
 
  if ( isServer ) then {
