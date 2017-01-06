@@ -29,10 +29,8 @@ _hccounts = [];
 {
   _allunits = allUnits;
   _headlessid = owner _x;
-
   _hcount = {owner _x == _headlessid} count allUnits;
   _hccounts pushBack _hcount;
-  _x setVariable ["ca_hccount", _hcount, true];
 } forEach _allHCs;
 if (count _allHCs == 0) then {
   missionNamespace setVariable ["ca_hc",false, true];

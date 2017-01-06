@@ -13,7 +13,7 @@
  */
 
 _HCaicounts = ca_hccounts;
-_headlessclient = "";
+_headlessclient = 2;
 _hclist = [];
 _hclist append _HCaicounts;
 _hclist sort true;
