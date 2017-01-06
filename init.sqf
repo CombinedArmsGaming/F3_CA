@@ -25,7 +25,7 @@ enableSentences false;
 // [] execVM "f\mapClickTeleport\f_mapClickTeleportAction.sqf";
 
 // F3 - MapClick Supply Drop
-// Credits: Created by Volc, from the F3 mapClickTeleport script, and the dropit script by Kronzky http://www.kronzky.info/
+// Credits: Created by Volc, from the F3 mapClickTeleport script, and the dropit script by Kronzky http://www.kronzky.info/ 
 
 f_var_mapClickSupplyDrop_Uses = 0;										// How often the Supply Drop action can be used. 0 = infinite usage.
 f_var_mapClickSupplyDrop_Units = [];									// Restrict map click Supply Drop to these units - units must be the leaders of their groups.
@@ -240,7 +240,7 @@ if (isServer) then {
 	_FTB = ["ftl","r","ar","r","r"];
 	//_UAZ = "rhs_uaz_open_MSV_01";
 	//_UAZCrew = ["r","r","r"];
-
+	
 	//predefined markers
 	_fireteamAParray = ["FT_AP","FT_AP_1","FT_AP_2","FT_AP_3","FT_AP_4","FT_AP_5","FT_AP_6","FT_AP_7","FT_AP_8","FT_AP_9","FT_AP_10"];
 	_fireteamAFarray = ["FT_AF","FT_AF_1","FT_AF_2","FT_AF_3","FT_AF_4","FT_AF_5","FT_AF_6","FT_AF_7","FT_AF_8","FT_AF_9","FT_AF_10"];
@@ -251,5 +251,5 @@ if (isServer) then {
 	[_fireteamAParray,_FTA,_side,200] remoteExecCall ['p_fnc_masspatrol',headless];
 	[_fireteamAFarray,_FTA,_side] remoteExecCall ['p_fnc_massfortify',headless];
 	//[_uazarray,_UAZ,_side,_UAZCrew,500] remoteExecCall ['p_fnc_massvehicle',headless];
-
+	
 };*/
