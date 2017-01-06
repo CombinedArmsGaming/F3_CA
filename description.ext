@@ -6,7 +6,7 @@
 class Header
 {
 	// Available gameTypes:
-	// Coop:	|	Coop Mission: The meat and bread PA missions
+	// Coop:	|	Coop Mission: The Bread and Butter of CA missions
 	// DM		|	Death Match
 	// TDM		|	Team Death Match
 	// CTF		|	Capture The Flag (or, nuke)
@@ -334,14 +334,6 @@ class Params
 // F3 - End of Params code blocks.
 // WARNING: DO NOT DELETE OR COMMENT OUT THIS CODE BLOCK
 
-	class ca_param_aiside
-	{
-		title = "CA ai default side";
-		values[] = {west,east,independent};
-		default = east;
-		code = "ca_param_aiside = %1";
-	};
-
 };
 
 // ============================================================================================
@@ -452,7 +444,7 @@ class CfgRespawnTemplates
 
 class CfgFunctions
 {
-	#include "ca\config.hpp"
+	#include "p\config.hpp"
 	class F // Defines the "owner"
 	{
 		class common // category
