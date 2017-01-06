@@ -24,7 +24,7 @@
  };
 
 
-params ["_locationarray","_unitarray","_,wvehicletype",["_side", ca_defaultside]];
+params ["_locationarray","_unitarray","_vehicletype",["_side", ca_defaultside]];
 private ["_group","_grouparray"];
 
 _grouparray = [];

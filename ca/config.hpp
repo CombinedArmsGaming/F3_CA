@@ -4,7 +4,7 @@ class CA
 	{
 		file = "ca\core";
 		class getdirpos{};
-		class getsetparams{preInit = 1;};
+		class setparams{preInit = 1;};
 	};
 	class headless
 	{

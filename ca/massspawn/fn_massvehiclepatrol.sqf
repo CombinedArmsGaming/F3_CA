@@ -29,7 +29,7 @@
 
  _grouparray = [];
  {
-   _grpvehicle = [_unitarray,_x,_vehicletype,_radius,_side] call ca_fnc_spawnvehicleattack;
+   _grpvehicle = [_unitarray,_x,_vehicletype,_radius,_side] call ca_fnc_spawnvehiclepatrol;
    _group = _grpvehicle select 0;
    _grouparray pushback _group;
  } forEach _locationarray;
