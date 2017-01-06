@@ -444,7 +444,6 @@ class CfgRespawnTemplates
 
 class CfgFunctions
 {
-	#include "p\config.hpp"
 	class F // Defines the "owner"
 	{
 		class common // category
