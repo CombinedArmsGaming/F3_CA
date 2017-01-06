@@ -65,7 +65,7 @@ _uav = "b_uav";			// UAV
 // MARKERS: BLUFOR
 // Markers seen by players in BLUFOR slots
 if (_unitside == west) then {
-#include "f_setLocalGroupMarkers_Blufor.sqf"
+#include "f_setLocalGroupMarkers_West.sqf"
 };
 // ====================================================================================
 
@@ -73,7 +73,7 @@ if (_unitside == west) then {
 // Markers seen by players in OPFOR slots
 if (_unitside == east) then {
 
-#include "f_setLocalGroupMarkers_Opfor.sqf"
+#include "f_setLocalGroupMarkers_East.sqf"
 };
 // ====================================================================================
 
@@ -81,7 +81,7 @@ if (_unitside == east) then {
 // Markers seen by players in INDEPENDENT slots
 if (_unitside == independent) then {
 
-#include "f_setLocalGroupMarkers_Indfor.sqf"
+#include "f_setLocalGroupMarkers_Independent.sqf"
 };
 // ====================================================================================
 
@@ -90,4 +90,4 @@ if (_unitside == independent) then {
 
 // ====================================================================================
 // sleep for 10 seconds so f\briefing\f_orbatNotes.sqf can get generated correctly
-uiSleep 10;
+uiSleep 15;
