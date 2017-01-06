@@ -5,7 +5,6 @@
  * Arguments:
  * None
  *
- *
  * Return Value:
  * Nothing
  *

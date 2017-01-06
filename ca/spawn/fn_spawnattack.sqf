@@ -1,42 +1,48 @@
 /*
  * Author: Poulern
- * Spawns a group that attacks an area
+ * Spawns a group that attacks a location or area.
  *
  * Arguments:
  * 0: array of units
  * 1: start position
  * 2: side of group
- * 3: area marker to attack/search
- * 4: behaviour of group, eg "CARELESS","SAFE","AWARE","COMBAT","STEALTH"
- * 5: combat mode, eg "BLUE","GREEN","WHITE","YELLOW","RED"
- * 6: speed of group "LIMITED","NORMAL","FULL"
- * 7: formation aka "COLUMN", "STAG COLUMN", "WEDGE", "ECH LEFT", "ECH RIGHT", "VEE" or "LINE"
- * 8: Oncomplete code to run when done: aka ignore this
- * 9: timeout, but ignore this one as well.
+ * 3: marker, position or location to attack. If marker is type of area, then it will use that instead.
  * Return Value:
- * Nothing.
+ * Group.
  *
  * Example:
- * [["ftl","r","m","rat","ar","aar"],"spawnmarker",independent,"attackmarker","SAFE","GREEN","FULL","STAG COLUMN"] call p_fnc_spawnattack;
+ * [["ftl","r","m","rat","ar","aar"],"spawnmarker","attackmarker",independent] call ca_fnc_spawnattack;
  *
- * Public: [Yes/No]
  */
+_ishc = !hasInterface && !isDedicated;
+//Use headless instead?
+if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
+//if no headless, and is player, spawn on server instead
+if (!ca_hc && hasInterface) then {
+	if (!isServer) exitWith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
+};
 
-params ["_unitarray","_position","_side","_marker",
-    ["_behaviour", "UNCHANGED", [""]],
-    ["_combat", "NO CHANGE", [""]],
-    ["_speed", "UNCHANGED", [""]],
-    ["_formation", "NO CHANGE", [""]],
-    ["_onComplete", "", [""]],
-    ["_timeout", [0,0,0], [[]], 3]];
+params ["_unitarray","_position","_attackposition",["_side", ca_defaultside]];
 private ["_group"];
-_group = [_unitarray,_position,_side] call p_fnc_spawngroup;
+_group = [_unitarray,_position,_side] call ca_fnc_spawngroup;
+_posdir = _attackposition call ca_fnc_getdirpos;
+_attackpos = _posdir select 0;
 
+if (markerShape _attackmarker ==  "RECTANGLE" || markerShape _attackmarker == "ELLIPSE") then {
+  [_group,_attackposition] call CBA_fnc_taskSearchArea;
+}else{
+  [_group,_attackpos] call CBA_fnc_taskAttack;
+};
 {
   _x allowFleeing 0;
-  _x setskill ["courage",1]
-
+  _x doMove _attackpos;
+  _x setspeedmode "FULL";
+  _x setbehaviour "SAFE";
+  _x setskill ["spotDistance",0.1];
+  _x setskill ["spotTime",0.1];
+  _x setskill ["courage",1];
+  _x setskill ["commanding",0.1];
+  _x setskill ["general",0.1];
 } forEach (units _group);
 
-
-[_group,_marker,_behaviour,_combat,_speed,_formation,_onComplete,_timeout] call CBA_fnc_taskSearchArea;
+_group

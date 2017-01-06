@@ -11,24 +11,24 @@
  * group
  *
  * Example:
- * [ ["ftl","r","ar","m"],"spawnmarker",west] call p_fnc_spawngroup;
+ * [ ["ftl","r","ar","m"],"spawnmarker",west] call ca_fnc_spawngroup;
  * [ ["ftl","r","ar","m"],player,west] call ca_fnc_spawngroup;
- * [["ftl","r","ar","m"],[123,67,0],west] call p_fnc_spawngroup;
- * Public: No
+ * [["ftl","r","ar","m"],[123,67,0],west] call ca_fnc_spawngroup;
  */
 
-_params = params ["_unitarray","_position","_side"];
-private ["_spawnpos","_unittype","_unit","_group","_pos","_unittype"];
+params ["_unitarray","_position",["_side", ca_defaultside]];
+private ["_spawnpos","_unittype","_unit","_group","_posdir","_unittype"];
 
 _ishc = !hasInterface && !isDedicated;
 //Use headless instead?
-if (ca_hc && !_ishc) exitwith {
-	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;
+if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
+//if no headless, and is player, spawn on server instead
+if (!ca_hc && hasInterface) then {
+	if (!isServer) exitWith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
 };
-
 //Getting a good position from the parsed values
-_spawnpos = [_position] call ca_fnc_getpos;
-
+_posdir = _position call ca_fnc_getdirpos;
+_spawnpos = _posdir select 0;
 
 switch(_side) do {
 	case west: { _group = createGroup west; _unittype = "B_Soldier_F";};
@@ -40,16 +40,10 @@ switch(_side) do {
 
 {
 	_unit = "";
-
 	_unit = _group  createUnit [_unittype, _spawnpos, [], 0, "FORM"];
-
 	_type = _x;
-
 	[_type,_unit] call f_fnc_assignGear;
-
 } forEach _unitarray;
 
-
 _group setFormation "LINE";
-
 _group

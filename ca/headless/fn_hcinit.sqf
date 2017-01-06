@@ -2,7 +2,6 @@
  * Author: Poulern
  * Description: Initializes the headless framework component
  *
- *
  */
  if !(isServer) exitWith {};
 _allHCs = entities "HeadlessClient_F";

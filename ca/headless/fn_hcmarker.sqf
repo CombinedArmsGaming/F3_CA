@@ -1,13 +1,6 @@
 /*
- * Author: Liberation & Poulern
- * Create markers to show fps on each headless client and the server.
- *
- * Arguments:
- * None
- *
- *
- * Return Value:
- * Nothing
+ * Author: Lib & Poulern
+ * Create markers to show fps on each headless client and the server. Spawn on Headless client and server only.
  *
  * Example:
  * [] spawn ca_fnc_hcmarker;

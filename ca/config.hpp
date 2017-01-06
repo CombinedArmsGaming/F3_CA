@@ -3,21 +3,45 @@ class CA
 	class core
 	{
 		file = "ca\core";
-		class getpos{};
-		class getdir{};
-	};
-	class spawn
-	{
-		file = "ca\spawn";
-		class spawngroup{};
+		class getdirpos{};
+		class getsetparams{preInit = 1;};
 	};
 	class headless
 	{
 		file = "ca\headless";
-		class hcinit{postInit = 1;};
 		class hccount{};
-		class hcfind{};
 		class hcexec{};
+		class hcfind{};
+		class hcinit{postInit = 1;};
 		class hcmarker{};
+	};
+	class massspawn
+	{
+		file = "ca\massspawn";
+		class massattack{};
+		class masspatrol{};
+		class massfortify{};
+		class massvehicleattack{};
+		class massvehiclepatrol{};
+		class massvehiclestatic{};
+	};
+	class misc
+	{
+		file = "ca\misc";
+		class bodymanage{};
+		class incfuelcon{};
+		class parachute{};
+	};
+	class spawn
+	{
+		file = "ca\spawn";
+		class spawnattack{};
+		class spawngroup{};
+		class spawnpatrol{};
+		class spawnvehicle{};
+		class spawnvehicleattack{};
+		class spawnvehiclegroup{};
+		class spawnvehiclepatrol{};
+		class spawnvehiclestatic{};
 	};
 };

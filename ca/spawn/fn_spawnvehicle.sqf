@@ -1,22 +1,39 @@
-params ["_marker","_tanktype","_side","_grouparray"];
-//ex [["detendion","detendion_1","detendion_2","detendion_1_1"],"rhs_t72ba_tv",east] call p_fnc_spawnfortvehgroup
+/*
+ * Author: Poulern
+ * Creates a vehicle and locks it and removes whatever is inside of it and locks it for players
+ *
+ * Arguments:
+ * 0: Vehicle type, vehicle classname
+ * 1: Position, anything, also direction
+ *
+ * Return Value:
+ * Vehicle
+ *
+ * Example:
+ * [player,"C_Quadbike_01_F"] call ca_fnc_spawnvehicle
+ *
+ */
+_ishc = !hasInterface && !isDedicated;
+//Use headless instead?
+if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
+//if no headless, and is player, spawn on server instead
+if (!ca_hc && hasInterface) then {
+	if (!isServer) exitWith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
+};
 
-_group = [_grouparray,_marker,_side] call p_fnc_spawngroup;
+params ["_position","_vehicletype"];
 
+_posdir = _position call ca_fnc_getdirpos;
+_spawnpos = _posdir select 0;
+_dir = _posdir select 1;
 
-  _spawnpos = markerPos _marker;
-  _dir = markerDir _marker;
-  _vehicle = createVehicle  [_tanktype, _spawnpos, [], 15, "NONE"];
-  _vehicle setDir _dir;
+_vehicle = createVehicle  [_vehicletype, _spawnpos, [], 15, "NONE"];
+_vehicle setDir _dir;
 
-  {
-    _x moveInAny _vehicle;
-  } forEach (units _group);
+_vehicle lock 3;
+clearWeaponCargoGlobal _vehicle;
+clearMagazineCargoGlobal _vehicle;
+clearItemCargoGlobal _vehicle;
+clearBackpackCargoGlobal _vehicle;
 
-  _vehicle lock 3;
-  clearWeaponCargoGlobal _vehicle;
-  clearMagazineCargoGlobal _vehicle;
-  clearItemCargoGlobal _vehicle;
-  clearBackpackCargoGlobal _vehicle;
-
-_group
+_vehicle

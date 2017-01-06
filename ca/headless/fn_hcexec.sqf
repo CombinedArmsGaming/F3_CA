@@ -9,7 +9,8 @@
  * Nothing
  *
  * Example:
- * 	[_this,_fnc_scriptName] call ca_fnc_hcexec;
+ * [_this,_fnc_scriptName] call ca_fnc_hcexec;
+ * [[["ftl","r","ar","m"],"spawnmarker",west],"ca_fnc_spawngroup"] call ca_fnc_hcexec; (Rather redudant since that function already does that)
  * All functions must be called in that way if called from a function, for scripts use it like the SQF command remoteExec, but with an automatic target.
  *
  */

@@ -7,9 +7,8 @@
  * Return Name <TYPE>
  *
  * Example:
- * ["example"] call ace_[module]_fnc_[functionName]
+ * [] call ca_fnc_hcfind
  *
- * Public: [Yes/No]
  */
 
 _HCaicounts = ca_hccounts;
