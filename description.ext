@@ -6,7 +6,7 @@
 class Header
 {
 	// Available gameTypes:
-	// Coop:	|	Coop Mission: The meat and bread PA missions
+	// Coop:	|	Coop Mission: The Bread and Butter of CA missions
 	// DM		|	Death Match
 	// TDM		|	Team Death Match
 	// CTF		|	Capture The Flag (or, nuke)
@@ -444,6 +444,7 @@ class CfgRespawnTemplates
 
 class CfgFunctions
 {
+	#include "ca\config.hpp"
 	class F // Defines the "owner"
 	{
 		class common // category
