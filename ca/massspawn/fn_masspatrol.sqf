@@ -1,6 +1,6 @@
 /*
  * Author: Poulern
- * Spawns ai at different markers at makes them attack the same position. Attack position
+ * Spawns ai at each location specified. Each Ai will patrol in the area around it specified by the radius.
  *
  * Arguments:
  * 0: Spawn positions, marker, object, group, location, array

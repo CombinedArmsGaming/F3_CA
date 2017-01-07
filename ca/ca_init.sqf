@@ -1,10 +1,12 @@
 
 
 _ishc = !hasInterface && !isDedicated;
+if (_ishc) then {
+    [] spawn ca_fnc_hcmarker;
+};
 if (_ishc && didJIP) then {
-		if (!ca_hc) then { uisleep 15;
-			remoteExec ["ca_fnc_hcinit", 2];
-		} else{ [] spawn ca_fnc_hcmarker;
+	if (!ca_hc) then {
+		remoteExec ["ca_fnc_hcinit", 2];
 	};
 };
 /*
@@ -34,7 +36,7 @@ if ( isServer ) then {
  _sourcestr = "Server";
 } else {
   {
-       _sourcestr = str _x;
+    _sourcestr = str _x;
  } forEach (entities "HeadlessClient_F");
 
 };

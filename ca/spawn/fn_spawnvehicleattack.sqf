@@ -39,7 +39,6 @@ if (markerShape _attackmarker ==  "RECTANGLE" || markerShape _attackmarker == "E
 };
 {
   _x allowFleeing 0;
-  _x doMove _attackpos;
   _x setspeedmode "FULL";
   _x setbehaviour "SAFE";
   _x setskill ["spotDistance",0.1];
