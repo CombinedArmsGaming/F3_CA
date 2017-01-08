@@ -12,7 +12,7 @@
  * [] spawn ca_fnc_hccount;
  *
  */
-
+if (!isserver) exitwith {};
 while {ca_hc} do {
 _allHs = [];
 _allHs = entities "HeadlessClient_F";
@@ -36,5 +36,7 @@ missionNamespace setVariable ["ca_hclist",_allHCs, true];
 uisleep 0.1;
 if (count _allHCs == 0) then {
   missionNamespace setVariable ["ca_hc",false, true];
+  missionNamespace setVariable ["ca_hclist",[], true];
+  missionNamespace setVariable ["ca_hccounts",[], true];
 };
 };

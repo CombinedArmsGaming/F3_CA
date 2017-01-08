@@ -8,3 +8,4 @@
  */
 
  missionNamespace setVariable ["ca_defaultside",east, true];
+ missionNamespace setVariable ["ca_hchidemarkers",true, true];
