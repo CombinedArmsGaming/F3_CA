@@ -32,7 +32,7 @@ _group = _grpvehicle select 0;
 _posdir = _attackposition call ca_fnc_getdirpos;
 _attackpos = _posdir select 0;
 
-if (markerShape _attackmarker ==  "RECTANGLE" || markerShape _attackmarker == "ELLIPSE") then {
+if (markerShape _attackposition ==  "RECTANGLE" || markerShape _attackposition == "ELLIPSE") then {
   [_group,_attackposition] call CBA_fnc_taskSearchArea;
 }else{
   [_group,_attackpos] call CBA_fnc_taskAttack;

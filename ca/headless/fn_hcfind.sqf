@@ -10,7 +10,7 @@
  * [] call ca_fnc_hcfind
  *
  */
-/*
+
 _HCaicounts = ca_hccounts;
 _headlessclient = 2;
 _hclist = [];
@@ -24,15 +24,6 @@ if (_result == -1) then {
     _headlessclient = 2;
 } else {
   _headlessclient = ca_hclist select _result;
-};
-
-_headlessclient
-*/
-_headlessclient = 2;
-if (count ca_hclist == 0) then {
-  _headlessclient = 2;
-}else{
-  _headlessclient = selectRandom ca_hclist;
 };
 
 _headlessclient

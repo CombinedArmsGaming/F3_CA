@@ -1,6 +1,6 @@
 /*
  * Author: Poulern
- * Spawns a group that attacks a location or area.
+ * Spawns a group that fortifies a location or area.
  *
  * Arguments:
  * 0: array of units
@@ -12,7 +12,7 @@
  * Group.
  *
  * Example:
- * [["ftl","r","m","rat","ar","aar"],"spawnmarker","attackmarker",independent] call ca_fnc_spawnattack;
+ * [["ftl","r","m","rat","ar","aar"],"spawnmarker",independent] call ca_fnc_spawnfortify;
  *
  */
 _ishc = !hasInterface && !isDedicated;
@@ -23,16 +23,9 @@ if (!ca_hc && hasInterface) then {
 	if (!isServer) exitWith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
 };
 
-params ["_unitarray","_position","_attackposition",["_side", ca_defaultside]];
+params ["_unitarray","_position",["_side", ca_defaultside]];
 private ["_group"];
 _group = [_unitarray,_position,_side] call ca_fnc_spawngroup;
-_posdir = _attackposition call ca_fnc_getdirpos;
-_attackpos = _posdir select 0;
-
-if ((markerShape _attackposition ==  "RECTANGLE") || (markerShape _attackposition == "ELLIPSE")) then {
-  [_group,_attackposition] call CBA_fnc_taskSearchArea;
-}else{
-  [_group,_attackpos,50,true] call CBA_fnc_taskAttack;
-};
+[_group,_group,50,1,false] call CBA_fnc_taskDefend;
 
 _group

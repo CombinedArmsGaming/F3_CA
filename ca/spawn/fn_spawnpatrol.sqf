@@ -7,6 +7,7 @@
  * 1: start position
  * 2: radius of area to patrol eg 200
  * 3: side of group eg west east independent
+ *
  * Return Value:
  * Group.
  *

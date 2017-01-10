@@ -26,9 +26,8 @@ _allHCs = _allHs - _notHCs;
 
 _hccounts = [];
 {
-  _allunits = allUnits;
   _headlessid = owner _x;
-  _hcount = {owner _x == _headlessid} count allUnits;
+  _hcount = {groupOwner _x == _headlessid} count allGroups;
   _hccounts pushBack _hcount;
 } forEach _allHCs;
 missionNamespace setVariable ["ca_hccounts",_hccounts, true];

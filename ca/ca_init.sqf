@@ -9,9 +9,12 @@ if (_ishc && didJIP) then {
 		remoteExec ["ca_fnc_hcinit", 2];
 	};
 };
+if (serverCommandAvailable "#kick") then {
+  execVM "ca\ca_briefing_admin.sqf";
+};
 /*
 if (isServer) then {
-	_side = east; // Optional, to be defined in a parameter, also settable in fn_setparams.
+	_side = east; // Optional, to be defined in a parameter, use ca\core\fn_setparams for now.
 	//predefined teams according to F3 array.
 	_FTA = ["ftl","ar","r","r","r"];
 	_FTB = ["ftl","r","ar","r","r"];
@@ -30,16 +33,4 @@ if (isServer) then {
 	//[_VCuazArray,_VC,_UAZ,500,_side] spawn ca_fnc_massvehiclepatrol;
 
 };
-*/
-/* UNCOMMMENT BLOCK BELOW TO HIDE HEADLESS MARKERS IN BOTTOM LEFT CORNER OF THE MAP.
-if ( isServer ) then {
- _sourcestr = "Server";
-} else {
-  {
-    _sourcestr = str _x;
- } forEach (entities "HeadlessClient_F");
-
-};
-_mkrname = format ["fpsmarker%1", _sourcestr ];
-_mkrname setMarkerAlpha 0;
 */

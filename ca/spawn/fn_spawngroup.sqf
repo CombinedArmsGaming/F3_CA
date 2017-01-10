@@ -7,8 +7,9 @@
  * 0: F3 group array
  * 1: Spawn position, marker, object, group, location, array
  * 2: side west east independent
+ *
  * Return Value:
- * group
+ * Group
  *
  * Example:
  * [ ["ftl","r","ar","m"],"spawnmarker",west] call ca_fnc_spawngroup;

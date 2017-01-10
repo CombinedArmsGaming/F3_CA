@@ -1,6 +1,6 @@
 /*
  * Author: Poulern
- * Creates a static vehicle that sort of sits there idle, but can't move.
+ * Creates a static vehicle that sort of sits there idle because its out of fuel.
  *
  * Arguments:
  * 0: F3 group array

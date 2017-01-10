@@ -19,6 +19,8 @@ class CA
 	{
 		file = "ca\massspawn";
 		class massattack{};
+		class masscharge{};
+		class massfortify{};
 		class masspatrol{};
 		class massfortify{};
 		class massvehicleattack{};
@@ -36,6 +38,8 @@ class CA
 	{
 		file = "ca\spawn";
 		class spawnattack{};
+		class spawncharge{};
+		class spawnfortify{};
 		class spawngroup{};
 		class spawnpatrol{};
 		class spawnvehicle{};
