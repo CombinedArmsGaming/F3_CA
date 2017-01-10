@@ -8,5 +8,5 @@
  */
 
  missionNamespace setVariable ["ca_defaultside",east, true];
- missionNamespace setVariable ["ca_hchidemarkers",false, true];
- missionNamespace setVariable ["ca_deletevehicles",true, true];
+ missionNamespace setVariable ["ca_hchidemarkers",true, true];
+ missionNamespace setVariable ["ca_deletevehicles",false, true];

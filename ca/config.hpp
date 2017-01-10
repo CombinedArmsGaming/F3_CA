@@ -22,7 +22,6 @@ class CA
 		class masscharge{};
 		class massfortify{};
 		class masspatrol{};
-		class massfortify{};
 		class massvehicleattack{};
 		class massvehiclepatrol{};
 		class massvehiclestatic{};

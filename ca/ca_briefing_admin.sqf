@@ -1,6 +1,6 @@
 // CA - Briefing
 // ====================================================================================
-
+_briefing = "";
 _briefing = _briefing + "
 <font size='18'>Body manager control</font><br/><br/>
 |- <execute expression="" missionNamespace setVariable ['ca_bodymanageon',true, true]; [] remoteexec ['ca_fnc_bodymanage',2,true];"">
