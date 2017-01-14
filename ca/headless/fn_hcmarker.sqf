@@ -14,7 +14,7 @@ if (hasInterface && !isServer) exitWith {};
  	_position = 0;
  } else {
    {
-   if (!isNil (str _x)) then {
+   if (!isNil "_x") then {
  		if (!isNull _x) then {
  			if (local _x) then {
  				_sourcestr = str _x;

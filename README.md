@@ -92,8 +92,8 @@ Version | Date | Notes
 * 2-1-0 RC1 | 06 OCT 2009 | Special release (see change history).
 * 2-0-5     | 30 SEP 2009 | Patch release - Various improvements (see change history).
 * 2-0-4     | 09 SEP 2009 | Patch release - Various improvements (see change history).
-* 2-0-3     | 24 AUG 2009 | Patch release - Various improvements (see change history). 
-* 2-0-2     | 24 AUG 2009 | Patch release - Various improvements (see change history). 
+* 2-0-3     | 24 AUG 2009 | Patch release - Various improvements (see change history).
+* 2-0-2     | 24 AUG 2009 | Patch release - Various improvements (see change history).
 * 2-0-1     | 26 JUL 2009 | First beta release to community (see change history).
 * 2-0-0     | 12 JUL 2009 | First beta release to ShackTactical (see change history).
 
@@ -104,10 +104,10 @@ Version | Date | Notes
 * 1-4-2  | 13 MAR 2009 | Patch release - Various improvements (see change history).
 * 1-4-1  | 13 FEB 2009 | Patch release - Various improvements (see change history).
 * 1-4-0  | 03 FEB 2009 | Patch release - Various improvements (see change history).
-* 1-3-2  | 18 JAN 2009 | Patch release - Various improvements (see change history). 
-* 1-3-1  | 08 JAN 2009 | Patch release - Various improvements (see change history). 
-* 1-3    | 03 JAN 2009 | Patch release - Various improvements (see change history). 
-* 1-2    | 18 DEC 2008 | Patch release - Various improvements (see change history). 
+* 1-3-2  | 18 JAN 2009 | Patch release - Various improvements (see change history).
+* 1-3-1  | 08 JAN 2009 | Patch release - Various improvements (see change history).
+* 1-3    | 03 JAN 2009 | Patch release - Various improvements (see change history).
+* 1-2    | 18 DEC 2008 | Patch release - Various improvements (see change history).
 * 1-1C   | 19 MAY 2008 | Patch release - Various improvements (see change history).
 * 1-1B   | 29 APR 2008 | Special release (see change history).
 * 1-1A   | 03 APR 2008 | Special release (see change history).
@@ -117,7 +117,7 @@ Version | Date | Notes
 * 1-0-9  | 12 JAN 2008 | Patch release - Various improvements (see change history).
 * 1-0-8  | 26 DEC 2007 | Patch release - Various improvements (see change history).
 * 1-0-7  | 24 DEC 2007 | Patch release - Various improvements (see change history).
-* 1-0-6  | 27 OCT 2007 | Patch release - Various improvements (see change history). 
+* 1-0-6  | 27 OCT 2007 | Patch release - Various improvements (see change history).
 * 1-0-5  | 15 OCT 2007 | Patch release - Various improvements (see change history).
 * 1-0-4  | 19 AUG 2007 | Patch release - Various improvements (see change history).
 * 1-0-3A | 25 JUL 2007 | Patch release - Various improvements (see change history).
@@ -149,7 +149,7 @@ Version | Date | Notes
 * Contributors: Head | Harakka | Fer | Wolfenswan | Cam | turowicz | CaseMonster | Black Mamba | DarkTatka | Tigershark | cptnnick | Linux | Snippers
 * Documentation: Fer | Wolfenswan | Dogface | Cam | Head | cptnnick | Snippers
 * Producers: Fer | Wolfenswan
-* Special Thanks: Arctor | BasterActual | batboyx2 | cptnnick | Dogface | Draakon | Landyacht | Linux | nolux | Pabstmirror | Zerith
+* Special Thanks: Arctor | BasterActual | batboyx2 | cptnnick | Dogface | Draakon | Landyacht | Linux | nolux | Pabstmirror | Zerith | Poulern
 * Special thanks to everyone at: Folk ARPS | Basterd ArmA | Black sh33p | Bourbon Warfare | Phantactical | Pointfire | Project Awesome | Team One Tactical | The Company
 
 ### F2 Credits ###
@@ -162,7 +162,7 @@ Version | Date | Notes
 
 ### BAS f Credits ###
 
-* Contributors: Fer | Kronzky | Rom | Raedor | Kegetys | eJay | burningtrees | Redkid Joker | Headspace | ViperMaul | zx64 | kevb0 | Mandoble | Red Barron | Jaxobs | Awoihjaweohr | FLEXCopMNPD | Jefke 
+* Contributors: Fer | Kronzky | Rom | Raedor | Kegetys | eJay | burningtrees | Redkid Joker | Headspace | ViperMaul | zx64 | kevb0 | Mandoble | Red Barron | Jaxobs | Awoihjaweohr | FLEXCopMNPD | Jefke
 * Translators: Donnervogel | Serclaes | Messiah2 | Gaia | FireflyPL | Kanotson | Varry | W0lle | Nikita Kaspersky | Rainbow | JanMasterson
 * Documentation: Fer | Kegetys | Serclaes | Messiah2
 * Producers: Fer
@@ -241,7 +241,7 @@ Version | Date
 
 * Updated Radio Systems Support component:
  * Switched linkItem to addItem for ACRE2.
-* Fixed F3 Spectator Script component: 
+* Fixed F3 Spectator Script component:
  * Fixed incompatiblity with most recent Arma 3 update.
 
 3-2-0 | 15 NOV 2014
@@ -337,7 +337,7 @@ Version | Date
 * Updated F3 Spectator Script:
  * Revised code to reduce load on CPU.
  * Virtual men no longer have visible name tags.
-* Updated Name Tags component: 
+* Updated Name Tags component:
  * Height above unit determined by stance.
  * Offset for passenger name tags fixed.
 * Updated ORBAT Notes component:
@@ -390,7 +390,7 @@ Version | Date
 * Updated Fireteam Member Markers component:
  * Team colours are now assigned in arrays at top of script (easier to modify, same functionality).
 * Updated Join Group Action component: new notifications.
-* Updated ORBAT Notes component: 
+* Updated ORBAT Notes component:
  * ORBAT lists vehicles, crew and any loaded elements.
  * ORBAT lists individual medics (under their element leader).
 * Fixed F3 Spectator Script component:
@@ -429,12 +429,12 @@ Version | Date
  * Ground vehicle drivers and selected helicopter crew members are now able to repair vehicles.
  * Ground vehicle commanders have rangefinders.
  * Fixed AAF DC group assignment.
-* Updated Safe Start component: 
+* Updated Safe Start component:
  * Changed frequency and duration of notifications.
  * Changed name of parameter variable.
 * Fixed ACRE Support component: script path(s).
 * Fixed Debug Mode component: string paths (several were still referring to f\common)
-* Fixed F3 Folk ARPS Assign Gear Script component: 
+* Fixed F3 Folk ARPS Assign Gear Script component:
  * Removed blank between assignGear and ; in unit INIT lines.
  * Removed nul = for unit INIT assignGear call.
 * Fixed F3 Folk ARPS JIP Reinforcement Options component: paths (were still referring to f\common).
@@ -461,7 +461,7 @@ Version | Date
 * Added F3 Premount component:
  * Mission makers can quickly and easily mount multiple groups in multiple vehicles.
  * Mission makers can control use of crew seats and group cohesion across vehicles.
- * Pre-placed modules support easy mounting of squads from pre-placed platoons. 
+ * Pre-placed modules support easy mounting of squads from pre-placed platoons.
 * Added Respawn Templates component:
  * Replaces Respawn INIT component.
 * Added MapClick Teleport component:
@@ -482,7 +482,7 @@ Version | Date
 * Updated Casualties Cap component:
  * Now incorporates Casualties Cap (Advanced) components.
 * Updated Dynamic View Distance component:
- * Mission makers can now control view distances for vehicle passengers. 
+ * Mission makers can now control view distances for vehicle passengers.
 * Updated F3 Folk ARPS Assign Gear Script component:
  * Backpacks parameter renamed to Loadouts.
  * Added UAV operator loadout to all factions.
@@ -707,7 +707,7 @@ Version | Date
 
 2-7-1 | 16 FEB 2013
 
-* Added Mission Observers component. 
+* Added Mission Observers component.
 * Changed default setting for Backpacks mission parameter to "off".
 * Changed Preplaced Game Logics component: synchronizing medic modules with every single unit is no longer required.
 * Changed ACRE Support component: 148s restricted to element leaders.
@@ -896,12 +896,12 @@ Version | Date
 * Removed rogue setGroupID and HC-related commands from Init lines of units in ShackTactical Platoons.
 * Updated manual: Various changes (EN and RU versions).
 
-2-1-0 | 06 OCT 2009 
+2-1-0 | 06 OCT 2009
 
 * Added Norrin's Revive Respawn component.
 * Updated manual: Various changes (EN and RU versions).
 
-2-1-0 RC1 | 06 OCT 2009 
+2-1-0 RC1 | 06 OCT 2009
 
 * Added Norrin's Revive Respawn component.
 * Updated manual: Various changes (EN and RU versions).
@@ -1107,7 +1107,7 @@ Version | Date
 
 1-0-5 | 15 OCT 2007
 
-* Added support for Rahmadi, United Sahrani, Porto and Sakakah Al Jawf (open beta version). 
+* Added support for Rahmadi, United Sahrani, Porto and Sakakah Al Jawf (open beta version).
 * Added the Casualties Cap (Advanced) component.
 * Updated the ShackTactical Group IDs component (thanks to Messiah2 and zx64).
 * Updated the MP Ending Controller component to close the Spectator Script dialog on mission end (thanks to zx64).
@@ -1140,7 +1140,7 @@ Version | Date
 * Integrated new Automatic Body Removal (FIFO Version) (thanks to Raedor).
 * Added new common variable: f_var_men_players (thanks to Raedor).
 * Added ShackTactical Markers (Addon Version) component.
-* Added ShackTactical Fireteam Markers (Addon Version) component. 
+* Added ShackTactical Fireteam Markers (Addon Version) component.
 * Updated ShackTactical Fireteam Markers component (disabled unit names).
 * Updated manual: Various, to reflect above changes.
 
@@ -1205,7 +1205,7 @@ Version | Date
 * Amended f_setAISkill.sqf to use var(s) from f_setCommonVars.sqf file.
 * Amended f_setAISkill.sqf to set skill for all unit types (not just men).
 * Changed suffix for onPlayerRespawnAsSeagull.sqs file to 'xxx'.
-* Updated manual: Various, to reflect above changes. 
+* Updated manual: Various, to reflect above changes.
 
 0-0-25 | 12 APR 2007
 
@@ -1242,12 +1242,12 @@ Version | Date
 * Moved everything to Sahrani.
 * Updates and corrections made to manual.
 
-0-0-19 | 24 JAN 2007 
+0-0-19 | 24 JAN 2007
 
 * Internal alpha release (missing UPS and Anti-TK components).
 * Updates and corrections made to manual, inc. screenshots (from Rahmadi version).
 * Included Open Office format version of manual.
 
-0-0-18 | 12 JAN 2007 
+0-0-18 | 12 JAN 2007
 
 * Internal alpha release (missing UPS and Anti-TK components).

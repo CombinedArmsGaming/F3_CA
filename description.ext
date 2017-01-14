@@ -205,35 +205,6 @@ class Params
 
 // ============================================================================================
 
-// F3 - Medical Systems Support
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-    class f_param_medical
-    {
-            title = "Medical System";
-            values[] = {0,1,2,3};
-            texts[] = {"Arma 3 Default (Autodetect)","F3 Simple Wounding System","Force ACE3 Simple","Force ACE3 Advanced"};
-            default = 2;
-            code = "f_var_medical = %1";
-    };
-
-// F3 - ACE3 Support
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-	class f_param_ace3
-	{
-			title = "ACE3 Support";
-			values[] = {0,1};
-			texts[] = {"Off","On"};
-			default = 1;
-			code = "f_var_ace3 = %1";
-	};
-
-// ============================================================================================
-
-
-// ============================================================================================
-
 // F3 - Mission Timer/Safe Start
 // Credits: Please see the F2 online manual (http://www.ferstaberinde.com/f3/en/)
 
@@ -328,6 +299,11 @@ class Params
 		default = 0;
 		code = "f_param_caching = %1";
 	};
+
+// ============================================================================================
+// F3_CA - Parameters for CA folder.
+
+#include "ca\ca_params.hpp"
 
 // ============================================================================================
 
@@ -471,10 +447,6 @@ class CfgFunctions
 			file = "f\assignGear";
 			class assignGear{};
 		};
-		class ace3
-		{
-			file="f\ace3";
-		};
 		class missionConditions
 		{
 			file = "f\missionConditions";
@@ -564,6 +536,19 @@ class CfgFunctions
 
 class CfgUnitInsignia {
 	#include "f\assignGear\insignia\define.hpp"
+};
+// Adds to the debriefing possible kills and possible reasons for deaths as well, so after an operation don't go straight to mission select. Its the fourth tab after score.
+class CfgDebriefingSections {
+		class acex_killTracker {
+				title = "Acex Killed Events";
+				variable = "acex_killTracker_outputText";
+		};
+};
+// Makes splendid camera still show chat after quitting splendid camera.
+class Extended_DisplayUnload_EventHandlers {
+    class RscDisplayCamera {
+        ca_fixcamera = "showChat true";
+    };
 };
 
 // Custom Sounds - Be advised, if you use a cfgSound in a mission,

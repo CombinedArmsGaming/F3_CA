@@ -176,17 +176,17 @@ _baghsamag = "B_HMG_01_support_F";			// used by Heavy SAM assistant gunner
 //Check if TFR is the radio addon is used
 if(f_var_radios == 2) then {
 	//Designate radio backpack that is to be used.
-	_bagradio = TF_defaultWestBackpack;  //Remember to use "" for classnames eg "tf_rt1523g_sage"
+	_bagradio = "tf_rt1523g";  //Remember to use "" for classnames eg "tf_rt1523g_sage"
 
-		// Unit types you want to give long-range radios if previous is
-		// E.G: ["co", "m"] would give the CO and all medics  long-range radios
-		f_radios_settings_tfr_backpackRadios = ["co","dc"];
+	// Unit types you want to give long-range radios if previous is
+	// E.G: ["co", "m"] would give the CO and all medics  long-range radios
+	_backpackradiotypes = ["co","dc"];
 
-				if(_typeOfUnit in f_radios_settings_tfr_backpackRadios) then {
-					_bagsmall = _bagradio;
-					_bagmedium = _bagradio;
-					_baglarge = _bagradio;
-				};
+	if(_typeOfUnit in _backpackradiotypes) then {
+		_bagsmall = _bagradio;
+		_bagmedium = _bagradio;
+		_baglarge = _bagradio;
+	};
 };
 // ====================================================================================
 
@@ -335,12 +335,21 @@ if (_isMan) then {
 
 	_unit linkItem _nvg;					// Add and equip the faction's nvg
 	_unit addItem _firstaid;				// Add a single first aid kit (FAK)
-	_unit addItem "ACE_Flashlight_XL50";	// Add a flashlight for ACE map support.
 	_unit linkItem "ItemMap";				// Add and equip the map
 	_unit linkItem "ItemCompass";			// Add and equip a compass
 	_unit linkItem "ItemRadio";				// Add and equip A3's default radio
 	_unit linkItem "ItemWatch";				// Add and equip a watch
-	//_unit linkItem "ItemGPS"; 			// Add a flashlight for ACE map support.// Add and equip a GPS
+	//_unit linkItem "ItemGPS"; 			// Add and equip a GPS
+
+  // ADD ACE ITEMS
+	_unit addItem "ACE_Flashlight_XL50";	// Add a flashlight for ACE map support.
+	_unit addItem "ACE_Maptools";
+
+	// Add medical items
+	{_unit addItem "ACE_fieldDressing"} forEach [1,2,3,4,5,6,7,8]; // Bandages
+	{_unit addItem "ACE_morphine"} forEach [1,2,3,4];
+	//{_unit addItem "ACE_epinephrine"} forEach [1,2];
+	//{_unit addItem "ACE_bloodIV"} forEach [1,2];
 
 };
 
@@ -387,6 +396,7 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smokegrenadegreen,2];
 		_unit addWeapon "Rangefinder";
 		_unit linkItem "ItemGPS";
+		_unit addItem "ACE_microDAGR";
 		["g"] call _backpack;
 	};
 
@@ -406,6 +416,7 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smokegrenadegreen,2];
 		_unit addWeapon "Rangefinder";
 		_unit linkItem "ItemGPS";
+		_unit addItem "ACE_microDAGR";
 		["g"] call _backpack;
 	};
 
@@ -417,6 +428,7 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smokegrenade,4];
 		{_unit addItem _firstaid} forEach [1,2,3,4];
 		_unit linkItem "ItemGPS";
+		_unit addItem "ACE_microDAGR";
 		["m"] call _backpack;
 	};
 
@@ -434,6 +446,7 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smokegrenadegreen,2];
 		_unit addWeapon "Rangefinder";
 		_unit linkItem "ItemGPS";
+		_unit addItem "ACE_microDAGR";
 		["g"] call _backpack;
 	};
 
@@ -673,6 +686,8 @@ switch (_typeofUnit) do
 		_unit addweapon _pistol;
 		_unit addmagazines [_smokegrenade,2];
 		_attachments = [_scope3];
+		_unit addItem "ACE_Kestrel";
+		["none"] call _backpack;
 	};
 
 // LOADOUT: SPOTTER
@@ -686,6 +701,8 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smokegrenade,2];
 		_unit addWeapon "Rangefinder";
 		_unit linkItem "ItemGPS";
+		_unit addItem "ACE_microDAGR";
+		["none"] call _backpack;
 	};
 
 // LOADOUT: VEHICLE COMMANDER
@@ -697,6 +714,7 @@ switch (_typeofUnit) do
 		_unit addItem "ItemGPS";
 		_unit assignItem "ItemGPS";
 		_unit addWeapon "Rangefinder";
+		["none"] call _backpack;
 	};
 
 // LOADOUT: VEHICLE DRIVER
@@ -718,6 +736,7 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smokegrenade,2];
 		_unit addItem "ItemGPS";
 		_unit assignItem "ItemGPS";
+		["none"] call _backpack;
 	};
 
 // LOADOUT: AIR VEHICLE PILOTS
@@ -728,6 +747,7 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smokegrenade,2];
 		_unit addItem "ItemGPS";
 		_unit assignItem "ItemGPS";
+		["none"] call _backpack;
 	};
 
 // LOADOUT: AIR VEHICLE CREW CHIEF
@@ -745,6 +765,7 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smgmag,5];
 		_unit addweapon _smg;
 		_unit addmagazines [_smokegrenade,2];
+		["none"] call _backpack;
 	};
 
 // LOADOUT: ENGINEER (DEMO)
@@ -757,6 +778,9 @@ switch (_typeofUnit) do
 		_unit addmagazines [_mgrenade,1];
 		_unit addmagazines [_satchel,2];
 		_unit addItem "MineDetector";
+		_unit addItem "ACE_M26_Clacker";
+		_unit addItem "ACE_DefusalKit";
+		_unit addItem "ACE_wirecutter";
 		["eng"] call _backpack;
 	};
 
@@ -770,6 +794,9 @@ switch (_typeofUnit) do
 		_unit addmagazines [_mgrenade,1];
 		_unit addmagazines [_APmine2,2];
 		_unit addItem "MineDetector";
+		_unit addItem "ACE_M26_Clacker";
+		_unit addItem "ACE_DefusalKit";
+		_unit addItem "ACE_wirecutter";
 		["engm"] call _backpack;
 	};
 
@@ -866,7 +893,10 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 2];
 		_unit addMagazineCargoGlobal [_glmag, 4];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 4];
-		_unit addItemCargoGlobal [_firstaid,4];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
+		_unit addItemCargoGlobal ["ACE_morphine", 10];
+		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
+		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
 	};
 
 // CARGO: TRUCK - room for 50 weapons and 200 cargo items
@@ -888,7 +918,10 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 4];
 		_unit addMagazineCargoGlobal [_glmag, 12];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 12];
-		_unit addItemCargoGlobal [_firstaid,8];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
+		_unit addItemCargoGlobal ["ACE_morphine", 10];
+		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
+		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
 	};
 
 // CARGO: IFV - room for 10 weapons and 100 cargo items
@@ -910,7 +943,10 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 2];
 		_unit addMagazineCargoGlobal [_glmag, 8];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 4];
-		_unit addItemCargoGlobal [_firstaid,6];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
+		_unit addItemCargoGlobal ["ACE_morphine", 10];
+		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
+		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
 	};
 
 // CRATE: Small, ammo for 1 fireteam
@@ -931,7 +967,10 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_mgrenade, 8];
 		_unit addMagazineCargoGlobal [_smokegrenade, 8];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 2];
-		_unit addItemCargoGlobal [_firstaid, 6];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
+		_unit addItemCargoGlobal ["ACE_morphine", 10];
+		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
+		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
 };
 
 // CRATE: Medium, ammo for 1 squad
@@ -952,7 +991,10 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_mgrenade, 25];
 		_unit addMagazineCargoGlobal [_smokegrenade, 25];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 6];
-		_unit addItemCargoGlobal [_firstaid, 25];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 100];
+		_unit addItemCargoGlobal ["ACE_morphine", 50];
+		_unit addItemCargoGlobal ["ACE_epinephrine", 25];
+		_unit addItemCargoGlobal ["ACE_bloodIV", 10];
 };
 
 // CRATE: Large, ammo for 1 platoon
@@ -973,7 +1015,11 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_mgrenade, 75];
 		_unit addMagazineCargoGlobal [_smokegrenade, 75];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 20];
-		_unit addItemCargoGlobal [_firstaid, 75];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 150];
+		_unit addItemCargoGlobal ["ACE_morphine", 75];
+		_unit addItemCargoGlobal ["ACE_epinephrine", 50];
+		_unit addItemCargoGlobal ["ACE_bloodIV", 25];
+
 };
 
 // LOADOUT: DEFAULT/UNDEFINED (use RIFLEMAN)
@@ -992,24 +1038,6 @@ switch (_typeofUnit) do
 
 // END SWITCH FOR DEFINE UNIT TYPE LOADOUTS
 };
-
-// ====================================================================================
-
-// If this is an ammobox or vehicle, check medical component settings and if needed run converter script.
-
-if (!_isMan) then
-	{
-	// ACE Standard
-	if (f_var_medical == 2) exitWith
-		{
-			[_unit] execVM "f\ace3\ACE3_MedicalStandardConverter.sqf";
-		};
-	// ACE Advanced
-	if (f_var_medical == 3) exitWith
-		{
-			[_unit] execVM "f\ace3\ACE3_MedicalAdvancedConverter.sqf";
-		};
-	};
 
 // ====================================================================================
 
