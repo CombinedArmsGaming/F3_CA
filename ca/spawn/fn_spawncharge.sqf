@@ -19,9 +19,9 @@
 _ishc = !hasInterface && !isDedicated;
 //Use headless instead?
 if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
-//if no headless, and is player, spawn on server instead
-if (!ca_hc && hasInterface) then {
-	if (!isServer) exitWith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
+//if there is no headless client, and is player, spawn on the server instead.
+if (!ca_hc && hasInterface && !isServer) exitWith {
+		[_this,_fnc_scriptName] spawn ca_fnc_hcexec;
 };
 
 params ["_unitarray","_position","_attackdistance",["_side", ca_defaultside]];
@@ -32,16 +32,21 @@ _origo = _posdir select 0;
 _attackdir = _posdir select 1;
 
 _attackvector = _origo getpos [_attackdistance,_attackdir];
-{
-  _x allowFleeing 0;
-	_x doMove _attackvector;
-  _x setspeedmode "FULL";
-  _x setbehaviour "SAFE";
-  _x setskill ["spotDistance",0.1];
-  _x setskill ["spotTime",0.1];
-  _x setskill ["courage",1];
-  _x setskill ["commanding",0.1];
-  _x setskill ["general",0.1];
-} forEach (units _group);
-
+[_group,_attackvector] spawn {
+	params ["_group","_attackvector"];
+	[_group] call CBA_fnc_clearWaypoints;
+	[_group, _attackvector, 50, "SAD", "AWARE", "RED","FULL","LINE","this spawn CBA_fnc_searchNearby"] call CBA_fnc_addWaypoint;
+	uisleep 5;
+	{
+	  _x allowFleeing 0;
+		_x doMove _attackvector;
+	  _x setspeedmode "FULL";
+	  _x setbehaviour "AWARE";
+	  _x setskill ["spotDistance",0.1];
+	  _x setskill ["spotTime",0.1];
+	  _x setskill ["courage",1];
+	  _x setskill ["commanding",0.1];
+	  _x setskill ["general",0.1];
+	} forEach (units _group);
+};
 _group

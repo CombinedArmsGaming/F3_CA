@@ -15,13 +15,13 @@
  * [["ftl","r","ar","m"],"spawnmarker","C_Offroad_default_F",independent] call ca_fnc_spawnvehiclestatic;
  *
  */
- _ishc = !hasInterface && !isDedicated;
- //Use headless instead?
- if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
- //if no headless, and is player, spawn on server instead
- if (!ca_hc && hasInterface) then {
- 	if (!isServer) exitWith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
- };
+_ishc = !hasInterface && !isDedicated;
+//Use headless instead?
+if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
+//if there is no headless client, and is player, spawn on the server instead.
+if (!ca_hc && hasInterface && !isServer) exitWith {
+     [_this,_fnc_scriptName] spawn ca_fnc_hcexec;
+};
 
 params ["_unitarray","_position","_vehicletype",["_side", ca_defaultside]];
 private ["_grpvehicle","_vehicle","_spawnpos"];

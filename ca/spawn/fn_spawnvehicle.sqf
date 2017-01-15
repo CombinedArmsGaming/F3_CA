@@ -13,14 +13,6 @@
  * [player,"C_Quadbike_01_F"] call ca_fnc_spawnvehicle
  *
  */
-_ishc = !hasInterface && !isDedicated;
-//Use headless instead?
-if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
-//if no headless, and is player, spawn on server instead
-if (!ca_hc && hasInterface) then {
-	if (!isServer) exitWith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
-};
-
 params ["_position","_vehicletype"];
 
 _posdir = _position call ca_fnc_getdirpos;

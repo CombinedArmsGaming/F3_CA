@@ -18,9 +18,9 @@
 _ishc = !hasInterface && !isDedicated;
 //Use headless instead?
 if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
-//if no headless, and is player, spawn on server instead
-if (!ca_hc && hasInterface) then {
-	if (!isServer) exitWith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
+//if there is no headless client, and is player, spawn on the server instead.
+if (!ca_hc && hasInterface && !isServer) exitWith {
+		[_this,_fnc_scriptName] spawn ca_fnc_hcexec;
 };
 
 params ["_unitarray","_position",["_side", ca_defaultside]];
