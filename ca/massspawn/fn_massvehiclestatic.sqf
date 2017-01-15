@@ -21,4 +21,3 @@ private ["_group","_grouparray"];
 {
   [_unitarray,_x,_vehicletype,_side] call ca_fnc_spawnvehiclestatic;
 } forEach _locationarray;
-_grouparray
