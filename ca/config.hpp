@@ -4,6 +4,7 @@ class CA
 	{
 		file = "ca\core";
 		class getdirpos{};
+		class getmarkerarray{};
 		class setparams{preInit = 1;};
 	};
 	class headless
