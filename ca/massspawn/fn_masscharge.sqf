@@ -7,18 +7,19 @@
  * 0: Spawn positions, marker, object, group, location, array
  * 1: F3 group array
  * 2: Distance to charge. Recommended fall just a bit short of target. Set in meters
- * 3: side, west east independent
+ * 3: Faction of group used in F3 Assigngear.
+ * 4: Side of units spawned, west east independent
  *
  * Return Value:
  * Nothing
  *
  * Example:
- * [["hill_west","hill_north","hill_east"],["ftl","ar","r","r","r"],500,east] call ca_fnc_masscharge
+ * [["SC1_CA","SC1_CA_1","SC1_CA_2"],["ftl","ar","r","r","r"],500,"opf_f",east] spawn ca_fnc_masscharge
  *
  */
-params ["_locationarray","_unitarray","_attackdistance",["_side", ca_defaultside]];
+params ["_locationarray","_unitarray","_attackdistance",["_faction",""],["_side", ca_defaultside]];
 private ["_group","_grouparray"];
 
 {
-  [_unitarray,_x,_attackdistance,_side] call ca_fnc_spawncharge;
+  [_unitarray,_x,_attackdistance,_faction,_side] call ca_fnc_spawncharge;
 } forEach _locationarray;

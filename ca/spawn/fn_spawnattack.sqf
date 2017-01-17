@@ -5,14 +5,15 @@
  * Arguments:
  * 0: array of units
  * 1: start position
- * 2: side of group
- * 3: marker, position or location to attack. If marker is type of area, then it will use that instead.
+ * 2: marker, position or location to attack. If marker is type of area, then it will use that instead.
+ * 3: Faction of group used in F3 Assigngear.
+ * 4: Side of units spawned, west east independent
  *
  * Return Value:
  * Group.
  *
  * Example:
- * [["ftl","r","m","rat","ar","aar"],"spawnmarker","attackmarker",independent] call ca_fnc_spawnattack;
+ * [["ftl","r","m","rat","ar","aar"],"SC1_CA","SC1_CA_A","opf_f",east] spawn ca_fnc_spawnattack;
  *
  */
 _ishc = !hasInterface && !isDedicated;
@@ -23,9 +24,9 @@ if (!ca_hc && hasInterface && !isServer) exitWith {
 		[_this,_fnc_scriptName] spawn ca_fnc_hcexec;
 };
 
-params ["_unitarray","_position","_attackposition",["_side", ca_defaultside]];
+params ["_unitarray","_position","_attackposition",["_faction",""],["_side", ca_defaultside]];
 private ["_group"];
-_group = [_unitarray,_position,_side] call ca_fnc_spawngroup;
+_group = [_unitarray,_position,_faction,_side] call ca_fnc_spawngroup;
 _posdir = _attackposition call ca_fnc_getdirpos;
 _attackpos = _posdir select 0;
 

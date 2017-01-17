@@ -6,18 +6,19 @@
  * 0: Spawn positions, marker, object, group, location, array
  * 1: F3 group array
  * 2: radius of area to patrol eg 200
- * 3: side of group eg west east independent
+ * 3: Faction of group used in F3 Assigngear.
+ * 4: Side of units spawned, west east independent
  *
  * Return Value:
  * Nothing
  *
  * Example:
- * [["FT_AP","FT_AP_1","FT_AP_2","FT_AP_3","FT_AP_4","FT_AP_5"],["ftl","ar","r","r","r"],300,east] call ca_fnc_masspatrol
+ * [["SC1_FT_AP","SC1_FT_AP_1","SC1_FT_AP_2","SC1_FT_AP_3","SC1_FT_AP_4"],["ftl","ar","r","r","r"],300,"opf_f",east] spawn ca_fnc_masspatrol
  *
  */
-params ["_locationarray","_unitarray",["_radius", 200, [2]],["_side", ca_defaultside]];
+params ["_locationarray","_unitarray",["_radius", 200, [2]],["_faction",""],["_side", ca_defaultside]];
 private ["_group","_grouparray"];
 
 {
-  [_unitarray,_x,_radius,_side] call ca_fnc_spawnpatrol;
+  [_unitarray,_x,_radius,_faction,_side] call ca_fnc_spawnpatrol;
 } forEach _locationarray;

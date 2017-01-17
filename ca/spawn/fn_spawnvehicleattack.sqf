@@ -7,13 +7,14 @@
  * 1: Spawn position, marker, object, group, location, array
  * 2: Marker, position or location to attack. If marker is type of area, then it will use that instead.
  * 3: Vehicle classname
- * 4: Side, west east independent
+ * 4: Faction of group used in F3 Assigngear.
+ * 5: Side of units spawned, west east independent
  *
  * Return Value:
  * Array of [group,vehicle]
  *
  * Example:
- * [["ftl","r","ar","m"],"spawnmarker","attackmarker","C_Offroad_default_F",independent] call ca_fnc_spawnvehicleattack;
+ * [["ftl","r","ar","m"],"SC1_CA","SC1_CA_A","C_Offroad_default_F","opf_f",east] spawn ca_fnc_spawnvehicleattack;
  *
  */
 _ishc = !hasInterface && !isDedicated;
@@ -24,10 +25,10 @@ if (!ca_hc && hasInterface && !isServer) exitWith {
      [_this,_fnc_scriptName] spawn ca_fnc_hcexec;
 };
 
-params ["_unitarray","_position","_attackposition","_vehicletype",["_side", ca_defaultside]];
+params ["_unitarray","_position","_attackposition","_vehicletype",["_faction",""],["_side", ca_defaultside]];
 
 private ["_group"];
-_grpvehicle = [_unitarray,_position,_vehicletype,_side] call ca_fnc_spawnvehiclegroup;
+_grpvehicle = [_unitarray,_position,_vehicletype,_faction,_side] call ca_fnc_spawnvehiclegroup;
 _group = _grpvehicle select 0;
 _posdir = _attackposition call ca_fnc_getdirpos;
 _attackpos = _posdir select 0;

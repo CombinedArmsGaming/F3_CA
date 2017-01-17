@@ -1,23 +1,24 @@
 
 /*
  * Author: Poulern
- * [Spawns a group according to F3 assign gear]
+ * Spawns a group according to F3 assign gear
  *
  * Arguments:
  * 0: F3 group array
  * 1: Spawn position, marker, object, group, location, array
- * 2: side west east independent
+ * 2: Faction of group used in F3.
+ * 2: Side west east independent
  *
  * Return Value:
  * Group
  *
  * Example:
- * [ ["ftl","r","ar","m"],"spawnmarker",west] call ca_fnc_spawngroup;
- * [ ["ftl","r","ar","m"],player,west] call ca_fnc_spawngroup;
- * [["ftl","r","ar","m"],[123,67,0],west] call ca_fnc_spawngroup;
+ * [["ftl","r","ar","m"],"spawnmarker","opf_f",west] spawn ca_fnc_spawngroup;
+ * [["ftl","r","ar","m"],player,"opf_f",west] spawn ca_fnc_spawngroup;
+ * [["ftl","r","ar","m"],[123,67,0],"blu_f",east] spawn ca_fnc_spawngroup;
  */
 
-params ["_unitarray","_position",["_side", ca_defaultside]];
+params ["_unitarray","_position",["_faction",""],["_side", ca_defaultside]];
 private ["_spawnpos","_unittype","_unit","_group","_posdir","_unittype"];
 
 _ishc = !hasInterface && !isDedicated;
@@ -43,8 +44,9 @@ switch(_side) do {
 {
 	_unit = "";
 	_unit = _group createUnit [_unittype, _spawnpos, [], 0, "FORM"];
+  if (_faction == "") then { _faction = faction _unit; };
 	_type = _x;
-	[_type,_unit] call f_fnc_assignGear;
+	[_type,_unit,_faction] call f_fnc_assignGear;
 } forEach _unitarray;
 
 _group setFormation "LINE";

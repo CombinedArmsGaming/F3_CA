@@ -6,14 +6,15 @@
  * Arguments:
  * 0: array of units
  * 1: start position
- * 2: side of group
  * 3: Distance to charge. Recommended fall just a bit short of target. Set in meters
+ * 3: Faction of group used in F3 Assigngear.
+ * 4: Side of units spawned, west east independent
  *
  * Return Value:
  * Group.
  *
  * Example:
- * [["ftl","r","m","rat","ar","aar"],"spawnmarker",300,independent] call ca_fnc_spawncharge;
+ * [["ftl","r","m","rat","ar","aar"],"SC1_CA",300,"opf_f",east] spawn ca_fnc_spawncharge;
  *
  */
 _ishc = !hasInterface && !isDedicated;
@@ -24,9 +25,9 @@ if (!ca_hc && hasInterface && !isServer) exitWith {
 		[_this,_fnc_scriptName] spawn ca_fnc_hcexec;
 };
 
-params ["_unitarray","_position","_attackdistance",["_side", ca_defaultside]];
+params ["_unitarray","_position","_attackdistance",["_faction",""],["_side", ca_defaultside]];
 private ["_group"];
-_group = [_unitarray,_position,_side] call ca_fnc_spawngroup;
+_group = [_unitarray,_position,_faction,_side] call ca_fnc_spawngroup;
 _posdir = _position call ca_fnc_getdirpos;
 _origo = _posdir select 0;
 _attackdir = _posdir select 1;

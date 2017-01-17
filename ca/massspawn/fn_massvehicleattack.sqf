@@ -7,18 +7,19 @@
  * 1: Spawn position, marker, object, group, location, array
  * 2: Marker, position or location to attack. If marker is type of area, then it will use that instead.
  * 3: Vehicle classname
- * 4: Side, west east independent
+ * 4: Faction of group used in F3 Assigngear.
+ * 5: Side of units spawned, west east independent
  *
  * Return Value:
  * Nothing
  *
  * Example:
- * [["hill_west","hill_north","hill_east"],["ftl","ar","r","r","r"],"attackmarker","C_Offroad_default_F",east] call ca_fnc_massvehicleattack
+ * [["SC1_CA","SC1_CA_1","SC1_CA_2"],["ftl","ar","r","r","r"],"SC1_CA_A","C_Offroad_default_F","opf_f",east] spawn ca_fnc_massvehicleattack
  *
  */
-params ["_locationarray","_unitarray","_attackposition","_vehicletype",["_side", ca_defaultside]];
+params ["_locationarray","_unitarray","_attackposition","_vehicletype",["_faction",""],["_side", ca_defaultside]];
 private ["_group","_grouparray"];
 
 {
- [_unitarray,_x,_attackposition,_vehicletype,_side] call ca_fnc_spawnvehicleattack;
+ [_unitarray,_x,_attackposition,_vehicletype,_faction,_side] call ca_fnc_spawnvehicleattack;
 } forEach _locationarray;

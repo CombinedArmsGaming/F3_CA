@@ -6,18 +6,19 @@
  * 0: An array of markers ["mkr","mkr_1","mkr_2","mkr_3"]
  * 1: array of units according to F3 ["ftl","r","ar","aar","rat"]
  * 2: Vehicle classname
- * 2: side of group eg west east independent
+ * 3: Faction of group used in F3 Assigngear.
+ * 4: Side of units spawned, west east independent
  *
  * Return Value:
  * Nothing
  *
  * Example:
- * [["VC_BF","VC_BF_1","VC_BF_2","VC_BF_3","VC_BF_4","VC_BF_5"],["ftl","ar","r","r","r"],"C_Offroad_default_F",east] call ca_fnc_massvehiclestatic
+ * [["SC1_VC_S","SC1_VC_S_1","SC1_VC_S_2","SC1_VC_S_3","SC1_VC_S_4","SC1_VC_S_5"],["ftl","ar","r","r","r"],"C_Offroad_default_F","opf_f",east] spawn ca_fnc_massvehiclestatic
  *
  */
-params ["_locationarray","_unitarray","_vehicletype",["_side", ca_defaultside]];
+params ["_locationarray","_unitarray","_vehicletype",["_faction",""],["_side", ca_defaultside]];
 private ["_group","_grouparray"];
 
 {
-  [_unitarray,_x,_vehicletype,_side] call ca_fnc_spawnvehiclestatic;
+  [_unitarray,_x,_vehicletype,_faction,_side] call ca_fnc_spawnvehiclestatic;
 } forEach _locationarray;

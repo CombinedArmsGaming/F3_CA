@@ -8,7 +8,6 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=2184;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +15,6 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={15278.902,706.15594,16159.636};
-		dir[]={-0.47331077,-0.74005991,0.47779733};
-		up[]={-0.520827,0.67253888,0.52576458};
-		aside[]={0.71043551,1.3213139e-007,0.70376366};
 	};
 };
 binarizationWanted=0;
@@ -284,7 +279,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=271;
+		items=281;
 		class Item0
 		{
 			dataType="Marker";
@@ -14358,9 +14353,9 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={92.933289,-185.97,538.59003};
+				position[]={92.932999,-185.97,538.59003};
 			};
-			name="headless";
+			name="HC1";
 			isPlayable=1;
 			id=2172;
 			type="HeadlessClient_F";
@@ -14679,7 +14674,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={152.52899,-185.97,536.47479};
+				position[]={152.52901,-185.97,536.47498};
 			};
 			id=2176;
 			type="ACE_moduleRepairSettings";
@@ -14700,7 +14695,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=2;
+							value=3;
 						};
 					};
 				};
@@ -14719,7 +14714,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=2;
+							value=1;
 						};
 					};
 				};
@@ -14738,7 +14733,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=0;
+							value=1;
 						};
 					};
 				};
@@ -14864,7 +14859,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={165.85321,-185.97,549.60175};
+				position[]={152.6366,-185.97,550.9314};
 			};
 			id=2177;
 			type="ace_finger_moduleSettings";
@@ -15221,6 +15216,114 @@ class Mission
 			text="This trigger would complete the ""AANorth"" task";
 			type="mil_box";
 			id=2183;
+		};
+		class Item271
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={92.984512,-185.97,527.03064};
+			};
+			name="HC2";
+			isPlayable=1;
+			id=2184;
+			type="HeadlessClient_F";
+		};
+		class Item272
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={110.95661,-185.97,526.26892};
+			};
+			name="HC3";
+			isPlayable=1;
+			id=2185;
+			type="HeadlessClient_F";
+		};
+		class Item273
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={125.296,-185.97,525.31097};
+			};
+			name="HC4";
+			isPlayable=1;
+			id=2186;
+			type="HeadlessClient_F";
+		};
+		class Item274
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={139.06192,-185.97,525.50171};
+			};
+			name="HC5";
+			isPlayable=1;
+			id=2187;
+			type="HeadlessClient_F";
+		};
+		class Item275
+		{
+			dataType="Marker";
+			position[]={100,-9.1307528e-036,700};
+			name="SC1_CA";
+			text="Sector 1 Counter Attack Spawn Position Marker";
+			type="Empty";
+			id=2190;
+			atlOffset=185.97;
+		};
+		class Item276
+		{
+			dataType="Marker";
+			position[]={100,-8.4140661e-023,900};
+			name="SC1_CA_A";
+			text="Sector 1 Counter Attack Position Marker";
+			type="Empty";
+			id=2191;
+			atlOffset=185.97;
+		};
+		class Item277
+		{
+			dataType="Marker";
+			position[]={350,2776.0811,900};
+			name="SC1_FT_BF";
+			text="Sector 1 Fireteam B Fortify Marker";
+			type="Empty";
+			id=2192;
+			atlOffset=2962.051;
+		};
+		class Item278
+		{
+			dataType="Marker";
+			position[]={350,-8.4140661e-023,850};
+			name="SC1_VC_S";
+			text="Sector 1 Static Vehicle Crew Marker";
+			type="Empty";
+			id=2193;
+			atlOffset=185.97;
+		};
+		class Item279
+		{
+			dataType="Marker";
+			position[]={350,-8.4140661e-023,800};
+			name="SC1_FT_AP";
+			text="Sector 1 Fireteam A Patrol Marker";
+			type="Empty";
+			id=2194;
+			atlOffset=185.97;
+		};
+		class Item280
+		{
+			dataType="Marker";
+			position[]={350,-4.9920718e-029,750};
+			name="SC1_VC_P";
+			text="Sector 1 Vehicle Crew Patrol";
+			type="Empty";
+			id=2195;
+			atlOffset=185.97;
 		};
 	};
 };

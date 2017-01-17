@@ -43,7 +43,7 @@ while { true } do {
   if ( _myfps < 30 ) then { _myfpsmarker setMarkerColor "ColorYELLOW"; };
   if ( _myfps < 20 ) then { _myfpsmarker setMarkerColor "ColorORANGE"; };
   if ( _myfps < 10 ) then { _myfpsmarker setMarkerColor "ColorRed"; };
-  if (ca_hchidemarkers) then {
+  if (!ca_hcshowmarkers) then {
       _myfpsmarker setMarkerAlpha 0;
   }else {
     _myfpsmarker setMarkerAlpha 1;
