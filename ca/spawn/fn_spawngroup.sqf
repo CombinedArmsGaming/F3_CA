@@ -49,5 +49,6 @@ switch(_side) do {
 	[_type,_unit,_faction] call f_fnc_assignGear;
 } forEach _unitarray;
 
+[_group] call CBA_fnc_clearWaypoints;
 _group setFormation "LINE";
 _group
