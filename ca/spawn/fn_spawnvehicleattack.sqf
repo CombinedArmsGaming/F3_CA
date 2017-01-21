@@ -7,33 +7,37 @@
  * 1: Spawn position, marker, object, group, location, array
  * 2: Marker, position or location to attack. If marker is type of area, then it will use that instead.
  * 3: Vehicle classname
- * 4: Side, west east independent
+ * 4: Faction of group used in F3 Assigngear.
+ * 5: Side of units spawned, west east independent
  *
  * Return Value:
  * Array of [group,vehicle]
  *
  * Example:
- * [["ftl","r","ar","m"],"spawnmarker","attackmarker","C_Offroad_default_F",independent] call ca_fnc_spawnvehicleattack;
+ * [["ftl","r","ar","m"],"SC1_CA","SC1_CA_A","C_Offroad_default_F","opf_f",east] spawn ca_fnc_spawnvehicleattack;
  *
  */
- _ishc = !hasInterface && !isDedicated;
- //Use headless instead?
- if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
- //if no headless, and is player, spawn on server instead
- if (!ca_hc && hasInterface) then {
- 	if (!isServer) exitWith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
- };
+_ishc = !hasInterface && !isDedicated;
+//Use headless instead?
+if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
+//if there is no headless client, and is player, spawn on the server instead.
+if (!ca_hc && hasInterface && !isServer) exitWith {
+     [_this,_fnc_scriptName] spawn ca_fnc_hcexec;
+};
 
-params ["_unitarray","_position","_attackposition","_vehicletype",["_side", ca_defaultside]];
+params ["_unitarray","_position","_attackposition","_vehicletype",["_faction",""],["_side", ca_defaultside]];
 
 private ["_group"];
-_grpvehicle = [_unitarray,_position,_vehicletype,_side] call ca_fnc_spawnvehiclegroup;
+_grpvehicle = [_unitarray,_position,_vehicletype,_faction,_side] call ca_fnc_spawnvehiclegroup;
 _group = _grpvehicle select 0;
 _posdir = _attackposition call ca_fnc_getdirpos;
 _attackpos = _posdir select 0;
-
-if (markerShape _attackmarker ==  "RECTANGLE" || markerShape _attackmarker == "ELLIPSE") then {
-  [_group,_attackposition] call CBA_fnc_taskSearchArea;
+if (typename _attackposition == "STRING") then {
+  if (markerShape _attackposition ==  "RECTANGLE" || markerShape _attackposition == "ELLIPSE") then {
+    [_group,_attackposition] call CBA_fnc_taskSearchArea;
+  }else{
+    [_group,_attackpos] call CBA_fnc_taskAttack;
+  };
 }else{
   [_group,_attackpos] call CBA_fnc_taskAttack;
 };

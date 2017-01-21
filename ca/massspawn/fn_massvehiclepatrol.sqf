@@ -7,30 +7,19 @@
  * 1: array of units according to F3 ["ftl","r","ar","aar","rat"]
  * 2: Vehicle classname
  * 3: radius of area to patrol eg 200
- * 4: side of group eg west east independent
+ * 4: Faction of group used in F3 Assigngear.
+ * 5: Side of units spawned, west east independent
+ *
  * Return Value:
- * Array of all groups spawned
+ * Nothing
  *
  * Example:
- * [["VC_BP","VC_BP_1","VC_BP_2","VC_BP_3","VC_BP_4","VC_BP_5"],["ftl","ar","r","r","r"],"C_Offroad_default_F",300,east] call ca_fnc_massvehiclepatrol
+ * [["SC1_VC_P","SC1_VC_P_1","SC1_VC_P_2","SC1_VC_P_3","SC1_VC_P_4","SC1_VC_P_5"],["ftl","ar","r","r","r"],"C_Offroad_default_F",300,"opf_f",east] spawn ca_fnc_massvehiclepatrol
  *
  */
- _ishc = !hasInterface && !isDedicated;
- //Use headless instead?
- if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
- //if no headless, and is player, spawn on server instead
- if (!ca_hc && hasInterface) then {
- 	if (!isServer) exitWith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
- };
+params ["_locationarray","_unitarray","_vehicletype",["_radius", 200, [2]],["_faction",""],["_side", ca_defaultside]];
+private ["_group","_grouparray"];
 
-
- params ["_locationarray","_unitarray","_vehicletype",["_radius", 200, [2]],["_side", ca_defaultside]];
- private ["_group","_grouparray"];
-
- _grouparray = [];
- {
-   _grpvehicle = [_unitarray,_x,_vehicletype,_radius,_side] call ca_fnc_spawnvehiclepatrol;
-   _group = _grpvehicle select 0;
-   _grouparray pushback _group;
- } forEach _locationarray;
- _grouparray
+{
+ [_unitarray,_x,_vehicletype,_radius,_faction,_side] call ca_fnc_spawnvehiclepatrol;
+} forEach _locationarray;

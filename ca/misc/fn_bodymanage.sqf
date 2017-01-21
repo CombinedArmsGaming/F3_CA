@@ -45,8 +45,8 @@ while {ca_bodymanageon} do {
     if (_x iskindof "WeaponHolderSimulated") then {
         deleteVehicle _x;
     };
+    if(ca_deletevehicles && !alive _x) then {deleteVehicle _x}
 } forEach vehicles;
   uisleep 5;
-
 
 };

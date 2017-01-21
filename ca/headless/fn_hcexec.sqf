@@ -15,7 +15,7 @@
  *
  */
 params ["_fncparameters","_fncname"];
-//Sleep for a random amount of time, if not then all the ai will spawn on 1 headless client.
+//Sleep for a random amount of time, if not then all the ai might spawn on 1 headless client.
 _time = random [0,5,15];
 uisleep _time;
 _hc = [] call ca_fnc_hcfind;

@@ -4,7 +4,8 @@ class CA
 	{
 		file = "ca\core";
 		class getdirpos{};
-		class setparams{preInit = 1;};
+		class getmarkerarray{};
+		class setparams{preInit = 1; postInit = 1;};
 	};
 	class headless
 	{
@@ -19,8 +20,9 @@ class CA
 	{
 		file = "ca\massspawn";
 		class massattack{};
-		class masspatrol{};
+		class masscharge{};
 		class massfortify{};
+		class masspatrol{};
 		class massvehicleattack{};
 		class massvehiclepatrol{};
 		class massvehiclestatic{};
@@ -36,6 +38,8 @@ class CA
 	{
 		file = "ca\spawn";
 		class spawnattack{};
+		class spawncharge{};
+		class spawnfortify{};
 		class spawngroup{};
 		class spawnpatrol{};
 		class spawnvehicle{};

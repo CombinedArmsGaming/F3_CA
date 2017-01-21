@@ -1,5 +1,5 @@
 // F3 - Mission Maker Supply Drop
-// Credits: Created by Volc, from the F3 mapClickTeleport script, and the dropit script by Kronzky http://www.kronzky.info/ 
+// Credits: Created by Volc, from the F3 mapClickTeleport script, and the dropit script by Kronzky http://www.kronzky.info/
 // ====================================================================================
 
 // DECLARE VARIABLES AND FUNCTIONS
@@ -50,30 +50,9 @@ openMap false;
 
 _dropitem = createVehicle ["B_CargoNet_01_ammo_F", [0,0,1000], [], 0, "CAN_COLLIDE"];
 
-_playerfaction = toLower (faction player);
+_playerfaction = player getVariable ["f_var_assignGear_Faction",toLower (faction player)];
 
-switch (_playerfaction) do
-{
-  case "blu_f":
-  {
-    ["crate_med",_dropitem,"blu_f"] call f_fnc_assignGear;
-  };
-
-  case "opf_f":
-  {
-    ["crate_med",_dropitem,"opf_f"] call f_fnc_assignGear;
-  };
-
-  case "ind_f":
-  {
-    ["crate_med",_dropitem,"ind_f"] call f_fnc_assignGear;
-  };
-
-  default
-  {
-    ["crate_med",_dropitem,"blu_f"] call f_fnc_assignGear;
-  };
-};
+["crate_med",_dropitem,_playerfaction] call f_fnc_assignGear;
 
 _orgitem = _dropitem;
 _orgitem allowDammage false;

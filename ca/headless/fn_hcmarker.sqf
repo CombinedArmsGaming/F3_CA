@@ -14,7 +14,7 @@ if (hasInterface && !isServer) exitWith {};
  	_position = 0;
  } else {
    {
-   if (!isNil (str _x)) then {
+   if (!isNil "_x") then {
  		if (!isNull _x) then {
  			if (local _x) then {
  				_sourcestr = str _x;
@@ -43,6 +43,11 @@ while { true } do {
   if ( _myfps < 30 ) then { _myfpsmarker setMarkerColor "ColorYELLOW"; };
   if ( _myfps < 20 ) then { _myfpsmarker setMarkerColor "ColorORANGE"; };
   if ( _myfps < 10 ) then { _myfpsmarker setMarkerColor "ColorRed"; };
+  if (!ca_hcshowmarkers) then {
+      _myfpsmarker setMarkerAlpha 0;
+  }else {
+    _myfpsmarker setMarkerAlpha 1;
+  };
 
   _myfpsmarker setMarkerText format [ "%1: %2 fps, %3 units, %4 vehicles", _sourcestr, ( round ( _myfps * 100.0 ) ) / 100.0 , _localunits, _localvehicles ];
 

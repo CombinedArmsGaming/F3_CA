@@ -9,17 +9,21 @@ case "m":
 	if (_loadout <= 1) then {
 		_unit addBackpack _bagsmall;
 		clearMagazineCargoGlobal (unitBackpack _unit);
-		(unitBackpack _unit) addItemCargoGlobal [_medkit,1];
 		(unitBackpack _unit) addMagazineCargoGlobal [_smokegrenade, 4];
-		(unitBackpack _unit) addItemCargoGlobal [_firstaid, 4];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_fieldDressing",  15];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_morphine", 10];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_epinephrine",   10];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 2];
 	};
 	// LOADOUT: HEAVY
 	if (_loadout == 2) then {
 		_unit addBackpack _bagmedium;
 		clearMagazineCargoGlobal (unitBackpack _unit);
-		(unitBackpack _unit) addItemCargoGlobal [_medkit,1];
 		(unitBackpack _unit) addMagazineCargoGlobal [_smokegrenade, 6];
-		(unitBackpack _unit) addItemCargoGlobal [_firstaid, 12];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_fieldDressing", 25];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_morphine", 15];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_epinephrine",   15];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 4];
 	};
 };
 
@@ -562,4 +566,11 @@ case "cc":
 	_unit addBackpack _bagsmall;
 	clearMagazineCargoGlobal (unitBackpack _unit);
 	(unitBackpack _unit) addItemCargoGlobal ["ToolKit",1];
+};
+case "none":
+{
+	if(_typeOfUnit in _backpackradiotypes) then {
+		_unit addBackpack _bagradio;
+		clearMagazineCargoGlobal (unitBackpack _unit);
+	};
 };

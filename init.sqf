@@ -174,22 +174,6 @@ f_var_cachingAggressiveness = 2;
 
 // ====================================================================================
 
-// F3 - Medical Systems Support
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-// SWS Config Settings
-// How many extra FirstAidKits (FAKS) each player should receive when using the F3 Simple Wounding System:
-f_wound_extraFAK = 2;
-
-[] execVM "f\medical\medical_init.sqf";
-
-// ====================================================================================
-
-// F3 - ACE Support
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-[] execVM "f\ace3\ACE3_clientInit.sqf";
-
 // F3 - JIP setup (CA version)
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
@@ -211,7 +195,6 @@ if (!isdedicated) then {
 // ====================================================================================
 
 // CA - Initialize CA framework
-// 
 [] execVM "ca\ca_init.sqf";
 
 // CA - Thermals
