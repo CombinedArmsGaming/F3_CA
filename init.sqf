@@ -34,6 +34,13 @@ f_var_mapClickSupplyDrop_Height = 1000;									// If > 0 map click Supply Drop 
 
 // ====================================================================================
 
+// F3 - F3 Folk ARPS Group IDs
+// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
+
+f_script_setGroupIDs = [] execVM "f\setGroupID\f_setGroupIDs.sqf";
+
+// ====================================================================================
+
 // F3 - Briefing
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
