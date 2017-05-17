@@ -34,10 +34,10 @@ _posdir = _position call ca_fnc_getdirpos;
 _spawnpos = _posdir select 0;
 
 switch(_side) do {
-	case west: {_group = createGroup [west,true]; _unittype = "B_Soldier_F";};
-	case east: {_group = createGroup [east,true]; _unittype = "O_Soldier_F";};
-	case independent: {_group = createGroup [independent,true]; _unittype = "I_Soldier_F";};
-	default {_group = createGroup [east,true]};
+	case west: {_group = createGroup west; _unittype = "B_Soldier_F";};
+	case east: {_group = createGroup east; _unittype = "O_Soldier_F";};
+	case independent: {_group = createGroup independent; _unittype = "I_Soldier_F";};
+	default {_group = createGroup east};
 };
 
 
