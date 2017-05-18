@@ -17,14 +17,14 @@ tf_same_lr_frequencies_for_side = true;
 // TRUE = Disable radios for all units
 f_radios_settings_tfr_disableRadios = FALSE;
 
-// Whether any handheld radios should be assigned at all, to any units(For vietnam, WWII scenarios)
-// TRUE = Disable handheld radios for all units
-f_radios_settings_tfr_disablehandheldRadios = false;
-
 // Which units should be given LR backpacks
 // TRUE = all group leaders get backpacks
-// FALSE = only units defined in f\assignGear\f_assignGear_faction will get backpack radios
+// FALSE = only units defined in next variable will get LR backpacks
 f_radios_settings_tfr_defaultLRBackpacks = false;
+
+// Unit types you want to give long-range radios if previous is
+// E.G: ["co", "m"] would give the CO and all medics 2 long-range radios
+f_radios_settings_tfr_backpackRadios = ["co","dc","div"];
 
 // Independent radio encryption code: Independent faction use radio code of side
 // they are friendly to if they are only friendly to one side.
