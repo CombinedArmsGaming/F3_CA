@@ -194,6 +194,9 @@ class Params
 // F3 - Radio Systems Support
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
+// Set line "default" to 2 to use TFR and 3 to use ACRE2 as the default radio plugin.
+// This can always be overridden in the mission parameters screen.
+
     class f_param_radios
     {
             title = "Radio System";
