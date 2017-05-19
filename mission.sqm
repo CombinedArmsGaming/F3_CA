@@ -232,7 +232,7 @@ class AddonsMetaData
 randomSeed=3230557;
 class ScenarioData
 {
-	author="DutchVidya";
+	author="";
 };
 class CustomAttributes
 {
