@@ -5,6 +5,9 @@
 // MARKERS: OPFOR > CSAT
 // Markers seen by players in CSAT & CSAT (Pacific) slots.
 
+// ACRE2 NOTE: If you change the display names away from default, the Automatic channel assignment in acre2_settings.sqf will no longer work.
+// This is not a huge problem, but be aware of it, and know that players will need to manually set radios to their channels as with TFAR.
+
 ["GrpCSAT_CO", _hq, "CO", "ColorYellow"] spawn f_fnc_localGroupMarker;
 ["GrpCSAT_DC", _hq, "DC", "ColorYellow"] spawn f_fnc_localGroupMarker;
 

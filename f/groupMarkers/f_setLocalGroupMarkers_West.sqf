@@ -6,6 +6,9 @@
 // MARKERS: BLUFOR > NATO
 // Markers seen by players in NATO, NATO (Pacific) & CTRG slots.
 
+// ACRE2 NOTE: If you change the display names away from default, the Automatic channel assignment in acre2_settings.sqf will no longer work.
+// This is not a huge problem, but be aware of it, and know that players will need to manually set radios to their channels as with TFAR.
+
 	["GrpNATO_CO",_hq, "CO", "ColorYellow"] spawn f_fnc_localGroupMarker;
 	["GrpNATO_DC",_hq, "DC", "ColorYellow"] spawn f_fnc_localGroupMarker;
 
@@ -72,6 +75,9 @@
 
 // MARKERS: BLUFOR > FIA
 // Markers seen by players in FIA & CTRG slots.
+
+// ACRE2 NOTE: If you change the display names away from default, the Automatic channel assignment in acre2_settings.sqf will no longer work.
+// This is not a huge problem, but be aware of it, and know that players will need to manually set radios to their channels as with TFAR.
 
 
 ["GrpFIA_CO", _hq, "CO", "ColorYellow"] spawn f_fnc_localGroupMarker;
