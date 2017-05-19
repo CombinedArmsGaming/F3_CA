@@ -1,0 +1,2 @@
+If you want generic Alpha/Bravo/Charlie, rather than Russian (Anna/Boris/Chariton) formatted insignias, 
+copy and paste the contents of this folder into the F3_CA/F/assignGear/insignia folder (the level above this folder).
