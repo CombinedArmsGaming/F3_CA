@@ -34,9 +34,9 @@ if (isnil "_grp") exitWith {};
 // ====================================================================================
 // Create groupID
 // Allows for defining it based on mapmarkers, which is a shorthand identifier anyways.
-
-_grp setGroupId [format ["%1",_mkrText],"GroupColor0"];
-
+// Deprecated! Now GroupIDs(and marker text!) are set in eden instead!
+//_grp setGroupId [format ["%1",_mkrText],"GroupColor0"];
+_newmkrText = groupId _grp;
 // ====================================================================================
 // CREATE MARKER
 // Depending on the value of _mkrType a different type of marker is created.
@@ -46,7 +46,7 @@ _mkr setMarkerShapeLocal "ICON";
 _mkrName setMarkerTypeLocal  _mkrType;
 _mkrName setMarkerColorLocal _mkrColor;
 _mkrName setMarkerSizeLocal [0.8, 0.8];
-_mkrName setMarkerTextLocal _mkrText;
+_mkrName setMarkerTextLocal _newmkrText;
 
 // ====================================================================================
 
@@ -55,11 +55,17 @@ _mkrName setMarkerTextLocal _mkrText;
 // position is updated periodically. This only happens locally - so as not to burden
 // the server.
 
-while {{!isNull _x} count units _grp > 0} do
+while {true} do
 {
+    if ({!isNull _x} count units _grp <= 0) then {
+        _mkrName setMarkerAlphaLocal 0;
+    } else
+    {
+        _mkrName setMarkerAlphaLocal 1;
+    };
+
 	_mkrName setMarkerPosLocal [(getPos leader _grp select 0),(getPos leader _grp select 1)];
 	sleep 6;
 };
-
 
 // ====================================================================================
