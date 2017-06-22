@@ -62,5 +62,5 @@ while {true} do
     };
 
     _mkrName setMarkerPosLocal [(getPos _unt select 0),(getPos  _unt select 1)];
-	sleep 6;
+	sleep 2;
 };

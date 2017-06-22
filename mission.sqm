@@ -19,7 +19,7 @@ class EditorData
 		pos[]={358.66177,25,480.68054};
 		dir[]={0,-0.70710683,0.70710683};
 		up[]={0,0.70710677,0.70710677};
-		aside[]={0.99999994,0,-0};
+		aside[]={0.99999994,0,0};
 	};
 };
 binarizationWanted=0;
@@ -250,10 +250,12 @@ class AddonsMetaData
 randomSeed=1116085;
 class ScenarioData
 {
-	author="*** Insert mission author name here. ***";
-	overViewPicture="overviewLogo.jpg";
-	onLoadMission="Made with the F3 Mission Development Framework.";
-	loadScreen="loadLogo.jpg";
+	overviewText="Made with the F3_CA Mission Development Framework.";
+	overviewTextLocked="Made with the F3_CA Mission Development Framework.";
+	overViewPicture="ca_logo_large.jpg";
+	overViewPictureLocked="ca_logo_large.jpg";
+	onLoadMission="Made with the F3_CA Mission Development Framework.";
+	loadScreen="ca_logo_large.jpg";
 };
 class CustomAttributes
 {
@@ -286,7 +288,6 @@ class Mission
 {
 	class Intel
 	{
-		briefingName="*** Insert mission name here. ***";
 		resistanceWest=0;
 		timeOfChanges=28800;
 		startWeather=0.50001526;
@@ -3017,7 +3018,7 @@ class Mission
 			{
 				position[]={110,4.0299988,590};
 			};
-			init="this addEventHandler ['CuratorObjectPlaced',{{[_x] call f_fnc_setAISKill} forEach crew(_this select 1)}];this addCuratorEditableObjects [playableUnits,true];";
+			init="call{this addCuratorEditableObjects [(vehicles + allUnits),true];}";
 			id=106;
 			type="ModuleCurator_F";
 			atlOffset=190;
@@ -3038,7 +3039,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="F3_Zeus";
+							value="#adminLogged";
 						};
 					};
 				};
@@ -3114,7 +3115,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=2;
+							value=3;
 						};
 					};
 				};
@@ -3128,7 +3129,7 @@ class Mission
 			{
 				position[]={110,4.0299988,510};
 			};
-			init="this addEventHandler ['CuratorObjectPlaced',{{[_x] call f_fnc_setAISKill} forEach crew(_this select 1)}];this addCuratorEditableObjects [playableUnits,true];";
+			init="call{this addCuratorEditableObjects [(vehicles + allUnits),true];}";
 			id=107;
 			type="ModuleCurator_F";
 			atlOffset=190;
@@ -3149,7 +3150,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="F3_Zeus_1";
+							value="#adminLogged";
 						};
 					};
 				};
@@ -3225,7 +3226,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=2;
+							value=3;
 						};
 					};
 				};
@@ -26271,6 +26272,7 @@ class Mission
 				position[]={190,4.0299988,590};
 			};
 			name="F3_Zeus";
+			init="call{this addCuratorEditableObjects [(vehicles + allUnits),true];}";
 			isPlayable=1;
 			id=793;
 			type="VirtualCurator_F";
@@ -26284,6 +26286,7 @@ class Mission
 				position[]={190,4.0299988,510};
 			};
 			name="F3_Zeus_1";
+			init="call{this addCuratorEditableObjects [(vehicles + allUnits),true];}";
 			isPlayable=1;
 			id=794;
 			type="VirtualCurator_F";
