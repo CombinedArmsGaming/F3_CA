@@ -34,8 +34,8 @@ if (isnil "_grp") exitWith {};
 // ====================================================================================
 // Create groupID
 // Allows for defining it based on mapmarkers, which is a shorthand identifier anyways.
-// Deprecated! Now GroupIDs(and marker text!) are set in eden instead! To use the old system just uncomment the line below.  
-//_grp setGroupId [format ["%1",_mkrText],"GroupColor0"];
+// Reprecated! Now GroupIDs(and marker text!) can be set in eden, but doesnt always work!  
+_grp setGroupId [format ["%1",_mkrText],"GroupColor0"];
 _newmkrText = groupId _grp;
 // ====================================================================================
 // CREATE MARKER
