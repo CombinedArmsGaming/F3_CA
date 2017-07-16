@@ -22,7 +22,7 @@ f_radios_settings_acre2_longRange = ["co", "dc", "ftl", "vc", "pp"];
 
 // Unit types you want to give an extra long-range radio
 // E.G: ["co", "m"] would give the CO and all medics an extra long-range radios
-f_radios_settings_acre2_extraRadios = ["co","dc"];
+f_radios_settings_acre2_extraRadios = [];
 
 // Standard Short
 f_radios_settings_acre2_standardSHRadio = "ACRE_PRC343";
@@ -50,21 +50,21 @@ f_radios_settings_acre2_language_indfor = ["greek"];
 // note that if using a 343 only the first 16 channels are available for the short-range array
 // also note these only work if f_radios_settings_acre2_disableFrequencySplit is set to false
 f_radios_settings_acre2_sr_groups_blufor = [
-	["ALPHA",    ["ASL","A1","A2","A3"]],
-	["BRAVO",    ["BSL","B1","B2","B3"]],
-	["CHARLIE",  ["CSL","C1","C2","C3"]],
-	["COMMAND",    ["CO","DC"]],
-	["MG SUP",     ["MMG1","HMG1"]],
-	["AT SUP",  ["MAT1","HAT1"]],
-	["MORTAR SUP",     ["MTR1"]],
-	["AA SUP",    ["MSAM1","HSAM1"]],
-	["SNIPER",    ["ST1"]],
-	["DIVER",   ["DT1"]],
-	["ENGINEER",     ["ENG1"]],
-	["IFV",     ["IFV1","IFV2","IFV3","IFV4","IFV5","IFV6","IFV7","IFV8"]],
-	["ARMOUR",     ["TNK1"]],
-	["AIR TRANS", ["TH1","TH2","TH3","T4","TH5","TH6","TH7","TH8"]],
-	["CAS", 	 ["AH1"]],
+	["ALPHA",    []],
+	["BRAVO",    []],
+	["CHARLIE",  []],
+	["COMMAND",    []],
+	["MG SUP",     []],
+	["AT SUP",  []],
+	["MORTAR SUP",     []],
+	["AA SUP",    []],
+	["SNIPER",    []],
+	["DIVER",   []],
+	["ENGINEER",     []],
+	["IFV",     []],
+	["ARMOUR",     []],
+	["AIR TRANS", []],
+	["CAS", 	 []],
 	["ADDITIONAL 1", 	 []],
 	["ADDITIONAL 2", 	 []],
 	["ADDITIONAL 3",    []],
@@ -82,9 +82,9 @@ f_radios_settings_acre2_sr_groups_opfor = f_radios_settings_acre2_sr_groups_bluf
 f_radios_settings_acre2_sr_groups_indfor = f_radios_settings_acre2_sr_groups_blufor;
 
 f_radios_settings_acre2_lr_groups_blufor = [
-	["GRND COMMAND 1",    ["CO","ASL","BSL","CSL","ENG1","MMG1","HMG1","MAT1","HAT1","MTR1","MSAM1","HSAM1","ST1","DT1"]],
-	["GRND COMMAND 2",    ["DC","IFV1","IFV2","IFV3","IFV4","IFV5","IFV6","IFV7","IFV8","TNK1"]],
-	["AIR",  ["TH1","TH2","TH3","T4","TH5","TH6","TH7","TH8","AH1"]],
+	["GRND COMMAND 1",    []],
+	["GRND COMMAND 2",    []],
+	["AIR",  []],
 	["FAC",	 []],
 	["Echo",     []],
 	["Foxtrot",  []],
@@ -119,11 +119,11 @@ f_radios_settings_acre2_lr_groups_indfor = f_radios_settings_acre2_lr_groups_blu
 // ACRE Radio loss settings.
 // Indiciates how much terrian loss should be modelled.
 // Values: 0 no loss, 1 full terrian loss, default: 1
-[1] call acre_api_fnc_setLossModelScale;
+[0.5] call acre_api_fnc_setLossModelScale;
 
 // ACRE full Duplex
 // Sets the duplex of radio transmissions. If set to true, it means that you will receive transmissions even while talking and multiple people can speak at the same time.
-[false] call acre_api_fnc_setFullDuplex;
+[true] call acre_api_fnc_setFullDuplex;
 
 // ACRE Interference
 // Sets whether transmissions will interfere with eachother. This, by default, causes signal loss when multiple people are transmitting on the same frequency.
