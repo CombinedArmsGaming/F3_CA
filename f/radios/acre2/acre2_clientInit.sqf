@@ -119,7 +119,7 @@ if(_typeOfUnit != "NIL") then {
 
 // ASSIGN DEFAULT CHANNELS TO RADIOS
 // Depending on the squad joined, each radio is assigned a default starting channel
-
+/*
 if(!f_radios_settings_acre2_disableRadios) then {
 
 	private ["_presetArray","_presetLRArray","_radioSR","_radioLR","_radioExtra","_hasSR","_hasLR","_hasExtra","_groupID","_groupIDSplit","_groupChannelIndex","_groupLRChannelIndex","_groupName"];
@@ -207,3 +207,4 @@ if(!f_radios_settings_acre2_disableRadios) then {
 	};
 
 };
+*/
