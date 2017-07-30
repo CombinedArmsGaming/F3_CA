@@ -119,11 +119,11 @@ if(_typeOfUnit != "NIL") then {
 
 // ASSIGN DEFAULT CHANNELS TO RADIOS
 // Depending on the squad joined, each radio is assigned a default starting channel
-/*
+
 if(!f_radios_settings_acre2_disableRadios) then {
 
-	private ["_presetArray","_presetLRArray","_radioSR","_radioLR","_radioExtra","_hasSR","_hasLR","_hasExtra","_groupID","_groupIDSplit","_groupChannelIndex","_groupLRChannelIndex","_groupName"];
-	
+	private ["_presetArray","_presetLRArray","_radioSR","_radioLR","_radioExtra","_hasSR","_hasLR","_hasExtra","_groupID","_groupChannelIndex","_groupLRChannelIndex"];
+
 	waitUntil {uiSleep 0.1; [] call acre_api_fnc_isInitialized};
 
 	_presetArray = switch (side _unit) do {
@@ -149,26 +149,23 @@ if(!f_radios_settings_acre2_disableRadios) then {
 	_hasExtra = ((!isNil "_radioExtra") && {_radioExtra != ""});
 
 	_groupID = groupID (group _unit);
-	_groupIDSplit = [_groupID, " "] call bis_fnc_splitString;
 
 	_groupChannelIndex = -1;
   	_groupLRChannelIndex = -1;
 
-  	if ((count _groupIDSplit) > 2) then {
-		_groupName = toUpper (_groupIDSplit select (count _groupIDSplit - 2));
 
-		if (_hasSR) then {
-		  	{
-		  		if (_groupName in (_x select 1)) exitWith { _groupChannelIndex = _forEachIndex; };
-		  	} forEach _presetArray;
-	  	};
+	if (_hasSR) then {
+	  	{
+	  		if (_groupID in (_x select 1)) exitWith { _groupChannelIndex = _forEachIndex; };
+	  	} forEach _presetArray;
+  	};
 
-	  	if (_hasLR || _hasExtra) then {
-		  	{
-		  		if (_groupName in (_x select 1)) exitWith { _groupLRChannelIndex = _forEachIndex; };
-		  	} forEach _presetLRArray;
-	  	};
-	};
+  	if (_hasLR || _hasExtra) then {
+	  	{
+	  		if (_groupID in (_x select 1)) exitWith { _groupLRChannelIndex = _forEachIndex; };
+	  	} forEach _presetLRArray;
+  	};
+
 
 	if (_groupChannelIndex == -1 && {_hasSR}) then {
 		player sideChat format["[F3 ACRE2] Warning: Unknown group for short-range channel defaults (%1)", _groupID];
@@ -207,4 +204,3 @@ if(!f_radios_settings_acre2_disableRadios) then {
 	};
 
 };
-*/
