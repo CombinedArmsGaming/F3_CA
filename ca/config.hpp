@@ -6,6 +6,7 @@ class CA
 		class getdirpos{};
 		class getmarkerarray{};
 		class setparams{postInit = 1;};
+        class groupMarker{};
 	};
 	class headless
 	{

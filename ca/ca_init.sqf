@@ -12,6 +12,8 @@ if (_ishc && didJIP) then {
 if (serverCommandAvailable "#kick") then {
   execVM "ca\ca_briefing_admin.sqf";
 };
+execVM "ca\ca_briefing_player.sqf";
+
 /*
 if (isServer) then {
 	_side = east; // Optional, to be defined in a parameter, use ca\core\fn_setparams for now.

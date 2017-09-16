@@ -1,4 +1,4 @@
-// F3 - Folk Group Markers
+// F3_CA - The Jip groupmarker edition
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================
 
@@ -9,21 +9,14 @@
 // SET KEY VARIABLES
 // Using variables passed to the script instance, we will create some local variables:
 
-params["_grpName",["_mkrType","b_hq"],"_mkrText",["_mkrColor","ColorBlack"]];
+params["_netid",["_mkrType","b_hq"],["_mkrColor","ColorBlack"]];
 
-private _grp = missionNamespace getVariable [_grpName,grpNull];
-private _mkrName = format ["mkr_%1",_grpName];
+//private _grp = missionNamespace getVariable [_grpName,grpNull];
+//private _mkrName = format ["mkr_%1",_grpName];
 
 // ====================================================================================
-
-// WAIT FOR GROUP TO EXIST IN-MISSION
-// We wait for the group to have members before creating the marker.
-
-if (isNull _grp) then
-{
-	waitUntil { sleep 3; _grp = missionNamespace getVariable [_grpName,grpNull]; count (units _grp) > 0 };
-};
-
+_grp = groupFromNetId _netid;
+_mkrName = groupid _grp;
 // ====================================================================================
 
 // EXIT FOR EMPTY GROUPS (PART I)
@@ -35,7 +28,7 @@ if (isnil "_grp") exitWith {};
 // Create groupID
 // Allows for defining it based on mapmarkers, which is a shorthand identifier anyways.
 // Reprecated! Now GroupIDs(and marker text!) can be set in eden, but doesnt always work!
-_grp setGroupId [format ["%1",_mkrText],"GroupColor0"];
+//_grp setGroupId [format ["%1",_mkrText],"GroupColor0"];
 _newmkrText = groupId _grp;
 // ====================================================================================
 // CREATE MARKER
@@ -47,6 +40,7 @@ _mkrName setMarkerTypeLocal  _mkrType;
 _mkrName setMarkerColorLocal _mkrColor;
 _mkrName setMarkerSizeLocal [0.8, 0.8];
 _mkrName setMarkerTextLocal _newmkrText;
+
 // Set variables for group.
 _grp setVariable ["ca_groupcolor", _mkrColor];
 _grp setVariable ["ca_grouptype", _mkrType];
