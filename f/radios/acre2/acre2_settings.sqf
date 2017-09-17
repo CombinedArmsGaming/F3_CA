@@ -18,7 +18,7 @@ f_radios_settings_acre2_disableFrequencySplit = FALSE;
 f_radios_settings_acre2_shortRange = nil;
 
 // Set the list of units that get a long range
-f_radios_settings_acre2_longRange = ["co", "dc", "ftl", "vc", "pp"];
+f_radios_settings_acre2_longRange = ["co", "dc", "vc", "pp"];
 
 // Unit types you want to give an extra long-range radio
 // E.G: ["co", "m"] would give the CO and all medics an extra long-range radios
@@ -119,7 +119,7 @@ f_radios_settings_acre2_lr_groups_indfor = f_radios_settings_acre2_lr_groups_blu
 // ACRE Radio loss settings.
 // Indiciates how much terrian loss should be modelled.
 // Values: 0 no loss, 1 full terrian loss, default: 1
-[0.5] call acre_api_fnc_setLossModelScale;
+[0] call acre_api_fnc_setLossModelScale;
 
 // ACRE full Duplex
 // Sets the duplex of radio transmissions. If set to true, it means that you will receive transmissions even while talking and multiple people can speak at the same time.
