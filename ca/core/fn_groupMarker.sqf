@@ -42,8 +42,8 @@ _mkrName setMarkerSizeLocal [0.8, 0.8];
 _mkrName setMarkerTextLocal _newmkrText;
 
 // Set variables for group.
-_grp setVariable ["ca_groupcolor", _mkrColor];
-_grp setVariable ["ca_grouptype", _mkrType];
+_grp setVariable ["ca_groupcolor", (_grp getVariable ["ca_groupcolor",_mkrColor])];
+_grp setVariable ["ca_grouptype", (_grp getVariable ["ca_grouptype",_mkrType])];
 
 // ====================================================================================
 
