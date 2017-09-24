@@ -33,6 +33,42 @@ _group = _grpvehicle select 0;
 _posdir = _position call ca_fnc_getdirpos;
 _patrolpos = _posdir select 0;
 
-[_group, _patrolpos,_radius] call CBA_fnc_taskPatrol;
+
+
+[_group,_patrolpos,_radius] spawn {
+    params ["_group","_patrolpos","_radius"];
+    sleep 5;
+    _prevPos = _patrolpos;
+
+    _arr = []; _arr resize (5 + (floor (random 10)));
+    private ["_wp", "_newPos"];
+    _wp = [];
+    {
+        _newPos = _patrolpos getPos [(random _radius),(random 360)];
+        _prevPos = _newPos;
+
+        _wp = _group addWaypoint [_newPos, 0];
+        _wp setWaypointType "MOVE";
+        _wp setWaypointCompletionRadius 20;
+
+    } forEach _arr;
+
+    sleep 5;
+
+    _wp2 = _group addWaypoint [_patrolpos,0];
+    _wp2 setWaypointType "CYCLE";
+    _wp2 setWaypointCompletionRadius 100;
+    [_group,0] setWPPos _patrolpos;
+
+    _wayp0 = currentWaypoint _group;
+    sleep 30;
+    _wayp1 = currentWaypoint _group;
+
+    if (_wayp1 == _wayp0) then {
+        _wayp = [_group,(currentWaypoint _group)];
+        _wayp setWPPos (getpos (leader _group));
+    };
+};
+
 
 _grpvehicle

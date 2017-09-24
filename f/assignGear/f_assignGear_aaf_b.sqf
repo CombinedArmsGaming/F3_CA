@@ -578,8 +578,10 @@ case "cc":
 
 case "none":
 {
-	if(_typeOfUnit in _backpackradiotypes) then {
-		_unit addBackpack _bagradio;
-		clearMagazineCargoGlobal (unitBackpack _unit);
-	};
+    if(f_var_radios == 2) then {
+    	if(_typeOfUnit in _backpackradiotypes) then {
+    		_unit addBackpack _bagradio;
+    		clearMagazineCargoGlobal (unitBackpack _unit);
+	   };
+    };
 };

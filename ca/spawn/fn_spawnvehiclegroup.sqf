@@ -29,9 +29,60 @@ params ["_unitarray","_position","_vehicletype",["_faction",""],["_side", ca_def
 
 _vehicle = [_position,_vehicletype] call ca_fnc_spawnvehicle;
 _group = [_unitarray,_position,_faction,_side] call ca_fnc_spawngroup;
+
+
+
+_units = units _group;
+_assigned = [];
+
+_comno = true;
+_drino = true;
+_gunno = true;
+
 {
-_x moveInAny _vehicle;
-} forEach (units _group);
+
+if((_vehicle emptyPositions "Commander")>0 && _comno) then {
+    _check = (_x in _assigned);
+    if (!_check) then {
+        _x assignAsCommander _vehicle;
+        _assigned pushBackUnique _x;
+        _comno = false;
+    };
+};
+if((_vehicle emptyPositions "Driver")>0 && _drino) then {
+    _check = (_x in _assigned);
+
+    if (!_check) then {
+
+        _x assignAsDriver _vehicle;
+        _assigned pushBackUnique _x;
+        _drino = false;
+    };
+
+};
+if((_vehicle emptyPositions "Gunner")>0 && _gunno) then {
+    _check = (_x in _assigned);
+
+    if (!_check) then {
+
+        _x assignAsGunner _vehicle;
+        _assigned pushBackUnique _x;
+        _gunno = false;
+    };
+
+};
+_check = (_x in _assigned);
+
+if (!_check) then {
+
+_x assignAsCargo _vehicle;
+_assigned pushBackUnique _x;
+
+};
+
+} forEach _units;
+
+_units orderGetIn true;
 
 
 [_group,_vehicle]
