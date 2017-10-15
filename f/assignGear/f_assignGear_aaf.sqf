@@ -682,7 +682,7 @@ switch (_typeofUnit) do
 		_unit addweapon _pistol;
 		_unit addmagazines [_smokegrenade,2];
 		_attachments = [_scope3,_bipod1];
-		_unit addItem "ACE_Kestrel";
+		_unit addItem "ACE_Kestrel4500";
 		["none"] call _backpack;
 	};
 
