@@ -18,18 +18,25 @@ f_radios_settings_acre2_disableFrequencySplit = FALSE;
 f_radios_settings_acre2_shortRange = nil;
 
 // Set the list of units that get a long range
-f_radios_settings_acre2_longRange = ["co", "dc", "vc", "pp"];
+f_radios_settings_acre2_longRange = ["co", "dc", "vc"];
 
 // Unit types you want to give an extra long-range radio
 // E.G: ["co", "m"] would give the CO and all medics an extra long-range radios
-f_radios_settings_acre2_extraRadios = [];
+f_radios_settings_acre2_extraRadios = ["dc","ftl"];
+
+// Unit types you want to give a backpack radio
+// I'd recommend this is only used for Pilots and FAC (you'll need to sort out a separate FAC loadout in your gearscript, I'd recommend using the "UAV" unit type defined below.)
+// This backpack radio still uses the Long Range radio channel definitions below.
+f_radios_settings_acre2_BackpackRadios = ["uav","pp"];
 
 // Standard Short
 f_radios_settings_acre2_standardSHRadio = "ACRE_PRC343";
 // Standard LongRange
 f_radios_settings_acre2_standardLRRadio = "ACRE_PRC152";
-// Extra radio
-f_radios_settings_acre2_extraRadio = "ACRE_PRC117F";
+// Extra LR radio
+f_radios_settings_acre2_extraRadio = "ACRE_PRC148";
+// Backpack Radio
+f_radios_settings_acre2_BackpackRadio = "ACRE_PRC117F";
 
 // ====================================================================================
 // BABEL API
@@ -50,21 +57,21 @@ f_radios_settings_acre2_language_indfor = ["greek"];
 // note that if using a 343 only the first 16 channels are available for the short-range array
 // also note these only work if f_radios_settings_acre2_disableFrequencySplit is set to false
 f_radios_settings_acre2_sr_groups_blufor = [
-    ["ALPHA",    ["ASL","A1","A2","A3"]],
-    ["BRAVO",    ["BSL","B1","B2","B3"]],
-    ["CHARLIE",  ["CSL","C1","C2","C3"]],
-    ["COMMAND",    ["CO"]],
-    ["MG SUP",     ["MMG1","HMG1"]],
-    ["AT SUP",  ["MAT1","HAT1"]],
-    ["MORTAR SUP",     ["MTR1"]],
-    ["AA SUP",    ["MSAM1","HSAM1"]],
-    ["SNIPER",    ["ST1"]],
-    ["DIVER",   ["DT1"]],
-    ["ENGINEER",     ["ENG1"]],
-    ["IFV",     ["IFV1","IFV2","IFV3","IFV4","IFV5","IFV6","IFV7","IFV8"]],
-    ["ARMOUR",     ["TNK1"]],
-    ["AIR TRANS", ["TH1","TH2","TH3","T4","TH5","TH6","TH7","TH8"]],
-    ["CAS", 	 ["AH1"]],
+    ["ASL",    ["ASL"]],
+    ["A1",    ["A1"]],
+    ["A2",  ["A2"]],
+    ["BSL",    ["BSL"]],
+    ["B1",     ["B1"]],
+    ["B2",  ["B2"]],
+    ["CSL",     ["CSL"]],
+    ["C1",    ["C1"]],
+    ["C2",    ["C2"]],
+    ["CO",   ["CO"]],
+    ["SUPPORT UNIT 1",     []],
+    ["SUPPORT UNIT 2",     []],
+    ["SUPPORT UNIT 3",     []],
+    ["SUPPORT UNIT 4", []],
+    ["SUPPORT UNIT 5", 	 []],
     ["ADDITIONAL 1", 	 []],
     ["ADDITIONAL 2", 	 []],
     ["ADDITIONAL 3",    []],
@@ -86,9 +93,9 @@ f_radios_settings_acre2_lr_groups_blufor = [
     ["GRND COMMAND 2",    ["IFV1","IFV2","IFV3","IFV4","IFV5","IFV6","IFV7","IFV8","TNK1"]],
     ["AIR",  ["TH1","TH2","TH3","T4","TH5","TH6","TH7","TH8","AH1"]],
     ["FAC",	 []],
-    ["Echo",     []],
-    ["Foxtrot",  []],
-    ["Golf",     []],
+    ["ALPHA SQUAD",     ["ASL","A1","A2","A3"]],
+    ["BRAVO SQUAD",  ["BSL","B1","B2","B3"]],
+    ["CHARLIE SQUAD",     ["CSL","C1","C2","C3"]],
     ["Hotel",    []],
     ["India",    []],
     ["Juliet",   []],

@@ -112,6 +112,14 @@ if(_typeOfUnit != "NIL") then {
 				f_radios_settings_acre2_extraRadio call f_radios_acre2_giveRadioAction;
 			};
 		};
+			// If unit is in the list of units that receive a backpack radio, then add a 117F
+		if(_typeOfUnit in f_radios_settings_acre2_BackpackRadios) then {
+			if (_unit canAdd f_radios_settings_acre2_BackpackRadio) then {
+				_unit addItem f_radios_settings_acre2_BackpackRadio;
+			} else {
+				f_radios_settings_acre2_BackpackRadio call f_radios_acre2_giveRadioAction;
+			};
+		};		
 	};
 };
 
@@ -143,10 +151,12 @@ if(!f_radios_settings_acre2_disableRadios) then {
 	_radioSR = [f_radios_settings_acre2_standardSHRadio] call acre_api_fnc_getRadioByType;
 	_radioLR = [f_radios_settings_acre2_standardLRRadio] call acre_api_fnc_getRadioByType;
 	_radioExtra = [f_radios_settings_acre2_extraRadio] call acre_api_fnc_getRadioByType;
+	_radioBackpack = [f_radios_settings_acre2_BackpackRadio] call acre_api_fnc_getRadioByType;	
 
 	_hasSR = ((!isNil "_radioSR") && {_radioSR != ""});
 	_hasLR = ((!isNil "_radioLR") && {_radioLR != ""});
 	_hasExtra = ((!isNil "_radioExtra") && {_radioExtra != ""});
+	_hasBackpack = ((!isNil "_radioBackpack") && {_radioBackpack != ""});	
 
 	_groupID = groupID (group _unit);
 
@@ -203,4 +213,11 @@ if(!f_radios_settings_acre2_disableRadios) then {
 	    [_radioExtra, (_groupLRChannelIndex + 1)] call acre_api_fnc_setRadioChannel;
 	};
 
+	if (_hasBackpack) then {
+		if (f_var_debugMode == 1) then
+		{
+			player sideChat format["DEBUG (f\radios\acre2\acre2_clientInit.sqf): Setting radio channel for '%1' to %2", _radioExtra, _groupLRChannelIndex + 1];
+		};
+	    [_radioBackpack, (_groupLRChannelIndex + 1)] call acre_api_fnc_setRadioChannel;
+	};
 };
