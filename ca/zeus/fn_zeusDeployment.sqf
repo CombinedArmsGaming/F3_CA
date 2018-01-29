@@ -16,8 +16,8 @@ if (_spawnMenu and _deployMenu) then
 {
 	_unit addAction ["Add unit-spawner to Zeus mode", 
 	{
-		execVM "ca\zeus\zeus_ui\ca_fnc_zeusSpawnButtons.sqf";
-		[false] execVM "ca\zeus\zeus_ui\ca_fnc_zeusDeployButtons.sqf";
+		[] call ca_fnc_zeusSpawnButtons;
+		[false] call ca_fnc_zeusDeployButtons;
 	}];
 }
 else
@@ -26,7 +26,7 @@ else
 	{
 		_unit addAction ["Add unit-spawner to Zeus mode", 
 		{
-			execVM "ca\zeus\zeus_ui\ca_fnc_zeusSpawnButtons.sqf";
+			[] call ca_fnc_zeusSpawnButtons;
 		}];
 	}
 	else
@@ -35,7 +35,7 @@ else
 		{
 			_unit addAction ["Add unit-spawner to Zeus mode", 
 			{
-				[true] execVM "ca\zeus\zeus_ui\ca_fnc_zeusDeployButtons.sqf";
+				[true] call ca_fnc_zeusDeployButtons;
 			}];
 		};
 	};

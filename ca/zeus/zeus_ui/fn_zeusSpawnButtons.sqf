@@ -1,7 +1,7 @@
 if (isDedicated) exitWith {};
 disableSerialization;
 
-execVM "ca\zeus\zeus_ui\ca_fnc_zeusSetupUnits.sqf";
+[] call ca_fnc_zeusSetupUnits;
 
 _ctrls = missionNamespace getVariable ["ca_zeus_ctrls", []];
 missionNamespace setVariable ["ca_zeus_ctrls", _ctrls];
@@ -38,7 +38,7 @@ _bg ctrlCommit 0;
 _btn = ["RscButton"] call _fn_newCtrl;
 _btn ctrlSetPosition [ -0.05, 1.12, 0.28, 0.06 ];
 _btn ctrlSetText "Spawn units";
-_btn buttonSetAction '[ca_zeus_defToSpawn] execVM "ca\zeus\zeus_ui\ca_fnc_zeusDoSpawn.sqf";';
+_btn buttonSetAction '[ca_zeus_defToSpawn] call ca_fnc_zeusDoSpawn;';
 _btn ctrlCommit 0;
 
 
@@ -62,18 +62,18 @@ ca_zeus_unitsList_idc = ctrlIDC _unitsList;
 
 _categoriesList = ["RscCombo"] call _fn_newCtrl;
 _categoriesList ctrlSetPosition [ -0.05, 1.007, 0.28, 0.041 ];
-[ctrlIDC _categoriesList] execVM "ca\zeus\zeus_ui\ca_fnc_zeusFillCategories.sqf";
+[ctrlIDC _categoriesList] call ca_fnc_zeusFillCategories;
 _categoriesList ctrlAddEventHandler ["LBSelChanged", 
 {
 	params ["_list", "_sel"];
 	if (_sel < 0) exitWith {};
 	
 	_unitsListIDC = ca_zeus_unitsList_idc;
-	[_unitsListIDC, _sel] execVM "ca\zeus\zeus_ui\ca_fnc_zeusFillUnits.sqf";
+	[_unitsListIDC, _sel] call ca_fnc_zeusFillUnits;
 	
 }];
 _categoriesList ctrlCommit 0;
 
 
 waitUntil { sleep 1; _display = findDisplay 312; isNull _display };
-execVM "ca\zeus\zeus_ui\ca_fnc_zeusSpawnButtons.sqf";
+[] spawn ca_fnc_zeusSpawnButtons;

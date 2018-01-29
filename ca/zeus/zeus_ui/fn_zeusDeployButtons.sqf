@@ -26,7 +26,6 @@ private ["_display"];
 
 waitUntil { sleep 0.1; _display = findDisplay 312; !isNull _display };
 
-
 _bg = ["RscButton"] call _fn_newCtrl;
 
 if (_moveDown) then
@@ -67,4 +66,4 @@ _btn ctrlCommit 0;
 
 
 waitUntil { sleep 1; _display = findDisplay 312; isNull _display };
-[_moveDown] execVM "ca\zeus\zeus_ui\ca_fnc_zeusDeployButtons.sqf";
+[_moveDown] call ca_fnc_zeusDeployButtons;
