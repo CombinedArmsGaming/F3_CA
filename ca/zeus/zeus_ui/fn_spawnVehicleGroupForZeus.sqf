@@ -1,3 +1,11 @@
+//	Zeus extensions for CA, by Bubbus.
+//	
+//	ca_fnc_spawnvehiclegroup does not add spawned units to zeus so they can't move them around etc.  We fix that here.
+//
+//	PARAMETERS:
+//	
+//		See parameters for ca_fnc_spawnvehiclegroup.
+
 params ["_units", "_camPos", "_veh", "_gear", "_side"];
 
 _groupVeh = [_units, _camPos, _veh, _gear, _side] call ca_fnc_spawnvehiclegroup;

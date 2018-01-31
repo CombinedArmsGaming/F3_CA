@@ -1,11 +1,22 @@
-params ["_moveDown"];
+//	Zeus extensions for CA, by Bubbus.
+//	
+//	This function is called from ca_fnc_zeusDeployment.
+//	Waits for the zeus display to be created (id = 312), then creates a button which can be clicked to toggle zeus deployment mode.
+//	
+//	PARAMETERS:
+//	
+//		_moveDown
+//			If true, aligns the button with the bottom of the screen.
+//			If false, makes space at the bottom of the screen for the unit spawner.
 
 if (isDedicated) exitWith {};
 disableSerialization;
 
+params ["_moveDown"];
+
 _ctrls = missionNamespace getVariable ["ca_zeusDeploy_ctrls", []];
 missionNamespace setVariable ["ca_zeusDeploy_ctrls", _ctrls];
-_id = 700;
+_id = 600;
 
 { ctrlDelete _x } forEach _ctrls;
 
@@ -16,6 +27,7 @@ _fn_newCtrl =
 	_ctrl = _display ctrlCreate [ _type, _id ];
 	
 	_id = _id + 1;
+	diag_log format ["dispid %1", _id];
 	_ctrls pushBack _ctrl;
 	
 	_ctrl
@@ -65,5 +77,5 @@ _btn ctrlCommit 0;
 
 
 
-waitUntil { sleep 1; _display = findDisplay 312; isNull _display };
+waitUntil { sleep 0.2; _display = findDisplay 312; isNull _display };
 [_moveDown] call ca_fnc_zeusDeployButtons;

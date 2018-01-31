@@ -1,3 +1,15 @@
+//	Zeus extensions for CA, by Bubbus.
+//	
+//	Fills the unit spawn list with squad definitions from ca_fnc_zeusSetupUnits.
+//
+//	PARAMETERS:
+//	
+//		_listIDC
+//			The control ID for the on-screen unit spawn list.
+//			
+//		_categoryIdx
+//			The index of the user's currently selected unit category, as defined in ca_fnc_zeusSetupUnits.
+
 if (isDedicated) exitWith {};
 
 params ["_listIDC", "_categoryIdx"];

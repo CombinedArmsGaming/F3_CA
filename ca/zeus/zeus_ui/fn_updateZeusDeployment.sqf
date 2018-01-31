@@ -1,3 +1,15 @@
+//	Zeus extensions for CA, by Bubbus.
+//	
+//	Updates the logical and displayed zeus deployment state based on the passed-in value.
+//
+//	PARAMETERS:
+//	
+//		_btnIDC
+//			The control ID for the on-screen zeus deployment button.
+//			
+//		_zeusDeployment
+//			The desired state of the zeus deployment mode.
+
 params ["_btnIDC", "_zeusDeployment"];
 
 zeus_deployment = _zeusDeployment;

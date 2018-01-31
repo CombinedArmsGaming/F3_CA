@@ -1,3 +1,8 @@
+//	Zeus extensions for CA, by Bubbus.
+//	
+//	This function is called from ca_fnc_zeusDeployment.
+//	Waits for the zeus display to be created (id = 312), then creates a spawn menu for gearscripted squads.
+
 if (isDedicated) exitWith {};
 disableSerialization;
 
@@ -75,5 +80,5 @@ _categoriesList ctrlAddEventHandler ["LBSelChanged",
 _categoriesList ctrlCommit 0;
 
 
-waitUntil { sleep 1; _display = findDisplay 312; isNull _display };
+waitUntil { sleep 0.2; _display = findDisplay 312; isNull _display };
 [] spawn ca_fnc_zeusSpawnButtons;
