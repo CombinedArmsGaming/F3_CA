@@ -49,4 +49,26 @@ class CA
 		class spawnvehiclepatrol{};
 		class spawnvehiclestatic{};
 	};
+	class zeus
+	{
+		file = "ca\zeus";
+		class activateZeusPlayer{};
+		class registerZeusPlayer{};
+		class zeusDeployment{};
+	};
+	class zeusui
+	{
+		file = "ca\zeus\zeus_ui";
+		class addToList{};
+		class clearList{};
+		class spawnGroupForZeus{};
+		class spawnVehicleGroupForZeus{};
+		class updateZeusDeployment{};
+		class zeusDeployButtons{};
+		class zeusDoSpawn{};
+		class zeusFillCategories{};
+		class zeusFillUnits{};
+		class zeusSetupUnits{};
+		class zeusSpawnButtons{};
+	};
 };
