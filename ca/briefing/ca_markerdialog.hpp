@@ -129,7 +129,7 @@ class ca_groupid
 {
 	idd= 1995;
 	movingenable=false;
-    onLoad= "[] spawn { [] execvm 'ca\ca_marker_listboxfill.sqf'}";
+    onLoad= "[] spawn { [] execvm 'ca\briefing\ca_marker_listboxfill.sqf'}";
 	class controls
 	{
 
@@ -145,7 +145,7 @@ class ca_groupid
         class pic: RscPicture
         {
             idc = 1200;
-            text = "ca\ca_markers.jpg";
+            text = "ca\briefing\ca_markers.jpg";
             x = 0.603125 * safezoneW + safezoneX;
             y = 0.335 * safezoneH + safezoneY;
             w = 0.05 * safezoneW;

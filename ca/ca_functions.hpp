@@ -5,7 +5,6 @@ class CA
 		file = "ca\core";
 		class getdirpos{};
 		class getmarkerarray{};
-		class setparams{postInit = 1;};
         class groupMarker{};
 	};
 	class headless
@@ -34,7 +33,14 @@ class CA
 		class bodymanage{};
 		class incfuelcon{};
 		class parachute{};
+        class vehiclespawner{};
 	};
+    class respawn
+    {
+        file = "ca\respawn";
+        class respawnwave{};
+        class respawnwaveserver{};
+    };
 	class spawn
 	{
 		file = "ca\spawn";

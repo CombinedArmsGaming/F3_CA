@@ -1,5 +1,10 @@
 // CA - Briefing
 // ====================================================================================
+if (!isDedicated && (isNull player)) then
+{
+    waitUntil {sleep 0.1; !isNull player};
+};
+
 _briefing = "";
 _briefing = _briefing + "
 <font size='18'>Body manager control</font><br/><br/>
@@ -16,6 +21,10 @@ Show headless markers</execute><br/>
 Hide headless markers</execute><br/>
 |- <execute expression="" hint format ['%1 for markers being shown',ca_hcshowmarkers]"">
 Check headless marker status</execute><br/>
+<font size='18'>F3 admin menu</font><br/><br/>
+|- <execute expression="" [] execvm 'f\briefing\f_briefing_admin.sqf' "">
+Give self F3 admin menu</execute><br/>
+
 ";
 /*
 _briefing = _briefing + "

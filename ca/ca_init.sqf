@@ -1,5 +1,33 @@
 
+// CA - Mission briefing
+execVM "ca\briefing\ca_briefing_player.sqf";
+if (serverCommandAvailable "#kick") then {
+  execVM "ca\briefing\ca_briefing_admin.sqf";
+};
 
+// CA - Thermals
+// Disable thermal sights for everything
+//player addEventHandler ["WeaponAssembled",{(_this select 1) disableTIEquipment true}];
+//[] execVM "ca\misc\disableThermals.sqf";
+
+// KK - Who's Marking?
+// Show who is messing with markers
+// seems to mess up AGM markers
+//[] execVM "ca\misc\KK_whosMarking.sqf";
+
+// PabstMirror - Mission Intro
+// Credits: PabstMirror
+[] execVM "ca\misc\PM_missionIntro.sqf";
+
+// CA - Force First Person
+// Disable 3PV regardless of server settings
+//[] execVM "ca\misc\forceFirstPerson.sqf";
+
+// WS - AI Flashlights
+// Credits: Wolfenswan
+// [] execVM "ca\misc\forceFlashLightAI.sqf";
+
+// Headless join in progress support.
 _ishc = !hasInterface && !isDedicated;
 if (_ishc) then {
     [] spawn ca_fnc_hcmarker;
@@ -9,10 +37,6 @@ if (_ishc && didJIP) then {
 		remoteExec ["ca_fnc_hcinit", 2];
 	};
 };
-if (serverCommandAvailable "#kick") then {
-  execVM "ca\ca_briefing_admin.sqf";
-};
-execVM "ca\ca_briefing_player.sqf";
 
 /*
 if (isServer) then {

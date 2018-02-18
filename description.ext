@@ -49,9 +49,9 @@ enableDebugConsole = 1;
 // respawn_west, respawn_guerilla, respawn_east, respawn_civillian.
 
 respawn = 3; //Suggested NOT to change this
-respawndelay = 4;
+respawndelay = 3;
 respawnOnStart = 0;
-respawnTemplates[] = {"f_JIP","f_spectator"};	// remove "f_spectator" when using respawn.
+respawnTemplates[] = {"ca_respawn"};	// remove "f_spectator" when using respawn.
 respawnDialog = 0;
 
 // ============================================================================================
@@ -77,8 +77,6 @@ corpseRemovalMinTime = 60; //seconds
 corpseRemovalMaxTime = 300; //seconds
 
 // ============================================================================================
-
-
 // F3 - Start of Notifications block.
 
 class cfgNotifications
@@ -157,164 +155,6 @@ class cfgNotifications
 // F3 - Start of Params code blocks.
 // WARNING: DO NOT DELETE OR COMMENT OUT THIS CODE BLOCK
 
-class Params
-{
-
-// ============================================================================================
-
-// F3 - Debug Mode
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-// WARNING: DO NOT DISABLE THIS COMPONENT
-
-    class f_param_debugMode
-    {
-            title = "$STR_f_param_debugMode";
-            values[] = {0,1};
-            texts[] = {"Off","On"};
-            default = 0;
-            code = "f_var_debugMode = %1";
-    };
-
-// ============================================================================================
-
-// F3 - Folk Assign Gear Script
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-    class f_param_backpacks
-    {
-            title = "$STR_f_param_loadouts";
-            values[] = {0,1,2};
-            texts[] = {"Light","Medium","Heavy"};
-            default = 1;
-            code = "f_param_backpacks = %1";
-    };
-
-// ============================================================================================
-
-// F3 - Radio Systems Support
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-// Set line "default" to 2 to use TFR and 3 to use ACRE2 as the default radio plugin.
-// This can always be overridden in the mission parameters screen.
-
-    class f_param_radios
-    {
-            title = "Radio System";
-            values[] = {0,2,3};
-            texts[] = {"Off","TFR","ACRE2"};
-            default = 3;
-            code = "f_var_radios = %1";
-    };
-
-// ============================================================================================
-
-// F3 - Mission Timer/Safe Start
-// Credits: Please see the F2 online manual (http://www.ferstaberinde.com/f3/en/)
-
-    class f_param_mission_timer
-    {
-            title = "$STR_f_param_mission_timer";
-            values[] = {0,1,2,3,4,5,6,7,8,9,10,15};
-            texts[] = {"$STR_f_param_mission_timer_off","1","2","3","4","5","6","7","8","9","10","15"};
-            default = 5;
-            code = "f_param_mission_timer = %1";
-    };
-
-// ============================================================================================
-
-// F3 - Mission Conditions Selector
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-/*
-	class f_param_weather
-	{
-		title = "$STR_f_param_weather";
-		values[] = {0,1,2,3,4,5,6,7,8};
-		texts[] = {$STR_f_param_weather_Option0,$STR_f_param_weather_Option1,$STR_f_param_weather_Option2,$STR_f_param_weather_Option3,$STR_f_param_weather_Option4,$STR_f_param_weather_Option5,$STR_f_param_weather_Option6,$STR_f_param_weather_Option7,$STR_f_param_weather_Option8};
-		default = 3;
-		function = "f_fnc_setWeather";		// This function is called to apply the values
-		isGlobal = 0;						// Execute this only on the server
-		code = "f_param_weather = %1";
-	};
-
-	class f_param_fog
-	{
-		title = "Fog";
-		values[] = {0,1,2};
-		texts[] = {"None","Light","Heavy"};
-		default = 0;
-		function = "f_fnc_SetFog";			// This function is called to apply the values
-		isGlobal = 0;						// Execute this only on the server
-		code = "f_param_fog = %1";
-	};
-
-    class f_param_timeOfDay
-	{
-		title = "$STR_f_param_timeOfDay";
-		values[] = {0,1,2,3,4,5,6,7};
-		texts[] = {$STR_f_param_timeOfDay_Option0,$STR_f_param_timeOfDay_Option1,$STR_f_param_timeOfDay_Option2,$STR_f_param_timeOfDay_Option3,$STR_f_param_timeOfDay_Option4,$STR_f_param_timeOfDay_Option5,$STR_f_param_timeOfDay_Option6,$STR_f_param_timeOfDay_Option7};
-		default = 3;
-		function = "f_fnc_setTime";			// This function is called to apply the values
- 		isGlobal = 0;						// Execute this only on the server
- 		code = "f_param_timeOfDay = %1";
-	};
-*/
-// ============================================================================================
-
-// F3 - AI Skill Selector
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-//	class f_param_AISkill_BLUFOR
-//	{
-//		title = "$STR_f_param_AISkill_BLUFOR";
-//		values[] = {0,1,2,3};
-//		texts[] = {$STR_f_param_AISkill_Option0,$STR_f_param_AISkill_Option1,$STR_f_param_AISkill_Option2,$STR_f_param_AISkill_Option3};
-//		default = 1;
-//		code = "f_param_AISkill_BLUFOR = %1";
-//	};
-//
-//	class f_param_AISkill_OPFOR
-//	{
-//		title = "$STR_f_param_AISkill_OPFOR";
-//		values[] = {0,1,2,3};
-//		texts[] = {$STR_f_param_AISkill_Option0,$STR_f_param_AISkill_Option1,$STR_f_param_AISkill_Option2,$STR_f_param_AISkill_Option3};
-//		default = 1;
-//		code = "f_param_AISkill_OPFOR = %1";
-//	};
-//
-//	class f_param_AISkill_INDP
-//	{
-//		title = "$STR_f_param_AISkill_INDP";
-//		values[] = {0,1,2,3};
-//		texts[] = {$STR_f_param_AISkill_Option0,$STR_f_param_AISkill_Option1,$STR_f_param_AISkill_Option2,$STR_f_param_AISkill_Option3};
-//		default = 1;
-//		code = "f_param_AISkill_INDP = %1";
-//	};
-
-// ============================================================================================
-
-// F3 - Caching
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-	class f_param_caching
-	{
-		title = "Cache AI outside distance (m)";
-		values[] = {0,600,800,1000,1500,2000};
-		default = 0;
-		code = "f_param_caching = %1";
-	};
-
-// ============================================================================================
-// F3_CA - Parameters for CA folder.
-
-#include "ca\ca_params.hpp"
-
-// ============================================================================================
-
-// F3 - End of Params code blocks.
-// WARNING: DO NOT DELETE OR COMMENT OUT THIS CODE BLOCK
-
-};
-
 // ============================================================================================
 
 // F3 - Briefing Template
@@ -391,7 +231,7 @@ class CfgDebriefing
 
 class CfgRespawnTemplates
 {
-	// F3 Spectator Script
+/*
 	class f_Spectator
 	{
 		onPlayerRespawn = "f_fnc_CamInit";
@@ -402,6 +242,11 @@ class CfgRespawnTemplates
 	{
 		onPlayerRespawn = "f\JIP\f_JIP_playerRespawn.sqf";
 	};
+*/
+class ca_respawn
+{
+    onPlayerRespawn = "ca\respawn\ca_onDeath.sqf";
+};
 };
 
 // ============================================================================================
@@ -423,7 +268,7 @@ class CfgRespawnTemplates
 
 class CfgFunctions
 {
-	#include "ca\config.hpp"
+	#include "ca\ca_functions.hpp"
 	class F // Defines the "owner"
 	{
 		class common // category
@@ -450,13 +295,6 @@ class CfgFunctions
 			file = "f\assignGear";
 			class assignGear{};
 		};
-		class missionConditions
-		{
-			file = "f\missionConditions";
-			class SetTime{};
-			class SetFog{};
-			class SetWeather{};
-		};
 		class cache
 		{
 			file = "f\cache";
@@ -481,11 +319,6 @@ class CfgFunctions
 		{
 			file = "f\removeBody";
 			class removeBody{};
-		};
-		class setAISkill
-		{
-			file = "f\setAISKill";
-			class setAISKill{};
 		};
 		class mapClickTeleport
 		{

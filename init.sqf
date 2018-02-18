@@ -111,14 +111,6 @@ if(isServer) then {
 
 // ====================================================================================
 
-// F3 - AI Skill Selector
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-// [] execVM "f\setAISKill\f_setAISkill.sqf";
-// f_var_civAI = independent; // Optional: The civilian AI will use this side's settings
-
-// ====================================================================================
-
 // F3 - Assign Gear AI
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
@@ -184,37 +176,8 @@ f_var_JIP_RespawnMenu = false;	// Do respawning players get the JIP menu?
 f_var_JIP_RemoveCorpse = false;	// Remove the old corpse of respawning players?
 f_var_JIP_Spectate = false;		// JIP players go into spectate straight away?
 
-// WARNING: DO NOT DISABLE THIS COMPONENT
-if (!isdedicated) then {
-	[]spawn {
-		waitUntil {sleep 0.1; !isNull player};
-		player addEventHandler ["killed", "['F_ScreenSetup'] call BIS_fnc_blackOut"];
-	};
-};
 
 // ====================================================================================
 
 // CA - Initialize CA framework
 [] execVM "ca\ca_init.sqf";
-
-// CA - Thermals
-// Disable thermal sights for everything
-//player addEventHandler ["WeaponAssembled",{(_this select 1) disableTIEquipment true}];
-//[] execVM "ca\disableThermals.sqf";
-
-// KK - Who's Marking?
-// Show who is messing with markers
-// seems to mess up AGM markers
-//[] execVM "ca\KK_whosMarking.sqf";
-
-// PabstMirror - Mission Intro
-// Credits: PabstMirror
-[] execVM "ca\PM_missionIntro.sqf";
-
-// CA - Force First Person
-// Disable 3PV regardless of server settings
-//[] execVM "ca\forceFirstPerson.sqf";
-
-// WS - AI Flashlights
-// Credits: Wolfenswan
-// [] execVM "ca\forceFlashLightAI.sqf";

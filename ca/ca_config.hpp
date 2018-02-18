@@ -1,1 +1,2 @@
-#include "ca_dialog.hpp"
+#include "briefing\ca_markerdialog.hpp"
+#include "respawn\ca_respawndialog.hpp"

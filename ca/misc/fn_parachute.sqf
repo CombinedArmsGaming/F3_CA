@@ -17,6 +17,7 @@ if (isServer) then {
 in f_JIP_playerRespawn.sqf:
 end of file add:
 [_unit] call ca_fnc_parachute;
+In future this is done in ca\respawn\ca_onDeath.sqf i just cannot be asked to update this info atm. 
 
 Remember to change the settings for respawn to in init.sqf!
 f_var_JIP_JIPMenu = false;		// Do JIP players get the JIP menu?
