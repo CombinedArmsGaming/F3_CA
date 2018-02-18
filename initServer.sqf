@@ -1,5 +1,3 @@
-
-
 // CA - Public Variables/General mission settings
 
 // CA - Public Variables for CA folder
@@ -9,7 +7,6 @@ missionNamespace setVariable ["ca_deletevehicles",false, true]; // Also deletes 
 missionNamespace setVariable ['ca_spawnerclassname','I_APC_tracked_03_cannon_F', true]; // Vehicle classname for vehiclespawner function
 missionNamespace setVariable ['ca_bodymanageon',false, true]; // Body manager, leaves corpes with uniform but they have nothing useful on them or weapons, for mission difficulty and immersion
 //[] spawn ca_fnc_bodymanage;
-
 
 // CA - Public Variables for Respawn system
 missionNamespace setVariable ['ca_respawnmode',0, true]; // Respawn modes: 0: Off, 1: Base respawn, 2: Spawn on Commanding Officer
@@ -29,6 +26,10 @@ missionNamespace setVariable ['f_var_radios',3, true]; // Radio system. 0 = none
 missionNamespace setVariable ['f_var_mission_timer',5, true]; // Safestart duration. Value in minutes
 missionNamespace setVariable ['f_param_caching',0, true]; // Ai Caching distance in meters, 0 = off
 
+missionNamespace setVariable ["f_var_JIP_JIPMenu",true, true]; // Do JIP players get the JIP menu?
+missionNamespace setVariable ["f_var_JIP_RespawnMenu",false, true]; // Do respawning players get the JIP menu?
+missionNamespace setVariable ["f_var_JIP_RemoveCorpse",false, true]; // Remove the old corpse of respawning players?
+missionNamespace setVariable ["f_var_JIP_Spectate",false, true]; // JIP players go into spectate straight away?
 
 // CA - Parachute spawning
 //_parachutearea = ""; // Name of area marker players will spawn in
