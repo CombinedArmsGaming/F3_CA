@@ -781,6 +781,7 @@ switch (_typeofUnit) do
 		_unit addItem "ACE_M26_Clacker";
 		_unit addItem "ACE_DefusalKit";
 		_unit addItem "ACE_wirecutter";
+		_unit addWeapon "Binocular";
 		["eng"] call _backpack;
 	};
 
@@ -797,6 +798,7 @@ switch (_typeofUnit) do
 		_unit addItem "ACE_M26_Clacker";
 		_unit addItem "ACE_DefusalKit";
 		_unit addItem "ACE_wirecutter";
+		_unit addWeapon "Binocular";
 		["engm"] call _backpack;
 	};
 
