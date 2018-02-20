@@ -1,11 +1,17 @@
 class CA
 {
+	class ai
+	{
+		file = "ca\ai";
+		class unitGuerrillaAI{};
+		class groupGuerrillaAI{};
+	};
 	class core
 	{
 		file = "ca\core";
 		class getdirpos{};
 		class getmarkerarray{};
-        class groupMarker{};
+        	class groupMarker{};
 	};
 	class headless
 	{
