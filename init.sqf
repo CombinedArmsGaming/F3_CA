@@ -11,7 +11,8 @@ enableSaving [false, false];
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
 enableSentences false;
-
+// Wait until initServer.sqf is done to get all the variables we need.
+waitUntil {!isnil {ca_initserver}};
 // ====================================================================================
 
 // F3 - MapClick Teleport
