@@ -575,13 +575,3 @@ case "cc":
 	clearMagazineCargoGlobal (unitBackpack _unit);
 	(unitBackpack _unit) addItemCargoGlobal ["ToolKit",1];
 };
-
-case "none":
-{
-    if(f_var_radios == 2) then {
-    	if(_typeOfUnit in _backpackradiotypes) then {
-    		_unit addBackpack _bagradio;
-    		clearMagazineCargoGlobal (unitBackpack _unit);
-	   };
-    };
-};
