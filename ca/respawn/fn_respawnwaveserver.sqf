@@ -6,7 +6,7 @@ if (!isServer) exitWith {};
 _specplayers = [] call ace_spectator_fnc_players;
 // Move them to the marker
 {
-        _x setPos (getmarkerpos "respawn_west");
+        _x setPos (getmarkerpos ca_respawnmarker);
 } forEach _specplayers;
 // Set variables so it cannot be spammed
 missionNamespace setVariable ['ca_respawnwave',true, true];
