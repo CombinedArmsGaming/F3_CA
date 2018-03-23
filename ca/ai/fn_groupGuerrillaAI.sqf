@@ -110,6 +110,6 @@ if (!isServer) exitWith {
 
 // Call the unitGuerrillaAI function on every member of the unit's group
 {
-        //[_x, _flankOnly, _maxApproachVariation, _maxApproachDistance, _maxSearchDuration] spawn ca_fnc_unitGuerrillaAI;
-        [_x, _flankOnly, _maxApproachVariation, _maxApproachDistance, _maxSearchDuration] execVM "ca\ai\fn_unitGuerrillaAI.sqf";
+        [_x, _flankOnly, _maxApproachVariation, _maxApproachDistance, _maxSearchDuration] spawn ca_fnc_unitGuerrillaAI;
+        //[_x, _flankOnly, _maxApproachVariation, _maxApproachDistance, _maxSearchDuration] execVM "ca\ai\fn_unitGuerrillaAI.sqf";
 } forEach units _unit;
