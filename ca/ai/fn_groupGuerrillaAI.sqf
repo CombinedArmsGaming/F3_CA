@@ -4,12 +4,15 @@
                 Cre8or
 ========================================================================================================================================
         DESCRIPTION:
-                Finds all members of a group and runs the unitGuerrillaAI function on each of them. All parameters are passed as-is to
-                the unitGuerrillaAI function.
+                Enables guerrilla AI behaviour on a group of units.
+
+                NOTE: Group ownership will be transfered to the server, which will also run the guerrilla function on its end.
+                This is to ensure that the guerrilla AI continues to function, even in the event that whichever machine called this
+                function is no longer connected (game crashed / player disconnected).
+                For most intents and purposes, you should be using this function rather than ca_fnc_unitGuerrillaAI.
 ========================================================================================================================================
         ARGUMENTS:
-                0:      (OBJECT) Unit
-                        (GROUP) Group of AI units       [alternatively]
+                0:      (GROUP) Group of units           OR:             (OBJECT) Unit
                         Default: N/A
 
                         If a GROUP is passed, the script will iterate through the group's members and execute the guerrilla AI script
@@ -53,7 +56,7 @@
                         distance to a really large number (like 5000 meters)
 ========================================================================================================================================
         EXAMPLES:
-                        [this] spawn ca_fnc_groupGuerrillaAI                            // inside a unit's init field
+                        [this] spawn ca_fnc_groupGuerrillaAI                            // inside a unit group's init field in 3DEN
                 ------------------------------------------------------------------------------------------------------------------------
                         [_group, true, 60] spawn ca_fnc_groupGuerrillaAI                // inside a script, where _group is a group
                         // NOTE: this method is suited for use in EDEN or from scripts
@@ -74,7 +77,39 @@ params [["_unit", objNull, [objNull, grpNull]], ["_flankOnly", false, [false]], 
 
 
 
+// If this function is being called by a client, offload to the server (to compensate for disconnecting/crashing/game-freezing players)
+if (!isServer) exitWith {
+        _this remoteExec ["ca_fnc_groupGuerrillaAI", 2, false];
+
+        // Workaround to preserve the units' loadout, due to "setGroupOwner" being bugged
+        {
+                _x setVariable ["Cre8ive_GuerrillaAI_Loadout", getUnitLoadout _x, false];
+        } forEach units _unit;
+
+        // Transfer the group ownership to the server, as some commands require locality
+        private _group = _unit;
+        if (typeName _unit == typeName objNull) then {
+                _group = group _unit;
+        };
+        [_group, 2] remoteExec ["setGroupOwner", 2, false];
+        _group allowFleeing 0;
+
+        // Reapply the units' loadouts after locality changed
+        {
+                _x addEventHandler ["Local", {
+                        params ["_unit", "_local"];
+
+                        if (_unit getVariable ["Cre8ive_GuerrillaAI_LocalityChanged", false]) exitWith {};
+
+                        _unit setVariable ["Cre8ive_GuerrillaAI_LocalityChanged", true, false];
+                        _unit setUnitLoadout (_unit getVariable ["Cre8ive_GuerrillaAI_Loadout", []]);
+                }];
+
+        } forEach units _unit;
+};
+
 // Call the unitGuerrillaAI function on every member of the unit's group
 {
-        [_x, _flankOnly, _maxApproachVariation, _maxApproachDistance, _maxSearchDuration] spawn ca_fnc_unitGuerrillaAI;
+        //[_x, _flankOnly, _maxApproachVariation, _maxApproachDistance, _maxSearchDuration] spawn ca_fnc_unitGuerrillaAI;
+        [_x, _flankOnly, _maxApproachVariation, _maxApproachDistance, _maxSearchDuration] execVM "ca\ai\fn_unitGuerrillaAI.sqf";
 } forEach units _unit;
