@@ -16,3 +16,8 @@ _group = [_units, _camPos, _gear, _side] call ca_fnc_spawngroup;
 	_curator addCuratorEditableObjects [_units, true];
 	
 } forEach allCurators;
+
+if ((!isNil "zeus_spawn_guerrillas") and {zeus_spawn_guerrillas}) then
+{
+	[_group] call ca_fnc_groupGuerrillaAI;
+}

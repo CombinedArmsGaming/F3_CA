@@ -67,6 +67,7 @@ class CA
 		class activateZeusPlayer{};
 		class registerZeusPlayer{};
 		class zeusDeployment{};
+		class isZeusRemoteControlling{};
 	};
 	class zeusui
 	{
@@ -75,12 +76,12 @@ class CA
 		class clearList{};
 		class spawnGroupForZeus{};
 		class spawnVehicleGroupForZeus{};
-		class updateZeusDeployment{};
-		class zeusDeployButtons{};
+		class updateButtonToggleState{};
 		class zeusDoSpawn{};
 		class zeusFillCategories{};
 		class zeusFillUnits{};
 		class zeusSetupUnits{};
 		class zeusSpawnButtons{};
+		class setZeusUiHidden{};
 	};
 };
