@@ -13,8 +13,13 @@
 if (isDedicated) exitWith {};
 
 params ["_listIDC", "_categoryIdx"];
+	
 
 [_listIDC] call ca_fnc_clearList;
+
+_unitsList = (findDisplay 312) displayCtrl _listIDC;
+_unitsList lbSetCurSel -1;
+ca_zeus_defToSpawn = nil;
 
 _units = ca_zeus_unitsStructure;
 

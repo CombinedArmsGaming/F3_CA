@@ -420,3 +420,41 @@ class CfgMusic
 	};
 };
 */
+class RscCombo 
+{
+	idc = -1;
+	type = 4;
+	style = 1;
+	x = 0;
+	y = 0;
+	w = 0.3;
+	h = 0.035;
+	colorSelect[] = {0.023529, 0, 0.0313725, 1};
+	colorText[] = {0.023529, 0, 0.0313725, 1};
+	colorBackground[] = {0.95, 0.95, 0.95, 1};
+	colorSelectBackground[] = {0.543, 0.5742, 0.4102, 1.0};
+	colorScrollbar[] = {0.023529, 0, 0.0313725, 1};
+	arrowEmpty = "\ca\ui\data\ui_arrow_combo_ca.paa";
+	arrowFull = "\ca\ui\data\ui_arrow_combo_active_ca.paa";
+	wholeHeight = 0.45;
+	color[] = {0, 0, 0, 0.6};
+	colorActive[] = {0, 0, 0, 1};
+	colorDisabled[] = {0, 0, 0, 0.3};
+	font = "Zeppelin32";
+	sizeEx = 0.031;
+	soundSelect[] = {"\ca\ui\data\sound\new1", 0.09, 1};
+	soundExpand[] = {"\ca\ui\data\sound\new1", 0.09, 1};
+	soundCollapse[] = {"\ca\ui\data\sound\new1", 0.09, 1};
+	maxHistoryDelay = 1.0;
+
+	class ScrollBar 
+	{
+		color[] = {1, 1, 1, 0.6};
+		colorActive[] = {1, 1, 1, 1};
+		colorDisabled[] = {1, 1, 1, 0.3};
+		thumb = "\ca\ui\data\ui_scrollbar_thumb_ca.paa";
+		arrowFull = "\ca\ui\data\ui_arrow_top_active_ca.paa";
+		arrowEmpty = "\ca\ui\data\ui_arrow_top_ca.paa";
+		border = "\ca\ui\data\ui_border_scroll_ca.paa";
+	};
+};
