@@ -68,6 +68,7 @@ class CA
 		class registerZeusPlayer{};
 		class zeusDeployment{};
 		class isZeusRemoteControlling{};
+		class giveUnitGodmode{};
 	};
 	class zeusui
 	{

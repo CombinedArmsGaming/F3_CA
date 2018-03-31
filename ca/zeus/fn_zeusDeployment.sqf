@@ -29,8 +29,7 @@ if (_spawnMenu) then
 		zeus_spawn_guerrillas = false;
 		zeus_hide_ui = false;
 		
-		//[] spawn ca_fnc_zeusSpawnButtons;
-		[] execVM "ca\zeus\zeus_ui\fn_zeusSpawnButtons.sqf";
+		[] spawn ca_fnc_zeusSpawnButtons;
 		
 		_target removeAction _actionId;
 	}];

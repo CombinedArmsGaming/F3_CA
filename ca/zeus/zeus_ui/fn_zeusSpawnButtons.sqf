@@ -123,5 +123,4 @@ _hideBtn ctrlCommit 0;
 
 
 waitUntil { sleep 0.2; _display = findDisplay 312; isNull _display };
-[] execVM "ca\zeus\zeus_ui\fn_zeusSpawnButtons.sqf";
-//[] spawn ca_fnc_zeusSpawnButtons;
+[] spawn ca_fnc_zeusSpawnButtons;
