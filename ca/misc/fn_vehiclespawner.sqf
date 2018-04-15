@@ -49,5 +49,5 @@ if using textures change it here
 
 
 if (group player == logigroup) then {
-    [logitruck] call ca_fnc_spawntank;
+    [logitruck] call ca_fnc_vehiclespawner;
 };
