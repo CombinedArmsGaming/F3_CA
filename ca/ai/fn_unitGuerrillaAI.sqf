@@ -2,6 +2,7 @@
 ========================================================================================================================================
         AUTHOR:
                 Cre8or
+
 ========================================================================================================================================
         DESCRIPTION:
                 Enables guerrilla AI behaviour on a single unit.
@@ -11,39 +12,51 @@
                 Therefore you really shouldn't use this function, unless you REALLY know what you are doing!
 
                 I recommend using ca_fnc_groupGuerrillaAI instead, so you won't have to worry about this weird stuff.
+
 ========================================================================================================================================
         ARGUMENTS:
                 0:      (OBJECT) Unit
                         Default: N/A
+
                         The unit to apply the guerrilla AI behaviour on.
                 ------------------------------------------------------------------------------------------------------------------------
                 1:      (BOOL) Flank only
                         Default: false
-                        Whether or not the AI should only ever flank its target.
-                        A group of AI that is set to only flank will frequently break up into two teams when approaching a target, with
-                        one team approaching from the left, and one from the right. With flanking disabled, the group will scatter evenly
-                        and attempt to approach as a line formation.
+
+                        A group of AI that is set to only flank will tend to break up into two teams when approaching a target, with one
+                        team approaching from the left, and one from the right. With flanking disabled, the group will scatter evenly and
+                        attempt to approach the target in a line formation.
                 ------------------------------------------------------------------------------------------------------------------------
                 2:      (NUMBER) Maximum approach variation
                         Default: 45
+
                         Maximum angle (in degrees) that the AI is willing to deviate from the direct Line-Of-Sight to the target. Higher
                         values mean the AI will approach from further away (useful for flanking), while lower numbers will make it
                         approach more directly (useful for rushing/chasing).
-                        NOTE: Do not set this to more than 90, or the AI will orbit around the target, or even run away from it.
+                        NOTE: Do not set this to more than 90, or the AI might orbit around the target, or even run away from it.
                 ------------------------------------------------------------------------------------------------------------------------
-                3:      (NUMBER) Maximum search duration
+                3:      (NUMBER) Minimum approach distance
+                        Default: 50
+
+                        Guerrilla units that are closer than this value (in meters) to their target will stop leaping forward, and instead
+                        rush directly to their target.
+                        Useful for urban environments, as the AI seems to have trouble pathfinding around buildings while flanking.
+                ------------------------------------------------------------------------------------------------------------------------
+                4:      (NUMBER) Maximum approach distance
+                        Default: 1000
+
+                        Guerrilla units won't chase or approach targets that are farther away than this distance (in meters).
+                        Small numbers are useful for making AI follow waypoints longer, before breaking off to go after hostiles
+                        (e.g. 100-200 meters). Large numbers (e.g. 1000-5000 meters) are useful for making AI chase down very distant
+                        targets (such as snipers), provided the AI is aware of their presence.
+                ------------------------------------------------------------------------------------------------------------------------
+                5:      (NUMBER) Maximum search duration
                         Default: 30
+
                         Maximum duration (in seconds) that the AI will spend sweeping the last known location of a target before reporting
                         it as missing.
                         NOTE: If the target is still in the vicinity (but the AI can't see it) the AI will know about its presence, and
                         will not give up searching for it unless it manages to sneak away.
-                ------------------------------------------------------------------------------------------------------------------------
-                4:      (NUMBER) Maximum approach distance
-                        Default: 1000
-                        Guerrila units won't chase or approach targets that are farther away than this distance. Useful for making units
-                        follow waypoints further before breaking off to go after hostiles (100 or 200 meters). Also useful for making
-                        units chase down snipers that are a few kilometers away (provided the AI is aware of the sniper), by setting the
-                        distance to a really large number (like 5000 meters)
 
 ========================================================================================================================================
         EXAMPLES:
@@ -54,6 +67,10 @@
                         {
                                 [_x, false, 30, 60] spawn ca_fnc_unitGuerrillaAI
                         } forEach allUnits;                                             // inside a script, where _unit is a unit
+                ------------------------------------------------------------------------------------------------------------------------
+                        [this, false, 0, 100, 5000] spawn ca_fnc_unitGuerrillaAI        // inside a unit's init field
+                                                                                        // example preset for a chasing AI
+
 ========================================================================================================================================
 */
 
@@ -62,7 +79,7 @@
 
 
 // Fetch the paramters
-params [["_unit", objNull, [objNull]], ["_flankOnly", false, [false]], ["_maxApproachVariation", 45, [45]], ["_maxApproachDistance", 1000, [1000]], ["_maxSearchDuration", 30, [30]]];
+params [["_unit", objNull, [objNull]], ["_flankOnly", false, [false]], ["_maxApproachVariation", 45, [45]], ["_minApproachDistance", 50, [50]], ["_maxApproachDistance", 1000, [1000]], ["_maxSearchDuration", 30, [30]]];
 
 // Exit if the unit is a player, or if it already uses guerrilla AI
 if (_unit getVariable ["Cre8ive_GuerrillaAI", false] or {isPlayer _unit}) exitWith {};
@@ -74,9 +91,8 @@ if (_unit getVariable ["Cre8ive_GuerrillaAI", false] or {isPlayer _unit}) exitWi
 // Set up some variables
 private _group = group _unit;
 private _hasTarget = false;
-private _minDist = 50;
-private _minDist2 = _minDist * 2;
-private _minDistSqr = (_minDist + 10)  ^ 2;
+private _minApproachDistance2 = _minApproachDistance * 2;
+private _minApproachDistanceSqr = (_minApproachDistance + 10)  ^ 2;
 private _approachVariation = 0;
 private _timeOut = -1;
 private _lastTargetPos = [0,0,0];
@@ -254,9 +270,9 @@ while {alive _unit} do {
 
                                 // Determine the AI's next position and move it there
                                 private _newPos = [];
-                                if (_targetDistSqr > _minDistSqr or !_targetPosVisited) then {
+                                if (_targetDistSqr > _minApproachDistanceSqr or !_targetPosVisited) then {
                                         _timeOut = -1;
-
+/*
                                         // Toggle targeting AI to allow units to push further towards the enemy
                                         _toggleTargeting = !_toggleTargeting;
                                         if (_toggleTargeting) then {
@@ -266,9 +282,9 @@ while {alive _unit} do {
                                                 _unit enableAI "TARGET";
                                                 _unit enableAI "AUTOTARGET";
                                         };
-
+*/
                                         // Approach the target position
-                                        if (_targetDistSqr > _minDistSqr) then {
+                                        if (_targetDistSqr > _minApproachDistanceSqr) then {
                                                 _newPos = _unitPos vectorAdd ([sin _targetDir, cos _targetDir, 0] vectorMultiply (30 + random 20));
                                         } else {
                                                 // Determine how close we should approach the last known position
@@ -278,7 +294,7 @@ while {alive _unit} do {
                                                 // If the unit is within ~3 meters of the last known position, consider it as "visited" and roam the area
                                                 if (_unitPos distance2D _lastTargetPos < _approachRadius) then {
                                                         _targetPosVisited = true;
-                                                        _newPos = _lastTargetPos vectorAdd [_minDist - random _minDist2, _minDist - random _minDist2, 0];
+                                                        _newPos = _lastTargetPos vectorAdd [_minApproachDistance - random _minApproachDistance2, _minApproachDistance - random _minApproachDistance2, 0];
                                                 } else {
                                                         _newPos = _lastTargetPos;
                                                 };
@@ -286,24 +302,25 @@ while {alive _unit} do {
 
                                 // If the unit is close enough, make it roam the target area
                                 } else {
+/*
                                         // Reactivate targeting when close
                                         if (_toggleTargeting) then {
                                                 _toggleTargeting = false;
                                                 _unit enableAI "TARGET";
                                                 _unit enableAI "AUTOTARGET";
                                         };
-
+*/
                                         // Start the timeOut countdown
                                         if (_timeOut < 0) then {
                                                 _timeOut = time;
                                         } else {
                                                 // Abort the search if it's taking too long, and forget the target
-                                                if (time - _timeOut > _maxSearchDuration and {_unitPos distanceSqr _target > _minDistSqr}) then {
+                                                if (time - _timeOut > _maxSearchDuration and {_unitPos distanceSqr _target > _minApproachDistanceSqr}) then {
                                                         _unit forgetTarget _target;
                                                         _timeOut = -1;
                                                 };
                                         };
-                                        _newPos = _lastTargetPos vectorAdd [_minDist - random _minDist2, _minDist - random _minDist2, 0];
+                                        _newPos = _lastTargetPos vectorAdd [_minApproachDistance - random _minApproachDistance2, _minApproachDistance - random _minApproachDistance2, 0];
 
 /*
                                         // Find the closest house to the new move position
@@ -334,8 +351,8 @@ while {alive _unit} do {
 
                                         _unit doMove _unitPos;
 
-                                        _unit enableAI "TARGET";
-                                        _unit enableAI "AUTOTARGET";
+//                                        _unit enableAI "TARGET";
+//                                        _unit enableAI "AUTOTARGET";
                                 };
                         };
 
@@ -350,8 +367,8 @@ while {alive _unit} do {
 
                                 _unit doMove _unitPos;
 
-                                _unit enableAI "TARGET";
-                                _unit enableAI "AUTOTARGET";
+//                                _unit enableAI "TARGET";
+//                                _unit enableAI "AUTOTARGET";
                         };
                 };
         };

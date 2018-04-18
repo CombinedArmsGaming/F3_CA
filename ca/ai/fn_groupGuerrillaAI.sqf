@@ -2,6 +2,7 @@
 ========================================================================================================================================
         AUTHOR:
                 Cre8or
+
 ========================================================================================================================================
         DESCRIPTION:
                 Enables guerrilla AI behaviour on a group of units.
@@ -10,6 +11,7 @@
                 This is to ensure that the guerrilla AI continues to function, even in the event that whichever machine called this
                 function is no longer connected (game crashed / player disconnected).
                 For most intents and purposes, you should be using this function rather than ca_fnc_unitGuerrillaAI.
+
 ========================================================================================================================================
         ARGUMENTS:
                 0:      (GROUP) Group of units           OR:             (OBJECT) Unit
@@ -26,10 +28,9 @@
                 1:      (BOOL) Flank only
                         Default: false
 
-                        Whether or not the AI should only ever flank its target.
-                        A group of AI that is set to only flank will frequently break up into two teams when approaching a target, with
-                        one team approaching from the left, and one from the right. With flanking disabled, the group will scatter evenly
-                        and attempt to approach as a line formation.
+                        A group of AI that is set to only flank will tend to break up into two teams when approaching a target, with one
+                        team approaching from the left, and one from the right. With flanking disabled, the group will scatter evenly and
+                        attempt to approach the target in a line formation.
                 ------------------------------------------------------------------------------------------------------------------------
                 2:      (NUMBER) Maximum approach variation
                         Default: 45
@@ -37,23 +38,31 @@
                         Maximum angle (in degrees) that the AI is willing to deviate from the direct Line-Of-Sight to the target. Higher
                         values mean the AI will approach from further away (useful for flanking), while lower numbers will make it
                         approach more directly (useful for rushing/chasing).
-                        NOTE: Do not set this to more than 90, or the AI will orbit around the target, or even run away from it.
+                        NOTE: Do not set this to more than 90, or the AI might orbit around the target, or even run away from it.
                 ------------------------------------------------------------------------------------------------------------------------
-                3:      (NUMBER) Maximum search duration
+                3:      (NUMBER) Minimum approach distance
+                        Default: 50
+
+                        Guerrilla units that are closer than this value (in meters) to their target will stop leaping forward, and instead
+                        rush directly to their target.
+                        Useful for urban environments, as the AI seems to have trouble pathfinding around buildings while flanking.
+                ------------------------------------------------------------------------------------------------------------------------
+                4:      (NUMBER) Maximum approach distance
+                        Default: 1000
+
+                        Guerrilla units won't chase or approach targets that are farther away than this distance (in meters).
+                        Small numbers are useful for making AI follow waypoints longer, before breaking off to go after hostiles
+                        (e.g. 100-200 meters). Large numbers (e.g. 1000-5000 meters) are useful for making AI chase down very distant
+                        targets (such as snipers), provided the AI is aware of their presence.
+                ------------------------------------------------------------------------------------------------------------------------
+                5:      (NUMBER) Maximum search duration
                         Default: 30
 
                         Maximum duration (in seconds) that the AI will spend sweeping the last known location of a target before reporting
                         it as missing.
                         NOTE: If the target is still in the vicinity (but the AI can't see it) the AI will know about its presence, and
                         will not give up searching for it unless it manages to sneak away.
-                ------------------------------------------------------------------------------------------------------------------------
-                4:      (NUMBER) Maximum approach distance
-                        Default: 1000
 
-                        Guerrila units won't chase or approach targets that are farther away than this distance. Useful for making units
-                        follow waypoints further before breaking off to go after hostiles (100 or 200 meters). Also useful for makin
-                        units chase down snipers that are a few kilometers away (provided the AI is aware of the sniper), by setting the
-                        distance to a really large number (like 5000 meters)
 ========================================================================================================================================
         EXAMPLES:
                         [this] spawn ca_fnc_groupGuerrillaAI                            // inside a unit group's init field in 3DEN
@@ -63,6 +72,10 @@
                 ------------------------------------------------------------------------------------------------------------------------
                         [this, true, 20] spawn ca_fnc_groupGuerrillaAI                  // inside a unit's execution field in Zeus
                         // NOTE: this method is suited for use in Zeus
+                ------------------------------------------------------------------------------------------------------------------------
+                        [this, false, 0, 100, 5000] spawn ca_fnc_groupGuerrillaAI        // inside a unit's init field
+                                                                                        // example preset for a group of chasing AI
+
 ========================================================================================================================================
 */
 
@@ -71,7 +84,7 @@
 
 
 // Fetch the paramters
-params [["_unit", objNull, [objNull, grpNull]], ["_flankOnly", false, [false]], ["_maxApproachVariation", 45, [45]], ["_maxApproachDistance", 1000, [1000]], ["_maxSearchDuration", 30, [30]]];
+params [["_unit", objNull, [objNull, grpNull]], ["_flankOnly", false, [false]], ["_maxApproachVariation", 45, [45]], ["_minApproachDistance", 50, [50]], ["_maxApproachDistance", 1000, [1000]], ["_maxSearchDuration", 30, [30]]];
 
 
 
@@ -110,6 +123,6 @@ if (!isServer) exitWith {
 
 // Call the unitGuerrillaAI function on every member of the unit's group
 {
-        [_x, _flankOnly, _maxApproachVariation, _maxApproachDistance, _maxSearchDuration] spawn ca_fnc_unitGuerrillaAI;
-        //[_x, _flankOnly, _maxApproachVariation, _maxApproachDistance, _maxSearchDuration] execVM "ca\ai\fn_unitGuerrillaAI.sqf";
+        //[_x, _flankOnly, _maxApproachVariation, _minApproachDistance, _maxApproachDistance, _maxSearchDuration] spawn ca_fnc_unitGuerrillaAI;
+        [_x, _flankOnly, _maxApproachVariation, _minApproachDistance, _maxApproachDistance, _maxSearchDuration] execVM "ca\ai\fn_unitGuerrillaAI.sqf";
 } forEach units _unit;
