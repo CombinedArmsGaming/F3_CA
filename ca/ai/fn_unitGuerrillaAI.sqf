@@ -137,6 +137,11 @@ private _weaponMode = "";
 } forEach ([(configFile >> "CfgWeapons" >> _weapon), "modes", []] call BIS_fnc_returnConfigEntry);
 private _cycleDelay = [(configFile >> "CfgWeapons" >> _weapon >> _weaponMode), "reloadTime", 999] call BIS_fnc_returnConfigEntry;
 
+// Some addons use strings/expressions instead of numbers, so we need to do an extra step
+if (typeName _cycleDelay == typeName "") then {
+        _cycleDelay = call compile _cycleDelay;
+};
+
 // If the delay between 2 rounds is greater than this value, we don't consider the unit's weapon as being full-auto
 if (_cycleDelay < 0.5) then {
 
