@@ -1,4 +1,4 @@
-/*
+﻿/*
 ========================================================================================================================================
         AUTHOR:
                 Cre8or
@@ -60,8 +60,17 @@
 
                         Maximum duration (in seconds) that the AI will spend sweeping the last known location of a target before reporting
                         it as missing.
-                        NOTE: If the target is still in the vicinity (but the AI can't see it) the AI will know about its presence, and
-                        will not give up searching for it unless it manages to sneak away.
+                        NOTE: If the target is still in the vicinity (but the AI can't see it) the AI will still be aware of its presence
+                        and refuse to walk away, even if exceeding the maximum search duration. However, if the target manages to move out
+                        stop searching and resume normal behaviour.
+                ------------------------------------------------------------------------------------------------------------------------
+                6:      (NUMBER) Search area size
+                        Default: 30
+
+                        Determines the size (in meters) of the area that the AI will search, upon arriving at a target's last known position.
+                        NOTE: The search area is a square centered on the last known position, with a side length equal to twice this value.
+                        As an example, 30 meters means the AI will search a 60m*60m large square (= 3600m²) centered on the target's
+                        last known position.
 
 ========================================================================================================================================
         EXAMPLES:
@@ -84,7 +93,15 @@
 
 
 // Fetch the paramters
-params [["_unit", objNull, [objNull, grpNull]], ["_flankOnly", false, [false]], ["_maxApproachVariation", 45, [45]], ["_minApproachDistance", 50, [50]], ["_maxApproachDistance", 1000, [1000]], ["_maxSearchDuration", 30, [30]]];
+params [
+        ["_unit", objNull, [objNull, grpNull]],
+        ["_flankOnly", false, [false]],
+        ["_maxApproachVariation", 45, [45]],
+        ["_minApproachDistance", 50, [50]],
+        ["_maxApproachDistance", 1000, [1000]],
+        ["_maxSearchDuration", 30, [30]],
+        ["_searchAreaSize", 30, [30]]
+];
 
 
 
@@ -123,6 +140,6 @@ if (!isServer) exitWith {
 
 // Call the unitGuerrillaAI function on every member of the unit's group
 {
-        //[_x, _flankOnly, _maxApproachVariation, _minApproachDistance, _maxApproachDistance, _maxSearchDuration] spawn ca_fnc_unitGuerrillaAI;
-        [_x, _flankOnly, _maxApproachVariation, _minApproachDistance, _maxApproachDistance, _maxSearchDuration] execVM "ca\ai\fn_unitGuerrillaAI.sqf";
+        [_x, _flankOnly, _maxApproachVariation, _minApproachDistance, _maxApproachDistance, _maxSearchDuration, _searchAreaSize] spawn ca_fnc_unitGuerrillaAI;
+        //[_x, _flankOnly, _maxApproachVariation, _minApproachDistance, _maxApproachDistance, _maxSearchDuration, _searchAreaSize] execVM "ca\ai\fn_unitGuerrillaAI.sqf";
 } forEach units _unit;
