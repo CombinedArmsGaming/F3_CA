@@ -1,4 +1,4 @@
-/*
+﻿/*
 ========================================================================================================================================
         AUTHOR:
                 Cre8or
@@ -55,8 +55,18 @@
 
                         Maximum duration (in seconds) that the AI will spend sweeping the last known location of a target before reporting
                         it as missing.
-                        NOTE: If the target is still in the vicinity (but the AI can't see it) the AI will know about its presence, and
-                        will not give up searching for it unless it manages to sneak away.
+                        NOTE: If the target is still in the vicinity (but the AI can't see it) the AI will still be aware of its presence
+                        and refuse to walk away, even if exceeding the maximum search duration. However, if the target manages to move out
+                        of the AI's search area (see "minimum approach distance"), it will finally be reported as missing. The AI will then
+                        stop searching and resume normal behaviour.
+                ------------------------------------------------------------------------------------------------------------------------
+                6:      (NUMBER) Search area size
+                        Default: 30
+
+                        Determines the size (in meters) of the area that the AI will search, upon arriving at a target's last known position.
+                        NOTE: The search area is a square centered on the last known position, with a side length equal to twice this value.
+                        As an example, 30 meters means the AI will search a 60m*60m large square (= 3600m²) centered on the target's
+                        last known position.
 
 ========================================================================================================================================
         EXAMPLES:
@@ -79,7 +89,15 @@
 
 
 // Fetch the paramters
-params [["_unit", objNull, [objNull]], ["_flankOnly", false, [false]], ["_maxApproachVariation", 45, [45]], ["_minApproachDistance", 50, [50]], ["_maxApproachDistance", 1000, [1000]], ["_maxSearchDuration", 30, [30]]];
+params [
+        ["_unit", objNull, [objNull, grpNull]],
+        ["_flankOnly", false, [false]],
+        ["_maxApproachVariation", 45, [45]],
+        ["_minApproachDistance", 50, [50]],
+        ["_maxApproachDistance", 1000, [1000]],
+        ["_maxSearchDuration", 30, [30]],
+        ["_searchAreaSize", 30, [30]]
+];
 
 // Exit if the unit is a player, or if it already uses guerrilla AI
 if (_unit getVariable ["Cre8ive_GuerrillaAI", false] or {isPlayer _unit}) exitWith {};
@@ -91,7 +109,6 @@ if (_unit getVariable ["Cre8ive_GuerrillaAI", false] or {isPlayer _unit}) exitWi
 // Set up some variables
 private _group = group _unit;
 private _hasTarget = false;
-private _minApproachDistance2 = _minApproachDistance * 2;
 private _minApproachDistanceSqr = (_minApproachDistance + 10)  ^ 2;
 private _approachVariation = 0;
 private _timeOut = -1;
@@ -101,6 +118,8 @@ private _lastTargetSpeedSqr = 0;
 private _lastTargetIsVehicle = false;
 private _lastTargetIsAircraft = false;
 private _maxApproachDistanceSqr = _maxApproachDistance ^ 2;
+private _searchAreaSize2 = _searchAreaSize * 2;
+private _searchAreaSizeSqr = _searchAreaSize ^ 2;
 private _targetPosVisited = false;
 private _toggleTargeting = false;
 
@@ -126,20 +145,25 @@ sleep 0.5;
 // If this unit has a full-auto weapon (AR, SMG, LMG, etc.), add guerrilla-style suppressive fire
 private _weapon = currentWeapon _unit;
 private _weaponMode = "";
-{
-        scopeName "loop";
+private _cycleDelay = 999;
 
-        private _parentClasses = [(configFile >> "CfgWeapons" >> _weapon >> _x), true] call BIS_fnc_returnParents;
-        if ("Mode_FullAuto" in _parentClasses) then {
-                _weaponMode = _x;
-                breakout "loop";
-        };
-} forEach ([(configFile >> "CfgWeapons" >> _weapon), "modes", []] call BIS_fnc_returnConfigEntry);
-private _cycleDelay = [(configFile >> "CfgWeapons" >> _weapon >> _weaponMode), "reloadTime", 999] call BIS_fnc_returnConfigEntry;
+if (_weapon != "") then {
+        {
+                scopeName "loop";
 
-// Some addons use strings/expressions instead of numbers, so we need to do an extra step
-if (typeName _cycleDelay == typeName "") then {
-        _cycleDelay = call compile _cycleDelay;
+                private _parentClasses = [(configFile >> "CfgWeapons" >> _weapon >> _x), true] call BIS_fnc_returnParents;
+                if ("Mode_FullAuto" in _parentClasses) then {
+                        _weaponMode = _x;
+                        breakout "loop";
+                };
+        } forEach ([(configFile >> "CfgWeapons" >> _weapon), "modes", []] call BIS_fnc_returnConfigEntry);
+
+        _cycleDelay = [(configFile >> "CfgWeapons" >> _weapon >> _weaponMode), "reloadTime", 999] call BIS_fnc_returnConfigEntry;
+
+	// Some addons use strings/expressions instead of numbers, so we need to do an extra step
+	if (typeName _cycleDelay == typeName "") then {
+	        _cycleDelay = call compile _cycleDelay;
+	};
 };
 
 // If the delay between 2 rounds is greater than this value, we don't consider the unit's weapon as being full-auto
@@ -293,13 +317,12 @@ while {alive _unit} do {
                                                 _newPos = _unitPos vectorAdd ([sin _targetDir, cos _targetDir, 0] vectorMultiply (30 + random 20));
                                         } else {
                                                 // Determine how close we should approach the last known position
-                                                private _approachRadius = 3;
-                                                if (_lastTargetIsVehicle) then {_approachRadius = 10};
+                                                private _approachRadius = [3, 10] select _lastTargetIsVehicle;
 
                                                 // If the unit is within ~3 meters of the last known position, consider it as "visited" and roam the area
                                                 if (_unitPos distance2D _lastTargetPos < _approachRadius) then {
                                                         _targetPosVisited = true;
-                                                        _newPos = _lastTargetPos vectorAdd [_minApproachDistance - random _minApproachDistance2, _minApproachDistance - random _minApproachDistance2, 0];
+                                                        _newPos = _lastTargetPos vectorAdd [_searchAreaSize - random _searchAreaSize2, _searchAreaSize - random _searchAreaSize2, 0];
                                                 } else {
                                                         _newPos = _lastTargetPos;
                                                 };
@@ -320,12 +343,12 @@ while {alive _unit} do {
                                                 _timeOut = time;
                                         } else {
                                                 // Abort the search if it's taking too long, and forget the target
-                                                if (time - _timeOut > _maxSearchDuration and {_unitPos distanceSqr _target > _minApproachDistanceSqr}) then {
+                                                if (time - _timeOut > _maxSearchDuration and {_unitPos distanceSqr _target > _searchAreaSizeSqr}) then {
                                                         _unit forgetTarget _target;
                                                         _timeOut = -1;
                                                 };
                                         };
-                                        _newPos = _lastTargetPos vectorAdd [_minApproachDistance - random _minApproachDistance2, _minApproachDistance - random _minApproachDistance2, 0];
+                                        _newPos = _lastTargetPos vectorAdd [_searchAreaSize - random _searchAreaSize2, _searchAreaSize - random _searchAreaSize2, 0];
 
 /*
                                         // Find the closest house to the new move position
