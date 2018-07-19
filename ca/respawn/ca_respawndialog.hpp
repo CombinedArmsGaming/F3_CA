@@ -94,11 +94,11 @@ class ca_respawndiag
         class frame: RscFrame1
         {
         	idc = 1800;
-        	text = "Reinforcements manager(Note: Doesn't update automatically!)";
+        	text = "Reinforcements manager ";
             x = 0.3 * safezoneW + safezoneX;
-        	y = 0.3 * safezoneH + safezoneY;
-        	w = 0.4 * safezoneW;
-        	h = 0.4 * safezoneH;
+        	y = 0.2 * safezoneH + safezoneY;
+        	w = 0.45 * safezoneW;
+        	h = 0.6 * safezoneH;
         };
         class listbox1: RscListbox1
         {
@@ -112,38 +112,47 @@ class ca_respawndiag
         {
         	idc = 1600;
         	text = "Spawn reinforcement wave";
-            x = 0.39 * safezoneW + safezoneX;
+            x = 0.3 * safezoneW + safezoneX;
         	y = 0.35 * safezoneH + safezoneY;
-        	w = 0.11 * safezoneW;
+        	w = 0.2 * safezoneW;
         	h = 0.05 * safezoneH;
-            action =  "hint 'Wave spawned!'; [] call ca_fnc_respawnwave";
+            action =  "if(rank player == 'COLONEL' || (serverCommandAvailable '#kick')) then {[] call ca_fnc_respawnwave; hint 'Wave spawned!';}";
             //closeDialog 0;
         };
         class infotext2: RscFrame
         {
             idc = 1004;
-            text = "shit";
+            text = "waves";
             x = 0.6 * safezoneW + safezoneX;
             y = 0.3 * safezoneH + safezoneY;
-            w = 0.1 * safezoneW;
+            w = 0.15 * safezoneW;
             h = 0.05 * safezoneH;
         };
         class infotext3: RscFrame
         {
             idc = 1005;
-            text = "fuck";
+            text = "numbplayer";
             x = 0.6 * safezoneW + safezoneX;
             y = 0.4 * safezoneH + safezoneY;
-            w = 0.1 * safezoneW;
+            w = 0.15 * safezoneW;
+            h = 0.05 * safezoneH;
+        };
+        class infotext4: RscFrame
+        {
+            idc = 1006;
+            text = "timer";
+            x = 0.6 * safezoneW + safezoneX;
+            y = 0.5 * safezoneH + safezoneY;
+            w = 0.15 * safezoneW;
             h = 0.05 * safezoneH;
         };
         class infotext1: RscFrame
         {
             idc = 1001;
-            text = "List of players in spectate";
-            x = 0.4 * safezoneW + safezoneX;
+            text = "List of players in spectator";
+            x = 0.3 * safezoneW + safezoneX;
             y = 0.3 * safezoneH + safezoneY;
-            w = 0.1 * safezoneW;
+            w = 0.15 * safezoneW;
             h = 0.05 * safezoneH;
         };
         class button1: RscButton1
@@ -151,7 +160,7 @@ class ca_respawndiag
             idc = 1601;
             text = "Close";
             x = 0.3 * safezoneW + safezoneX;
-        	y = 0.6 * safezoneH + safezoneY;
+        	y = 0.7 * safezoneH + safezoneY;
         	w = 0.1 * safezoneW;
         	h = 0.1 * safezoneH;
             action =  "closeDialog 0;";

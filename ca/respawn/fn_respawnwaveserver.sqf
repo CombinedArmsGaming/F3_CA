@@ -17,7 +17,9 @@ missionNamespace setVariable ['ca_norespawnwaves',(_number - 1), true];
 // Post message letting everyone know there is a wave on.
 ca_respawnmsg remoteExec ["systemChat"];
 //Let the wave last for 60 seconds just incase anyone dies etc.
-sleep 60;
+_time = time;
+missionNamespace setVariable ['ca_respawntime',_time, true]; // For the countdown on the respawn panel.
+sleep ca_wavetime;
 missionNamespace setVariable ['ca_respawnwave',false, true];
 sleep ca_wavecooldown;
 missionNamespace setVariable ['ca_respawnready',true, true];
