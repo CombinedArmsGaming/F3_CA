@@ -12,8 +12,10 @@ _briefing = _briefing + "
 Create new marker for my group(Leader only)</execute><br/><br/>
 |- <execute expression=""if(leader player == player) then {_handle=createdialog 'ca_groupid'; } else {hint 'You are not the group leader!'};"">
 Change marker status(Leader only)</execute><br/>
-|- <execute expression=""if(rank player == 'COLONEL') then {_handle=createdialog 'ca_respawndiag'; } else {hint 'You are not the Authorized(Colonel)!'};"">
+|- <execute expression=""_handle=createdialog 'ca_respawndiag';"">
 Respawn system</execute><br/>
+|- <execute expression=""if (serverCommandAvailable '#kick') then { [] execvm 'ca\briefing\ca_briefing_admin.sqf'}else {hint 'You need to be an admin to get this!'};"">
+Give self admin menu</execute><br/>
 
 ";
 // ====================================================================================

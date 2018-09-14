@@ -12,6 +12,8 @@ _camPos = screenToWorld [0.5, 0.5];
 
 params ["_def"];
 
+if (isNil "_def") exitWith {};
+
 _type = _def select 0;
 
 switch (_type) do

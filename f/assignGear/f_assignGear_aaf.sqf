@@ -172,22 +172,6 @@ _bagmtrag = "I_Mortar_01_support_F";		// used by Mortar assistant gunner
 _baghsamg = "I_AA_01_weapon_F";				// used by Heavy SAM gunner
 _baghsamag = "I_HMG_01_support_F";			// used by Heavy SAM assistant gunner
 
-//TFR RADIO BACKPACK
-//Check if TFR is the radio addon is used
-if(f_var_radios == 2) then {
-	//Designate radio backpack that is to be used.
-	_bagradio = "tf_anprc155";  //Remember to use "" for classnames eg "tf_rt1523g_sage"
-
-	// Unit types you want to give long-range radios if previous is
-	// E.G: ["co", "m"] would give the CO and all medics  long-range radios
-	_backpackradiotypes = ["co","dc"];
-
-		if(_typeOfUnit in _backpackradiotypes) then {
-			_bagsmall = _bagradio;
-			_bagmedium = _bagradio;
-			_baglarge = _bagradio;
-		};
-};
 // ====================================================================================
 
 // UNIQUE, ROLE-SPECIFIC EQUIPMENT
@@ -357,7 +341,7 @@ if (_isMan) then {
 
 _backpack = {
 	_typeofBackPack = _this select 0;
-	_loadout = f_param_backpacks;
+	_loadout = 1;
 	if (count _this > 1) then {_loadout = _this select 1};
 	switch (_typeofBackPack) do
 	{
@@ -683,7 +667,6 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smokegrenade,2];
 		_attachments = [_scope3,_bipod1];
 		_unit addItem "ACE_Kestrel4500";
-		["none"] call _backpack;
 	};
 
 // LOADOUT: SPOTTER
@@ -698,7 +681,6 @@ switch (_typeofUnit) do
 		_unit addWeapon "Rangefinder";
 		_unit linkItem "ItemGPS";
 		_unit addItem "ACE_microDAGR";
-		["none"] call _backpack;
 	};
 
 // LOADOUT: VEHICLE COMMANDER
@@ -710,7 +692,6 @@ switch (_typeofUnit) do
 		_unit addItem "ItemGPS";
 		_unit assignItem "ItemGPS";
 		_unit addWeapon "Rangefinder";
-		["none"] call _backpack;
 	};
 
 // LOADOUT: VEHICLE DRIVER
@@ -732,7 +713,6 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smokegrenade,2];
 		_unit addItem "ItemGPS";
 		_unit assignItem "ItemGPS";
-		["none"] call _backpack;
 	};
 
 // LOADOUT: AIR VEHICLE PILOTS
@@ -743,7 +723,6 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smokegrenade,2];
 		_unit addItem "ItemGPS";
 		_unit assignItem "ItemGPS";
-		["none"] call _backpack;
 	};
 
 // LOADOUT: AIR VEHICLE CREW CHIEF
@@ -761,7 +740,6 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smgmag,5];
 		_unit addweapon _smg;
 		_unit addmagazines [_smokegrenade,2];
-		["none"] call _backpack;
 	};
 
 // LOADOUT: ENGINEER (DEMO)
