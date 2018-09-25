@@ -5,6 +5,9 @@ class CA
 		file = "ca\ai";
 		class unitGuerrillaAI{};
 		class groupGuerrillaAI{};
+		class unitSuppressiveAI{};
+		class groupSuppressiveAI{};
+		class fireWeaponSafe{};
 	};
 	class core
 	{

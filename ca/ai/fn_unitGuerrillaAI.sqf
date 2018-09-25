@@ -7,8 +7,8 @@
         DESCRIPTION:
                 Enables guerrilla AI behaviour on a single unit.
 
-                NOTE: LOCALITY REMAINS UNCHANGED - the script will execute on the same machine that called this function.
-                Because of this, if you disconnect, or if your game crashes, the AI will stop working!
+                NOTE: LOCALITY REMAINS UNCHANGED - this function will execute on the machine that called it, rather than offloading it
+                to the server. Because of this, if you disconnect, or if your game crashes, this AI script will stop working!
                 Therefore you really shouldn't use this function, unless you REALLY know what you are doing!
 
                 I recommend using ca_fnc_groupGuerrillaAI instead, so you won't have to worry about this weird stuff.
@@ -16,34 +16,34 @@
 ========================================================================================================================================
         ARGUMENTS:
                 0:      (OBJECT) Unit
-                        Default: N/A
+                        REQUIRED
 
-                        The unit to apply the guerrilla AI behaviour on.
+                        The unit to apply the guerrilla AI behaviour to.
                 ------------------------------------------------------------------------------------------------------------------------
                 1:      (BOOL) Flank only
-                        Default: false
+                        OPTIONAL - Default: false
 
                         A group of AI that is set to only flank will tend to break up into two teams when approaching a target, with one
                         team approaching from the left, and one from the right. With flanking disabled, the group will scatter evenly and
                         attempt to approach the target in a line formation.
                 ------------------------------------------------------------------------------------------------------------------------
                 2:      (NUMBER) Maximum approach variation
-                        Default: 45
+                        OPTIONAL - Default: 45
 
                         Maximum angle (in degrees) that the AI is willing to deviate from the direct Line-Of-Sight to the target. Higher
-                        values mean the AI will approach from further away (useful for flanking), while lower numbers will make it
+                        values mean units will approach from further away (useful for flanking), while lower numbers will make it
                         approach more directly (useful for rushing/chasing).
                         NOTE: Do not set this to more than 90, or the AI might orbit around the target, or even run away from it.
                 ------------------------------------------------------------------------------------------------------------------------
                 3:      (NUMBER) Minimum approach distance
-                        Default: 50
+                        OPTIONAL - Default: 50
 
                         Guerrilla units that are closer than this value (in meters) to their target will stop leaping forward, and instead
                         rush directly to their target.
                         Useful for urban environments, as the AI seems to have trouble pathfinding around buildings while flanking.
                 ------------------------------------------------------------------------------------------------------------------------
                 4:      (NUMBER) Maximum approach distance
-                        Default: 1000
+                        OPTIONAL - Default: 1000
 
                         Guerrilla units won't chase or approach targets that are farther away than this distance (in meters).
                         Small numbers are useful for making AI follow waypoints longer, before breaking off to go after hostiles
@@ -51,7 +51,7 @@
                         targets (such as snipers), provided the AI is aware of their presence.
                 ------------------------------------------------------------------------------------------------------------------------
                 5:      (NUMBER) Maximum search duration
-                        Default: 30
+                        OPTIONAL - Default: 30
 
                         Maximum duration (in seconds) that the AI will spend sweeping the last known location of a target before reporting
                         it as missing.
@@ -61,7 +61,7 @@
                         stop searching and resume normal behaviour.
                 ------------------------------------------------------------------------------------------------------------------------
                 6:      (NUMBER) Search area size
-                        Default: 30
+                        OPTIONAL - Default: 30
 
                         Determines the size (in meters) of the area that the AI will search, upon arriving at a target's last known position.
                         NOTE: The search area is a square centered on the last known position, with a side length equal to twice this value.
@@ -70,16 +70,17 @@
 
 ========================================================================================================================================
         EXAMPLES:
-                        [this] spawn ca_fnc_unitGuerrillaAI                             // inside a unit's init field
-                ------------------------------------------------------------------------------------------------------------------------
-                        [_unit, true, 60] spawn ca_fnc_unitGuerrillaAI                  // inside a script, where _unit is a unit
+                        [this] spawn ca_fnc_unitGuerrillaAI                             // inside a unit's init field in 3DEN,
+                                                                                        // or inside a unit's execution field in Zeus
+                        // Using the minimum amount of parameters, everything not specified will use default values
                 ------------------------------------------------------------------------------------------------------------------------
                         {
-                                [_x, false, 30, 60] spawn ca_fnc_unitGuerrillaAI
-                        } forEach allUnits;                                             // inside a script, where _unit is a unit
+                                [_x] spawn ca_fnc_unitGuerrillaAI                       // inside a script
+                        } forEach allUnits;
+                        // Enables guerrilla AI on all spawned units in the mission (!)
                 ------------------------------------------------------------------------------------------------------------------------
-                        [this, false, 0, 100, 5000] spawn ca_fnc_unitGuerrillaAI        // inside a unit's init field
-                                                                                        // example preset for a chasing AI
+                        [this, false, 0, 100, 99999] spawn ca_fnc_unitGuerrillaAI	// inside a unit's init field
+                        // Makes a unit chase down targets in a straight line, regardless of how far they are
 
 ========================================================================================================================================
 */
@@ -88,7 +89,7 @@
 
 
 
-// Fetch the paramters
+// Fetch the parameters
 params [
         ["_unit", objNull, [objNull, grpNull]],
         ["_flankOnly", false, [false]],
@@ -123,7 +124,7 @@ private _searchAreaSizeSqr = _searchAreaSize ^ 2;
 private _targetPosVisited = false;
 private _toggleTargeting = false;
 
-// Flag this unit to inform that it can use the guerrilla AI (future proofing)
+// Flag this unit as using the guerrilla AI script
 _unit setVariable ["Cre8ive_GuerrillaAI", true, true];
 
 // Boost some of the unit's skills for improved decision making, movement speed and morale
@@ -135,114 +136,11 @@ _unit setSkill ["spotTime", 1];
 // Prevent the AI from going into combat mode (to stop them from covering too much)
 _unit disableAI "AUTOCOMBAT";
 
-// Wait for eventual AI loadout functions to finish gearing up the unit
-sleep 0.5;
 
 
 
 
-
-// If this unit has a full-auto weapon (AR, SMG, LMG, etc.), add guerrilla-style suppressive fire
-private _weapon = currentWeapon _unit;
-private _weaponMode = "";
-private _cycleDelay = 999;
-
-if (_weapon != "") then {
-        {
-                scopeName "loop";
-
-                private _parentClasses = [(configFile >> "CfgWeapons" >> _weapon >> _x), true] call BIS_fnc_returnParents;
-                if ("Mode_FullAuto" in _parentClasses) then {
-                        _weaponMode = _x;
-                        breakout "loop";
-                };
-        } forEach ([(configFile >> "CfgWeapons" >> _weapon), "modes", []] call BIS_fnc_returnConfigEntry);
-
-        _cycleDelay = [(configFile >> "CfgWeapons" >> _weapon >> _weaponMode), "reloadTime", 999] call BIS_fnc_returnConfigEntry;
-
-	// Some addons use strings/expressions instead of numbers, so we need to do an extra step
-	if (typeName _cycleDelay == typeName "") then {
-	        _cycleDelay = call compile _cycleDelay;
-	};
-};
-
-// If the delay between 2 rounds is greater than this value, we don't consider the unit's weapon as being full-auto
-if (_cycleDelay < 0.5) then {
-
-        // Save the weapon's cycling delay so we can reuse it later
-        _unit setVariable ["Cre8ive_GuerrillaAI_CycleDelay", _cycleDelay * (1.05 - random 0.1), false];
-
-        // Increase the unit's accuracy (helps with bursts fires)
-        private _accuracy = _unit skill "aimingAccuracy";
-        _unit setSkill ["aimingAccuracy", 1 - ((1 - _accuracy) / 2)];           //   50% -> 75%   /   0% -> 50%   /   80% -> 90%   /   etc.
-
-        // Add our event handler to handle weapon firing
-        _unit addEventHandler ["Fired", {
-                params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine"];
-
-                // If the unit is already doing suppressive fire, do nothing
-                if (_unit getVariable ["Cre8ive_GuerrillaAI_Firing", false]) exitWith {};
-
-                // Make our unit fire bursts
-                _unit setVariable ["Cre8ive_GuerrillaAI_Firing", true, false];
-                [_unit, _weapon, _muzzle, _mode, _unit getVariable ["Cre8ive_GuerrillaAI_CycleDelay", 0.1]] spawn {
-                        params ["_unit", "_weapon", "_muzzle", "_mode", "_cycleDelay"];
-
-                        // Determine the distance to our target
-                        private _unitPos = getPosASL _unit;
-                        private _target = _unit findNearestEnemy _unitPos;
-                        private _distSqr = _unitPos distanceSqr (getPosASL _target);
-
-                        // Determine how many rounds we can fire
-                        private _ammoCount = _unit ammo _muzzle;
-                        private _rounds = 0;
-
-                        // If the target is within 200 meters, fire long bursts, otherwise short bursts
-                        if (_distSqr > 40000) then {
-                                _rounds = _ammoCount min (0 + floor random 3);
-                        } else {
-                                _rounds = _ammoCount min (2 + floor random 5);
-                        };
-
-                        // Fire our burst
-                        if (_rounds > 0) then {
-                                for "_i" from 1 to _rounds do {
-                                        // Sleep a bit
-                                        sleep _cycleDelay;
-
-                                        // Fire the weapon
-                                        _unit setWeaponReloadingTime [_unit, _weapon, 0];
-                                        _unit forceWeaponFire [_muzzle, _mode];
-                                };
-                        };
-
-                        sleep (0.5 + random 1);
-
-                        // Reset the guerrilla suppression
-                        _unit setVariable ["Cre8ive_GuerrillaAI_Firing", false, false];
-                };
-        }];
-
-        // Ensure that the unit never runs out of ammo
-        _unit addEventHandler ["Reloaded", {
-                params ["_unit", "_weapon", "_muzzle", ["_newMagazine", []], ["_oldMagazine", []]];
-
-                // Figure out the magazine classname
-                private _magClass = _oldMagazine param [0, ""];
-                if (_magClass == "") then {
-                        _magClass = _newMagazine param [0, ""];
-                };
-
-                // Add a new magazine to the unit
-                _unit addMagazine _magClass;
-        }];
-};
-
-
-
-
-
-// Handle guerrilla AI decision making, tactics and movement
+// Handle guerrilla AI movement, tactics and decision making
 while {alive _unit} do {
 
         // Only continue if the unit is simulated and currently on foot
@@ -267,11 +165,11 @@ while {alive _unit} do {
                                 _lastTargetHeight = _targetPosReal select 2;
                                 _lastTargetSpeedSqr = vectorMagnitudeSqr velocity _target;
                                 _lastTargetIsVehicle = (vehicle _target != _target);
-                                _lastTargetIsAircraft = typeOf _target isKindOf "Air";
+                                _lastTargetIsAircraft = _target isKindOf "Air";
                         };
 
                         // Only proceed if the target isn't a fast-moving vehicle (> 36 km/h) or in flight
-                        if !((_lastTargetHeight > 20 and _lastTargetIsAircraft) or _lastTargetSpeedSqr > 100) then {
+                        if !(_lastTargetSpeedSqr > 100 or (_lastTargetIsAircraft and {_lastTargetHeight > 20})) then {
 
                                 // If the unit just picked up a target, transition into guerrilla behaviour
                                 if (!_hasTarget) then {
@@ -367,6 +265,7 @@ while {alive _unit} do {
 */
                                 };
                                 _unit doMove _newPos;
+                                _unit setVariable ["Cre8ive_GuerrillaAI_MovePos", _newPos, false];
 
                         // If the unit lost its target, reset the guerrilla behaviour
                         } else {
@@ -378,6 +277,7 @@ while {alive _unit} do {
                                         _lastTargetIsAircraft = false;
 
                                         _unit doMove _unitPos;
+                                        _unit setVariable ["Cre8ive_GuerrillaAI_MovePos", [], false];
 
 //                                        _unit enableAI "TARGET";
 //                                        _unit enableAI "AUTOTARGET";
@@ -394,6 +294,7 @@ while {alive _unit} do {
                                 _lastTargetIsAircraft = false;
 
                                 _unit doMove _unitPos;
+                                _unit setVariable ["Cre8ive_GuerrillaAI_MovePos", [], false];
 
 //                                _unit enableAI "TARGET";
 //                                _unit enableAI "AUTOTARGET";
