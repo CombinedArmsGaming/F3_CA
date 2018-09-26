@@ -338,7 +338,7 @@ if (_cycleDelay < 0.5) then {
                                                                                                         _nextSuppress = _timeFired + (2 + random 1) / _suppressionMul;
 
                                                                                                         _currentTarget setVariable [_nextSuppressVarName, _timeFired + (((1 - _threatLevel) ^ 2) * 2 + random 0.5) / _suppressionMul];
-                                                                                                        systemChat format ["Firing! (threat: %1)", _threatLevel];
+                                                                                                        //systemChat format ["Firing! (threat: %1)", _threatLevel];
                                                                                                 };
 
                                                                                                 // If the unit is also running guerrilla AI, send it back on its way
