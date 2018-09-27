@@ -88,8 +88,8 @@ isNil {
 
                         // Reapply the units' loadouts after locality changed
                         {
-                                if ((_unit getVariable ["Cre8ive_LocalityStatus", 0]) == 0) then {
-                                        _unit setVariable ["Cre8ive_LocalityStatus", 1, false];    // Awaiting locality transfer (prevent concurrent transfers from other scripts)
+                                if ((_x getVariable ["Cre8ive_LocalityStatus", 0]) == 0) then {
+                                        _x setVariable ["Cre8ive_LocalityStatus", 1, false];    // Awaiting locality transfer (prevent concurrent transfers from other scripts)
 
                                         // Detect locality changes
                                         _x addEventHandler ["Local", {
