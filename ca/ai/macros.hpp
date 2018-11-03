@@ -1,4 +1,4 @@
-// Comment out to disable dev mode - uncomment to enable dev mode
+// Uncomment to enable dev mode - turn it into a comment to disable dev mode
 //#define DEVMODE_ENABLED
 
 
