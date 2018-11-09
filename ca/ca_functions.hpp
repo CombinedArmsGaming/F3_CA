@@ -8,6 +8,7 @@ class CA
 		class unitSuppressiveAI{};
 		class groupSuppressiveAI{};
 		class fireWeaponSafe{};
+		class compileVehicleWeapons{};
 	};
 	class core
 	{
