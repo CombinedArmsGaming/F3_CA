@@ -6320,7 +6320,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=0;
+														value=0.1;
 													};
 												};
 												class Item1
@@ -6410,7 +6410,7 @@ class CustomAttributes
 																"SCALAR"
 															};
 														};
-														value=0;
+														value=0.1;
 													};
 												};
 												class Item1
