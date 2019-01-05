@@ -6,7 +6,15 @@
 //
 //		See parameters for ca_fnc_spawngroup.
 
-params ["_units", "_camPos", "_gear", "_side"];
+params [
+	"_units",
+	"_camPos",
+	"_gear",
+	"_side",
+	["_spawn_vcom", false, [false]],
+	["_spawn_guerrillas", false, [false]],
+	["_spawn_suppress", false, [false]]
+];
 
 _group = [_units, _camPos, _gear, _side] call ca_fnc_spawngroup;
 
@@ -17,17 +25,17 @@ _group = [_units, _camPos, _gear, _side] call ca_fnc_spawngroup;
 
 } forEach allCurators;
 
-if ((!isNil "zeus_spawn_vcom") and {!zeus_spawn_vcom}) then
+if (_spawn_vcom) then
 {
 	_group setVariable ["Vcm_Disable", true, true];
 };
 
-if ((!isNil "zeus_spawn_guerrillas") and {zeus_spawn_guerrillas}) then
+if (_spawn_guerrillas) then
 {
 	[_group] call ca_fnc_groupGuerrillaAI;
 };
 
-if ((!isNil "zeus_spawn_suppress") and {zeus_spawn_suppress}) then
+if (_spawn_suppress) then
 {
 	[_group] call ca_fnc_groupSuppressiveAI;
 };
