@@ -27,6 +27,9 @@ if (serverCommandAvailable "#kick") then {
 // Credits: Wolfenswan
 // [] execVM "ca\misc\forceFlashLightAI.sqf";
 
+// Set the orginal group of the player for respawn
+missionNamespace setVariable ["ca_originalGroup", group player, false];
+
 // Headless join in progress support.
 _ishc = !hasInterface && !isDedicated;
 if (_ishc) then {

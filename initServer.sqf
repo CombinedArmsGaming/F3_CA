@@ -1,21 +1,24 @@
-// CA - Public Variables/General mission settings
-
+/* CA - Public Variables/General mission settings
+To change a setting Change the middle variable in the array. ie for the example below change east to west
+ missionNamespace setVariable ["ca_defaultside",east, true];
+ missionNamespace setVariable ["Variable name for scripts etc",VALUE TO CHANGE, JIP compatability];
+*/
 // CA - Public Variables for CA folder
 missionNamespace setVariable ["ca_defaultside",east, true]; // Default side for spawning enemies if side parameter is not present
 missionNamespace setVariable ["ca_hcshowmarkers",false, true]; // If FPS markers should be viewable in the bottom left corner (Server plus HC)
 missionNamespace setVariable ["ca_deletevehicles",false, true]; // Also deletes destroyed vehicles if body manager is on
-missionNamespace setVariable ['ca_spawnerclassname','I_APC_tracked_03_cannon_F', true]; // Vehicle classname for vehiclespawner function (Truck with siren)
 missionNamespace setVariable ['ca_bodymanageon',false, true]; // Body manager, leaves corpes with uniform but they have nothing useful on them or weapons, for mission difficulty and immersion
+missionNamespace setVariable ["ca_playerside",west, true]; // Player side, which will then ignore player bodies for bodymanager
 //[] spawn ca_fnc_bodymanage;
 
 // CA - Public Variables for Respawn system
-missionNamespace setVariable ['ca_respawnmode',0, true]; // Respawn modes: 0: Off, 1: Base respawn, 2: Spawn on Commanding Officer
+missionNamespace setVariable ['ca_respawnmode',0, true]; // Respawn modes: 0: Off, 1: Base respawn, 2: Spawn on Commanding Officer 3: Spawn on group (Or CO in case of wipe)
 missionNamespace setVariable ['ca_respawnwave',false, true]; // set to true for instant respawn
 missionNamespace setVariable ['ca_wavecooldown',540, true]; // Seconds between each wave plus wavetime below
 missionNamespace setVariable ['ca_wavetime',60, true]; // How many seconds each wave lasts where you can die and instantly respawn (Incase someone gets armaed on respawn or similar incidents)
 missionNamespace setVariable ['ca_norespawnwaves',5, true]; // Number of waves the CO can call in.
 missionNamespace setVariable ['ca_respawnmarker',"respawn_west", true]; // The respawn marker. Please use the corresponding marker for the side, ie "respawn_west", "respawn_east", "respawn_guerrila"
-missionNamespace setVariable ['ca_respawningroup',true, true]; // Should respawning players stay a part of the group they died? They will not spawn next to them.
+missionNamespace setVariable ['ca_respawnenemydistance',500, true]; // Distance between CO and closest enemy to allow respawn.
 // F3 and also CA respawn variables
 missionNamespace setVariable ["f_var_JIP_JIPMenu",true, true]; // Do JIP players get the JIP/teleport menu?
 missionNamespace setVariable ["f_var_JIP_RespawnMenu",false, true]; // Do respawning players get the JIP menu? Use for a quick fast respawn system with group rejoin!

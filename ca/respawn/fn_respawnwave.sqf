@@ -6,7 +6,11 @@ if ((ca_norespawnwaves <= 0) || (ca_respawnmode == 0) || !ca_respawnready ) exit
     };
 };
 // Move the respawn_west marker to the position of the player who called the wave if respawn on co is active
-if (ca_respawnmode == 2) then {
+
+
+if ((ca_respawnenemydistance > ((player findNearestEnemy player) distance2D (getpos player))) && ca_respawnmode >= 2) exitWith {};
+
+if (ca_respawnmode >= 2) then {
     ca_respawnmarker setMarkerPos (getpos player);
 };
 [] remoteExec ["ca_fnc_respawnwaveserver", 2];

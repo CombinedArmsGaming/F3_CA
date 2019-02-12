@@ -28,7 +28,7 @@ if ((time < 10) || (isNull _corpse)) exitWith {
     	[player] execVM "f\JIP\f_JIP_addReinforcementOptionsAction.sqf";
     };
 };
-if (!ca_respawningroup) then {[player] join grpNull;};
+if (!(ca_respawnmode == 3)) then {[player] join grpNull;};
 
 
 // Enter spectator
@@ -52,4 +52,3 @@ if (isNil "F3_JIP_reinforcementOptionsAction") then {
     [player] execVM "f\JIP\f_JIP_addReinforcementOptionsAction.sqf";
 };
 
-// [_unit] call ca_fnc_parachute;

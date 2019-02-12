@@ -4,10 +4,38 @@ if (!isServer) exitWith {};
 [] spawn {
 //Get all the players currently in spectate
 _specplayers = [] call ace_spectator_fnc_players;
-// Move them to the marker
+// Move them to the marker or group
+
+if (ca_respawnmode == 3) then {
+//declare if everyone is dead or not
+_alldead = true;
+_leader = "";
+{
+
+if (leader group _x in _specplayers) then { _alldead = false; _leader = leader group _x} else {
+
+        {if ( !(_x in _specplayers) ) exitWith {
+                _alldead = false;
+                _leader = _x;
+        }} count group _x;
+
+};
+
+//If everyones dead then tp to respawn marker
+if (_allDead) then {_x setPos (getmarkerpos ca_respawnmarker)} else {
+_x setPos (getpos _leader);
+
+};
+
+} forEach _specplayers;
+
+
+} else {
 {
         _x setPos (getmarkerpos ca_respawnmarker);
 } forEach _specplayers;
+};
+
 // Set variables so it cannot be spammed
 missionNamespace setVariable ['ca_respawnwave',true, true];
 missionNamespace setVariable ['ca_respawnready',false, true];
