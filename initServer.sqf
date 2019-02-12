@@ -1,11 +1,14 @@
-// CA - Public Variables/General mission settings
-
+/* CA - Public Variables/General mission settings
+To change a setting Change the middle variable in the array. ie for the example below change east to west
+ missionNamespace setVariable ["ca_defaultside",east, true];
+ missionNamespace setVariable ["Variable name for scripts etc",VALUE TO CHANGE, JIP compatability];
+*/
 // CA - Public Variables for CA folder
 missionNamespace setVariable ["ca_defaultside",east, true]; // Default side for spawning enemies if side parameter is not present
 missionNamespace setVariable ["ca_hcshowmarkers",false, true]; // If FPS markers should be viewable in the bottom left corner (Server plus HC)
 missionNamespace setVariable ["ca_deletevehicles",false, true]; // Also deletes destroyed vehicles if body manager is on
-missionNamespace setVariable ['ca_spawnerclassname','I_APC_tracked_03_cannon_F', true]; // Vehicle classname for vehiclespawner function (Truck with siren)
 missionNamespace setVariable ['ca_bodymanageon',false, true]; // Body manager, leaves corpes with uniform but they have nothing useful on them or weapons, for mission difficulty and immersion
+missionNamespace setVariable ["ca_playerside",west, true]; // Player side, which will then ignore player bodies for bodymanager
 //[] spawn ca_fnc_bodymanage;
 
 // CA - Public Variables for Respawn system

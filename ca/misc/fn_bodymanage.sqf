@@ -25,6 +25,8 @@ uisleep 5;
 
 while {ca_bodymanageon} do {
   {
+    if (([_x,true] call bis_fnc_objectside) == ca_playerside) exitWith {};
+
     _vest = vest _x;
     _uniform = uniform _x;
     removeVest _x;
@@ -47,6 +49,6 @@ while {ca_bodymanageon} do {
     };
     if(ca_deletevehicles && !alive _x) then {deleteVehicle _x}
 } forEach vehicles;
-  uisleep 5;
+  uisleep 30;
 
 };
