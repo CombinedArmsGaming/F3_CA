@@ -34,6 +34,14 @@
 
                         A multiplier to increase or decrease the duration that the AI will  suppress hidden targets for (30 seconds, by
                         default). Higher numbers increase that duration, lower numbers decrease it.
+                ------------------------------------------------------------------------------------------------------------------------
+                3:      (BOOL) Use Animations
+                        OPTIONAL - Default: false
+
+                        If enabled, the unit will use tactical movement animations when suppressing, allowing it to move while
+			firing at its target. Best used in combination with Guerrilla AI.
+			This is disabled by default because the AI will occasionaly get stuck on objects while playing the animations,
+			albeit only temporarily.
 
 ========================================================================================================================================
         EXAMPLES:
@@ -55,7 +63,8 @@
 params [
         ["_unit", objNull, [objNull]],
         ["_suppressionMul", 1, [1]],
-        ["_suppressionDurationMul", 1, [1]]
+        ["_suppressionDurationMul", 1, [1]],
+	["_useAnims", false, [false]]
 ];
 
 // Exit if the unit is a player, or if it already uses suppressive AI
@@ -63,6 +72,11 @@ if (_unit getVariable ["Cre8ive_SuppressiveAI", false] or {isPlayer _unit}) exit
 
 // Flag this unit as using the suppressive AI script
 _unit setVariable ["Cre8ive_SuppressiveAI", true, true];
+
+// Prevent zero divisor issues
+_suppressionMul = _suppressionMul max 0.00001;
+_suppressionDurationMul = _suppressionDurationMul max 0.00001;
+
 
 
 
@@ -77,6 +91,9 @@ sleep 0.5;
 // Increase the unit's accuracy (helps with bursts fires)
 //private _accuracy = _unit skill "aimingAccuracy";
 //_unit setSkill ["aimingAccuracy", 1 - ((1 - _accuracy) / 2)];           //   50% -> 75%   /   0% -> 50%   /   80% -> 90%   /   etc.
+
+// If the unit should use player animations while suppressing, flag it
+_unit setVariable ["Cre8ive_SuppressiveAI_UseAnims", _useAnims, false];
 
 // Add our event handler to handle weapon firing
 _unit addEventHandler ["Fired", {
@@ -96,17 +113,18 @@ _unit addEventHandler ["Fired", {
                 // Determine the distance to our target
                 private _unitPos = eyePos _unit;
                 private _target = _unit findNearestEnemy ASLtoAGL _unitPos;
+		private _targetPos = getPosASL _target;
                 private _distSqr = 99999999;
 
                 // If we have no target, check if we have a position we should suppress instead
                 if (!alive _target) then {
-                        private _targetPos = _unit getVariable ["Cre8ive_SuppressiveAI_LastTargetPos", []];
+                        _targetPos = _unit getVariable ["Cre8ive_SuppressiveAI_LastTargetPos", []];
 
                         if !(_targetPos isEqualTo []) then {
                                 _distSqr = _unitPos distanceSqr _targetPos;
                         };
                 } else {
-                        _distSqr = _unitPos distanceSqr (getPosASL _target);
+                        _distSqr = _unitPos distanceSqr _targetPos;
                 };
 
                 // Determine how many rounds we can fire
@@ -116,10 +134,43 @@ _unit addEventHandler ["Fired", {
                 // If the target is within 200 meters, fire long bursts, otherwise short bursts
 
                 if (_distSqr > 40000) then {
-                        _rounds = _ammoCount min (0 + floor random 3);
+                        _rounds = _ammoCount min (1 + floor random 2);
                 } else {
                         _rounds = _ammoCount min (2 + floor random 5);
                 };
+
+		// If enabled, use player animations to approach the target
+		if (_unit getVariable ["Cre8ive_SuppressiveAI_UseAnims", false]) then {
+
+			// Only continue if the unit is standing or crouching
+			private _stance = stance _unit;
+			if (_stance == "STAND" or {_stance == "CROUCH"}) then {
+
+				private _dir = _unit getRelDir _targetPos;
+				if (_dir > 180) then {_dir = _dir - 360};
+
+				// Only play an animation if the target is roughly infront of the unit
+				if (abs _dir < 40) then {
+					private _animStand = "amovpercmtacsraswrfldf";
+					private _animCrouch = "amovpknlmtacsraswrfldf";
+					if (_dir > 15) then {
+						_animStand = "amovpercmtacsraswrfldfl";
+						_animCrouch = "amovpknlmtacsraswrfldfl";
+					};
+					if (_dir < -15) then {
+						_animStand = "amovpercmtacsraswrfldfr";
+						_animCrouch = "amovpknlmtacsraswrfldfr";
+					};
+
+					// Play the animation
+					if (_stance == "STAND") then {
+						_unit playMoveNow _animStand;
+					} else {
+						_unit playMoveNow _animCrouch;
+					};
+				};
+			};
+		};
 
                 // Fire our burst
                 if (_rounds > 0) then {
