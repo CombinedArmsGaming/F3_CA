@@ -43,14 +43,14 @@ class CA
 		class bodymanage{};
 		class incfuelcon{};
 		class parachute{};
-        class vehiclespawner{};
+        	class vehiclespawner{};
 	};
-    class respawn
-    {
-        file = "ca\respawn";
-        class respawnwave{};
-        class respawnwaveserver{};
-    };
+	class respawn
+	{
+		file = "ca\respawn";
+		class respawnwave{};
+		class respawnwaveserver{};
+	};
 	class spawn
 	{
 		file = "ca\spawn";
@@ -65,28 +65,13 @@ class CA
 		class spawnvehiclepatrol{};
 		class spawnvehiclestatic{};
 	};
-	class zeus
-	{
-		file = "ca\zeus";
-		class activateZeusPlayer{};
-		class registerZeusPlayer{};
-		class zeusDeployment{};
-		class isZeusRemoteControlling{};
-		class giveUnitGodmode{};
-	};
+
 	class zeusui
 	{
-		file = "ca\zeus\zeus_ui";
-		class addToList{};
-		class clearList{};
-		class spawnGroupForZeus{};
-		class spawnVehicleGroupForZeus{};
-		class updateButtonToggleState{};
-		class zeusDoSpawn{};
-		class zeusFillCategories{};
-		class zeusFillUnits{};
-		class zeusSetupUnits{};
-		class zeusSpawnButtons{};
-		class setZeusUiHidden{};
+		file = "ca\zeus_ui";
+		class compileLists{postInit = 1;};
+		class detectZeusDisplay{postInit = 1;};
+		class server_spawnGroup{};
+		class zeusUI{};
 	};
 };

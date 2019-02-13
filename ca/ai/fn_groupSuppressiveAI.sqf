@@ -37,6 +37,14 @@
 
                         A multiplier to increase or decrease the duration that the AI will  suppress hidden targets for (30 seconds, by
                         default). Higher numbers increase that duration, lower numbers decrease it.
+                ------------------------------------------------------------------------------------------------------------------------
+                3:      (BOOL) Use Animations
+                        OPTIONAL - Default: false
+
+                        If enabled, the unit will use tactical movement animations when suppressing, allowing it to move while
+			firing at its target. Best used in combination with Guerrilla AI.
+			This is disabled by default because the AI will occasionaly get stuck on objects while playing the animations,
+			albeit only temporarily.
 
 ========================================================================================================================================
         EXAMPLES:
@@ -58,7 +66,8 @@
 params [
         ["_group", grpNull, [objNull, grpNull]],
         ["_suppressionMul", 1, [1]],
-        ["_suppressionDelayMul", 1, [1]]
+        ["_suppressionDelayMul", 1, [1]],
+        ["_useAnims", false, [false]]
 ];
 
 
@@ -113,6 +122,6 @@ isNil {
 
         // The units are local, now we call the unitSuppressiveAI function on every member of the unit's group
         {
-                [_x, _suppressionMul, _suppressionDelayMul] MACRO_SPAWN(ca_fnc_unitSuppressiveAI,"ca\ai\fn_unitSuppressiveAI.sqf");
+                [_x, _suppressionMul, _suppressionDelayMul, _useAnims] MACRO_SPAWN(ca_fnc_unitSuppressiveAI,"ca\ai\fn_unitSuppressiveAI.sqf");
         } forEach units _group;
 };

@@ -1,4 +1,4 @@
-
+/*
 class RscFrame
 {
     type = 0;
@@ -123,7 +123,7 @@ class RscListBox
   shadow = 0;
  };
 };
-
+*/
 
 class ca_groupid
 {
@@ -133,82 +133,86 @@ class ca_groupid
 	class controls
 	{
 
-        class frame: RscFrame
-        {
-        	idc = 1800;
-        	text = "Marker Management System";
-            x = 0.324687 * safezoneW + safezoneX;
-        	y = 0.313 * safezoneH + safezoneY;
-        	w = 0.335156 * safezoneW;
-        	h = 0.385 * safezoneH;
-        };
-        class pic: RscPicture
-        {
-            idc = 1200;
-            text = "ca\briefing\ca_markers.jpg";
-            x = 0.603125 * safezoneW + safezoneX;
-            y = 0.335 * safezoneH + safezoneY;
-            w = 0.05 * safezoneW;
-            h = 0.35 * safezoneH;
-        };
-        class infotext: RscFrame
-        {
-            idc = 1000;
-            text = "Enter groupid(Markertext) below";
-            x = 0.329844 * safezoneW + safezoneX;
-            y = 0.335 * safezoneH + safezoneY;
-            w = 0.113437 * safezoneW;
-            h = 0.033 * safezoneH;
-        };
-        class edittype: RscEdit
-        {
-        	idc = 1400;
-        	text = "";
-            x = 0.335 * safezoneW + safezoneX;
-        	y = 0.379 * safezoneH + safezoneY;
-        	w = 0.103125 * safezoneW;
-        	h = 0.044 * safezoneH;
-        };
-        class listbox1: RscListbox
-        {
-        	idc = 1500;
-            x = 0.448438 * safezoneW + safezoneX;
-        	y = 0.335 * safezoneH + safezoneY;
-        	w = 0.0670312 * safezoneW;
-        	h = 0.352 * safezoneH;
-        };
-        class listbox2: RscListbox
-        {
+	        class frame: RscFrame
+	        {
+	        	idc = 1800;
+			style = ST_HUD_BACKGROUND;
+	    		colorBackground[] = {0,0,0,0.7};
+			text = "Marker Management System";
+	            	x = 0.324687 * safezoneW + safezoneX;
+	        	y = 0.313 * safezoneH + safezoneY;
+	        	w = 0.335156 * safezoneW;
+	        	h = 0.385 * safezoneH;
+	        };
+	        class pic: RscPicture
+	        {
+	            idc = 1200;
+	            text = "ca\briefing\ca_markers.jpg";
+	            x = 0.603125 * safezoneW + safezoneX;
+	            y = 0.335 * safezoneH + safezoneY;
+	            w = 0.05 * safezoneW;
+	            h = 0.35 * safezoneH;
+	        };
+	        class infotext: RscFrame
+	        {
+		    idc = 1000;
+		    style = ST_HUD_BACKGROUND;
+		    colorBackground[] = {0,0,0,0.7};
+		    text = "Enter groupid(Markertext) below";
+	            x = 0.329844 * safezoneW + safezoneX;
+	            y = 0.335 * safezoneH + safezoneY;
+	            w = 0.113437 * safezoneW;
+	            h = 0.033 * safezoneH;
+	        };
+	        class edittype: RscEdit
+	        {
+	        	idc = 1400;
+	        	text = "";
+	            	x = 0.335 * safezoneW + safezoneX;
+	        	y = 0.379 * safezoneH + safezoneY;
+	        	w = 0.103125 * safezoneW;
+	        	h = 0.044 * safezoneH;
+	        };
+	        class listbox1: RscListbox
+	        {
+	        	idc = 1500;
+	            	x = 0.448438 * safezoneW + safezoneX;
+	        	y = 0.335 * safezoneH + safezoneY;
+	        	w = 0.0670312 * safezoneW;
+	        	h = 0.352 * safezoneH;
+	        };
+	        class listbox2: RscListbox
+	        {
 			idc = 1501;
-            x = 0.525781 * safezoneW + safezoneX;
-        	y = 0.335 * safezoneH + safezoneY;
-        	w = 0.0670312 * safezoneW;
-        	h = 0.352 * safezoneH;
-        };
-        class button: RscButton
-        {
-        	idc = 1600;
-        	text = "Apply";
-            x = 0.335 * safezoneW + safezoneX;
-        	y = 0.643 * safezoneH + safezoneY;
-        	w = 0.04 * safezoneW;
-        	h = 0.05 * safezoneH;
-            action =  "(group player) setgroupidglobal [ctrlText 1400]; _ind1 = lbCurSel 1500;(group player) setVariable ['ca_groupcolor',(lbData [1500,_ind1]),true]; _ind2 = lbCurSel 1501; (group player) setVariable ['ca_grouptype', (lbData [1501,_ind2]),true];";
-            //closeDialog 0;
-        };
+	            	x = 0.525781 * safezoneW + safezoneX;
+	        	y = 0.335 * safezoneH + safezoneY;
+	        	w = 0.0670312 * safezoneW;
+	        	h = 0.352 * safezoneH;
+	        };
+	        class button: RscButton
+	        {
+	        	idc = 1600;
+	        	text = "Apply";
+		        x = 0.335 * safezoneW + safezoneX;
+	        	y = 0.643 * safezoneH + safezoneY;
+	        	w = 0.04 * safezoneW;
+	        	h = 0.05 * safezoneH;
+	            	action =  "(group player) setgroupidglobal [ctrlText 1400]; _ind1 = lbCurSel 1500;(group player) setVariable ['ca_groupcolor',(lbData [1500,_ind1]),true]; _ind2 = lbCurSel 1501; (group player) setVariable ['ca_grouptype', (lbData [1501,_ind2]),true];";
+	            //closeDialog 0;
+	        };
 
-        class button1: RscButton
-        {
-            idc = 1601;
-            text = "Close"; //--- ToDo: Localize;
-            x = 0.396875 * safezoneW + safezoneX;
-        	y = 0.643 * safezoneH + safezoneY;
-        	w = 0.04 * safezoneW;
-        	h = 0.05 * safezoneH;
-            action =  "closeDialog 0;";
+	        class button1: RscButton
+	        {
+	            idc = 1601;
+	            text = "Close"; //--- ToDo: Localize;
+	            x = 0.396875 * safezoneW + safezoneX;
+	        	y = 0.643 * safezoneH + safezoneY;
+	        	w = 0.04 * safezoneW;
+	        	h = 0.05 * safezoneH;
+	            action =  "closeDialog 0;";
 
-        };
+	        };
 
 
-};
+	};
 };
