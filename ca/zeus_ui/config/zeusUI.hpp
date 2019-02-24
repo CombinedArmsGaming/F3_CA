@@ -36,7 +36,7 @@ class CA_ZeusUI_ScriptedControlsGroup : RscControlsGroupNoScrollbars {
 	x = 0;
 	y = 0;
 	w = 0;
-	h = 0
+	h = 0;
 };
 
 class CA_ZeusUI_ScriptedBox : RscBox {
@@ -80,7 +80,7 @@ class CA_ZeusUI_ScriptedListBox : RscCombo {
 	x = 0;
 	y = 0;
 	w = 0;
-	h = 0
+	h = 0;
 };
 
 class CA_ZeusUI_ScriptedButton : RscButton {
@@ -114,5 +114,5 @@ class CA_ZeusUI_ScriptedTextBox : RscEdit {
 	x = 0;
 	y = 0;
 	w = 0;
-	h = 0
+	h = 0;
 };
