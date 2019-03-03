@@ -142,31 +142,36 @@ _unit addEventHandler ["Fired", {
 		// If enabled, use player animations to approach the target
 		if (_unit getVariable ["Cre8ive_SuppressiveAI_UseAnims", false]) then {
 
-			// Only continue if the unit is standing or crouching
-			private _stance = stance _unit;
-			if (_stance == "STAND" or {_stance == "CROUCH"}) then {
+			// Only player animations if we're not too close
+			if (_distSqr > 100) then {
 
-				private _dir = _unit getRelDir _targetPos;
-				if (_dir > 180) then {_dir = _dir - 360};
+				// Only continue if the unit is standing or crouching
+				private _stance = stance _unit;
+				if (_stance == "STAND" or {_stance == "CROUCH"}) then {
 
-				// Only play an animation if the target is roughly infront of the unit
-				if (abs _dir < 40) then {
-					private _animStand = "amovpercmtacsraswrfldf";
-					private _animCrouch = "amovpknlmtacsraswrfldf";
-					if (_dir > 15) then {
-						_animStand = "amovpercmtacsraswrfldfl";
-						_animCrouch = "amovpknlmtacsraswrfldfl";
-					};
-					if (_dir < -15) then {
-						_animStand = "amovpercmtacsraswrfldfr";
-						_animCrouch = "amovpknlmtacsraswrfldfr";
-					};
+					private _dir = _unit getRelDir _targetPos;
+					if (_dir > 180) then {_dir = _dir - 360};
 
-					// Play the animation
-					if (_stance == "STAND") then {
-						_unit playMoveNow _animStand;
-					} else {
-						_unit playMoveNow _animCrouch;
+					// Only play an animation if the target is roughly infront of the unit
+					if (abs _dir < 40) then {
+						private _animStand = "amovpercmtacsraswrfldf";
+						private _animCrouch = "amovpknlmtacsraswrfldf";
+
+						if (_dir > 20) then {
+							_animStand = "amovpercmtacsraswrfldfl";
+							_animCrouch = "amovpknlmtacsraswrfldfl";
+						};
+						if (_dir < -20) then {
+							_animStand = "amovpercmtacsraswrfldfr";
+							_animCrouch = "amovpknlmtacsraswrfldfr";
+						};
+
+						// Play the animation
+						if (_stance == "STAND") then {
+							_unit playMoveNow _animStand;
+						} else {
+							_unit playMoveNow _animCrouch;
+						};
 					};
 				};
 			};
@@ -195,14 +200,18 @@ _unit addEventHandler ["Fired", {
 _unit addEventHandler ["Reloaded", {
         params ["_unit", "_weapon", "_muzzle", ["_newMagazine", []], ["_oldMagazine", []]];
 
-        // Figure out the magazine classname
-        private _magClass = _oldMagazine param [0, ""];
-        if (_magClass == "") then {
-                _magClass = _newMagazine param [0, ""];
-        };
+	// Only refill primary weapon and handgun ammo
+	if (_weapon == primaryWeapon _unit or {_weapon == handgunWeapon _unit}) then {
 
-        // Add a new magazine to the unit
-        _unit addMagazine _magClass;
+	        // Figure out the magazine classname
+	        private _magClass = _oldMagazine param [0, ""];
+	        if (_magClass == "") then {
+	                _magClass = _newMagazine param [0, ""];
+	        };
+
+	        // Add a new magazine to the unit
+	        _unit addMagazine _magClass;
+	};
 }];
 
 
