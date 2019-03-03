@@ -140,7 +140,6 @@ class RscPicture
 
 class RscButton
 {
-
    	access = 0;
 	type = CT_BUTTON;
 	style = ST_CENTER;
@@ -216,7 +215,6 @@ class RscEdit
 	h = 0.2;
 	w = 1;
 };
-
 
 // EXTRAS (FROM ALL-IN-ONE CONFIG)
 class ScrollBar
@@ -388,7 +386,7 @@ class RscControlsGroup
 	w = 1;
 	h = 1;
 	shadow = 0;
-	style = 16;
+	style = ST_MULTI;
 	deletable = 0;
 	fade = 0;
 	class VScrollbar: ScrollBar
@@ -403,31 +401,31 @@ class RscControlsGroup
 		height = 0.028;
 	};
 	class Controls {};
-	type = 15;
+	type = CT_CONTROLS_GROUP;
 
 };
 class RscControlsGroupNoScrollbars: RscControlsGroup
 {
 	class VScrollbar: VScrollbar
 	{
-	width = 0;
+		width = 0;
 	};
 	class HScrollbar: HScrollbar
 	{
-	height = 0;
+		height = 0;
 	};
 };
 class RscControlsGroupNoHScrollbars: RscControlsGroup
 {
 	class HScrollbar: HScrollbar
 	{
-	height = 0;
+		height = 0;
 	};
 };
 class RscControlsGroupNoVScrollbars: RscControlsGroup
 {
 	class VScrollbar: VScrollbar
 	{
-	width = 0;
+		width = 0;
 	};
 };
