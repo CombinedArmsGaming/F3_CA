@@ -205,17 +205,25 @@ _unit addEventHandler ["Fired", {
 								_unit playMoveNow _animCrouch;
 							};
 
-						// Otherwise, check how tall the obstruction is
+						// Otherwise, if we have an obstruction in the unit's direction (which isn't necessarily the same, due to the sidestep animations)
 						} else {
-
+							_vecDir = vectorDir _unit;
 							_startPos = _unitPosASL vectorAdd [0, 0, 1];
-							_endPos = _startPos vectorAdd (_vecDir vectorMultiply 0.7);
+							_endPos = _startPos vectorAdd (_vecDir vectorMultiply 1.5);
 							_results = lineIntersectsSurfaces [_startPos, _endPos, _unit, objNull, true, 1, "GEOM", "VIEW"];
 
-							// If the obstruction is small enough, vault over it
+							// If there is no obstruction at this height, vaulting should be possible, but it isn't required just yet
 							if (_results isEqualTo []) then {
-								_doMove = true;
-								_unit playMoveNow "aovrpercmstpsraswrfldf";
+
+								_startPos = _unitPosASL vectorAdd [0, 0, 0.5];
+								_endPos = _startPos vectorAdd _vecDir;
+								private _hitObj = ((lineIntersectsSurfaces [_startPos, _endPos, _unit, objNull, true, 1, "GEOM", "VIEW"]) param [0, []]) param [2, objNull];
+
+								// If there is a stationary obstruction at low height that isn't terrain, we need to vault over it
+								if !(isNull _hitObj or {_hitObj isKindOf "AllVehicles"}) then {
+									_doMove = true;
+									_unit playMoveNow "aovrpercmstpsraswrfldf";
+								};
 							};
 						};
 
