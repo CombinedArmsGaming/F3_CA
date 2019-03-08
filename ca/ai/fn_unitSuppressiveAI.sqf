@@ -40,8 +40,8 @@
 
                         If enabled, the unit will use tactical movement animations when suppressing, allowing it to move while
 			firing at its target. Best used in combination with Guerrilla AI.
-			This is disabled by default because the AI will occasionaly get stuck on objects while playing the animations,
-			albeit only temporarily.
+			This is disabled by default because the AI will sometimes warp through (or into) objects/buildings/vehicles
+			while playing the animations.
 
 ========================================================================================================================================
         EXAMPLES:
@@ -93,7 +93,19 @@ sleep 0.5;
 //_unit setSkill ["aimingAccuracy", 1 - ((1 - _accuracy) / 2)];           //   50% -> 75%   /   0% -> 50%   /   80% -> 90%   /   etc.
 
 // If the unit should use player animations while suppressing, flag it
-_unit setVariable ["Cre8ive_SuppressiveAI_UseAnims", _useAnims, false];
+if (_useAnims) then {
+	_unit setVariable ["Cre8ive_SuppressiveAI_UseAnims", _useAnims, false];
+
+	// Add an event handler to re-enable the move AI component after the unit finishes its animation
+	_unit addEventHandler ["AnimDone", {
+		params ["_unit"];
+
+		if (_unit getVariable ["Cre8ive_SuppressiveAI_MoveDisabled", false]) then {
+			_unit setVariable ["Cre8ive_SuppressiveAI_MoveDisabled", false, false];
+			_unit enableAI "MOVE";
+		};
+	}];
+};
 
 // Add our event handler to handle weapon firing
 _unit addEventHandler ["Fired", {
@@ -109,6 +121,9 @@ _unit addEventHandler ["Fired", {
         _unit setVariable ["Cre8ive_SuppressiveAI_Firing", true, false];
         [_unit, _weapon, _muzzle, _mode, _cycleDelay] spawn {
                 params ["_unit", "_weapon", "_muzzle", "_mode", "_cycleDelay"];
+
+		// Only continue if the weapon is a primary weapon
+		if (_weapon != primaryWeapon _unit) exitWith {};
 
                 // Determine the distance to our target
                 private _unitPos = eyePos _unit;
@@ -143,7 +158,7 @@ _unit addEventHandler ["Fired", {
 		if (_unit getVariable ["Cre8ive_SuppressiveAI_UseAnims", false]) then {
 
 			// Only player animations if we're not too close
-			if (_distSqr > 100) then {
+			if (_distSqr > 100 and {random 1 < 0.5}) then {		// Only use animations 50% of the time
 
 				// Only continue if the unit is standing or crouching
 				private _stance = stance _unit;
@@ -154,23 +169,60 @@ _unit addEventHandler ["Fired", {
 
 					// Only play an animation if the target is roughly infront of the unit
 					if (abs _dir < 40) then {
+
+						// Check if there is an obstacle infront of the unit
+						private _doMove = false;
+						private _unitPosASL = getPosASL _unit;
+						private _moveDir = getDir _unit;
+
 						private _animStand = "amovpercmtacsraswrfldf";
 						private _animCrouch = "amovpknlmtacsraswrfldf";
 
 						if (_dir > 20) then {
-							_animStand = "amovpercmtacsraswrfldfl";
-							_animCrouch = "amovpknlmtacsraswrfldfl";
-						};
-						if (_dir < -20) then {
 							_animStand = "amovpercmtacsraswrfldfr";
 							_animCrouch = "amovpknlmtacsraswrfldfr";
+							_moveDir = _moveDir + 45;
+						};
+						if (_dir < -20) then {
+							_animStand = "amovpercmtacsraswrfldfl";
+							_animCrouch = "amovpknlmtacsraswrfldfl";
+							_moveDir = _moveDir - 45;
 						};
 
-						// Play the animation
-						if (_stance == "STAND") then {
-							_unit playMoveNow _animStand;
+						// Check for obstructions
+						private _vecDir = [sin _moveDir, cos _moveDir, 0];
+					        private _startPos = _unitPosASL vectorAdd [0, 0, 0.5];
+					        private _endPos = _startPos vectorAdd (_vecDir vectorMultiply 3);
+					        private _results = lineIntersectsSurfaces [_startPos, _endPos, _unit, objNull, true, 1, "GEOM", "VIEW"];
+
+						// If there are no obstructions, play the animation
+						if (_results isEqualTo []) then {
+							_doMove = true;
+
+							if (_stance == "STAND") then {
+								_unit playMoveNow _animStand;
+							} else {
+								_unit playMoveNow _animCrouch;
+							};
+
+						// Otherwise, check how tall the obstruction is
 						} else {
-							_unit playMoveNow _animCrouch;
+
+							_startPos = _unitPosASL vectorAdd [0, 0, 1];
+							_endPos = _startPos vectorAdd (_vecDir vectorMultiply 0.7);
+							_results = lineIntersectsSurfaces [_startPos, _endPos, _unit, objNull, true, 1, "GEOM", "VIEW"];
+
+							// If the obstruction is small enough, vault over it
+							if (_results isEqualTo []) then {
+								_doMove = true;
+								_unit playMoveNow "aovrpercmstpsraswrfldf";
+							};
+						};
+
+						// If we've overriden the unit's animation, temporarily disable its "MOVE" component to stop it from getting stuck
+						if (_doMove) then {
+							_unit disableAI "MOVE";
+							_unit setVariable ["Cre8ive_SuppressiveAI_MoveDisabled", true, false];
 						};
 					};
 				};
