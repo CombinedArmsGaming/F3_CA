@@ -43,8 +43,8 @@
 
                         If enabled, the unit will use tactical movement animations when suppressing, allowing it to move while
 			firing at its target. Best used in combination with Guerrilla AI.
-			This is disabled by default because the AI will occasionaly get stuck on objects while playing the animations,
-			albeit only temporarily.
+			This is disabled by default because the AI will sometimes warp through (or into) objects/buildings/vehicles
+			while playing the animations.
 
 ========================================================================================================================================
         EXAMPLES:

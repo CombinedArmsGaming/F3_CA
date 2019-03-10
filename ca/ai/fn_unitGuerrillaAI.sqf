@@ -108,7 +108,6 @@ if (_unit getVariable ["Cre8ive_GuerrillaAI", false] or {isPlayer _unit}) exitWi
 
 
 // Set up some variables
-private _group = group _unit;
 private _hasTarget = false;
 private _minApproachDistanceSqr = (_minApproachDistance + 10)  ^ 2;
 private _approachVariation = 0;
@@ -199,17 +198,25 @@ while {alive _unit} do {
                                 private _newPos = [];
                                 if (_targetDistSqr > _minApproachDistanceSqr or !_targetPosVisited) then {
                                         _timeOut = -1;
-/*
+
                                         // Toggle targeting AI to allow units to push further towards the enemy
                                         _toggleTargeting = !_toggleTargeting;
                                         if (_toggleTargeting) then {
-                                                _unit disableAI "TARGET";
-                                                _unit disableAI "AUTOTARGET";
+
+						private _stance = _unit getVariable ["Cre8ive_GuerrillaAI_Stance", "AUTO"];
+						_unit setUnitPos _stance;
+
+                                                //_unit disableAI "TARGET";
+                                                //_unit disableAI "AUTOTARGET";
                                         } else {
-                                                _unit enableAI "TARGET";
-                                                _unit enableAI "AUTOTARGET";
+						private _stance = toUpper unitPos _unit;
+						_unit setUnitPos "UP";
+						_unit setVariable ["Cre8ive_GuerrillaAI_Stance", _stance, false];
+
+                                                //_unit enableAI "TARGET";
+                                                //_unit enableAI "AUTOTARGET";
                                         };
-*/
+
                                         // Approach the target position
                                         if (_targetDistSqr > _minApproachDistanceSqr) then {
                                                 _newPos = _unitPos vectorAdd ([sin _targetDir, cos _targetDir, 0] vectorMultiply (30 + random 20));
@@ -217,7 +224,7 @@ while {alive _unit} do {
                                                 // Determine how close we should approach the last known position
                                                 private _approachRadius = [3, 10] select _lastTargetIsVehicle;
 
-                                                // If the unit is within ~3 meters of the last known position, consider it as "visited" and roam the area
+                                                // If the unit is within the approach radius of the last known position, consider it as "visited" and roam the area
                                                 if (_unitPos distance2D _lastTargetPos < _approachRadius) then {
                                                         _targetPosVisited = true;
                                                         _newPos = _lastTargetPos vectorAdd [_searchAreaSize - random _searchAreaSize2, _searchAreaSize - random _searchAreaSize2, 0];
@@ -279,6 +286,9 @@ while {alive _unit} do {
                                         _unit doMove _unitPos;
                                         _unit setVariable ["Cre8ive_GuerrillaAI_MovePos", [], false];
 
+					private _stance = _unit getVariable ["Cre8ive_GuerrillaAI_Stance", "AUTO"];
+					_unit setUnitPos _stance;
+
 //                                        _unit enableAI "TARGET";
 //                                        _unit enableAI "AUTOTARGET";
                                 };
@@ -295,6 +305,9 @@ while {alive _unit} do {
 
                                 _unit doMove _unitPos;
                                 _unit setVariable ["Cre8ive_GuerrillaAI_MovePos", [], false];
+
+				private _stance = _unit getVariable ["Cre8ive_GuerrillaAI_Stance", "AUTO"];
+				_unit setUnitPos _stance;
 
 //                                _unit enableAI "TARGET";
 //                                _unit enableAI "AUTOTARGET";
