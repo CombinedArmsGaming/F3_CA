@@ -143,4 +143,71 @@ class CA_ZeusUI_Units
 			units[] = {"vc", "vd", "vg"};
 		};
 	};
+
+	class AAF_Infantry
+	{
+		categoryName = "AAF Infantry";
+		gear = "ind_f";
+		side = "resistance";
+
+		// Units definition
+		class Rifleman
+		{
+			unitName = "AAF Rifleman";
+			units[] = {"r"};
+		};
+
+		class Fireteam_6x
+		{
+			unitName = "AAF Fireteam 6x";
+			units[] = {"ftl", "ar", "aar", "rat", "r", "r"};
+		};
+
+		class MAT_Team
+		{
+			unitName = "AAF MAT Team";
+			units[] = {"matag", "matg"};
+		};
+
+		class MMG_Team
+		{
+			unitName = "AAF MMG Team";
+			units[] = {"mmgag", "mmgg"};
+		};
+	};
+
+	class AAF_Vehicles
+	{
+		categoryName = "AAF Vehicles";
+		gear = "ind_f";
+		side = "resistance";
+
+		class MBT52_Kuma		// Classnames can't contain '-'
+		{
+			unitName = "MBT-52 Kuma";
+			vehicle = "I_MBT_03_cannon_F";
+			units[] = {"vc", "vd", "vg"};
+		};
+
+		class AFV4_Gorgon
+		{
+			unitName = "AFV-4 Gorgon";
+			vehicle = "I_APC_Wheeled_03_cannon_F";
+			units[] = {"vc", "vd", "vg"};
+		};
+
+		class FV720_Mora
+		{
+			unitName = "FV-720 Mora";
+			vehicle = "I_APC_tracked_03_cannon_F";
+			units[] = {"vc", "vd", "vg"};
+		};
+
+		class Strider_HMG
+		{
+			unitName = "Strider HMG";
+			vehicle = "I_MRAP_03_hmg_F";
+			units[] = {"vc", "vd", "vg"};
+		};
+	};
 };

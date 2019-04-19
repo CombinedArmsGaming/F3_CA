@@ -28,58 +28,68 @@ case "ui_spawn": {
 		private _vehicleClass = _unitNamespace getVariable [MACRO_VARNAME_UNIT_VEHICLE, ""];
 
 		// Only continue if we have valid data to spawn anything with
-		if (!(_roles isEqualTo []) and {_gear != ""} and {_side != sideUnknown}) then {
+		if (!(_roles isEqualTo []) and {_gear != ""}) then {
 
-			// Fetch the spawn position
-			private _pos = screenToWorld [0.5, 0.5];
+			// If the side parameter in ca_units.hpp was not recognised, throw an error
+			if (_side == sideUnknown) then {
+				private _str = format ["[ZeusUI] ERROR: Couldn't determine a side for this spawn category (%1) - Please check 'ca_units.hpp' for spelling mistakes, or a missing side parameter.", _allCategoriesVars select _categoryIndex];
+				systemChat _str;
+				hint _str;
+				diag_log _str;
 
-			// Set up our preset variables
-			private _enableVCOM = false;
-			private _guerrillaAI = false;
-			private _suppressiveAI = false;
-
-			// If the custom preset is selected, fetch the settings from the menu
-			if (_presetIndex == 0) then {
-
-				// If guerrilla AI is enabled, fetch its settings
-				if (missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI, false]) then {
-					_guerrillaAI = [
-						missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_FLANKONLY, false],
-						missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_MAXAPPROACHVARIATION, 45],
-						missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_MINAPPROACHDISTANCE, 1000],
-						missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_MAXAPPROACHDISTANCE, 50],
-						missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_MAXSEARCHDURATION, 60],
-						missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_SEARCHAREASIZE, 30]
-					];
-				};
-
-				// If suppressive AI is enabled, fetch its settings
-				if (missionNamespace getVariable [MACRO_VARNAME_PRESET_SAI, false]) then {
-					_suppressiveAI = [
-						missionNamespace getVariable [MACRO_VARNAME_PRESET_SAI_SUPPRESSIONMUL, 1],
-						missionNamespace getVariable [MACRO_VARNAME_PRESET_SAI_SUPPRESSIONDURATIONMUL, 1],
-						missionNamespace getVariable [MACRO_VARNAME_PRESET_SAI_USEANIMS, false]
-					];
-				};
-
-				_enableVCOM = missionNamespace getVariable [MACRO_VARNAME_PRESET_VCOM, false];
-
-			// Otherwise, fetch the selected preset
+			// Otherwise, carry on
 			} else {
-				private _allPresetsNamespace = missionNamespace getVariable [MACRO_VARNAME_NAMESPACE_PRESETS, locationNull];
-				private _allPresetsVars = _allPresetsNamespace getVariable [MACRO_VARNAME_NAMESPACE_ALLVARIABLES, []];
-				private _presetNamespace = _allPresetsNamespace getVariable [_allPresetsVars select (_presetIndex - 1), locationNull];
+				// Fetch the spawn position
+				private _pos = screenToWorld [0.5, 0.5];
 
-				// Fetch the settings from the selected preset
-				_enableVCOM = _presetNamespace getVariable [MACRO_VARNAME_PRESET_VCOM, false];
-				_guerrillaAI = _presetNamespace getVariable [MACRO_VARNAME_PRESET_GAI, []];
-				_suppressiveAI = _presetNamespace getVariable [MACRO_VARNAME_PRESET_SAI, []];
+				// Set up our preset variables
+				private _enableVCOM = false;
+				private _guerrillaAI = false;
+				private _suppressiveAI = false;
+
+				// If the custom preset is selected, fetch the settings from the menu
+				if (_presetIndex == 0) then {
+
+					// If guerrilla AI is enabled, fetch its settings
+					if (missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI, false]) then {
+						_guerrillaAI = [
+							missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_FLANKONLY, false],
+							missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_MAXAPPROACHVARIATION, 45],
+							missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_MINAPPROACHDISTANCE, 1000],
+							missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_MAXAPPROACHDISTANCE, 50],
+							missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_MAXSEARCHDURATION, 60],
+							missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_SEARCHAREASIZE, 30]
+						];
+					};
+
+					// If suppressive AI is enabled, fetch its settings
+					if (missionNamespace getVariable [MACRO_VARNAME_PRESET_SAI, false]) then {
+						_suppressiveAI = [
+							missionNamespace getVariable [MACRO_VARNAME_PRESET_SAI_SUPPRESSIONMUL, 1],
+							missionNamespace getVariable [MACRO_VARNAME_PRESET_SAI_SUPPRESSIONDURATIONMUL, 1],
+							missionNamespace getVariable [MACRO_VARNAME_PRESET_SAI_USEANIMS, false]
+						];
+					};
+
+					_enableVCOM = missionNamespace getVariable [MACRO_VARNAME_PRESET_VCOM, false];
+
+				// Otherwise, fetch the selected preset
+				} else {
+					private _allPresetsNamespace = missionNamespace getVariable [MACRO_VARNAME_NAMESPACE_PRESETS, locationNull];
+					private _allPresetsVars = _allPresetsNamespace getVariable [MACRO_VARNAME_NAMESPACE_ALLVARIABLES, []];
+					private _presetNamespace = _allPresetsNamespace getVariable [_allPresetsVars select (_presetIndex - 1), locationNull];
+
+					// Fetch the settings from the selected preset
+					_enableVCOM = _presetNamespace getVariable [MACRO_VARNAME_PRESET_VCOM, false];
+					_guerrillaAI = _presetNamespace getVariable [MACRO_VARNAME_PRESET_GAI, []];
+					_suppressiveAI = _presetNamespace getVariable [MACRO_VARNAME_PRESET_SAI, []];
+				};
+
+
+				// Tell the server to spawn the group
+				ca_fnc_server_spawnGroup = compile preprocessFileLineNumbers "ca\zeus_ui\fn_server_spawnGroup.sqf";
+				[_roles, _pos, _gear, _side, _vehicleClass, _enableVCOM, _guerrillaAI, _suppressiveAI] remoteExec ["ca_fnc_server_spawnGroup", 2, false];
 			};
-
-
-			// Tell the server to spawn the group
-			ca_fnc_server_spawnGroup = compile preprocessFileLineNumbers "ca\zeus_ui\fn_server_spawnGroup.sqf";
-			[_roles, _pos, _gear, _side, _vehicleClass, _enableVCOM, _guerrillaAI, _suppressiveAI] remoteExec ["ca_fnc_server_spawnGroup", 2, false];
 		};
 	};
 };
