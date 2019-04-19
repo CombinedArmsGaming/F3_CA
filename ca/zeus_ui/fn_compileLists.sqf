@@ -42,6 +42,7 @@ private _allCategoriesVars = [];
 		case "east": {_categorySide = east};
 		case "resistance": {_categorySide = resistance};
 		case "civilian": {_categorySide = civilian};
+		default {_categorySide = sideUnknown};		// Fallback for incorrect side inputs
 	};
 
 	// Iterate through the unit classes inside this category
