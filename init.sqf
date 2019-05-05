@@ -178,3 +178,7 @@ f_var_cachingAggressiveness = 2;
 
 // CA - Initialize CA framework
 [] execVM "ca\ca_init.sqf";
+
+// Disables users from accessing DMS missile system, and 
+[] spawn {sleep 1; dmsRestrictUsers=true};
+[] spawn {sleep 1; dmsAuthorizedClasses=['B_soldier_UAV_F']};
