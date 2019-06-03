@@ -178,3 +178,12 @@ f_var_cachingAggressiveness = 2;
 
 // CA - Initialize CA framework
 [] execVM "ca\ca_init.sqf";
+
+// Disables users from accessing DMS missile system, and permits restricted access if the other lines are uncommented.
+[] spawn {sleep 1; dmsRestrictUsers=true};
+
+// This line permits the NATO UAV Operator class to access the DMS launcher.
+//[] spawn {sleep 1; dmsAuthorizedClasses=['B_soldier_UAV_F']};
+
+// This line permits specific units by variable name to access the DMS launcher. Do not put variable names in quotes.
+//[] spawn {sleep 1; dmsAuthorizedUnits=[launchman]};
