@@ -146,12 +146,18 @@ _unit addEventHandler ["Fired", {
                 private _ammoCount = _unit ammo _muzzle;
                 private _rounds = 0;
 
-                // If the target is within 200 meters, fire long bursts, otherwise short bursts
-
-                if (_distSqr > 40000) then {
-                        _rounds = _ammoCount min (1 + floor random 2);
+                // If the target is within 100 meters, fire long bursts
+                if (_distSqr < 10000) then {
+                        _rounds = _ammoCount min (1 + floor random 5);			// 1..5
+		// Otherwise...
                 } else {
-                        _rounds = _ammoCount min (2 + floor random 5);
+			// If the target is within 300 meters, fire medium bursts
+			if (_distSqr < 90000) then {
+                        	_rounds = _ammoCount min (1 + floor random 3);		// 1..3
+			// Otherwise, fire short bursts
+			} else {
+                        	_rounds = _ammoCount min floor random 3;		// 0..2
+			};
                 };
 
 		// If enabled, use player animations to approach the target
@@ -260,8 +266,8 @@ _unit addEventHandler ["Fired", {
 _unit addEventHandler ["Reloaded", {
         params ["_unit", "_weapon", "_muzzle", ["_newMagazine", []], ["_oldMagazine", []]];
 
-	// Only refill primary weapon and handgun ammo
-	if (_weapon == primaryWeapon _unit or {_weapon == handgunWeapon _unit}) then {
+	// Only refill primary weapon ammo (excluding UGLs)
+	if (_muzzle == primaryWeapon _unit) then {
 
 	        // Figure out the magazine classname
 	        private _magClass = _oldMagazine param [0, ""];
@@ -285,7 +291,9 @@ private _lastSeenVarName = format ["Cre8ive_SuppressiveAI_LastSeen_%1", _groupID
 private _targetPosVarName = format ["Cre8ive_SuppressiveAI_TargetPos_%1", _groupID];
 private _targetAgeVarName = format ["Cre8ive_SuppressiveAI_TargetAge_%1", _groupID];
 private _nextSuppressVarName = format ["Cre8ive_SuppressiveAI_NextSuppress_%1", _groupID];
-private _maxIntersectDistSqr = 50 ^ 2;  // Don't suppress if there are more than 50m of obstruction between our unit and the target position
+private _maxIntersectDistSqr = 25 ^ 2;  // Don't suppress if there are more than 25m of obstruction between our unit and the target position
+private _maxDispersion = 15;		// How much extra suppression dispersion to add to the target (radius around the target's last position), in meters
+private _maxDispersionDuration = 10;	// How long it takes for the suppression dispersion to reach its maximum (without a LOS to the target), in seconds
 
 // Set up some variables
 private _lastVeh = objNull;
@@ -448,9 +456,11 @@ while {alive _unit} do {
                                                                 };
 
                                                                 if (_shouldSuppress) then {
-                                                                        private _dummy = "Sign_Sphere25cm_F" createVehicleLocal [0,0,0];
+									private _targetPosFireAt = _lastTargetPos getPos [(((_time - _targetLastSeen) / _maxDispersionDuration) min 0.5) * 2 * ((_targetDist / 3) min (random _maxDispersion)), random 360];
+
+                                                                        private _dummy = "Sign_Sphere100cm_F" createVehicleLocal [0,0,0];
                                                                         _dummy hideObject true;
-                                                                        _dummy setPosATL _lastTargetPos;
+                                                                        _dummy setPosATL _targetPosFireAt;
 
                                                                         // Stop the unit
                                                                         if (speed _unit > 0.1) then {
@@ -473,7 +483,7 @@ while {alive _unit} do {
 
                                                                                 // Run in unscheduled to prevent any issues
                                                                                 isNil {
-                                                                                        private _dir = vectorNormalized (_lastTargetPosASL vectorDiff eyePos _unit);
+                                                                                        private _dir = vectorNormalized ((ATLtoASL _targetPosFireAt) vectorDiff eyePos _unit);
                                                                                         private _dirWeapon = _unit weaponDirection currentWeapon _unit;
 
                                                                                         // Check if the unit is(roughly) aiming at the target position
@@ -622,15 +632,16 @@ while {alive _unit} do {
                                                                 };
 
                                                                 if (_shouldSuppress) then {
+									private _targetPosFireAt = _lastTargetPos getPos [(((_time - _targetLastSeen) / _maxDispersionDuration) min 0.5) * 2 * ((_targetDist / 3) min (random _maxDispersion)), random 360];
 
                                                                         // If the target is no longer in sight, stop looking at its last position
                                                                         if (_targetAge > _ageCutoff * 2) then {
                                                                                 _unit forgetTarget _currentTarget;
                                                                         };
 
-                                                                        // Look towards the target
+                                                                        // Look at the last known position
                                                                         if (_time > _nextLookAt) then {
-                                                                                _unit lookAt _lastTargetPos;
+                                                                                _unit lookAt _targetPosFireAt;
                                                                                 _nextLookAt = _time + 3 + random 2;
                                                                         };
 
@@ -696,7 +707,7 @@ while {alive _unit} do {
                                                                                         private _canFire = false;
                                                                                         isNil {
                                                                                                 private _vehPos = (_veh modelToWorldVisualWorld [0,0,0]);
-                                                                                                private _dir = vectorNormalized (_lastTargetPosASL vectorDiff _vehPos);
+                                                                                                private _dir = vectorNormalized ((ATLtoASL _targetPosFireAt) vectorDiff _vehPos);
                                                                                                 private _dirTurret = [0,0,0];
 
                                                                                                 // Calculate the direction the turret is aiming at
