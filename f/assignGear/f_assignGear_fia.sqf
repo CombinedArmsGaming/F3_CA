@@ -332,11 +332,12 @@ if (_isMan) then {
 	_unit addItem "ACE_Maptools";
 
 	// Add medical items
-	{_unit addItem "ACE_fieldDressing"} forEach [1,2,3,4,5,6,7,8]; // Bandages
-	{_unit addItem "ACE_morphine"} forEach [1,2,3,4];
+	{_unit addItem "ACE_elasticBandage"} forEach [1,2,3,4,5,6,7,8,9,10]; // Bandages
+	{_unit addItem "ACE_morphine"} forEach [1,2,3,4,5];
+	{_unit addItem "ACE_tourniquet"} forEach [1,2];
 	//{_unit addItem "ACE_epinephrine"} forEach [1,2];
-	//{_unit addItem "ACE_bloodIV"} forEach [1,2];
-
+	//{_unit addItem "ACE_bloodIV"} forEach [1];
+	
 };
 
 // ====================================================================================
