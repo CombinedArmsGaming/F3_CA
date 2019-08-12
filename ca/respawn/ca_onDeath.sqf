@@ -32,7 +32,7 @@ if (!ca_respawningroup) then {[player] join grpNull;};
 
 
 // Enter spectator
-[true] call ace_spectator_fnc_setSpectator;
+[true,true,true] call ace_spectator_fnc_setSpectator;
 {_unit removeItem _x;} forEach ([] call acre_api_fnc_getCurrentRadioList);  //Remove any additional radios for sure
 
 // Wait for respawn to happen

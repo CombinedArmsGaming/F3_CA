@@ -3,7 +3,7 @@
 // ====================================================================================
 
 // RADIO STRUCTURE
-
+/*
 // Whether any radios should be assigned at all, to any units
 // TRUE = Disable radios for all units
 f_radios_settings_acre2_disableRadios = FALSE;
@@ -119,3 +119,5 @@ f_radios_settings_acre2_lr_groups_blufor = [
 
 f_radios_settings_acre2_lr_groups_opfor = f_radios_settings_acre2_lr_groups_blufor;
 f_radios_settings_acre2_lr_groups_indfor = f_radios_settings_acre2_lr_groups_blufor;
+
+*/

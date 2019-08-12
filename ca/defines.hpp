@@ -92,7 +92,6 @@
 #define MB_BUTTON_CANCEL	2
 #define MB_BUTTON_USER		4
 
-
 ////////////////
 //Base Classes//
 ////////////////
@@ -169,7 +168,32 @@ class RscButton
 	offsetPressedY = 0.002;
 	borderSize = 0;
 };
-
+class RscTree
+{
+	type = CT_TREE;
+	idc = -1;
+	style = ST_LEFT;
+	shadow = 2;
+	colorBackground[] = {1,1,1,1};
+	colorText[] = {1,1,1,0.9};
+	font = "PuristaLight";
+	text = "";
+	colorDisabled[] = {0,0,0,0}; // Does nothing, but must be present, otherwise an error is shown
+	colorSelectText[] = {1,1,1,1}; // Selected text color (when multiselectEnabled is 0)
+	colorSelect[] = {1,0.5,0,1}; // Selected item fill color (when multiselectEnabled is 0)
+	colorBorder[] = {0,0,0,1}; // Frame color
+	colorArrow[] = {0,0,0,0}; // Does nothing, but must be present, otherwise an error is shown
+	colorMarked[] = {1,0.5,0,0.5}; // Marked item fill color (when multiselectEnabled is 1)
+	colorMarkedText[] = {1,1,1,1}; // Selected text color (when multiselectEnabled is 1)
+	colorMarkedSelected[] = {1,0.5,0,1}; // Selected item fill color (when multiselectEnabled is 1)
+	colorPicture[] = {1,0.5,0,1}; 
+	colorPictureSelected[] = {1,0.5,0,1}; 
+	colorPictureDisabled[] = {1,0.5,0,1}; 
+	colorPictureRight[] = {1,0.5,0,1}; 
+	colorPictureRightSelected[] = {1,0.5,0,1}; 
+	colorPictureRightDisabled[] = {1,0.5,0,1}; 
+	maxHistoryDelay = 1;
+};
 class RscFrame
 {
 	type = CT_STATIC;
@@ -215,7 +239,6 @@ class RscEdit
 	h = 0.2;
 	w = 1;
 };
-
 // EXTRAS (FROM ALL-IN-ONE CONFIG)
 class ScrollBar
 {

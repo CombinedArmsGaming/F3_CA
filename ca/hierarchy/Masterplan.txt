@@ -1,0 +1,205 @@
+
+Problems:
+
+ACRE2 settings and radio hierarchy 
+
+Interface
+
+Multiplayer Synch issues: ESP JIP!
+
+Synch issues solved by: Making everything send requests to server, and then server bouncing back answers. Remoteexec.
+
+
+Functions to make:
+
+Setup
+predefined setup vs random setup??
+//----------------------------------------------------------------------------------------
+things for the hierarchy dialog: 
+1. SET: LONG RANGE CHS 
+2. SET: SHORT RANGE CHANNELS 
+3. REGISTER your squad
+3a. CHANGE group (for co? Only FTLS? SLs? Either or?) in hierarchy
+3b promote group to squad (and promote leader to SL)
+4. give local marker to invididual units like medics or pilots 
+5. Respawn a dead group  
+5b. Show squad tickets 
+5c. Show team tickets 
+6. show a list of the players in a group 
+7. Give squad tickets
+
+//---------------------------------------------------------------
+
+1. SET: LONG RANGE CHS  -- DONE 
+2. SET: SHORT RANGE CHANNELS -- DONE'
+4. give local marker to invididual units like medics or pilots -- DONE
+5a. show a list of dead PLAYERS -- DONE
+6. show a list of the players in a group -- DONE
+
+//---------------------------------------------------------------
+
+LIST OF DEAD PLAYERS
+
+SHOW GROUP MEMBERS (DURR)
+
+respawn 
+
+
+4 layers 
+
+
+
+[ Cosmetic lead  
+  [ CO  
+    [ SL 
+      [ FTL 
+        Grunt
+      ]
+    ]
+  ]
+]
+
+[ Company   
+  [ Platoon   
+    [ Squad  
+      [ Fire team 
+          Grunt
+      ]
+    ]
+  ]
+]
+
+[ Captain 
+  [ Lieutenant 
+    [ Sergeants 
+      [ Corporals 
+          Privates
+      ]
+    ]
+  ]
+]
+
+
+_caWestLongrangeChannelList = ["ALPHA SQUAD","BRAVO SQUAD","CHARLIE SQUAD","INFANTRY COMMAND,"VEHICLE COMMAND","FORWARD AIR CONTROL","AIR COMMAND","WEAPONS SQUAD"];
+
+
+make squad and platoon level radios work
+
+create squads and platoons (IE a tank company (hereafter considered platoon in game terms) and a infantry platoon )
+possible for "empty" squads and platoons
+
+_caWestShortrangeChannelList = ["ASL","A1","A2","AV","BSL","B1","B2","BV","CSL","C1","C2","CV","MMG","MAT","ENG","CO"];
+
+
+_caWestHierarchy = [
+  ["CO", ["CO"],["INFANTRY COMMAND", "VEHICLE COMMAND","AIR COMMAND"]],
+  [
+    [
+      ["ASL", ["ASL"],["INFANTRY COMMAND"],["ALPHA SQUAD"]],
+      [
+        ["A1", ["A1"]],
+        ["A2", ["A2"]],
+        ["AV", ["AV"],["VEHICLE COMMAND"]]
+      ]
+    ],
+    [
+      ["BSL", ["BSL"],["INFANTRY COMMAND"],["BRAVO SQUAD"]],
+      [
+        ["B1",  ["B1"]],
+        ["B2",  ["B2"]],
+        ["BV",  ["BV"],["VEHICLE COMMAND"]]
+      ]
+    ],
+    [
+      ["CSL", ["CSL"],["INFANTRY COMMAND"],["CHARLIE SQUAD"]],
+      [
+        ["C1",  ["C1"]],
+        ["C2",  ["C2"]],
+        ["CV",  ["CV"],["VEHICLE COMMAND"]]
+      ]
+    ],
+    [
+      ["MMG1", ["MMG1"],["INFANTRY COMMAND"],["WEAPONS SQUAD"]],
+      [
+        ["MMG2", ["MMG2"]],
+        ["MAT1", ["MAT1"]],
+        ["MAT2", ["MAT2"]],
+        ["MSAM1", ["MSAM1"]]
+      ]
+    ],
+    [
+      ["ENG1", ["ENG1"],["INFANTRY COMMAND"],["SUPPORT SQUAD"]],
+      [
+        ["HMG1", ["HMG1"]],
+        ["HAT1", ["HAT1"]],
+        ["MTR1", ["MTR1"]],
+        ["HSAM1", ["HSAM1"]]
+      ]
+    ]
+  ]
+];
+
+    if (isServer) then {
+        _vehicle addMPEventHandler ["MPKilled", {
+            if (isServer) then {
+                _d = driver (_this select 0);
+                if (!isNull _d) then {deleteVehicle _d};
+            };
+        }];
+    };
+    if (!isDedicated) then {
+        _vehicle addEventHandler ["GetIn", {
+            _tank = _this select 0;
+            _unit = _this select 2;
+
+            if (isPlayer _unit && player == _unit) then {
+            _unit action ["EngineOn", _tank];
+            if (_tank getVariable ["ca_hasAidriver",false]) exitWith {};
+            _unit action ["MoveToGunner", _tank];
+            _tank spawn {
+                waitUntil {!isNull gunner _this};
+                _ai = createAgent [
+                    typeOf gunner _this, [0,0,0], [], 0, "NONE"
+                ];
+                hideObjectGlobal _ai;
+                _ai allowDamage false;
+                _ai moveInDriver _this;
+                _this lockDriver true;
+                _this setVariable ["ca_hasAidriver",true, true];
+            };
+            };
+        }];
+        _vehicle addEventHandler ["GetOut", {
+            _tank = _this select 0;
+            _unit = _this select 2;
+            _tank setVariable ["ca_hasAidriver",false, true];
+            deleteVehicle (driver _tank);
+            _unit action ["EngineOff", _tank];
+            _tank lockDriver false;
+        }];
+    };
+
+
+
+Corporals can spawn in fire team members by rallying near the SL 
+
+SLs can respawn whole Fire teams based on his tickets amount 
+
+CO can respawn SLs 
+
+Tickets: SLs have a set amount of tickets. Optional parameter: needs to go near CO to get more.
+
+FTLs use Squad tickets to spawn in dead Fireteam members
+
+SL and FTL uses Squad tickets
+
+CO uses Team tickets
+
+CO can give team tickets to SL if near 
+
+SL and FTLs are set at mission start. If field promotions happen, it must happen near CO. Also changes the kit for one ticket.
+
+Vehicle respawns also costs tickets (Squad tickets )
+
+
+

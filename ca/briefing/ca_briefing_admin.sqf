@@ -28,7 +28,7 @@ Give self F3 admin menu</execute><br/>
 <font size='14'>Note that the marker will only be moved if respawn mode is set to 2 (spawn on co)</font><br/><br/>
 |- <execute expression=""hint 'Wave spawned!'; [] remoteExec ['ca_fnc_respawnwaveserver', 2];"">
 Force respawn wave to happen even with 0 waves (Doesn't move respawn marker)</execute><br/>
-|- <execute expression=""hint 'Wave spawned!'; [] call ca_fnc_respawnwave;"">
+|- <execute expression=""hint 'Wave spawned!'; [] call ca_hierarchydialog;"">
 Spawn respawn wave(Move respawn marker)</execute><br/>
 ";
 /*

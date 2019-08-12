@@ -16,6 +16,11 @@ Change marker status(Leader only)</execute><br/>
 Respawn system</execute><br/>
 |- <execute expression=""if (serverCommandAvailable '#kick') then { [] execvm 'ca\briefing\ca_briefing_admin.sqf'}else {hint 'You need to be an admin to get this!'};"">
 Give self admin menu</execute><br/>
+|- <execute expression=""_handle=createdialog 'ca_hierarchydialog';"">
+Platoon Hierarchy</execute><br/>
+|- <execute expression=""player addAction ['Hierarchy', {_handle=createdialog 'ca_hierarchydialog';}];"">
+Add Platoon Hierarchy as an addaction</execute><br/>
+
 
 ";
 // ====================================================================================

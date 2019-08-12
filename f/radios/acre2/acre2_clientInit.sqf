@@ -69,6 +69,11 @@ uiSleep 1;
 
 waitUntil{[] call acre_api_fnc_isInitialized};
 {_unit removeItem _x;} forEach ([] call acre_api_fnc_getCurrentRadioList);
+
+//Get CA hierarchy information 
+_shortrangeCH = (group _unit) getVariable ["ca_SRradioCH",1];
+_longrangeArray = (group _unit) getVariable ["ca_LRradioarray",[4]];
+_unitrank = rankId _unit;
 // ====================================================================================
 
 // ASSIGN RADIOS TO UNITS
@@ -96,22 +101,37 @@ if(_typeOfUnit != "NIL") then {
 			};
 		};
 
-		// If unit is in the above list, add a 148
-		if(_typeOfUnit in f_radios_settings_acre2_longRange) then {
+
+		
+		
+
+		// If unit is in the above list, add a 152
+		if(_unitrank in f_radios_settings_acre2_longRange) then {
 			if (_unit canAdd f_radios_settings_acre2_standardLRRadio) then {
 				_unit addItem f_radios_settings_acre2_standardLRRadio;
 			} else {
 				f_radios_settings_acre2_standardLRRadio call f_radios_acre2_giveRadioAction;
 			};
 		};
-			// If unit is in the list of units that receive an extra long-range radio, add another 148
-		if(_typeOfUnit in f_radios_settings_acre2_extraRadios) then {
+			// If unit is in the list of units that receive a worse long-range radio, add a 148
+		if(_unitrank in f_radios_settings_acre2_extraRadios) then {
 			if (_unit canAdd f_radios_settings_acre2_extraRadio) then {
 				_unit addItem f_radios_settings_acre2_extraRadio;
 			} else {
 				f_radios_settings_acre2_extraRadio call f_radios_acre2_giveRadioAction;
 			};
 		};
+		// If unit has more long range channels, give 148s to cover 
+		if(count _longrangeArray > 1 &&  (_unitrank in f_radios_settings_acre2_extraRadios || _unitrank in f_radios_settings_acre2_longRange) || (count _longrangeArray > 2 && _typeOfUnit in f_radios_settings_acre2_BackpackRadios)) then {
+			for "_i" from 1 to (count _longrangeArray -1) do {
+			if (_unit canAdd f_radios_settings_acre2_extraRadio) then {
+				_unit addItem f_radios_settings_acre2_extraRadio;
+			} else {
+				f_radios_settings_acre2_extraRadio call f_radios_acre2_giveRadioAction;
+			};
+			};
+		};
+		
 			// If unit is in the list of units that receive a backpack radio, then add a 117F
 		if(_typeOfUnit in f_radios_settings_acre2_BackpackRadios) then {
 			if (_unit canAdd f_radios_settings_acre2_BackpackRadio) then {
@@ -134,29 +154,24 @@ if(!f_radios_settings_acre2_disableRadios) then {
 
 	waitUntil {uiSleep 0.1; [] call acre_api_fnc_isInitialized};
 
-	_presetArray = switch (side _unit) do {
-  		case blufor: {f_radios_settings_acre2_sr_groups_blufor};
-	  	case opfor: {f_radios_settings_acre2_sr_groups_opfor};
-	  	case independent: {f_radios_settings_acre2_sr_groups_indfor};
-	  	default {f_radios_settings_acre2_sr_groups_indfor};
-	};
+
 
 	_presetLRArray = switch (side _unit) do {
 		case blufor: {f_radios_settings_acre2_lr_groups_blufor};
 	  	case opfor: {f_radios_settings_acre2_lr_groups_opfor};
 	  	case independent: {f_radios_settings_acre2_lr_groups_indfor};
-		default {f_radios_settings_acre2_lr_groups_indfor};
+		default {f_radios_settings_acre2_lr_groups_blufor};
 	};
 
 	_radioSR = [f_radios_settings_acre2_standardSHRadio] call acre_api_fnc_getRadioByType;
-	_radioLR = [f_radios_settings_acre2_standardLRRadio] call acre_api_fnc_getRadioByType;
-	_radioExtra = [f_radios_settings_acre2_extraRadio] call acre_api_fnc_getRadioByType;
-	_radioBackpack = [f_radios_settings_acre2_BackpackRadio] call acre_api_fnc_getRadioByType;	
+	_radiolist = [] call acre_api_fnc_getCurrentRadioList;
+	_radiolist deleteAt (_radiolist find _radioSR);
+
+
+	
+
 
 	_hasSR = ((!isNil "_radioSR") && {_radioSR != ""});
-	_hasLR = ((!isNil "_radioLR") && {_radioLR != ""});
-	_hasExtra = ((!isNil "_radioExtra") && {_radioExtra != ""});
-	_hasBackpack = ((!isNil "_radioBackpack") && {_radioBackpack != ""});	
 
 	_groupID = groupID (group _unit);
 
@@ -165,59 +180,15 @@ if(!f_radios_settings_acre2_disableRadios) then {
 
 
 	if (_hasSR) then {
-	  	{
-	  		if (_groupID in (_x select 1)) exitWith { _groupChannelIndex = _forEachIndex; };
-	  	} forEach _presetArray;
+		[_radioSR, _shortrangeCH] call acre_api_fnc_setRadioChannel;
   	};
 
-  	if (_hasLR || _hasExtra) then {
+  	if (count _radiolist > 0) then {
 	  	{
-	  		if (_groupID in (_x select 1)) exitWith { _groupLRChannelIndex = _forEachIndex; };
-	  	} forEach _presetLRArray;
+			  		[_x, (_longrangeArray select _foreachindex)] call acre_api_fnc_setRadioChannel;
+	  	} forEach _radiolist;
   	};
 
 
-	if (_groupChannelIndex == -1 && {_hasSR}) then {
-		player sideChat format["[F3 ACRE2] Warning: Unknown group for short-range channel defaults (%1)", _groupID];
-		_groupChannelIndex = 0;
-	};
 
-	if (_groupLRChannelIndex == -1 && {(_hasLR || _hasExtra)}) then {
-  		player sideChat format["[F3 ACRE2] Warning: Unknown group for long-range channel defaults (%1)", _groupID];
-	  	_groupLRChannelIndex = 0;
-	};
-
-
-	if (_hasSR) then {
-		if (f_var_debugMode == 1) then
-		{
-			player sideChat format["DEBUG (f\radios\acre2\acre2_clientInit.sqf): Setting radio channel for '%1' to %2", _radioSR, _groupChannelIndex + 1];
-		};
-	    [_radioSR, (_groupChannelIndex + 1)] call acre_api_fnc_setRadioChannel;
-	};
-
-
-	if (_hasLR) then {
-		if (f_var_debugMode == 1) then
-		{
-			player sideChat format["DEBUG (f\radios\acre2\acre2_clientInit.sqf): Setting radio channel for '%1' to %2", _radioLR, _groupLRChannelIndex + 1];
-		};
-	    [_radioLR, (_groupLRChannelIndex + 1)] call acre_api_fnc_setRadioChannel;
-	};
-
-	if (_hasExtra) then {
-		if (f_var_debugMode == 1) then
-		{
-			player sideChat format["DEBUG (f\radios\acre2\acre2_clientInit.sqf): Setting radio channel for '%1' to %2", _radioExtra, _groupLRChannelIndex + 1];
-		};
-	    [_radioExtra, (_groupLRChannelIndex + 1)] call acre_api_fnc_setRadioChannel;
-	};
-
-	if (_hasBackpack) then {
-		if (f_var_debugMode == 1) then
-		{
-			player sideChat format["DEBUG (f\radios\acre2\acre2_clientInit.sqf): Setting radio channel for '%1' to %2", _radioExtra, _groupLRChannelIndex + 1];
-		};
-	    [_radioBackpack, (_groupLRChannelIndex + 1)] call acre_api_fnc_setRadioChannel;
-	};
 };

@@ -116,7 +116,7 @@ class ca_respawndiag
         	y = 0.35 * safezoneH + safezoneY;
         	w = 0.2 * safezoneW;
         	h = 0.05 * safezoneH;
-            action =  "if(rank player == 'COLONEL' || (serverCommandAvailable '#kick')) then {[] call ca_fnc_respawnwave; hint 'Wave spawned!';}";
+            action =  "if(rankid player > ca_corank || (serverCommandAvailable '#kick')) then {[] call ca_fnc_respawnwave; hint 'Wave spawned!';}";
             //closeDialog 0;
         };
         class infotext2: RscFrame

@@ -10,7 +10,6 @@
 
 ["GrpCSAT_CO",_hq, "CO", "ColorYellow"] spawn f_fnc_localGroupMarker;
 ["GrpCSAT_DC",_hq, "DC", "ColorYellow"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_COV",_ifv, "COV", "ColorYellow"] spawn f_fnc_localGroupMarker;
 
 ["GrpCSAT_ASL",_hq, "ASL", "ColorRed"] spawn f_fnc_localGroupMarker;
 ["GrpCSAT_A1",_ft, "A1", "ColorRed"] spawn f_fnc_localGroupMarker;
@@ -27,21 +26,13 @@
 ["GrpCSAT_C2",_ft, "C2", "ColorGreen"] spawn f_fnc_localGroupMarker;
 ["GrpCSAT_CV",_ifv, "CV", "ColorGreen"] spawn f_fnc_localGroupMarker;
 
-["GrpCSAT_MMG1",_sup, "MMG1", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_MMG2",_sup, "MMG2", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_HMG1",_sup, "HMG1", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_MAT1",_lau, "MAT1", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_MAT2",_lau, "MAT2", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_HAT1",_lau, "HAT1", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_MTR1",_mor, "MTR1", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_MSAM1",_lau, "MSAM1", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_HSAM1",_lau, "HSAM1", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_ST1",_rec, "ST1", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_DT1",_rec, "DT1", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_ENG1",_eng, "ENG1", "ColorOrange"] spawn f_fnc_localGroupMarker;
+["GrpCSAT_MMG",_sup, "MMG", "ColorOrange"] spawn f_fnc_localGroupMarker;
+["GrpCSAT_MAT",_lau, "MAT", "ColorOrange"] spawn f_fnc_localGroupMarker;
 
-["GrpCSAT_IFV1",_ifv, "IFV1", "ColorOrange"] spawn f_fnc_localGroupMarker;
-["GrpCSAT_IFV2",_ifv, "IFV2", "ColorOrange"] spawn f_fnc_localGroupMarker;
+["GrpCSAT_ENG",_eng, "ENG", "ColorOrange"] spawn f_fnc_localGroupMarker;
+
+
+
 ["GrpCSAT_TNK1",_tnk, "TNK1", "ColorRed"] spawn f_fnc_localGroupMarker;
 
 ["GrpCSAT_TH1",_hel, "TH1", "ColorRed"] spawn f_fnc_localGroupMarker;
@@ -61,5 +52,8 @@
 ["UnitCSAT_ASL_M", _med, "AM", "ColorBlack"] spawn f_fnc_localSpecialistMarker;
 ["UnitCSAT_BSL_M", _med, "BM", "ColorBlack"] spawn f_fnc_localSpecialistMarker;
 ["UnitCSAT_CSL_M", _med, "CM", "ColorBlack"] spawn f_fnc_localSpecialistMarker;
+["UnitCSAT_MMG_M",_med, "MMGM", "ColorBlack"] spawn f_fnc_localSpecialistMarker;
+
+
 
 // ====================================================================================
