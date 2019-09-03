@@ -65,7 +65,7 @@ forceRotorLibSimulation = 0;
 
 // CA - Disable playableunits AI
 
-disabledAI = true;
+//disabledAI = true;
 
 // ============================================================================================
 

@@ -19,82 +19,67 @@ sleep 10;
 _unit = player;
 _group = group player;
 _groupid = groupid (group player);
-_possiblesquadid = (group player) getVariable ["ca_squadID",[]];
+//If the group is already setup, then exit
+if (!isnil {group player getVariable "ca_superior"}) exitWith {};
 _side = side player;
+
+_setupgroup = {
+	params ["_group","_superior","_rank","_SRradioCH","_LRradioarray","_groupcolor","_grouptickets","_grouptype"];
+
+	_group setVariable ["ca_groupsetup",true, true];
+	_group setVariable ["ca_superior",_superior, true];
+	_group setVariable ["ca_SRradioCH",_SRradioCH, true];
+	_group setVariable ["ca_LRradioarray",_LRradioarray, true];
+	_group setVariable ["ca_groupcolor",_groupcolor, true];
+	_group setVariable ["ca_grouptickets",_grouptickets, true];
+	_group setVariable ["ca_grouptype",_grouptype, true];
+	_cooldowntime = ca_grouprespawncooldown + time;
+	_group setVariable ["ca_grouprespawncooldown",_cooldowntime, true];
+
+	{
+		if (leader _group == _x) then {
+			[leader _group,_rank] spawn ca_fnc_setrank;
+		};
+	} forEach (units _group);
+	//PUT IN GROUP MARKERS HERE (remoteexec becauser its server executing only)
+	_group remoteExec ["ca_fnc_groupMarker",_side,true];
+};
+
 
 switch (_side) do {
 	case west: {
-		if (_possiblesquadid in ca_allWestSquads) exitWith {};
 		{
-			_comparegroupid = "";
-			_comparegroupid = _x select 0 select 0;
-			if (_groupid == _comparegroupid) then {
-				_grouparray = _x select 0;
-				_squadID = _x select 1;
-
-				_groupid = _grouparray select 0;
-				_SRradioarray = _grouparray select 1;
-				_LRradioarray = [];
-				if(count _grouparray > 2) then {_LRradioarray = _grouparray select 2;};
-				_group setVariable ["ca_squadID",_squadID, true];
-				_group setVariable ["ca_SRradioCH",_SRradioarray, true];
-				_group setVariable ["ca_LRradioarray",_LRradioarray, true];
-				if (isnil {ca_westcojipid} ) exitWith {};
-				if (ca_westcojipid == _groupid) then {missionNamespace setVariable ['ca_westCO',_group, true];};
-				_squadticketID = format ["%1tickets",_squadID]; 
-				missionNamespace setVariable [_squadticketID,ca_WestSquadStartingTickets, true];
-				
+			_possiblegrpid = _x select 1;
+			if (_possiblegrpid == _groupid) then {
+				[_x select 0] call _setupgroup;
 			};
 		} forEach ca_WestJIPgroups;
 	};
 	case east: {
-		if (_possiblesquadid in ca_allEastSquads) exitWith {};
 		{
-			_comparegroupid = "";
-			_comparegroupid = _x select 0 select 0;
-			if (_groupid == _comparegroupid) then {
-				_grouparray = _x select 0;
-				_squadID = _x select 1;
-
-				_groupid = _grouparray select 0;
-				_SRradioarray = _grouparray select 1;
-				_LRradioarray = [];
-				if(count _grouparray > 2) then {_LRradioarray = _grouparray select 2;};
-				_group setVariable ["ca_squadID",_squadID, true];
-				_group setVariable ["ca_SRradioCH",_SRradioarray, true];
-				_group setVariable ["ca_LRradioarray",_LRradioarray, true]; 
-				if (isnil {ca_eastcojipid} ) exitWith {};
-				if (ca_eastcojipid == _groupid) then {missionNamespace setVariable ['ca_eastCO',_group, true];};
-				_squadticketID = format ["%1tickets",_squadID]; 
-				missionNamespace setVariable [_squadticketID,ca_EastSquadStartingTickets, true];
-				_squadticketID = format ["%1tickets",_squadID]; 
-				missionNamespace setVariable [_squadticketID,ca_IndependentSquadStartingTickets, true];
+			_possiblegrpid = _x select 1;
+			if (_possiblegrpid == _groupid) exitWith {
+				[_x select 0] call _setupgroup;
 			};
+				
+
 		} forEach ca_EastJIPgroups;
 
 	};
 	case independent: {
-		if (_possiblesquadid in ca_allIndependentSquads) exitWith {};
 		{
-			_comparegroupid = "";
-			_comparegroupid = _x select 0 select 0;
-			if (_groupid == _comparegroupid) then {
-				_grouparray = _x select 0;
-				_squadID = _x select 1;
-
-				_groupid = _grouparray select 0;
-				_SRradioarray = _grouparray select 1;
-				_LRradioarray = [];
-				if(count _grouparray > 2) then {_LRradioarray = _grouparray select 2;};
-				_group setVariable ["ca_squadID",_squadID, true];
-				_group setVariable ["ca_SRradioCH",_SRradioarray, true];
-				_group setVariable ["ca_LRradioarray",_LRradioarray, true];
-				if (isnil {ca_independentcojipid} ) exitWith {};
-				if (ca_independentcojipid == _groupid) then {missionNamespace setVariable ['ca_independentCO',_group, true];};
+			_possiblegrpid = _x select 1;
+			if (_possiblegrpid == _groupid) exitWith {
+				[_x select 0] call _setupgroup;
 			};
 		} forEach ca_IndependentJIPgroups;
 	};
 	default {diag_log format ["Error JIP player(%1) not correctly setup side(%2), group (%3)",player, _side,_group]};
 };
 
+
+_setup = group player getVariable ["ca_groupsetup",false];
+if (!_setup) then {
+	[_group,_groupid,2,16,[4],"colorBlack",0,"none"] call _setupgroup;
+};
 diag_log format [" JIP player(%1)setup side(%2), group (%3)",player, _side,_group];

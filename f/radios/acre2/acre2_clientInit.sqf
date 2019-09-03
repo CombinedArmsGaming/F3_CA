@@ -168,10 +168,9 @@ if(!f_radios_settings_acre2_disableRadios) then {
 	_radiolist deleteAt (_radiolist find _radioSR);
 
 
-	
 
 
-	_hasSR = ((!isNil "_radioSR") && {_radioSR != ""});
+	_hasSR = ((!isNil {_radioSR}) && {_radioSR != ""});
 
 	_groupID = groupID (group _unit);
 

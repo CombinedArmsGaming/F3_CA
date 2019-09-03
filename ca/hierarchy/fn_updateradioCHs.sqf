@@ -16,24 +16,13 @@ if (lbSize _aliveplayers == 0) exitWith {systemChat "Select a group first!";};
 
 if (isnil _test) exitWith {systemChat "Error! Long Range channel field cannot be empty or is corrupted!";};
 if (isnil _testsr) exitWith {systemChat "Short range channel field cannot be empty!";};
-_co = grpNull;
 
-switch (_side) do {
-	case west: {
-    _co = ca_westCO;
-	};
-	case east: {
-    _co = ca_eastCO;
-	};
-	case independent: {
-    _co = ca_independentCO;
-	};
-};
 _rankid = rankId player;
-_squadid = group player getVariable ["ca_squadID","meme"];
-_samesquad = (ca_selectedgroup getVariable ["ca_squadID","sdferaNO"]) == _squadid;
+_superior = group player getVariable ["ca_superior","meme"];
+_samesquad = (ca_selectedgroup getVariable ["ca_superior","sdferaNO"]) == _superior;
 
-if ((((ca_selectedgroup == (group player)) && _rankid >= ca_ftlrank) || _samesquad && _rankid >= ca_slrank) || (group player == _co && _rankid >= ca_corank)) then {
+
+if ((((ca_selectedgroup == (group player)) && _rankid >= ca_ftlrank) || _samesquad && _rankid >= ca_slrank) || (_rankid >= ca_corank)) then {
 
 
     _SRradioarray = call compile ctrlText _shortrangech;

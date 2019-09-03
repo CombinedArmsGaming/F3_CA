@@ -1,4 +1,42 @@
 
+
+
+
+
+
+//======================================
+Further developments
+
+# Move groupmarker to platoon setup ( +2 variables, worth to fix groupid)
+# Automatically assign ranks to the group leader (+1 variable )
+# Ask for subordinates and Superiors (+2, maybe +1 variable depending on things)
+
+# Rework system to be based on superior/inferior(lol) principle. 
+
+
+yozer suggestions
+
+
+
+group cooldown
+
+sls give tickets to ftls 
+
+longer cooldown on waves 
+
+
+possible:
+
+if sl or ftl can respawn, co cannot 
+
+
+
+
+
+
+//======================================
+
+
 Problems:
 
 ACRE2 settings and radio hierarchy 

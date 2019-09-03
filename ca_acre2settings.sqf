@@ -1,4 +1,4 @@
-// F3_CA - ACRE2 Settings
+// F3_CA - ACRE2 Settings - Run on every client 
 // ====================================================================================
 ca_radioSetup = false;
 // RADIO STRUCTURE
@@ -15,7 +15,9 @@ f_radios_settings_acre2_disableFrequencySplit = FALSE;
 // if its nil, that means all units get a radio
 // empty array means that noone gets
 f_radios_settings_acre2_shortRange = nil;
+
 /*
+Ranks you want to give a AN-PRC148 long-range radio / a long range at all. Privates Doesn't recieve a radio at all with the default setting.
 0 - Private
 1 - Corporal
 2 - Sergeant
@@ -24,13 +26,12 @@ f_radios_settings_acre2_shortRange = nil;
 5 - Major
 6 - Colonel
 */
-// Ranks you want to give a AN-PRC148 long-range radio / a long range at all. Privates won't recieve a radio at all.
 f_radios_settings_acre2_extraRadios = [1];
 
 // Set the list of ranks that get a AN-PRC152 long range radio for their primary radio
 f_radios_settings_acre2_longRange = [2,3,4,5,6];
 
-// Unit types you want to give a backpack radio
+// Unit types you want to give a backpack radio - Note this is loadout specific
 // I'd recommend this is only used for Pilots and FAC (you'll need to sort out a separate FAC loadout in your gearscript, I'd recommend using the "UAV" unit type defined below.)
 // This backpack radio still uses the Long Range radio channel definitions below.
 f_radios_settings_acre2_BackpackRadios = ["uav","pp"];

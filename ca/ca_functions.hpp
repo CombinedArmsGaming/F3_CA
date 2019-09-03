@@ -16,6 +16,8 @@ class CA
 		class getdirpos{};
 		class getmarkerarray{};
         class groupMarker{};
+		class setrank{};
+		class specialistMarker{};
 	};
 	class headless
 	{
@@ -29,17 +31,17 @@ class CA
 	class hierarchy
 	{
 		file = "ca\hierarchy";
-		class setupArray{};
 		class setupGroup{};
+		class becomeco {};
 		class setupJIP{};
-		class setupSquad{};
 		class treeselect{};
 		class updateradioCHs{};
 		class respawngroup{};
-		class giveMedicMarker{};
+		class giveSpecialistMarker{};
 		class transferSquadTickets{};
 		class movegroup{};
 		class selectgroup{};
+		class registergroup{};
 	};
 	class massspawn
 	{
@@ -64,7 +66,6 @@ class CA
 	{
 		file = "ca\respawn";
 		class respawnwave{};
-		class respawnwaveserver{};
 	};
 	class spawn
 	{

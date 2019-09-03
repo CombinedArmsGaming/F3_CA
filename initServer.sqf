@@ -9,13 +9,10 @@ missionNamespace setVariable ["ca_hcshowmarkers",false, true]; // If FPS markers
 
 
 // CA - Public Variables for Respawn system
-missionNamespace setVariable ['ca_respawnmode',0, true]; // Respawn modes: 0: Off, 1: Base respawn, 2: Spawn on Commanding Officer
-missionNamespace setVariable ['ca_respawnwave',false, true]; // set to true for instant respawn
-missionNamespace setVariable ['ca_wavecooldown',540, true]; // Seconds between each wave plus wavetime below
+missionNamespace setVariable ['ca_respawnmode',2, true]; // Respawn modes: 0: Off, 1: Base respawn, 2: Hierarchy Spawn
+missionNamespace setVariable ['ca_respawnwave',false, true]; // set to true to disable the respawn system, and respawn players as soon as they die. 
+missionNamespace setVariable ['ca_wavecooldown',1740, true]; // Seconds between each wave plus wavetime below
 missionNamespace setVariable ['ca_wavetime',60, true]; // How many seconds each wave lasts where you can die and instantly respawn (Incase someone gets armaed on respawn or similar incidents)
-missionNamespace setVariable ['ca_norespawnwaves',5, true]; // Number of waves the CO can call in.
-missionNamespace setVariable ['ca_respawnmarker',"respawn_west", true]; // The respawn marker. Please use the corresponding marker for the side, ie "respawn_west", "respawn_east", "respawn_guerrila"
-missionNamespace setVariable ['ca_respawningroup',true, true]; // Should respawning players stay a part of the group they died? They will not spawn next to them.
 // F3 and also CA respawn variables
 missionNamespace setVariable ["f_var_JIP_JIPMenu",true, true]; // Do JIP players get the JIP/teleport menu?
 missionNamespace setVariable ["f_var_JIP_RespawnMenu",false, true]; // Do respawning players get the JIP menu? Use for a quick fast respawn system with group rejoin!

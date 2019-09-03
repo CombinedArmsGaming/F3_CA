@@ -28,21 +28,36 @@ if ((time < 10) || (isNull _corpse)) exitWith {
     	[player] execVM "f\JIP\f_JIP_addReinforcementOptionsAction.sqf";
     };
 };
-if (!ca_respawningroup) then {[player] join grpNull;};
 
+Previousgroup = group player;
 
 // Enter spectator
-[true,true,true] call ace_spectator_fnc_setSpectator;
+[true,true,false] call ace_spectator_fnc_setSpectator;
+
+player setvariable ["ace_medical_allowdamage",false];
+if (count units Previousgroup == 1) then {
+    Previousgroup setVariable ["ca_originalgroup", Previousgroup, true];
+} else {
+    _group = createGroup [(side player), true];
+    [player] join _group;
+    _group setVariable ["ca_originalgroup", Previousgroup, true];
+};
+
+player remoteExec ["hideObjectGlobal", 2];
 {_unit removeItem _x;} forEach ([] call acre_api_fnc_getCurrentRadioList);  //Remove any additional radios for sure
 
 // Wait for respawn to happen
 waitUntil { ca_respawnwave };
+
+player setvariable ["ace_medical_allowdamage",true];
+[player] join Previousgroup;
+[player,false] remoteExec ["hideObjectGlobal", 2];
 // F3 assign radio and gear
 _loadout = (_unit getVariable "f_var_assignGear");
 _unit setVariable ["f_var_assignGear_done",false,true];
 [_loadout,player] call f_fnc_assignGear;
 [] execVM "f\radios\radio_init.sqf";
-
+[player,player] call ACE_medical_fnc_treatmentAdvanced_fullHealLocal;
 // Exit spectator and setpos to respawn_west
 [false] call ace_spectator_fnc_setSpectator;
 
@@ -52,4 +67,3 @@ if (isNil "F3_JIP_reinforcementOptionsAction") then {
     [player] execVM "f\JIP\f_JIP_addReinforcementOptionsAction.sqf";
 };
 
-// [_unit] call ca_fnc_parachute;

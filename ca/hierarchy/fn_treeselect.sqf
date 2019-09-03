@@ -13,10 +13,8 @@ _squadticketcontrol = _display displayCtrl 1817;
 
 
 
-_allsquads = [];
 _allplayergroups = [];
-allplayergroups = [];
-_co = grpNull;
+
 _sidetickets = 0;
 _squadtickets = 0;
 
@@ -38,20 +36,14 @@ _specplayers = [] call ace_spectator_fnc_players;
 
 switch (_side) do {
 	case west: {
-    _co = ca_westCO;
-    _allsquads = ca_allWestSquads;
     _allplayergroups = _allWestPlayerGroupsfill;
 	_sidetickets = ca_WestTickets;
 	};
 	case east: {
-    _co = ca_eastCO;
-    _allsquads = ca_allEastSquads;
     _allplayergroups = _allEastPlayerGroupsfill;
 	_sidetickets = ca_EastTickets;
 	};
 	case independent: {
-    _co = ca_independentCO;
-    _allsquads = ca_allIndependentSquads;
     _allplayergroups = _allIndependentPlayerGroupsfill;
 	_sidetickets = ca_IndependentTickets;
 	};
@@ -65,10 +57,10 @@ lbClear _deadplayers;
 
 
 if(count _findgroup == 0) exitwith {
-	if (_groupid == "Overflow/Missing SL") then {
-			systemChat "This is the remaining groups that arent in the hierarchy for some reason, use select squad and move selected squad to place them in the hierarchy, make sure to drain any squad tickets if applicable.";
+	if (_groupid == "Overflow/Dead") then {
+			systemChat "This is the remaining groups that arent in the hierarchy because they don't have a superior, register if necessary, then use select group and move selected group to place them in the hierarchy.";
 	} else {
-	systemChat "Group doesnt exists in game anymore for some reason.";
+	systemChat "Group doesnt exists in game anymore or is bugged.";
 	};
 };
 _group = _findgroup select 0;
@@ -89,12 +81,13 @@ _aliveplayers lbAdd (name _x); _aliveplayers lbSetData [_forEachIndex, (name _x)
 } forEach (units _group);
 
 
-{
-	_acepreviousgrouparray = _x getvariable "ace_common_previousGroupSwitchTo";
-	if ((_acepreviousgrouparray select 0 select 0) == _group) then {
+{	
+	if (!(_x in units _group)) then {
+	_acepreviousgrouparray = group _x getvariable "ca_originalgroup";
+	if (_acepreviousgrouparray == _group) then {
 		_deadplayers lbAdd (name _x); _deadplayers lbSetData [_forEachIndex, (name _x)];	
 	};
-	
+	};
 } forEach _specplayers;
 
 
@@ -110,12 +103,11 @@ _longrangechannels ctrlSetText (format ["%1",(_longrangeArray)]);
 _aliveplayers lbSetCurSel 1;
 
 
-_squadid = _group getVariable ["ca_squadID",(_co getVariable ["ca_squadID","noco"])];
+_squadtickets = _group getVariable ["ca_grouptickets","Not registered!"];
 
 
-_squadtickets = missionNamespace getVariable format ["%1tickets",_squadID]; 
 
 
 _sideticketcontrol ctrlSetText (format ["%1 Tickets:%2",_side,_sidetickets]);
-_squadticketcontrol ctrlSetText (format ["Squad Tickets:%1",(_squadtickets)]);
+_squadticketcontrol ctrlSetText (format ["Group Tickets:%1",(_squadtickets)]);
 

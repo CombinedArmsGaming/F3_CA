@@ -16,20 +16,16 @@ _squadticketcontrol = _display displayCtrl 1817;
 _group = ca_selectedgroup;
 _groupid = ca_selectedgroupid;
 
-_co = grpNull;
 _squadtickets = 0;
 _sidetickets = 0;
 switch (_side) do {
 	case west: {
-    _co = ca_westCO;
 	_sidetickets = ca_WestTickets;
 	};
 	case east: {
-    _co = ca_eastCO;
 	_sidetickets = ca_EastTickets;
 	};
 	case independent: {
-    _co = ca_independentCO;
 	_sidetickets = ca_IndependentTickets;
 	};
 };
@@ -38,17 +34,15 @@ switch (_side) do {
 
 
 // ---------------------------------------------------------------------
-// Get Squad ticket variables 
-_squadid = _group getVariable ["ca_squadID",false];
+// Get group ticket variables 
 
-_squadtickets = missionNamespace getVariable format ["%1tickets",_squadID]; 
 
-_squadticketID = format ["%1tickets",_squadID]; 
+_squadtickets = ca_selectedgroup getVariable "ca_grouptickets";
+
 
 if (isnil {_squadtickets}) exitWith {
-	systemChat "Squad tickets are not available for selected group";
+	systemChat "Group tickets are not available for selected group";
 };
-
 
 if ((typename _sidetickets  != "SCALAR") || typename _squadtickets != "SCALAR") exitWith {
 	systemChat "Error in the ticket number!";
@@ -59,18 +53,22 @@ if (_sidetickets - _ticketdifference < 0) exitWith {
 };
 
 if (_squadtickets + _ticketdifference < 0) exitWith {
-	systemChat "Not possible to subtract more tickets from this squad";
+	systemChat "Not possible to subtract more tickets from this group";
 };
 
 _rankid = rankid player;
 _newticketnumb = 0;
 _newnumber = 0;
-if (group player == _co && _rankid >= ca_corank) then {
+if (_rankid >= ca_corank) then {
 
-if (player distance (leader ca_selectedgroup) > ca_ticketradius) exitWith { systemChat "Selected group is too far away, you must be closer to be able to transfer tickets";};
+if (player distance (leader ca_selectedgroup) > ca_ticketradius) exitWith { 
+	_sideticketcontrol ctrlSetText (format ["%1 Tickets:%2",_side,_sidetickets]);
+	_squadticketcontrol ctrlSetText (format ["Group Tickets:%1",(_squadtickets)]);
 
-_newnumber = _squadtickets + _ticketdifference;
-	missionNamespace setVariable [_squadticketID,_newnumber, true];
+	systemChat format ["Selected group is too far away, you must be within %1 meters to be able to transfer tickets",ca_ticketradius];};
+
+	_newnumber = _squadtickets + _ticketdifference;
+	ca_selectedgroup setVariable ["ca_grouptickets",_newnumber, true];
 
 switch (_side) do {
 	case west: {
@@ -86,12 +84,12 @@ switch (_side) do {
 	missionNamespace setVariable ['ca_IndependentTickets',_newticketnumb, true]; 
 	};
 };
+_sideticketcontrol ctrlSetText (format ["%1 Tickets:%2",_side,_newticketnumb]);
+_squadticketcontrol ctrlSetText (format ["Group Tickets:%1",(_newnumber)]);
 
 } else {
     systemChat "You are not Authorized to do this, it can only be done by the commanding officer";
 };
 
 
-_sideticketcontrol ctrlSetText (format ["%1 Tickets:%2",_side,_newticketnumb]);
-_squadticketcontrol ctrlSetText (format ["Squad Tickets:%1",(_newnumber)]);
 

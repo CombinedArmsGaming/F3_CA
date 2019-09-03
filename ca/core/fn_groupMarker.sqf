@@ -1,21 +1,23 @@
-// F3_CA - The Jip groupmarker edition
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-// ====================================================================================
+/*
+ * Author: Poulern
+ * Create a groupmarker that follows and changes depending on leader vehicle.
+ *
+ * Arguments:
+ * 0: Group
+ * 1: Markercolor
+ *
+ *
+ * Example:
+ * [group player, "ColorBlack"] call ca_fnc_groupMarker;
+ *
+*/
 
-// DECLARE PRIVATE VARIABLES
-
-// ====================================================================================
-
-// SET KEY VARIABLES
-// Using variables passed to the script instance, we will create some local variables:
-
-params["_netid",["_mkrType","b_hq"],["_mkrColor","ColorBlack"]];
+params["_grp"];
 
 //private _grp = missionNamespace getVariable [_grpName,grpNull];
 //private _mkrName = format ["mkr_%1",_grpName];
 
 // ====================================================================================
-_grp = groupFromNetId _netid;
 _mkrName = groupid _grp;
 // ====================================================================================
 
@@ -27,23 +29,20 @@ if (isnil "_grp") exitWith {};
 // ====================================================================================
 // Create groupID
 // Allows for defining it based on mapmarkers, which is a shorthand identifier anyways.
-// Reprecated! Now GroupIDs(and marker text!) can be set in eden, but doesnt always work!
-//_grp setGroupId [format ["%1",_mkrText],"GroupColor0"];
+
 _newmkrText = groupId _grp;
 // ====================================================================================
 // CREATE MARKER
 // Depending on the value of _mkrType a different type of marker is created.
+_mkrType = "b_hq";
 
 _mkr = createMarkerLocal [_mkrName,[(getPos leader _grp select 0),(getPos leader _grp select 1)]];
 _mkr setMarkerShapeLocal "ICON";
 _mkrName setMarkerTypeLocal  _mkrType;
-_mkrName setMarkerColorLocal _mkrColor;
+_mkrName setMarkerColorLocal (_grp getVariable ["ca_groupcolor","colorBlack"]);
 _mkrName setMarkerSizeLocal [0.8, 0.8];
 _mkrName setMarkerTextLocal _newmkrText;
 
-// Set variables for group.
-_grp setVariable ["ca_groupcolor", (_grp getVariable ["ca_groupcolor",_mkrColor])];
-_grp setVariable ["ca_grouptype", (_grp getVariable ["ca_grouptype",_mkrType])];
 
 // ====================================================================================
 
@@ -56,19 +55,45 @@ while {true} do
 {
     if ({!isNull _x} count units _grp <= 0) then {
         _mkrName setMarkerAlphaLocal 0;
-    } else
-    {
+    } else {
         _mkrName setMarkerAlphaLocal 1;
     };
+    _newMkrType = "b_unknown";
     _newMkrColor = _grp getVariable ["ca_groupcolor","ColorBlack"];
-    _newMkrType = _grp getVariable ["ca_grouptype","b_hq"];
+    _grptypevar = _grp getVariable ["ca_grouptype","none"];
+    if (_grptypevar == "none") then {
+        _newMkrType = "b_hq";
+        _leader = leader _grp;
+        _vehicle = objectParent _leader;
+        switch (true) do {
+            case ((rankid _leader >= ca_slrank) && count units _grp <= 2): {_newMkrType = "b_hq";};
+            case (isnull _vehicle): { _newMkrType = "b_inf"; };
+            case (_vehicle isKindOf "Car"): { _newMkrType = "b_motor_inf"; };
+            case (_vehicle isKindOf "Tank"): {
+                _totalSeats = [(typeof _vehicle), true] call BIS_fnc_crewCount;
+                _crewSeats = [(typeof _vehicle), false] call BIS_fnc_crewCount; 
+                _cargoSeats = _totalSeats - _crewSeats; 
+                    if (_crewSeats <= _cargoSeats) then {
+                            _newMkrType = "b_mech_inf"; 
+                        } else {
+                            _newMkrType = "b_armor"; 
+                    };
+                };
+            case (_vehicle isKindOf "Ship"): { _newMkrType = "b_naval"; };
+            case (_vehicle isKindOf "Helicopter"): { _newMkrType = "b_air"; };
+            case (_vehicle isKindOf "Plane"): { _newMkrType = "b_plane"; };
+            case (_vehicle isKindOf "Wheeled_APC_F"): { _newMkrType = "b_mech_inf"; };
+            case (_vehicle isKindOf "StaticWeapon"): { _newMkrType = "b_art"; };
+        };
+    } else {
+        _newMkrType = _grptypevar;
+    };
+    
     _mkrName setMarkerTypeLocal  _newMkrType;
     _mkrName setMarkerColorLocal _newMkrColor;
 
 	_mkrName setMarkerPosLocal [(getPos leader _grp select 0),(getPos leader _grp select 1)];
     _newmkrText = groupId _grp;
     _mkrName setMarkerTextLocal _newmkrText;
-	sleep 2;
+	sleep 0.5;
 };
-
-// ====================================================================================

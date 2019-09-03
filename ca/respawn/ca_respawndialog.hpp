@@ -116,8 +116,8 @@ class ca_respawndiag
         	y = 0.35 * safezoneH + safezoneY;
         	w = 0.2 * safezoneW;
         	h = 0.05 * safezoneH;
-            action =  "if(rankid player > ca_corank || (serverCommandAvailable '#kick')) then {[] call ca_fnc_respawnwave; hint 'Wave spawned!';}";
-            //closeDialog 0;
+            action =  "[] spawn ca_fnc_respawnwave;";
+            //closeDialog 0; if((ca_respawnmode == 2 && rankid player > ca_corank) || (serverCommandAvailable '#kick')) then {[] call ca_fnc_respawnwave;}
         };
         class infotext2: RscFrame
         {
@@ -166,7 +166,5 @@ class ca_respawndiag
             action =  "closeDialog 0;";
 
         };
-
-
 };
 };

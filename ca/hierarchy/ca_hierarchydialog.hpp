@@ -128,14 +128,14 @@ class ca_hierarchydialog
         class givelocalmark: RscButton
         {
             idc = -1;
-            text = "Give Medic Marker";
+            text = "Give Specialist Marker";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 63 * (pixelW * pixelGrid) * safezoneW + safeZoneX;
             y = 40 * (pixelH * pixelGrid) + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
-            action =  "[] spawn ca_fnc_giveMedicMarker";
+            action =  "[] spawn ca_fnc_giveSpecialistMarker";
             //closeDialog 0;
         };
         class sidetickets: RscText
@@ -223,7 +223,7 @@ class ca_hierarchydialog
             class selectsquad: RscButton
         {
             idc = -1;
-            text = "Select squad";
+            text = "Select group";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 63 * (pixelW * pixelGrid) * safezoneW + safeZoneX;
@@ -232,11 +232,10 @@ class ca_hierarchydialog
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_selectgroup";
         };
-
             class movesquad: RscButton
         {
             idc = -1;
-            text = "Move selected squad";
+            text = "Move selected group";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 63 * (pixelW * pixelGrid) * safezoneW + safeZoneX;
@@ -244,6 +243,30 @@ class ca_hierarchydialog
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_movegroup";
+        };
+            class becomeco: RscButton
+        {
+            idc = -1;
+            text = "Become CO";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 63 * (pixelW * pixelGrid) * safezoneW + safeZoneX;
+            y = 70 * (pixelH * pixelGrid) + safeZoneY;
+            w = 80 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            action =  "[] spawn ca_fnc_becomeco";
+        };
+            class registergroup: RscButton
+        {
+            idc = -1;
+            text = "Register group";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 63 * (pixelW * pixelGrid) * safezoneW + safeZoneX;
+            y = 75 * (pixelH * pixelGrid) + safeZoneY;
+            w = 80 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            action =  "[] spawn ca_fnc_registergroup";
         };
     };
 };

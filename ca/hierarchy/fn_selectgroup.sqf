@@ -15,20 +15,6 @@ _group = ca_selectedgroup;
 _groupid = ca_selectedgroupid;
 
 
-
-_co = grpNull;
-switch (_side) do {
-	case west: {
-    _co = ca_westCO;
-	};
-	case east: {
-    _co = ca_eastCO;
-	};
-	case independent: {
-    _co = ca_independentCO;
-	};
-};
-
 // ---------------------------------------------------------------------
 _rankid = rankid player;
 if (_rankid < ca_corank) exitWith {systemChat "You do not have the sufficient authority to change the hierarchy!";};
@@ -52,12 +38,12 @@ if (_rankid >= ca_ftlrank) then {
 if (_rankid >= ca_slrank) then {
 	_description = "Squad";
 };
-if (_rankid >= ca_slrank) then {
+if (_rankid >= ca_corank) then {
 	_description = "Platoon";
 };
 
 _groupid = groupid ca_previousgroup;
-systemChat format ["Deselected %1,a %2 lead by %4 %3",_groupid,_description,_name,_rank];
+systemChat format ["Deselected %1, a %2 lead by %4 %3",_groupid,_description,_name,_rank];
 
 } else {
 ca_previousgroup = ca_selectedgroup;
@@ -77,7 +63,7 @@ if (_rankid >= ca_corank) then {
 };
 
 _groupid = groupid ca_selectedgroup;
-systemChat format ["Selected %1,a %2 lead by %4 %3",_groupid,_description,_name,_rank];
+systemChat format ["Selected %1, a %2 lead by %4 %3",_groupid,_description,_name,_rank];
 
 ca_switchgroupthiscycle = true;
 
