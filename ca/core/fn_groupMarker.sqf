@@ -49,15 +49,19 @@ _mkrName setMarkerTextLocal _newmkrText;
 // UPDATE MARKER POSITION
 // As long as certain conditions are met (the group exists) the marker
 // position is updated periodically. This only happens locally - so as not to burden
-// the server.
+// the server. 
+// {!isNull _x} count units _grp <= 0 ||
 
 while {true} do
 {
-    if ({!isNull _x} count units _grp <= 0) then {
+    _specplayers = [] call ace_spectator_fnc_players;
+    if ( (leader _grp in _specplayers)) then {
         _mkrName setMarkerAlphaLocal 0;
     } else {
         _mkrName setMarkerAlphaLocal 1;
     };
+
+
     _newMkrType = "b_unknown";
     _newMkrColor = _grp getVariable ["ca_groupcolor","ColorBlack"];
     _grptypevar = _grp getVariable ["ca_grouptype","none"];

@@ -27,7 +27,7 @@ _findcolor = {
     _rgbarray = _output select _colorpos+1; 
     
     _rgbarray
-}; 
+};
 
 _allWestPlayerGroupsfill = [];
 _allEastPlayerGroupsfill = [];
@@ -92,7 +92,7 @@ _noncogroups = _allplayergroups - _allCOgroups;
 {
     _parentIndex = _tree tvAdd [[],(groupid _x)];
     _rawcolor = "";
-    _rawcolor = _x getVariable ["ca_groupcolor","ColorWhite"];
+    _rawcolor = _x getVariable ["ca_groupcolor","ColorGrey"];
     
     _color = _rawcolor call _findcolor;
     _tree tvSetColor [[_parentIndex], _color];
@@ -106,7 +106,7 @@ _noncogroups = _allplayergroups - _allCOgroups;
         if (_coid == _superior) then {
             _childIndex = _tree tvAdd [[_parentIndex],(groupid _x)];
                 _rawcolor = "";
-                _rawcolor = _x getVariable ["ca_groupcolor","ColorWhite"];
+                _rawcolor = _x getVariable ["ca_groupcolor","ColorGrey"];
                 _color = _rawcolor call _findcolor;
                 _tree tvSetColor [[_parentIndex,_childIndex], _color];
 
@@ -118,7 +118,7 @@ _noncogroups = _allplayergroups - _allCOgroups;
                 if (_slid == _superior) then {
                     _grandChildIndex = _tree tvAdd [[_parentIndex,_childIndex],(groupid _x)];
                     _rawcolor = "";
-                    _rawcolor = _x getVariable ["ca_groupcolor","ColorWhite"];
+                    _rawcolor = _x getVariable ["ca_groupcolor","ColorGrey"];
                     
                     _color = _rawcolor call _findcolor;
                     _tree tvSetColor [[_parentIndex,_childIndex,_grandChildIndex], _color];
@@ -145,33 +145,23 @@ if (count _noncogroups > 0) then {
     } forEach _noncogroups;
 };
 
-//Remove groups that are dead -- test 
-{
-    _setup = _x getVariable ["ca_groupsetup",false];
-    if (!_setup) then {
-        _inspectate = _x getvariable "ca_originalgroup";
-        if (!isnil {_inspectate}) then {
-            _overflow - [_x];
-        };
-    };    
-} forEach _overflow;
-
+//Create the overflow part 
 _overflowIndex = _tree tvAdd [[],"Overflow/Dead"];
 
 {
     _childIndex = _tree tvAdd [[_overflowIndex],(groupid _x)];
     _rawcolor = "";
-    _rawcolor = _x getVariable ["ca_groupcolor","ColorWhite"];
+    _rawcolor = _x getVariable ["ca_groupcolor","ColorGrey"];
     _color = _rawcolor call _findcolor;
     _tree tvSetColor [[_overflowIndex,_childIndex], _color];
 
 } forEach _overflow;
 
 
-
+//Expand the view
 tvExpandAll _tree;
 
-
+// Add EH so that when you click on a group it updates the information panels. 
 _tree ctrlAddEventHandler ["TreeSelChanged", {
     _groupid = tvText [1811,(_this select 1)]; 
     [_groupid] call ca_fnc_treeselect;

@@ -21,7 +21,7 @@ _superiorID = format ["%1_%2",_groupid,_side];
 missionNamespace setVariable [_superiorID,_superior, true]; 
 
 //Create a JIP array for that process if needed 
-_grouparray = [_groupid,_superior,_side,_rank,_SRradioCH,_LRradioarray,_groupcolor,_grouptickets,_grouptype];
+_grouparray = [_groupid,_superior,_rank,_SRradioCH,_LRradioarray,_groupcolor,_grouptickets,_grouptype];
 
 //Create a code bin for each side to execute later
 _setupgroup = {
@@ -34,7 +34,7 @@ _setupgroup = {
 	_group setVariable ["ca_groupcolor",_groupcolor, true];
 	_group setVariable ["ca_grouptickets",_grouptickets, true];
 	_group setVariable ["ca_grouptype",_grouptype, true];
-	_group setVariable ["ca_grouprespawncooldown",ca_grouprespawncooldown, true];
+	_group setVariable ["ca_grouprespawntime",ca_grouprespawncooldown, true];
 	{
 		if (leader _group == _x) then {
 			[leader _group,_rank] spawn ca_fnc_setrank;

@@ -18,8 +18,8 @@ Give self admin menu</execute><br/>
 Platoon Hierarchy</execute><br/>
 |- <execute expression=""player addAction ['Hierarchy', {_handle=createdialog 'ca_hierarchydialog';}];"">
 Add Platoon Hierarchy as an addaction</execute><br/>
-
-
+|- <execute expression=""removeAllActions player"">
+Remove all addactions</execute><br/>
 ";
 // ====================================================================================
 

@@ -83,7 +83,7 @@ _aliveplayers lbAdd (name _x); _aliveplayers lbSetData [_forEachIndex, (name _x)
 
 {	
 	if (!(_x in units _group)) then {
-	_acepreviousgrouparray = group _x getvariable "ca_originalgroup";
+	_acepreviousgrouparray = _x getvariable "ca_originalgroup";
 	if (_acepreviousgrouparray == _group) then {
 		_deadplayers lbAdd (name _x); _deadplayers lbSetData [_forEachIndex, (name _x)];	
 	};

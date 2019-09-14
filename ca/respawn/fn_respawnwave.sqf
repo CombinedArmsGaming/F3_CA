@@ -3,7 +3,7 @@ _side = side player;
 _isadmin = serverCommandAvailable '#kick';
 
 
-if ((ca_respawnmode == 0) || !ca_respawnready ) exitWith {
+if ( ((ca_respawnmode == 0) || !ca_respawnready) && !_isadmin) exitWith {
     if (!ca_respawnready) then {
         systemChat "HQ to command: Reinforcements are not ready to deploy yet!";
     } else {
@@ -81,6 +81,7 @@ if (ca_respawnmode == 2) then {
     [[player],{
 		params ["_respawnerguy"];
 		cutText ["","BLACK OUT",0.1];
+        sleep 2;
 		ca_respawnwave = true;  
 		sleep 2;
 		if ((vehicle _respawnerguy) != _respawnerguy) then {
@@ -93,6 +94,7 @@ if (ca_respawnmode == 2) then {
 		};
         player action ["WeaponOnBack", player];
 		cutText ["", "BLACK IN", 5];
+        sleep 10;
         ca_respawnwave = false; 
 		}] remoteExec ['spawn',_x];
 		systemchat format ["%1 has respawned at your position",(name _x)];
@@ -121,6 +123,7 @@ if (ca_respawnmode == 1) then {
     };
 
     cutText ["","BLACK OUT",0.1];
+    sleep 2;
     ca_respawnwave = true;  
     sleep 2;
     player action ["WeaponOnBack", player];
@@ -129,6 +132,7 @@ if (ca_respawnmode == 1) then {
     systemchat format ["You've been respawned at %1's base",(_side)];
 
     cutText ["", "BLACK IN", 5];
+    sleep 10;
     ca_respawnwave = false; 
     }] remoteExec ['spawn',_x];
     systemchat format ["%1 has respawned at your position",(name _x)];

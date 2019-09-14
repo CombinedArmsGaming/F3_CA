@@ -2,7 +2,7 @@
 // Author: Poulern (@me for issues)
 // Server execution only and run once at the start of mission
 
-//Total tickets (Where one ticket = 1 respawn, default 5 for vehicles) per team in addition to the group tickets;
+//Additional tickets available (Where one ticket = 1 respawn, default 5 for vehicles) per team in addition to the group tickets;
 _caWestTickets = 50;
 
 
@@ -27,7 +27,6 @@ Parameters for ca_fnc_setupGroup:
  * 7: Group type (String): What markertype the unit has. This is if you want to use the non-automatic mode that the groupmarker uses. 
 
 ["CO","CO",_side,_corank,16,[4,5,6],"ColorYellow",3] spawn ca_fnc_setupGroup;
-
 */
 
 ["CO","CO",_side,_corank,16,[4,5,6],"ColorYellow",3] spawn ca_fnc_setupGroup;
@@ -97,8 +96,8 @@ ca_enemyradius = 250;
 // How close you must be to your squad lead or CO to be able to recieve more tickets
 ca_ticketradius = 50;
 
-//Delay between each time a group can be respawned
-ca_grouprespawncooldown = 300;
+// Delay for when a group can be respawn after the first player enters spectate. If group respawn is ready and another player dies, the respawn timer goes on cooldown again.
+ca_grouprespawncooldown = 600;
 
 // END OF SETUP VARIABLES
 // Executing setup as described above

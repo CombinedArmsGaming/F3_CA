@@ -28,7 +28,7 @@ _group setVariable ["ca_groupsetup",true, true];
 _group setVariable ["ca_grouptickets",0, true];
 _group setVariable ["ca_grouptype","none", true];
 _cooldowntime = ca_grouprespawncooldown + time;
-_group setVariable ["ca_grouprespawncooldown",_cooldowntime, true];
+_group setVariable ["ca_grouprespawntime",_cooldowntime, true];
 
 _rank = 1;
 {

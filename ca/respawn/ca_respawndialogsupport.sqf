@@ -10,7 +10,7 @@ while {!(isnull findDisplay 1996)} do {
     disableSerialization;
     _display = findDisplay 1996;
     _lb1ctrl = _display displayCtrl 1500;
-
+    lbClear _lb1ctrl;
     _listplayers = [];
     _specplayers = [] call ace_spectator_fnc_players;
     _allWestPlayerGroupsfill = [];
@@ -61,5 +61,5 @@ while {!(isnull findDisplay 1996)} do {
     }else {
         _timer ctrlSetText (str(round _time) + ' Seconds until wave available');
     };
-sleep 5;
+sleep 1;
 };

@@ -24,7 +24,9 @@ if (!isnil {group player getVariable "ca_superior"}) exitWith {};
 _side = side player;
 
 _setupgroup = {
-	params ["_group","_superior","_rank","_SRradioCH","_LRradioarray","_groupcolor","_grouptickets","_grouptype"];
+	params ["_groupid","_superior","_rank","_SRradioCH","_LRradioarray","_groupcolor","_grouptickets","_grouptype"];
+
+	_group = group player;
 
 	_group setVariable ["ca_groupsetup",true, true];
 	_group setVariable ["ca_superior",_superior, true];
@@ -34,7 +36,7 @@ _setupgroup = {
 	_group setVariable ["ca_grouptickets",_grouptickets, true];
 	_group setVariable ["ca_grouptype",_grouptype, true];
 	_cooldowntime = ca_grouprespawncooldown + time;
-	_group setVariable ["ca_grouprespawncooldown",_cooldowntime, true];
+	_group setVariable ["ca_grouprespawntime",_cooldowntime, true];
 
 	{
 		if (leader _group == _x) then {
@@ -51,7 +53,8 @@ switch (_side) do {
 		{
 			_possiblegrpid = _x select 1;
 			if (_possiblegrpid == _groupid) then {
-				[_x select 0] call _setupgroup;
+
+				(_x select 0) call _setupgroup;
 			};
 		} forEach ca_WestJIPgroups;
 	};
@@ -59,7 +62,7 @@ switch (_side) do {
 		{
 			_possiblegrpid = _x select 1;
 			if (_possiblegrpid == _groupid) exitWith {
-				[_x select 0] call _setupgroup;
+				(_x select 0) call _setupgroup;
 			};
 				
 
@@ -70,7 +73,7 @@ switch (_side) do {
 		{
 			_possiblegrpid = _x select 1;
 			if (_possiblegrpid == _groupid) exitWith {
-				[_x select 0] call _setupgroup;
+				(_x select 0) call _setupgroup;
 			};
 		} forEach ca_IndependentJIPgroups;
 	};
@@ -80,6 +83,6 @@ switch (_side) do {
 
 _setup = group player getVariable ["ca_groupsetup",false];
 if (!_setup) then {
-	[_group,_groupid,2,16,[4],"colorBlack",0,"none"] call _setupgroup;
+	[_group,_groupid,2,16,[4],"ColorGrey",0,"none"] call _setupgroup;
 };
 diag_log format [" JIP player(%1)setup side(%2), group (%3)",player, _side,_group];

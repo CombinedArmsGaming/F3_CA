@@ -42,10 +42,10 @@ class RscButton
     colorFocused[] = {0.75,0.75,0.75,.5};
     colorShadow[] = {0.023529,0,0.0313725,1};
     colorBorder[] = {0.023529,0,0.0313725,1};
-    soundEnter[] = {"\ca\ui\data\sound\onover",0.09,1};
-    soundPush[] = {"\ca\ui\data\sound\new1",0,0};
-    soundClick[] = {"\ca\ui\data\sound\onclick",0.07,1};
-    soundEscape[] = {"\ca\ui\data\sound\onescape",0.09,1};
+	soundEnter[] = {"",0.1,1};
+	soundPush[] = {"",0.1,1};
+	soundClick[] = {"",0.1,1};
+	soundEscape[] = {"",0.1,1};
     style = 2;
     x = 0;
     y = 0;

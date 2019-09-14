@@ -40,11 +40,8 @@ switch (_side) do {
 	};
 };
 
-// Find the controls and variables to edit/get data from 
+// Get the group variables and number of people to respawn.
 // ==================================================================
-
-
-
 
 _group = ca_selectedgroup;
 _groupid = ca_selectedgroupid;
@@ -52,31 +49,49 @@ _numbertorespawn = lbSize _deadplayers;
 
 if(_numbertorespawn < 1 ) exitWith {systemChat "There are currently none in the selected group to respawn, or group has not been selected"};
 
-// Get Squad ticket variables 
+// Check if group is available to respawn 
 // ==================================================================
 
-_squadtickets = _group getVariable "ca_grouptickets";
-_rankid = rankId player;
-_superior = group player getVariable ["ca_superior","meme"];
-_samesquad = (ca_selectedgroup getVariable ["ca_superior","sdferaNO"]) == _superior;
-
-_respawntime = _group getVariable ["ca_grouprespawncooldown",900000];
+_respawntime = _group getVariable ["ca_grouprespawntime",900000];
 
 _infotime = ceil (_respawntime - time);
 if (_infotime > 90000) exitWith {systemChat format ["Group is not registered, and thus cant be respawned",_groupid] };
 
 if (_respawntime > time) exitWith {systemChat format ["Group respawn is not ready yet, please wait %1 Seconds",_infotime] };
 
+
+// Get Group ticket variables 
+// ==================================================================
+_squadtickets = _group getVariable "ca_grouptickets";
+_rankid = rankId player;
+_superior = group player getVariable ["ca_superior","meme"];
+_samesquad = (ca_selectedgroup getVariable ["ca_superior","sdferaNO"]) == _superior;
+
+// Setup a check if the player can respawn this group 
+_allowed = (((ca_selectedgroup == (group player)) && _rankid >= ca_slrank) || _samesquad && _rankid >= ca_slrank) || (_rankid >= ca_corank) || (serverCommandAvailable '#kick');
+
+if (!_allowed) exitWith {systemChat "You are not Authorized to do this, it can only be done by the Squad Lead or Platoon officer of sufficient rank" };
+
+// if out of tickets then exit 
+if(_squadtickets == 0) exitWith {systemChat "No more group tickets remaining, rally with CO to get more"};
+//If less tickets than dead then set the amount to be respawned to less 
+/*
+1 - 2
+overflwo = -1
+
+*/
+if(_numbertorespawn > _squadtickets ) then {
+	_overflow = _squadtickets - _numbertorespawn;
+
+	_numbertorespawn = _numbertorespawn + _overflow;
+	systemChat format ["Not enough tickets to respawn the whole group, respawning %1 units instead",_numbertorespawn];
+};
+//Setup if check variables
 _enemiesclose = false;
 _toofaraway = false;
 _respawner = player;
 
-_allowed = (((ca_selectedgroup == (group player)) && _rankid >= ca_ftlrank) || _samesquad && _rankid >= ca_slrank) || (_rankid >= ca_corank) || (serverCommandAvailable '#kick');
-
-if (!_allowed) exitWith {systemChat "You are not Authorized to do this, it can only be done by the Fireteam, Squad or Platoon officer of sufficient rank" };
-
-if(_numbertorespawn > _squadtickets ) exitWith {systemChat "Not enough tickets to respawn the group"};
-
+// Check for enemies near player
 // ==================================================================
 {
 	if (((side (group _x)) getFriend (side (group player)) < 0.6 ) && alive _x) then {//check for enemies near player
@@ -84,7 +99,7 @@ if(_numbertorespawn > _squadtickets ) exitWith {systemChat "Not enough tickets t
 			_enemiesclose = true;
 		};
 	};
-}foreach allUnits;
+} foreach allUnits;
 
 if (_enemiesclose) exitWith {Systemchat "Enemies nearby, try again later";};
 
@@ -102,6 +117,8 @@ if (_respawner distance _firstofficer < ca_ticketradius && _backupofficer distan
 
 if (_toofaraway) exitWith {systemChat format ["Your commanding officer or CO must be within %1 meters to rally that team, try again later",ca_ticketradius];};
 */
+
+// Check if vehicle player is in has room 
 // ==================================================================
 _vehiclehasnoroom = false;
 if ((vehicle _respawner) != _respawner) then { 
@@ -115,7 +132,8 @@ if (_vehiclehasnoroom) exitWith {Systemchat "Not enough room in the vehicle to r
 // ==================================================================
 _actuallyrespawned = [];
 {
-	_pgrp = group _x getvariable "ca_originalgroup";
+	//Get the original group of the player 
+	_pgrp = _x getvariable "ca_originalgroup";
 	_goodtorespawn = false;
 	if (isnil {_pgrp}) then {
 		if (group _x == ca_selectedgroup) then {
@@ -126,12 +144,18 @@ _actuallyrespawned = [];
 			_goodtorespawn = true;
 		};
 	};
+	//If more to respawn than this then exit
+	if ((count _actuallyrespawned) == _numbertorespawn) then {
+		_goodtorespawn = false;
+	};
     if(_goodtorespawn) then {
+		_actuallyrespawned pushBackUnique _x;
     [[player],{
 		params ["_respawnerguy"];
 		titleCut ["", "BLACK OUT", 0.1];
-		ca_respawnwave = true;  
 		sleep 2;
+		ca_respawnwave = true;  
+		sleep 5;
 		if ((vehicle _respawnerguy) != _respawnerguy) then {
 			sleep random 5;
 			player moveincargo (vehicle _respawnerguy);
@@ -141,10 +165,10 @@ _actuallyrespawned = [];
 			systemchat format ["You've been respawned at %1's position",(name _respawnerguy)];
 		};
 		titleCut ["", "BLACK IN", 5];
+		sleep 10;
 		ca_respawnwave = false; 
 		}] remoteExec ['spawn',_x];
 		systemchat format ["%1 has respawned at your position",(name _x)];
-		_actuallyrespawned pushBackUnique _x;
     };
 
 } forEach _specplayers;
@@ -154,8 +178,5 @@ if (count _actuallyrespawned == 0) exitWith {Systemchat "No units respawned, Ace
 
 _newsquadticketnumber = _squadtickets - (count _actuallyrespawned);
 _group setVariable ["ca_grouptickets",_newsquadticketnumber, true];
-
-_cooldowntime = ca_grouprespawncooldown + time;
-_group setVariable ["ca_grouprespawncooldown",_cooldowntime, true];
 
 _squadticketcontrol ctrlSetText (format ["Group Tickets:%1",(_newsquadticketnumber)]);
