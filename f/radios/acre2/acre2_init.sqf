@@ -6,7 +6,7 @@ private ["_presetSetup"];
 [] execVM "ca_acre2settings.sqf";
 
 if (didJIP) then {
-	waitUntil {!isnil {(group player) getVariable "ca_squadID"}}; 
+	waitUntil {!isnil {(group player) getVariable "ca_groupsetup"}}; 
 };
 waitUntil {!isnil {ca_platoonsetup}}; 
 
