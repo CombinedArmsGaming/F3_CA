@@ -10,23 +10,36 @@ case "m":
 		_unit addBackpack _bagsmall;
 		clearMagazineCargoGlobal (unitBackpack _unit);
 		(unitBackpack _unit) addMagazineCargoGlobal [_smokegrenade, 4];
-		(unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 25];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_fieldDressing",  15];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_morphine", 10];
+<<<<<<< Updated upstream
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_epinephrine",   10];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 2];
+=======
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_epinephrine", 10];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_adenosine", 5];		
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 10];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_tourniquet", 4];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_splint", 4];		
+>>>>>>> Stashed changes
 	};
-
 	// LOADOUT: HEAVY
 	if (_loadout == 2) then {
 		_unit addBackpack _bagmedium;
 		clearMagazineCargoGlobal (unitBackpack _unit);
 		(unitBackpack _unit) addMagazineCargoGlobal [_smokegrenade, 6];
-		(unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 30];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_fieldDressing", 25];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_morphine", 15];
+<<<<<<< Updated upstream
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_epinephrine",   15];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 4];
+=======
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_epinephrine", 15];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_adenosine", 8];		
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 15];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_tourniquet", 8];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_splint", 8];			
+>>>>>>> Stashed changes
 	};
 };
 

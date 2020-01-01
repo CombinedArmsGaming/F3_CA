@@ -332,12 +332,21 @@ if (_isMan) then {
 	_unit addItem "ACE_Maptools";
 
 	// Add medical items
+<<<<<<< Updated upstream
+	{_unit addItem "ACE_fieldDressing"} forEach [1,2,3,4,5,6,7,8]; // Bandages
+	{_unit addItem "ACE_morphine"} forEach [1,2,3,4];
+	//{_unit addItem "ACE_epinephrine"} forEach [1,2];
+	//{_unit addItem "ACE_bloodIV"} forEach [1,2];
+=======
 	{_unit addItem "ACE_elasticBandage"} forEach [1,2,3,4,5,6,7,8,9,10]; // Bandages
 	{_unit addItem "ACE_morphine"} forEach [1,2,3,4,5];
 	{_unit addItem "ACE_tourniquet"} forEach [1,2];
+	{_unit addItem "ACE_splint"} forEach [1];	
 	//{_unit addItem "ACE_epinephrine"} forEach [1,2];
+	//{_unit addItem "ACE_adenosine"} forEach [1];	
 	//{_unit addItem "ACE_bloodIV"} forEach [1];
-	
+>>>>>>> Stashed changes
+
 };
 
 // ====================================================================================
@@ -864,10 +873,10 @@ switch (_typeofUnit) do
 		clearMagazineCargoGlobal _unit;
 		clearItemCargoGlobal _unit;
 		clearBackpackCargoGlobal _unit;
-		_unit addWeaponCargoGlobal [_carbine, 2];
+		_unit addWeaponCargoGlobal [_carbine, 1];
 		_unit addMagazineCargoGlobal [_riflemag, 8];
 		_unit addMagazineCargoGlobal [_glriflemag, 8];
-		_unit addMagazineCargoGlobal [_carbinemag, 10];
+		_unit addMagazineCargoGlobal [_carbinemag, 8];
 		_unit addMagazineCargoGlobal [_armag, 5];
 		_unit addMagazineCargoGlobal [_ratmag, 1];
 		_unit addMagazineCargoGlobal [_grenade, 4];
@@ -875,9 +884,10 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 2];
 		_unit addMagazineCargoGlobal [_glmag, 4];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 4];
-		_unit addItemCargoGlobal ["ACE_elasticBandage", 20];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
+		_unit addItemCargoGlobal ["ACE_adenosine", 5];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
 	};
 
@@ -888,21 +898,17 @@ switch (_typeofUnit) do
 		clearMagazineCargoGlobal _unit;
 		clearItemCargoGlobal _unit;
 		clearBackpackCargoGlobal _unit;
-		_unit addWeaponCargoGlobal [_carbine, 10];
-		_unit addMagazineCargoGlobal [_riflemag, 40];
-		_unit addMagazineCargoGlobal [_glriflemag, 40];
-		_unit addMagazineCargoGlobal [_carbinemag, 40];
-		_unit addMagazineCargoGlobal [_armag, 22];
-		_unit addMagazineCargoGlobal [_ratmag, 6];
+		_unit addWeaponCargoGlobal [_carbine, 4];
 		_unit addMagazineCargoGlobal [_grenade, 12];
 		_unit addmagazineCargoGlobal [_mgrenade,12];
 		_unit addMagazineCargoGlobal [_smokegrenade, 12];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 4];
 		_unit addMagazineCargoGlobal [_glmag, 12];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 12];
-		_unit addItemCargoGlobal ["ACE_elasticBandage", 20];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
+		_unit addItemCargoGlobal ["ACE_adenosine", 5];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
 	};
 
@@ -913,10 +919,10 @@ switch (_typeofUnit) do
 		clearMagazineCargoGlobal _unit;
 		clearItemCargoGlobal _unit;
 		clearBackpackCargoGlobal _unit;
-		_unit addWeaponCargoGlobal [_carbine, 4];
-		_unit addMagazineCargoGlobal [_riflemag, 20];
-		_unit addMagazineCargoGlobal [_glriflemag, 20];
-		_unit addMagazineCargoGlobal [_carbinemag, 20];
+		_unit addWeaponCargoGlobal [_carbine, 2];
+		_unit addMagazineCargoGlobal [_riflemag, 10];
+		_unit addMagazineCargoGlobal [_glriflemag, 10];
+		_unit addMagazineCargoGlobal [_carbinemag, 12];
 		_unit addMagazineCargoGlobal [_armag, 8];
 		_unit addMagazineCargoGlobal [_ratmag, 2];
 		_unit addMagazineCargoGlobal [_grenade, 8];
@@ -925,9 +931,10 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 2];
 		_unit addMagazineCargoGlobal [_glmag, 8];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 4];
-		_unit addItemCargoGlobal ["ACE_elasticBandage", 20];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
+		_unit addItemCargoGlobal ["ACE_adenosine", 5];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
 	};
 
@@ -949,9 +956,10 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_mgrenade, 8];
 		_unit addMagazineCargoGlobal [_smokegrenade, 8];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 2];
-		_unit addItemCargoGlobal ["ACE_elasticBandage", 20];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
+		_unit addItemCargoGlobal ["ACE_adenosine", 5];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
 };
 
@@ -973,9 +981,10 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_mgrenade, 25];
 		_unit addMagazineCargoGlobal [_smokegrenade, 25];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 6];
-		_unit addItemCargoGlobal ["ACE_elasticBandage", 100];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 100];
 		_unit addItemCargoGlobal ["ACE_morphine", 50];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 25];
+		_unit addItemCargoGlobal ["ACE_adenosine", 12];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 10];
 };
 
@@ -997,9 +1006,10 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_mgrenade, 75];
 		_unit addMagazineCargoGlobal [_smokegrenade, 75];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 20];
-		_unit addItemCargoGlobal ["ACE_elasticBandage", 150];
+		_unit addItemCargoGlobal ["ACE_fieldDressing", 150];
 		_unit addItemCargoGlobal ["ACE_morphine", 75];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 50];
+		_unit addItemCargoGlobal ["ACE_adenosine", 25];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 25];
 };
 
