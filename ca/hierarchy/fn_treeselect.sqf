@@ -10,6 +10,7 @@ _shortrangech = _display displayCtrl 1814;
 _longrangechannels = _display displayCtrl 1815;
 _sideticketcontrol = _display displayCtrl 1816;
 _squadticketcontrol = _display displayCtrl 1817;
+_selectedgroupcontrol = _display displayCtrl 1818;
 
 
 
@@ -108,6 +109,19 @@ _squadtickets = _group getVariable ["ca_grouptickets","Not registered!"];
 
 
 
-_sideticketcontrol ctrlSetText (format ["%1 Tickets:%2",_side,_sidetickets]);
-_squadticketcontrol ctrlSetText (format ["Group Tickets:%1",(_squadtickets)]);
+_sideticketcontrol ctrlSetText (format ["%1 Tickets: %2",_side,_sidetickets]);
+_squadticketcontrol ctrlSetText (format ["%2 Tickets: %1",(_squadtickets),_groupid]);
 
+
+
+if (isnil {ca_switchgroupthiscycle}) then {
+	_selectedgroupcontrol ctrlSetText ("None");
+} else {
+if (ca_switchgroupthiscycle ) then {
+
+_selectedgroupcontrol ctrlSetText (format ["%1",(groupid ca_previousgroup)]);
+
+} else {
+		_selectedgroupcontrol ctrlSetText ("None");
+};	
+};

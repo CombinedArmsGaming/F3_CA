@@ -42,6 +42,7 @@ class CA
 		class movegroup{};
 		class selectgroup{};
 		class registergroup{};
+		class changerank{};
 	};
 	class massspawn
 	{

@@ -9,9 +9,9 @@ class ca_hierarchydialog
         class frame: RscFrame1
         {
         	idc = 1810;
-            x = 30 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
             y = 30 * pixelH * pixelGrid + safeZoneY;
-            w = 400 * (pixelW * 2);
+            w = 480 * (pixelW * 2);
             h = 300 * (pixelH * 2);
         };
         class tree: RscTree
@@ -28,6 +28,87 @@ class ca_hierarchydialog
 
             class ScrollBar : ScrollBar
             {};
+        };
+        class groupcontrol: RscText
+        {
+            idc = -1;
+            text = "Group controls";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 30 * pixelH * pixelGrid + safeZoneY;
+            w = 95 * (pixelW * 2);
+            h = 15 * (pixelH * 2);
+        };
+        class selectsquad: RscButton
+        {
+            idc = -1;
+            text = "Select/Deselect group";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 35 * pixelH * pixelGrid + safeZoneY;
+            w = 80 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            action =  "[] spawn ca_fnc_selectgroup";
+        };
+            class movesquad: RscButton
+        {
+            idc = -1;
+            text = "Assign to group";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 40 * pixelH * pixelGrid + safeZoneY;
+            w = 80 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            action =  "[] spawn ca_fnc_movegroup";
+        };
+            class registergroup: RscButton
+        {
+            idc = -1;
+            text = "Register group";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 45 * pixelH * pixelGrid + safeZoneY;
+            w = 80 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            action =  "[] spawn ca_fnc_registergroup";
+        };
+        class respawngroup: RscButton
+        {
+            idc = -1;
+            text = "Respawn group";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 50 * pixelH * pixelGrid + safeZoneY;
+            w = 80 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            action =  "[] spawn ca_fnc_respawngroup";
+        };
+        class selectedgroupinfo: RscText
+        {
+            idc = -1;
+            text = "Selected group:";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 60 * pixelH * pixelGrid + safeZoneY;
+            w = 100 * (pixelW * 2);
+            h = 15 * (pixelH * 2);
+        };
+        class selectedgroup: RscText
+        {
+            idc = 1818;
+            text = "None";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 65 * pixelH * pixelGrid + safeZoneY;
+            w = 100 * (pixelW * 2);
+            h = 15 * (pixelH * 2);
         };
         class aliveplayers: RscListbox1
         {
@@ -50,14 +131,62 @@ class ca_hierarchydialog
             w = 95 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
+        class playercontrol: RscText
+        {
+            idc = -1;
+            text = "Player controls";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 30 * pixelH * pixelGrid + safeZoneY;
+            w = 95 * (pixelW * 2);
+            h = 15 * (pixelH * 2);
+        };
+        class demote: RscButton
+        {
+            idc = -1;
+            text = "Demote selected";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 35 * pixelH * pixelGrid + safeZoneY;
+            w = 80 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            action =  "[false] spawn ca_fnc_changerank";
+        };
+         class promote: RscButton
+        {
+            idc = -1;
+            text = "Promote selected";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 40 * pixelH * pixelGrid + safeZoneY;
+            w = 80 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            action =  "[true] spawn ca_fnc_changerank";
+        };
+        class givelocalmark: RscButton 
+        {
+            idc = -1;
+            text = "Give selected Marker";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 45 * pixelH * pixelGrid + safeZoneY;
+            w = 80 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            action =  "[] spawn ca_fnc_giveSpecialistMarker";
+            //closeDialog 0;
+        };
         class deadplayers: RscListbox1
         {
         	idc = 1813;
             sizeEx = 10 * (pixelH * 2);
             x = 40 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 74 * pixelH * pixelGrid + safeZoneY;
+            y = 75 * pixelH * pixelGrid + safeZoneY;
             w = 95 * (pixelW * 2);
-            h = 120 * (pixelH * 2);
+            h = 115 * (pixelH * 2);
         };
         class deadplayerinfo: RscText
         {
@@ -70,73 +199,71 @@ class ca_hierarchydialog
             w = 95 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
-        class shortrangech: RscEdit
+        class shortrangech: RscEdit //moved 
         {
             idc = 1814;
             sizeEx = 15 * (pixelH * 2);
             text = "";
-            x = 51 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            x = 60 * pixelW * pixelGrid * safezoneW + safeZoneX;
             y = 35 * pixelH * pixelGrid + safeZoneY;
             w = 100 * (pixelW * 2);
             h = 25 * (pixelH * 2);
         };
-        class longrangechannel: RscEdit
+        class longrangechannel: RscEdit //moved 
         {
             idc = 1815;
             sizeEx = 15 * (pixelH * 2);
             text = "";
-            x = 51 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            x = 60 * pixelW * pixelGrid * safezoneW + safeZoneX;
             y = 50 * pixelH * pixelGrid + safeZoneY;
             w = 100 * (pixelW * 2);
             h = 25 * (pixelH * 2);
         };
-        class shortrangeinfo: RscText
+        class shortrangeinfo: RscText //moved 
         {
             idc = -1;
             text = "SR radio channel next respawn";
-            style = ST_CENTER;
+            style = ST_LEFT;
             sizeEx = 10 * (pixelH * 2);
-            x = 49 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 30 * pixelH * pixelGrid + safeZoneY;
-            w = 140 * (pixelW * 2);
+            x = 59 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 30 * pixelH * pixelGrida + safeZoneY;
+            w = 200 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
-        class longrangeinfo: RscText
+        class longrangeinfo: RscText //moved 
         {
             idc = -1;
             text = "LR radio channels next respawn";
             sizeEx = 10 * (pixelH * 2);
-            style = ST_CENTER;
-            x = 49 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            style = ST_LEFT;
+            x = 59 * pixelW * pixelGrid * safezoneW + safeZoneX;
             y = 45 * pixelH * pixelGrid + safeZoneY;
-            w = 140 * (pixelW * 2);
+            w = 200 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
-        class updateradios: RscButton
+        class updateradios: RscButton 
         {
             idc = -1;
             text = "Update Radio CHs";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 63 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 30 * pixelH * pixelGrid + safeZoneY;
-            w = 80 * (pixelW * 2);
+            x = 59 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 58 * pixelH * pixelGrid + safeZoneY;
+            w = 110 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_updateradioCHs";
             //closeDialog 0;
         };
-        class givelocalmark: RscButton
+        class tickinfo: RscText //moved 
         {
             idc = -1;
-            text = "Give Specialist Marker";
+            text = "Group Ticket Controls";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 63 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 40 * pixelH * pixelGrid + safeZoneY;
-            w = 80 * (pixelW * 2);
+            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 69 * pixelH * pixelGrid + safeZoneY;
+            w = 140 * (pixelW * 2);
             h = 20 * (pixelH * 2);
-            action =  "[] spawn ca_fnc_giveSpecialistMarker";
-            //closeDialog 0;
         };
         class sidetickets: RscText
         {
@@ -145,7 +272,7 @@ class ca_hierarchydialog
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 60 * pixelH * pixelGrid + safeZoneY;
+            y = 75 * pixelH * pixelGrid + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
@@ -156,21 +283,9 @@ class ca_hierarchydialog
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 65 * pixelH * pixelGrid + safeZoneY;
+            y = 80 * pixelH * pixelGrid + safeZoneY;
             w = 100 * (pixelW * 2);
             h = 15 * (pixelH * 2);
-        };
-        class respawngroup: RscButton
-        {
-            idc = -1;
-            text = "Respawn selected group";
-            sizeEx = 10 * (pixelH * 2);
-            style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 70 * pixelH * pixelGrid + safeZoneY;
-            w = 100 * (pixelW * 2);
-            h = 20 * (pixelH * 2);
-            action =  "[] spawn ca_fnc_respawngroup";
         };
         class givetickets: RscButton
         {
@@ -178,8 +293,8 @@ class ca_hierarchydialog
             text = "+1";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 57 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 60 * pixelH * pixelGrid + safeZoneY;
+            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 85 * pixelH * pixelGrid + safeZoneY;
             w = 15 * (pixelW * 2);
             h = 15 * (pixelH * 2);
             action =  "[1] spawn ca_fnc_transferSquadTickets";
@@ -190,8 +305,8 @@ class ca_hierarchydialog
             text = "-1";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 57 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 65 * pixelH * pixelGrid + safeZoneY;
+            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 90 * pixelH * pixelGrid + safeZoneY;
             w = 15 * (pixelW * 2);
             h = 15 * (pixelH * 2);
             action =  "[-1] spawn ca_fnc_transferSquadTickets";
@@ -202,8 +317,8 @@ class ca_hierarchydialog
             text = "+5";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 59 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 60 * pixelH * pixelGrid + safeZoneY;
+            x = 52 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 85 * pixelH * pixelGrid + safeZoneY;
             w = 15 * (pixelW * 2);
             h = 15 * (pixelH * 2);
             action =  "[5] spawn ca_fnc_transferSquadTickets";
@@ -214,35 +329,11 @@ class ca_hierarchydialog
             text = "-5";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 59 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 65 * pixelH * pixelGrid + safeZoneY;
+            x = 52 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 90 * pixelH * pixelGrid + safeZoneY;
             w = 15 * (pixelW * 2);
             h = 15 * (pixelH * 2);
             action =  "[-5] spawn ca_fnc_transferSquadTickets";
-        };
-            class selectsquad: RscButton
-        {
-            idc = -1;
-            text = "Select group";
-            sizeEx = 10 * (pixelH * 2);
-            style = ST_LEFT;
-            x = 63 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 60 * pixelH * pixelGrid + safeZoneY;
-            w = 80 * (pixelW * 2);
-            h = 20 * (pixelH * 2);
-            action =  "[] spawn ca_fnc_selectgroup";
-        };
-            class movesquad: RscButton
-        {
-            idc = -1;
-            text = "Move selected group";
-            sizeEx = 10 * (pixelH * 2);
-            style = ST_LEFT;
-            x = 63 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 65 * pixelH * pixelGrid + safeZoneY;
-            w = 80 * (pixelW * 2);
-            h = 20 * (pixelH * 2);
-            action =  "[] spawn ca_fnc_movegroup";
         };
             class becomeco: RscButton
         {
@@ -250,23 +341,11 @@ class ca_hierarchydialog
             text = "Become CO";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 63 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 70 * pixelH * pixelGrid + safeZoneY;
+            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 95 * pixelH * pixelGrid + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_becomeco";
-        };
-            class registergroup: RscButton
-        {
-            idc = -1;
-            text = "Register group";
-            sizeEx = 10 * (pixelH * 2);
-            style = ST_LEFT;
-            x = 63 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 75 * pixelH * pixelGrid + safeZoneY;
-            w = 80 * (pixelW * 2);
-            h = 20 * (pixelH * 2);
-            action =  "[] spawn ca_fnc_registergroup";
         };
     };
 };

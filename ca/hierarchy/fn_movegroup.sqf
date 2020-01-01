@@ -15,7 +15,6 @@ _group = ca_selectedgroup;
 _groupid = ca_selectedgroupid;
 
 
-
 // ---------------------------------------------------------------------
 _rankid = rankid player;
 if (_rankid < ca_corank) exitWith {systemChat "You do not have the sufficient authority to change the hierarchy!";};
