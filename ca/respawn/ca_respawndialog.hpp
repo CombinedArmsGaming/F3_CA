@@ -26,10 +26,10 @@ class RscButton1
     colorFocused[] = {0.75,0.75,0.75,.5};
     colorShadow[] = {0.023529,0,0.0313725,1};
     colorBorder[] = {0.023529,0,0.0313725,1};
-    soundEnter[] = {"\ca\ui\data\sound\onover",0.09,1};
-    soundPush[] = {"\ca\ui\data\sound\new1",0,0};
-    soundClick[] = {"\ca\ui\data\sound\onclick",0.07,1};
-    soundEscape[] = {"\ca\ui\data\sound\onescape",0.09,1};
+	soundEnter[] = {"",0.1,1};
+	soundPush[] = {"",0.1,1};
+	soundClick[] = {"",0.1,1};
+	soundEscape[] = {"",0.1,1};
     style = 2;
     x = 0;
     y = 0;
@@ -116,8 +116,8 @@ class ca_respawndiag
         	y = 0.35 * safezoneH + safezoneY;
         	w = 0.2 * safezoneW;
         	h = 0.05 * safezoneH;
-            action =  "if(rank player == 'COLONEL' || (serverCommandAvailable '#kick')) then {[] call ca_fnc_respawnwave; hint 'Wave spawned!';}";
-            //closeDialog 0;
+            action =  "[] spawn ca_fnc_respawnwave;";
+            //closeDialog 0; if((ca_respawnmode == 2 && rankid player > ca_corank) || (serverCommandAvailable '#kick')) then {[] call ca_fnc_respawnwave;}
         };
         class infotext2: RscFrame
         {
@@ -166,7 +166,5 @@ class ca_respawndiag
             action =  "closeDialog 0;";
 
         };
-
-
 };
 };

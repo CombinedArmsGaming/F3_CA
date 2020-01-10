@@ -3,6 +3,12 @@
 // ====================================================================================
 
 private ["_presetSetup"];
+[] execVM "ca_acre2settings.sqf";
+
+if (didJIP) then {
+	waitUntil {!isnil {(group player) getVariable "ca_groupsetup"}}; 
+};
+waitUntil {!isnil {ca_platoonsetup}}; 
 
 // precompile functions
 f_acre2_presetSetup = compile preprocessFileLineNumbers "f\radios\acre2\acre2_setupPresets.sqf";
@@ -49,7 +55,8 @@ if (!isDedicated && (isNull player)) then
 };
 
 // include the smaller acre2 settings file.
-#include "acre2_settings.sqf"
+waitUntil { ca_radioSetup };
+
 
 
 // setup presets

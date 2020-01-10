@@ -1,0 +1,88 @@
+/*
+ * Author: Poulern
+ * If given an array by the Hierachy, find a string in element 0 and send it to fnc handlestring, else send off array to this function again.
+ *
+ * Arguments:
+ * 0: Array
+ * 
+ *
+ * Example:
+ * 
+	["AV", 1,[1],west,"ASLWEST"] spawn ca_fnc_setupGroup;
+ *
+ */
+if (!isDedicated && (isNull player)) then
+{
+    waitUntil {sleep 0.1; !isNull player; !isnil {ca_platoonsetup};};
+};
+sleep 10;
+_unit = player;
+_group = group player;
+_groupid = groupid (group player);
+//If the group is already setup, then exit
+if (!isnil {group player getVariable "ca_superior"}) exitWith {};
+_side = side player;
+
+_setupgroup = {
+	params ["_groupid","_superior","_rank","_SRradioCH","_LRradioarray","_groupcolor","_grouptickets","_grouptype"];
+
+	_group = group player;
+
+	_group setVariable ["ca_groupsetup",true, true];
+	_group setVariable ["ca_superior",_superior, true];
+	_group setVariable ["ca_SRradioCH",_SRradioCH, true];
+	_group setVariable ["ca_LRradioarray",_LRradioarray, true];
+	_group setVariable ["ca_groupcolor",_groupcolor, true];
+	_group setVariable ["ca_grouptickets",_grouptickets, true];
+	_group setVariable ["ca_grouptype",_grouptype, true];
+	_cooldowntime = ca_grouprespawncooldown + time;
+	_group setVariable ["ca_grouprespawntime",_cooldowntime, true];
+
+	{
+		if (leader _group == _x) then {
+			[leader _group,_rank] spawn ca_fnc_setrank;
+		};
+	} forEach (units _group);
+	//PUT IN GROUP MARKERS HERE (remoteexec becauser its server executing only)
+	_group remoteExec ["ca_fnc_groupMarker",_side,true];
+};
+
+
+switch (_side) do {
+	case west: {
+		{
+			_possiblegrpid = _x select 1;
+			if (_possiblegrpid == _groupid) then {
+
+				(_x select 0) call _setupgroup;
+			};
+		} forEach ca_WestJIPgroups;
+	};
+	case east: {
+		{
+			_possiblegrpid = _x select 1;
+			if (_possiblegrpid == _groupid) exitWith {
+				(_x select 0) call _setupgroup;
+			};
+				
+
+		} forEach ca_EastJIPgroups;
+
+	};
+	case independent: {
+		{
+			_possiblegrpid = _x select 1;
+			if (_possiblegrpid == _groupid) exitWith {
+				(_x select 0) call _setupgroup;
+			};
+		} forEach ca_IndependentJIPgroups;
+	};
+	default {diag_log format ["Error JIP player(%1) not correctly setup side(%2), group (%3)",player, _side,_group]};
+};
+
+
+_setup = group player getVariable ["ca_groupsetup",false];
+if (!_setup) then {
+	[_group,_groupid,2,16,[4],"ColorGrey",0,"none"] call _setupgroup;
+};
+diag_log format [" JIP player(%1)setup side(%2), group (%3)",player, _side,_group];

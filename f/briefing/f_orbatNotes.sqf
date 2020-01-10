@@ -3,7 +3,7 @@
 // ====================================================================================
 
 // Group IDs need to be set before the ORBAT listing can be created
-waitUntil {scriptDone f_script_setGroupMarkers};
+waitUntil {!isnil {ca_platoonsetup}}; 
 
 // Define needed variables
 private ["_orbatText", "_groups", "_precompileGroups","_maxSlots","_freeSlots"];

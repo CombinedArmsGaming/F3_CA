@@ -15,7 +15,9 @@ class CA
 		file = "ca\core";
 		class getdirpos{};
 		class getmarkerarray{};
-        	class groupMarker{};
+        class groupMarker{};
+		class setrank{};
+		class specialistMarker{};
 	};
 	class headless
 	{
@@ -25,6 +27,22 @@ class CA
 		class hcfind{};
 		class hcinit{postInit = 1;};
 		class hcmarker{};
+	};
+	class hierarchy
+	{
+		file = "ca\hierarchy";
+		class setupGroup{};
+		class becomeco {};
+		class setupJIP{};
+		class treeselect{};
+		class updateradioCHs{};
+		class respawngroup{};
+		class giveSpecialistMarker{};
+		class transferSquadTickets{};
+		class movegroup{};
+		class selectgroup{};
+		class registergroup{};
+		class changerank{};
 	};
 	class massspawn
 	{
@@ -40,16 +58,15 @@ class CA
 	class misc
 	{
 		file = "ca\misc";
-		class bodymanage{};
+		class aidriver{};
 		class incfuelcon{};
 		class parachute{};
-        	class vehiclespawner{};
+        class vehiclespawner{};
 	};
 	class respawn
 	{
 		file = "ca\respawn";
 		class respawnwave{};
-		class respawnwaveserver{};
 	};
 	class spawn
 	{

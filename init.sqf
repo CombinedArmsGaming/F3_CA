@@ -9,10 +9,12 @@ enableSaving [false, false];
 
 // F3 - Mute Orders and Reports
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
+Vcm_ActivateAi = false;  
+Vcm_DrivingActivated = false;  
 enableSentences false;
 // Wait until initServer.sqf is done to get all the variables we need.
 waitUntil {!isnil {ca_initserver}};
+if (didJIP) then {[] spawn ca_fnc_setupJIP};
 // ====================================================================================
 
 // F3 - MapClick Teleport
@@ -38,7 +40,7 @@ f_var_mapClickSupplyDrop_Height = 1000;									// If > 0 map click Supply Drop 
 // F3 - Briefing
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
-f_script_briefing = [] execVM "briefing.sqf";
+f_script_briefing = [] execVM "f\briefing\briefing.sqf";
 
 // ====================================================================================
 
@@ -59,7 +61,7 @@ f_script_setTeamColours = [] execVM "f\setTeamColours\f_setTeamColours.sqf";
 // F3 - F3 Folk ARPS Group Markers
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
-f_script_setGroupMarkers = [] execVM "f\groupMarkers\f_setLocalGroupMarkers.sqf";
+//f_script_setGroupMarkers = [] execVM "f\groupMarkers\f_setLocalGroupMarkers.sqf";
 
 // ====================================================================================
 
@@ -136,7 +138,7 @@ if(isServer) then {
 // F3 - Join Group Action
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
-[false] execVM "f\groupJoin\f_groupJoinAction.sqf";
+//[false] execVM "f\groupJoin\f_groupJoinAction.sqf";
 
 // ====================================================================================
 
