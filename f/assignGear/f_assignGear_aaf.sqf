@@ -410,6 +410,7 @@ switch (_typeofUnit) do
 		_unit addweapon _carbine;
 		_unit addmagazines [_smokegrenade,4];
 		{_unit addItem _firstaid} forEach [1,2,3,4];
+		{_unit addItem "ACE_splint"} forEach [1,2,3,4,5];		
 		_unit linkItem "ItemGPS";
 		_unit addItem "ACE_microDAGR";
 		["m"] call _backpack;

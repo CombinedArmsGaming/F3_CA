@@ -7,7 +7,7 @@ case "m":
 {
 	// LOADOUT: MEDIUM
 	if (_loadout <= 1) then {
-		_unit addBackpack _bagsmall;
+		_unit addBackpack _bagmedium;
 		clearMagazineCargoGlobal (unitBackpack _unit);
 		(unitBackpack _unit) addMagazineCargoGlobal [_smokegrenade, 4];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 25];
