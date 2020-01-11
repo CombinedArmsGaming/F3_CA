@@ -16,7 +16,7 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={957.98248,68.975807,703.47363};
+		pos[]={680.24445,68.975807,676.82874};
 		dir[]={-0.65366459,-0.40702268,-0.63803458};
 		up[]={-0.29126897,0.91341269,-0.28430498};
 		aside[]={-0.69850731,2.2468157e-007,0.71561992};
@@ -26,7 +26,6 @@ binarizationWanted=0;
 addons[]=
 {
 	"A3_Armor_F_Beta_APC_Tracked_01",
-	"ace_realisticnames",
 	"acre_sys_intercom",
 	"A3_Armor_F_Beta_APC_Wheeled_02",
 	"A3_Armor_F_Gamma_APC_Wheeled_03",
