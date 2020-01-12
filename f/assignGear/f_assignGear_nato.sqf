@@ -333,7 +333,7 @@ if (_isMan) then {
 	{_unit addItem "ACE_elasticBandage"} forEach [1,2,3,4,5,6,7,8,9,10]; // Bandages
 	{_unit addItem "ACE_morphine"} forEach [1,2,3,4,5];
 	{_unit addItem "ACE_tourniquet"} forEach [1,2];
-	{_unit addItem "ACE_splint"} forEach [1];	
+	{_unit addItem "ACE_splint"} forEach [1,2];	
 	//{_unit addItem "ACE_epinephrine"} forEach [1,2];
 	//{_unit addItem "ACE_adenosine"} forEach [1];	
 	//{_unit addItem "ACE_bloodIV"} forEach [1];
@@ -411,11 +411,13 @@ switch (_typeofUnit) do
 // LOADOUT: MEDIC
 	case "m":
 	{
-		_unit addmagazines [_carbinemag,7];
 		_unit addweapon _carbine;
+		_unit addmagazines [_carbinemag,5];
+		_unit addmagazines [_carbinemag_tr,2];		
 		_unit addmagazines [_smokegrenade,4];
 		{_unit addItem _firstaid} forEach [1,2,3,4];
-		{_unit addItem "ACE_splint"} forEach [1,2,3,4,5];			
+		{_unit addItem "ACE_splint"} forEach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addWeapon "Binocular";		
 		_unit linkItem "ItemGPS";
 		_unit addItem "ACE_microDAGR";
 		["m"] call _backpack;
@@ -760,7 +762,6 @@ switch (_typeofUnit) do
 		_unit addmagazines [_grenade,1];
 		_unit addmagazines [_mgrenade,1];
 		_unit addmagazines [_satchel,2];
-		_unit addItem "MineDetector";
 		_unit addItem "ACE_M26_Clacker";
 		_unit addItem "ACE_DefusalKit";
 		_unit addItem "ACE_wirecutter";
@@ -872,6 +873,7 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_glriflemag, 8];
 		_unit addMagazineCargoGlobal [_carbinemag, 10];
 		_unit addMagazineCargoGlobal [_armag, 5];
+		_unit addMagazineCargoGlobal [_DMriflemag, 5];		
 		_unit addMagazineCargoGlobal [_ratmag, 1];
 		_unit addMagazineCargoGlobal [_grenade, 4];
 		_unit addMagazineCargoGlobal [_smokegrenade, 4];
@@ -882,6 +884,7 @@ switch (_typeofUnit) do
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
+		_unit addItemCargoGlobal ["ACE_splint", 10];		
 	};
 
 // CARGO: TRUCK - room for 50 weapons and 200 cargo items
@@ -896,6 +899,7 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_glriflemag, 40];
 		_unit addMagazineCargoGlobal [_carbinemag, 40];
 		_unit addMagazineCargoGlobal [_armag, 22];
+		_unit addMagazineCargoGlobal [_DMriflemag, 22];		
 		_unit addMagazineCargoGlobal [_ratmag, 6];
 		_unit addMagazineCargoGlobal [_grenade, 12];
 		_unit addmagazineCargoGlobal [_mgrenade,12];
@@ -907,6 +911,7 @@ switch (_typeofUnit) do
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
+		_unit addItemCargoGlobal ["ACE_splint", 10];			
 	};
 
 // CARGO: IFV - room for 10 weapons and 100 cargo items
@@ -921,6 +926,7 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_glriflemag, 20];
 		_unit addMagazineCargoGlobal [_carbinemag, 20];
 		_unit addMagazineCargoGlobal [_armag, 8];
+		_unit addMagazineCargoGlobal [_DMriflemag, 8];		
 		_unit addMagazineCargoGlobal [_ratmag, 2];
 		_unit addMagazineCargoGlobal [_grenade, 8];
 		_unit addmagazineCargoGlobal [_mgrenade,8];
@@ -932,6 +938,7 @@ switch (_typeofUnit) do
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
+		_unit addItemCargoGlobal ["ACE_splint", 10];			
 	};
 
 // CRATE: Small, ammo for 1 fireteam
@@ -944,6 +951,7 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_riflemag, 5];
 		_unit addMagazineCargoGlobal [_glriflemag, 5];
 		_unit addMagazineCargoGlobal [_armag, 5];
+		_unit addMagazineCargoGlobal [_DMriflemag, 5];		
 		_unit addMagazineCargoGlobal [_carbinemag, 5];
 		_unit addMagazineCargoGlobal [_glmag, 5];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 4];
@@ -956,6 +964,7 @@ switch (_typeofUnit) do
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
+		_unit addItemCargoGlobal ["ACE_splint", 10];			
 };
 
 // CRATE: Medium, ammo for 1 squad
@@ -968,6 +977,7 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_riflemag, 15];
 		_unit addMagazineCargoGlobal [_glriflemag, 20];
 		_unit addMagazineCargoGlobal [_armag, 15];
+		_unit addMagazineCargoGlobal [_DMriflemag, 15];		
 		_unit addMagazineCargoGlobal [_carbinemag, 20];
 		_unit addMagazineCargoGlobal [_glmag, 20];
 		_unit addMagazineCargoGlobal [_glsmokewhite,16];
@@ -980,6 +990,7 @@ switch (_typeofUnit) do
 		_unit addItemCargoGlobal ["ACE_morphine", 50];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 25];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 10];
+		_unit addItemCargoGlobal ["ACE_splint", 20];			
 };
 
 // CRATE: Large, ammo for 1 platoon
@@ -992,6 +1003,7 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_riflemag, 45];
 		_unit addMagazineCargoGlobal [_glriflemag, 60];
 		_unit addMagazineCargoGlobal [_armag, 45];
+		_unit addMagazineCargoGlobal [_DMriflemag, 45];		
 		_unit addMagazineCargoGlobal [_carbinemag, 60];
 		_unit addMagazineCargoGlobal [_glmag, 60];
 		_unit addMagazineCargoGlobal [_glsmokewhite,50];
@@ -1004,6 +1016,7 @@ switch (_typeofUnit) do
 		_unit addItemCargoGlobal ["ACE_morphine", 75];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 50];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 25];
+		_unit addItemCargoGlobal ["ACE_splint", 50];			
 
 };
 
