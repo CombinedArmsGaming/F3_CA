@@ -308,6 +308,7 @@ class CfgFunctions
 			class localGroupMarker{};
 			class localSpecialistMarker{};
 		};
+		#include "f\groupMarkers\smoothMarkers\functions.hpp"
 		class FTMemberMarkers
 		{
 			file = "f\FTMemberMarkers";
