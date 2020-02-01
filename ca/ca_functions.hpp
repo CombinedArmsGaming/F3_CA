@@ -93,4 +93,6 @@ class CA
 		class server_spawnGroup{};
 		class zeusUI{};
 	};
+
+	#include "smoothMarkers\functions.hpp"
 };

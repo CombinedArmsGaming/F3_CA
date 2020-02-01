@@ -15,7 +15,7 @@
 		f_var_squadMarkersDrawHandlerId_RscDiary = ((uiNamespace getVariable "RscDiary") displayCtrl 51) ctrlAddEventHandler
 		[
 			"Draw",
-			"_this call f_fnc_drawSquadMarkers"
+			"_this call ca_fnc_drawSquadMarkers"
 		];
 
 	};
@@ -38,7 +38,7 @@
 		f_var_squadMarkersDrawHandlerId_RscCustomInfoMiniMap = ((uiNamespace getVariable "RscCustomInfoMiniMap") displayCtrl 101) ctrlAddEventHandler
 		[
 			"Draw",
-			"_this call f_fnc_drawSquadMarkers"
+			"_this call ca_fnc_drawSquadMarkers"
 		];
 
 	};

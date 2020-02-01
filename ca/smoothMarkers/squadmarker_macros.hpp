@@ -40,7 +40,7 @@
 #define UNKNOWN     "res\images\squadMarkers\squad_unknown.paa"
 
 
-#define UNIT_MARKER(CLASS,NAME) ([#CLASS, NAME] call f_fnc_generateUnitMarkerCode)
+#define UNIT_MARKER(CLASS,NAME) ([#CLASS, NAME] call ca_fnc_generateUnitMarkerCode)
 #define MEDIC_MARKER UNIT_MARKER(med,"Medic")
 
 

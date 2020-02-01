@@ -2,7 +2,7 @@
 #include "macros.hpp"
 
 CLIENT_ONLY;
-RUN_AS_ASYNC(f_fnc_initSquadMarkerManager);
+RUN_AS_ASYNC(ca_fnc_initSquadMarkerManager);
 
 f_arr_squadMarkers = [];
 f_arr_unitMarkers = [];
@@ -17,7 +17,7 @@ waitUntil
     _playerSide = side group player;
     _sideGroups = allGroups select {side _x == _playerSide};
 
-    _sideName = [_playerSide] call f_fnc_sideToString;
+    _sideName = [_playerSide] call ca_fnc_sideToString;
 
     {
         _group = _x;
@@ -40,9 +40,16 @@ waitUntil
 
                 if (_visible) then
                 {
-                    if !(SQUAD_NAME(_entry) isEqualTo "") then {_name = SQUAD_NAME(_entry)};
-                    if !(SQUAD_ICON(_entry) isEqualTo "") then {_icon = SQUAD_ICON(_entry)};
-                    if !(SQUAD_COLOUR(_entry) isEqualTo []) then {_colour = SQUAD_COLOUR(_entry)};
+                    _colourText = _group getVariable ["ca_groupcolor","ColorBlack"];
+                    _colour = (configfile >> "CfgMarkerColors" >> _colourText >> "color") call BIS_fnc_colorConfigToRGBA;
+
+                    _iconText = _group getVariable ["ca_grouptype","none"];
+
+                    if !(_iconText isEqualTo "none") then
+                    {
+                        _icon = [_iconText] call ca_fnc_convertMarkerNameToImage;
+                    };
+
                     _specials = SQUAD_SPECIALS(_entry);
 
                 };
@@ -79,7 +86,7 @@ waitUntil
 
                     };
 
-                    if (_icon isEqualTo "") then {_icon = [_group] call f_fnc_getGroupMarker};
+                    if (_icon isEqualTo "") then {_icon = [_group] call ca_fnc_getGroupMarker};
                     if (_colour isEqualTo []) then {_colour = DEFAULT_COLOUR};
 
                     _newMarkers pushBack [_group, _icon, _name, _colour];

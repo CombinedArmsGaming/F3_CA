@@ -39,7 +39,7 @@ missionNamespace setVariable ['ca_initserver',true, true];
 // Extend the file to the CA folder
 [] execVM "ca\ca_initServer.sqf";
 [] execVM "ca_platoonSetup.sqf";
-[] call f_fnc_initSmoothMarkers;
+[] call ca_fnc_initSmoothMarkers;
 
 // CA - Parachute spawning
 //_parachutearea = ""; // Name of area marker players will spawn in

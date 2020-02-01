@@ -6,5 +6,5 @@ INIT_SQUADS();
 
 if (IS_TRUE(f_var_smoothMarkers)) then
 {
-    [] call f_fnc_beginSquadMarkers;
+    [] call ca_fnc_beginSquadMarkers;
 }

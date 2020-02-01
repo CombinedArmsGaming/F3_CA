@@ -1,6 +1,6 @@
 class smoothMarkers
 {
-    file = "f\groupMarkers\smoothMarkers";
+    file = "ca\smoothMarkers";
     class beginSquadMarkers{};
     class createSquadMarkerHook{};
     class drawSquadMarkers{};
@@ -10,4 +10,5 @@ class smoothMarkers
     class addGroupMemberMarkers{};
     class sideToString{};
     class initSmoothMarkers{};
+    class convertMarkerNameToImage{};    
 };

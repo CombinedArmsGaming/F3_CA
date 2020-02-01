@@ -9,20 +9,10 @@
 // SET KEY VARIABLES
 // Using variables passed to the script instance, we will create some local variables:
 
-#include "smoothMarkers\macros.hpp"
-
-params["_grpName",["_mkrType","auto"],"_mkrText",["_mkrColor","ColorBlack"]];
+params["_grpName",["_mkrType","b_hq"],"_mkrText",["_mkrColor","ColorBlack"]];
 
 private _grp = missionNamespace getVariable [_grpName,grpNull];
 private _mkrName = format ["mkr_%1",_grpName];
-
-// Exit with an error if "auto" markers are selected with smooth markers disabled.
-_smoothMarkersEnabled = IS_TRUE(f_var_smoothMarkers);
-
-if (_mkrType isEqualTo "auto" and {!_smoothMarkersEnabled}) then
-{
-	throw "Smooth markers are not enabled, marker type 'auto' cannot be used.";
-};
 
 // ====================================================================================
 
@@ -41,41 +31,12 @@ if (isNull _grp) then
 
 if (isnil "_grp") exitWith {};
 
-// Set variables for group.
-_grp setVariable ["ca_groupcolor", (_grp getVariable ["ca_groupcolor",_mkrColor])];
-_grp setVariable ["ca_grouptype", (_grp getVariable ["ca_grouptype",_mkrType])];
-
 // ====================================================================================
 // Create groupID
 // Allows for defining it based on mapmarkers, which is a shorthand identifier anyways.
 // Reprecated! Now GroupIDs(and marker text!) can be set in eden, but doesnt always work!
 _grp setGroupIdGlobal [format ["%1",_mkrText],"GroupColor0"];
 _newmkrText = groupId _grp;
-
-// ====================================================================================
-// Smooth markers support
-
-_side = [side player] call f_fnc_sideToString;
-_grpId = groupId _grp;
-
-// Convert the colour string into an array of colour values.
-_colorRGBA = (configfile >> "CfgMarkerColors" >> _mkrColor >> "color") call BIS_fnc_colorConfigToRGBA;
-
-// Add info into a dictionary so smooth markers can get what they need to run.
-MAKE_SQUAD_EDITABLE_DYNAMIC(_grpId,_side);
-SET_SQUAD_COLOUR_DYNAMIC(_grpId,_side,_colorRGBA);
-SET_SQUAD_NAME_DYNAMIC(_grpId,_side,_grpName);
-
-if !(_mkrType isEqualTo "auto") then
-{
-	SET_SQUAD_ICON_DYNAMIC(_grpId,_side,_mkrType);
-};
-
-
-// ====================================================================================
-// If smooth markers are enabled, exit the function here instead of creating a normal marker below.
-if (_smoothMarkersEnabled) exitWith {};
-
 // ====================================================================================
 // CREATE MARKER
 // Depending on the value of _mkrType a different type of marker is created.
@@ -86,6 +47,9 @@ _mkrName setMarkerTypeLocal  _mkrType;
 _mkrName setMarkerColorLocal _mkrColor;
 _mkrName setMarkerSizeLocal [0.8, 0.8];
 _mkrName setMarkerTextLocal _newmkrText;
+// Set variables for group.
+_grp setVariable ["ca_groupcolor", (_grp getVariable ["ca_groupcolor",_mkrColor])];
+_grp setVariable ["ca_grouptype", (_grp getVariable ["ca_grouptype",_mkrType])];
 
 // ====================================================================================
 
