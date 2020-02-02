@@ -78,7 +78,7 @@ _playerGroup = group player;
 	_x params ["_group", "_unit", "_name", "_colour"];
 
 	_inDifferentGroup = !(_playerGroup isEqualTo _group);
-	_isGroupLeader = (leader _group isEqualTo _unit);
+	_isGroupLeader = (leader _unit isEqualTo _unit);
 	_shouldDrawMarker = _inDifferentGroup and {alive _unit} and {!_isGroupLeader};
 
 	if (_shouldDrawMarker) then
