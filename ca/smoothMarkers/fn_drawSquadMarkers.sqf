@@ -17,11 +17,12 @@ _drawMarker =
 		format ["%1%2",MISSION_ROOT,_icon],
 		_colour,
 		_pos,
-		32,
-		32,
+		28,
+		28,
 		0,
 		_name,
-		2
+		2,
+		0.06
 	];
 
 };
@@ -77,8 +78,10 @@ _playerGroup = group player;
 	_x params ["_group", "_unit", "_name", "_colour"];
 
 	_inDifferentGroup = !(_playerGroup isEqualTo _group);
+	_isGroupLeader = (leader _group isEqualTo _unit);
+	_shouldDrawMarker = _inDifferentGroup and {alive _unit} and {!_isGroupLeader};
 
-	if (_inDifferentGroup and {alive _unit}) then
+	if (_shouldDrawMarker) then
 	{
 		_pos = getPos _unit;
 		_dir = getDir _unit;

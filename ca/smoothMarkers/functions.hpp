@@ -9,6 +9,6 @@ class smoothMarkers
     class generateUnitMarkerCode{};
     class addGroupMemberMarkers{};
     class sideToString{};
-    class initSmoothMarkers{};
-    class convertMarkerNameToImage{};    
+    class initSmoothSquadMarkers{};
+    class convertMarkerNameToImage{};
 };

@@ -9,6 +9,11 @@
 		!( (isNull _display) or {isNull (_display displayCtrl 51)} )
 	};
 
+	// Wait until fireteam marker hook has been registered, so FT markers appear on top of squad icons.
+	waitUntil
+	{
+		!(isNil 'f_var_ftMarkersDrawHandlerId_RscDiary')
+	};
 
 	if (isNil 'f_var_squadMarkersDrawHandlerId_RscDiary') then
 	{
@@ -32,6 +37,11 @@
 		!( (isNull _display) or {isNull (_display displayCtrl 101)} )
 	};
 
+	// Wait until fireteam marker hook has been registered, so FT markers appear on top of squad icons.
+	waitUntil
+	{
+		!(isNil 'f_var_ftMarkersDrawHandlerId_RscCustomInfoMiniMap')
+	};
 
 	if (isNil 'f_var_squadMarkersDrawHandlerId_RscCustomInfoMiniMap') then
 	{

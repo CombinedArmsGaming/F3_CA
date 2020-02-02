@@ -9,100 +9,101 @@ f_arr_unitMarkers = [];
 
 waitUntil
 {
-    if !(alive player) exitWith {false};
 
     _newMarkers = [];
     _newUnitMarkers = [];
 
-    _playerSide = side group player;
-    _sideGroups = allGroups select {side _x == _playerSide};
-
-    _sideName = [_playerSide] call ca_fnc_sideToString;
-
+    if (!IS_TRUE(f_var_smoothMarkers_hide) and {alive player}) then
     {
-        _group = _x;
-        _units = units _group;
+        _playerSide = side group player;
+        _sideGroups = allGroups select {side _x == _playerSide};
 
-        if !(isNull _group or {{alive _x} count _units <= 0}) then
-    	{
-            _name = groupId _group;
+        _sideName = [_playerSide] call ca_fnc_sideToString;
 
-            _icon = "";
-            _colour = [];
-            _visible = true;
-            _specials = [];
+        {
+            _group = _x;
+            _units = units _group;
 
-            _entry = SQUAD_VAR_DYNAMIC(_name,_sideName);
+            if !(isNull _group or {{alive _x} count _units <= 0}) then
+        	{
+                _name = groupId _group;
+                _zeusGroup = missionNamespace getVariable ["f_var_smoothMarkers_zeusGroupName", ""];
 
-            if !(_entry isEqualTo []) then
-            {
-                _visible = SQUAD_VISIBLE(_entry);
+                if (_name isEqualTo _zeusGroup) exitWith {};
+
+                _icon = "";
+                _visible = true;
+                _specials = [];
+
+                _colourText = _group getVariable ["ca_groupcolor","ColorBlack"];
+                _colour = (configfile >> "CfgMarkerColors" >> _colourText >> "color") call BIS_fnc_colorConfigToRGBA;
+
+                _iconText = _group getVariable ["ca_grouptype","none"];
+
+                if !(_iconText isEqualTo "none") then
+                {
+                    _icon = [_iconText] call ca_fnc_convertMarkerNameToImage;
+                };
+
+                _entry = SQUAD_VAR_DYNAMIC(_name,_sideName);
+                _entryExists = !(_entry isEqualTo []);
+
+                if (_entryExists) then
+                {
+                    _visible = SQUAD_VISIBLE(_entry);
+
+                    if (_visible) then
+                    {
+                        _specials = SQUAD_SPECIALS(_entry);
+                    };
+
+                };
 
                 if (_visible) then
                 {
-                    _colourText = _group getVariable ["ca_groupcolor","ColorBlack"];
-                    _colour = (configfile >> "CfgMarkerColors" >> _colourText >> "color") call BIS_fnc_colorConfigToRGBA;
+                    _isAiOnly = ({isPlayer _x} count _units) <= 0;
+                    _shouldShow = false;
 
-                    _iconText = _group getVariable ["ca_grouptype","none"];
-
-                    if !(_iconText isEqualTo "none") then
+                    if (IS_TRUE(f_var_smoothMarkers_showAI)) then
                     {
-                        _icon = [_iconText] call ca_fnc_convertMarkerNameToImage;
+                        _shouldShow = true;
+                    }
+                    else
+                    {
+                        _shouldShow = !_isAiOnly;
                     };
 
-                    _specials = SQUAD_SPECIALS(_entry);
-
-                };
-
-            };
-
-            if (_visible) then
-            {
-                _isAiOnly = ({isPlayer _x} count _units) <= 0;
-                _shouldShow = false;
-
-                if (IS_TRUE(f_var_smoothMarkers_showAI)) then
-                {
-                    _shouldShow = true;
-                }
-                else
-                {
-                    _shouldShow = !_isAiOnly;
-                };
-
-                if (_shouldShow) then
-                {
-                    if (_isAiOnly) then
+                    if (_shouldShow) then
                     {
-                        if (_name == groupId _group) then
+                        if (_isAiOnly and {!_entryExists}) then
                         {
-                            _name = "Allies";
+                            if (_name == groupId _group) then
+                            {
+                                _name = "Allies";
+                                _colour = LIGHTGREY;
+                            };
+
                         };
 
-                        if (_colour isEqualTo []) then
-                        {
-                            _colour = LIGHTGREY;
-                        };
+                        if (_icon isEqualTo "") then {_icon = [_group] call ca_fnc_getGroupMarker};
+                        if (_colour isEqualTo []) then {_colour = DEFAULT_COLOUR};
+
+                        _newMarkers pushBack [_group, _icon, _name, _colour];
 
                     };
 
-                    if (_icon isEqualTo "") then {_icon = [_group] call ca_fnc_getGroupMarker};
-                    if (_colour isEqualTo []) then {_colour = DEFAULT_COLOUR};
-
-                    _newMarkers pushBack [_group, _icon, _name, _colour];
-
                 };
+
+                {
+                    [_group, _newUnitMarkers] call _x;
+
+                } forEach _specials;
 
             };
 
-            {
-                [_group, _newUnitMarkers] call _x;
+        } forEach _sideGroups;
 
-            } forEach _specials;
-
-        };
-
-    } forEach _sideGroups;
+    };
 
 
     f_arr_squadMarkers = _newMarkers;

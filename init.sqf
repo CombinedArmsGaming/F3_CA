@@ -67,6 +67,13 @@ f_script_setTeamColours = [] execVM "f\setTeamColours\f_setTeamColours.sqf";
 
 // ====================================================================================
 
+// CA - Smooth squad markers, by Bubbus
+// See initServer.sqf for configuration.
+
+[] spawn ca_fnc_initSmoothSquadMarkers;
+
+// ====================================================================================
+
 // F3 - F3 Folk ARPS Group Markers
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
