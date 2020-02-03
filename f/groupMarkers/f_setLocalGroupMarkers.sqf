@@ -56,6 +56,9 @@ _art = "b_art";			// Artillery
 _med = "b_med";			// Medic
 _uav = "b_uav";			// UAV
 
+// Auto marker image (Smooth markers only)
+_auto = "auto";			// Auto
+
 // ====================================================================================
 
 // INCLUDE GROUP MARKER SCRIPTS
