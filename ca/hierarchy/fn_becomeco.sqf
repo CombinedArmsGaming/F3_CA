@@ -17,6 +17,8 @@ if(isnil {ca_nocopresent}) exitwith {systemChat "There is a co already!"};
 if (ca_nocopresent) then {
 
 [player,ca_corank] call ca_fnc_setrank;
+
+(group player) setVariable ["ca_superior",(groupid group player), true];
 [[],{ca_nocopresent = false}] remoteExec ["spawn",_side];
 systemChat "You are now able to change the hierachy";
 };

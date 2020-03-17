@@ -49,6 +49,8 @@ _numbertorespawn = lbSize _deadplayers;
 
 if(_numbertorespawn < 1 ) exitWith {systemChat "There are currently none in the selected group to respawn, or group has not been selected"};
 
+if (ca_respawnmode < 3) exitWith {systemChat "This mission does not allow group respawn!"; _display closeDisplay 1};
+
 // Check if group is available to respawn 
 // ==================================================================
 
@@ -73,18 +75,29 @@ _allowed = (((ca_selectedgroup == (group player)) && _rankid >= ca_slrank) || _s
 if (!_allowed) exitWith {systemChat "You are not Authorized to do this, it can only be done by the Squad Lead or Platoon officer of sufficient rank" };
 
 // if out of tickets then exit 
-if(_squadtickets == 0) exitWith {systemChat "No more group tickets remaining, rally with CO to get more"};
+if(_squadtickets == 0) exitWith {systemChat "No more group tickets remaining for that group, get more from CO"};
 //If less tickets than dead then set the amount to be respawned to less 
 /*
 1 - 2
 overflwo = -1
 
 */
-if(_numbertorespawn > _squadtickets ) then {
+if (ca_respawnmode == 2) then {
+	if(_numbertorespawn > _squadtickets ) then {
 	_overflow = _squadtickets - _numbertorespawn;
 
 	_numbertorespawn = _numbertorespawn + _overflow;
 	systemChat format ["Not enough tickets to respawn the whole group, respawning %1 units instead",_numbertorespawn];
+};
+
+} else {
+	if(_numbertorespawn > _sidetickets ) then {
+	_overflow = _sidetickets - _numbertorespawn;
+
+	_numbertorespawn = _numbertorespawn + _overflow;
+	systemChat format ["Not enough tickets to respawn the whole group, respawning %1 units instead",_numbertorespawn];
+};
+
 };
 //Setup if check variables
 _enemiesclose = false;
@@ -173,10 +186,13 @@ _actuallyrespawned = [];
 
 } forEach _specplayers;
 
-
-if (count _actuallyrespawned == 0) exitWith {Systemchat "No units respawned, Ace spectator issue, find unit under overflow groups instead: Sorry Its consistently inconsistent";};
-
+//Deduct tickets based on mode 
+if (count _actuallyrespawned == 0) exitWith {Systemchat "No units respawned, please take a screenshot and bugreport to github/discord";};
 _newsquadticketnumber = _squadtickets - (count _actuallyrespawned);
-_group setVariable ["ca_grouptickets",_newsquadticketnumber, true];
+if (ca_respawnmode == 3) then {
+_group setVariable ["ca_grouptickets",_newsquadticketnumber, true];	
+} else {
+missionNamespace setVariable [_sidetickets,(count _actuallyrespawned), true]; 
+};
 
 _squadticketcontrol ctrlSetText (format ["Group Tickets:%1",(_newsquadticketnumber)]);

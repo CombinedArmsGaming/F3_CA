@@ -55,7 +55,7 @@ class ca_hierarchydialog
             class movesquad: RscButton
         {
             idc = -1;
-            text = "Assign to group";
+            text = "Assign subgroup";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
@@ -110,6 +110,28 @@ class ca_hierarchydialog
             w = 100 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
+        class superiorinfo: RscText
+        {
+            idc = -1;
+            text = "Superiors callsign:";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 70 * pixelH * pixelGrid + safeZoneY;
+            w = 100 * (pixelW * 2);
+            h = 15 * (pixelH * 2);
+        };
+        class superiorgroup: RscText
+        {
+            idc = 1819;
+            text = "None";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
+            y = 75 * pixelH * pixelGrid + safeZoneY;
+            w = 100 * (pixelW * 2);
+            h = 15 * (pixelH * 2);
+        };
         class aliveplayers: RscListbox1
         {
         	idc = 1812;
@@ -145,7 +167,7 @@ class ca_hierarchydialog
         class demote: RscButton
         {
             idc = -1;
-            text = "Demote selected";
+            text = "Demote player";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
@@ -157,7 +179,7 @@ class ca_hierarchydialog
          class promote: RscButton
         {
             idc = -1;
-            text = "Promote selected";
+            text = "Promote player";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
@@ -169,7 +191,7 @@ class ca_hierarchydialog
         class givelocalmark: RscButton 
         {
             idc = -1;
-            text = "Give selected Marker";
+            text = "Give map Marker";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;

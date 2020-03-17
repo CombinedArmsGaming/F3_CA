@@ -11,6 +11,8 @@ _longrangechannels = _display displayCtrl 1815;
 _sideticketcontrol = _display displayCtrl 1816;
 _squadticketcontrol = _display displayCtrl 1817;
 _selectedgroupcontrol = _display displayCtrl 1818;
+_superiorgroupcontrol = _display displayCtrl 1819;
+
 
 
 
@@ -112,6 +114,8 @@ _squadtickets = _group getVariable ["ca_grouptickets","Not registered!"];
 _sideticketcontrol ctrlSetText (format ["%1 Tickets: %2",_side,_sidetickets]);
 _squadticketcontrol ctrlSetText (format ["%2 Tickets: %1",(_squadtickets),_groupid]);
 
+
+_superiorgroupcontrol ctrlSetText (format ["%1",(ca_selectedgroup getVariable ["ca_superior","None"])]);
 
 
 if (isnil {ca_switchgroupthiscycle}) then {
