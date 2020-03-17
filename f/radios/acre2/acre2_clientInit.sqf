@@ -123,7 +123,7 @@ if(_typeOfUnit != "NIL") then {
 				};
 			};
 			// If unit has more long range channels, give 148s to cover 
-			if(count _longrangeArray > 1 &&  (_unitrank in f_radios_settings_acre2_extraRadios || _typeOfUnit in f_radios_settings_acre2_longRange) || (count _longrangeArray > 2 && _typeOfUnit in f_radios_settings_acre2_BackpackRadios)) then {
+			if(count _longrangeArray > 1 &&  (_unitrank in f_radios_settings_acre2_extraRadios) || (count _longrangeArray > 2 && _typeOfUnit in f_radios_settings_acre2_BackpackRadios)) then {
 				for "_i" from 1 to (count _longrangeArray -1) do {
 					if (_unit canAdd f_radios_settings_acre2_extraRadio) then {
 						_unit addItem f_radios_settings_acre2_extraRadio;

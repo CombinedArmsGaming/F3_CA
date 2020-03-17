@@ -2,7 +2,7 @@
 // Author: Poulern (@me for issues)
 // Server execution only and run once at the start of mission
 
-//Additional tickets available (Where one ticket = 1 respawn, default 5 for vehicles) per team in addition to the group tickets;
+//Side tickets available (Where one ticket = 1 respawn, default 5 for vehicles) per team in addition to the group tickets;
 _caWestTickets = 50;
 
 //To create a seperate hierarchy for another side, just copy this code block and change the variable reference ([west] spawn _hierarchy) near the bottom 
@@ -13,18 +13,18 @@ _slrank = ca_slrank;
 _ftlrank = ca_ftlrank;
 
 /*
-Parameters for ca_fnc_setupGroup:
+Parameters for ca_fnc_setupGroup, which is what the platoon below is based on. 
  * 0: Groupid (String): The groupid that is set in the editor field callsign.
  * 1: Superior (String): The groupid of the group that ranks above it in the hierarchy, if equal to groupid, then the group is an independent group or its own platoon.
  * 2: Side (Side): This is set automatically, if you need to set up for multiple sides copy the template and name it _westhierarchy, _easthierachy etc. as needed and change the call below
  Every element below this is optional, but reccomended to set. 
- * 2: Rank (Number): The number from 1-6 that the unit rank should be. 1 is Corporal and 6 is Colonel
- * 3: Short range radio channel (Number): What channel the 343 will be on by default and on respawn. 
- * 4: Long range radio Array (Array): Array of channels the long range radios will be on by default and on respawn. There will be one radio given per channel to ranks set in ca_acre2settings.sqf
- * 5: Group color (String): The color of the group in the hierarchy and its groupmarker. Available colors: "ColorBlack","ColorGrey","ColorRed","ColorBrown",
- "ColorOrange","ColorYellow","ColorKhaki","ColorGreen","ColorBlue","ColorPink","ColorWhite"
- * 6: Group tickets (Number): The number of tickets this group gets to play with at the start of the mission. 
- * 7: Group type (String): What markertype the unit has. This is if you want to use the non-automatic mode that the groupmarker uses. 
+ * 3: Rank (Number): The number from 1-6 that the unit rank should be. 1 is Corporal and 6 is Colonel.
+ * 4: Short range radio channel (Number): What channel the 343 will be on by default and on respawn. 
+ * 5: Long range radio Array (Array): Array of channels the long range radios will be on by default and on respawn. There will be one radio given per channel to ranks set in ca_acre2settings.sqf
+ * 6: Group color (String): The color of the group in the hierarchy and its groupmarker. Available colors: "ColorBlack","ColorGrey","ColorRed","ColorBrown","ColorOrange","ColorYellow","ColorKhaki","ColorGreen","ColorBlue","ColorPink","ColorWhite"
+ * 7: Group tickets (Number): The number of tickets this group gets to play with at the start of the mission. 
+ * 8: Group marker (Boolean): Should each team get a group marker assigned to them? Default: True. 
+ * 9: Group type (String): What markertype the unit has. This is if you want to use the non-automatic mode that the groupmarker uses. For non smooth markers its any A3 marker, for smooth markers its "b_hq","b_inf","b_support","b_motor_inf","b_mortar","b_maint","b_mech_inf","b_armor","b_recon","b_air","b_plane","b_art"
 
 ["ASL","CO",_side,_slrank,1,[4,1],"ColorRed",5] spawn ca_fnc_setupGroup;
 */
@@ -57,10 +57,11 @@ Parameters for ca_fnc_setupGroup:
 	["MAT","MMG",_side,_ftlrank,14,[8],"ColorOrange",2] spawn ca_fnc_setupGroup;
 
 
-	["ENG","CO",_side,_slrank,15,[5],"ColorGrey",2,"b_maint"] spawn ca_fnc_setupGroup;
+	["ENG","CO",_side,_slrank,15,[5],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup;
 };
 
 //Individual speicalist markers (ie medic markers). Refer to assinggear files for a complete list of f3 loadout classes (eg dc, ftl, eng, sp, pp, vc etc.)
+// ToDo - Implement. 
 _caspecialistMarkerClasses = ["m","uav","eng"];
 
 // Side tickets. Change to for example _caEastTickets = 49 if needed for TvTs/events with multiple sides

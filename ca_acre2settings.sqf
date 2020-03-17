@@ -21,7 +21,7 @@ f_radios_settings_acre2_shortRange = nil;
 // Non leaders will still get a long range if they have the right assigngear class for f_radios_settings_acre2_longRange and  f_radios_settings_acre2_BackpackRadios.
 f_radios_settings_acre2_leaderLongRange = true;
 /*
-Ranks you want to give a AN-PRC148 long-range radio / a long range at all. Privates Doesn't recieve a radio at all with the default setting.
+Ranks you want to give the full set of LR channels with the AN-PRC148 long-range radio. 
 0 - Private
 1 - Corporal
 2 - Sergeant
@@ -30,9 +30,9 @@ Ranks you want to give a AN-PRC148 long-range radio / a long range at all. Priva
 5 - Major
 6 - Colonel
 */
-f_radios_settings_acre2_extraRadios = [1];
+f_radios_settings_acre2_extraRadios = [1,2,3,4,5,6];
 
-// Set the list of unit types that get a AN-PRC152 long range radio for their primary radio.
+// Set the list of unit types that get one AN-PRC152 long range radio for their primary radio.
 f_radios_settings_acre2_longRange = ["m","co","dc","uav","sp","vc","pp"];
 
 // Unit types you want to give a backpack radio - Note this is loadout specific
