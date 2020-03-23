@@ -9,7 +9,7 @@ missionNamespace setVariable ["ca_hcshowmarkers",false, true]; // If FPS markers
 
 
 // CA - Public Variables for Respawn system
-missionNamespace setVariable ['ca_respawnmode',2, true]; // Respawn modes: 0: Off, 1: Base respawn, 2: Hierarchy Spawn
+missionNamespace setVariable ['ca_respawnmode',2, true]; // Respawn modes: 0: Off, 1: Base respawn, 2: Hierarchy Wave Spawn 3: Hierarchy group spawn (use group tickets)
 missionNamespace setVariable ['ca_respawnwave',false, true]; // set to true to disable the respawn system, and respawn players as soon as they die.
 missionNamespace setVariable ['ca_wavecooldown',1740, true]; // Seconds between each wave plus wavetime below
 missionNamespace setVariable ['ca_wavetime',60, true]; // How many seconds each wave lasts where you can die and instantly respawn (Incase someone gets armaed on respawn or similar incidents)
@@ -32,7 +32,7 @@ missionNamespace setVariable ['f_param_caching',0, true]; // Ai Caching distance
 missionNamespace setVariable ['f_var_smoothMarkers',true, true]; // Use smooth markers instead of the standard markers.
 missionNamespace setVariable ['f_var_smoothMarkers_showAI',true, true]; // Show positions of allied AI groups? (Smooth markers only).
 missionNamespace setVariable ['f_var_smoothMarkers_hide',false, true]; // Hide all squad markers?  Useful for some mission situations, can be changed mid-mission (Smooth markers only).
-missionNamespace setVariable ['f_var_smoothMarkers_zeusGroupName',"Zeus Crew", true]; // Running a mission with a zeus player?  Put their squad's callsign in here to hide them from the map (Smooth markers only).
+missionNamespace setVariable ['f_var_smoothMarkers_zeusGroupName',"Zeus Crew", true]; // Running a mission with a zeus player?  Put their squad's callsign/groupid in here to hide them from the map (Smooth markers only).
 
 // Allow init.sqf to go ahead
 missionNamespace setVariable ['ca_initserver',true, true];

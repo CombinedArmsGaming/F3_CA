@@ -11,7 +11,7 @@ _allplayergroups = [];
 
 if(isnil {ca_platoonsetup}) exitwith {systemChat "Hierarchy setup is not done yet, try again"; _display closeDisplay 1};
 
-if (ca_respawnmode != 2) exitWith {systemChat "This mission does not allow respawn!"; _display closeDisplay 1};
+if (ca_respawnmode == 0) exitWith {systemChat "This mission does not allow respawn!"; _display closeDisplay 1};
 
 _findcolor = {
         params ["_input"];  

@@ -12,7 +12,7 @@
  * 6: Group tickets (Number): The number of tickets this group gets to play with at the start of the mission. 
  * 7: Group type (String): What markertype the unit has. 
  */
-params ["_groupid","_superior","_side",["_rank",2],["_SRradioCH",16],["_LRradioarray",[4]],["_groupcolor","ColorWhite"],["_grouptickets",5],["_grouptype","none"]];
+params ["_groupid","_superior","_side",["_rank",2],["_SRradioCH",16],["_LRradioarray",[4]],["_groupcolor","ColorWhite"],["_grouptickets",5],["_groupmarkerboolean",true],["_grouptype","none"]];
 
 
 //Create a global variable for this group, so it can be bypassed in the hierarchy if needed (CO-ASl-A1 -> CO-A1)
@@ -21,11 +21,11 @@ _superiorID = format ["%1_%2",_groupid,_side];
 missionNamespace setVariable [_superiorID,_superior, true]; 
 
 //Create a JIP array for that process if needed 
-_grouparray = [_groupid,_superior,_rank,_SRradioCH,_LRradioarray,_groupcolor,_grouptickets,_grouptype];
+_grouparray = [_groupid,_superior,_rank,_SRradioCH,_LRradioarray,_groupcolor,_grouptickets,_groupmarkerboolean,_grouptype];
 
 //Create a code bin for each side to execute later
 _setupgroup = {
-	params ["_group","_superior","_rank","_SRradioCH","_LRradioarray","_groupcolor","_grouptickets","_grouptype"];
+	params ["_group","_superior","_rank","_SRradioCH","_LRradioarray","_groupcolor","_grouptickets","_groupmarkerboolean","_grouptype"];
 	
 	_group setVariable ["ca_groupsetup",true, true];
 	_group setVariable ["ca_superior",_superior, true];
@@ -41,7 +41,9 @@ _setupgroup = {
 		};
 	} forEach (units _group);
 	//PUT IN GROUP MARKERS HERE (remoteexec becauser its server executing only)
-	_group remoteExec ["ca_fnc_groupMarker",_side,true];
+	if (_groupmarkerboolean) then {
+	_group remoteExec ["ca_fnc_groupMarker",_side,true];	
+	};
 };
 
 switch (_side) do {
@@ -52,7 +54,7 @@ switch (_side) do {
 		if(count _findgroup == 0) exitWith {ca_WestJIPgroups pushBackUnique [_grouparray,_groupid]; };
 		_group = _findgroup select 0;
 		//Call the code bin above 
-		[_group,_superior,_rank,_SRradioCH,_LRradioarray,_groupcolor,_grouptickets,_grouptype] call _setupgroup;
+		[_group,_superior,_rank,_SRradioCH,_LRradioarray,_groupcolor,_grouptickets,_groupmarkerboolean,_grouptype] call _setupgroup;
 	};
 	case east: {
 		// Find the group in the list of units to the side west 
@@ -62,7 +64,7 @@ switch (_side) do {
 
 		_group = _findgroup select 0;
 		//Call the code bin above 
-		[_group,_superior,_rank,_SRradioCH,_LRradioarray,_groupcolor,_grouptickets,_grouptype] call _setupgroup;
+		[_group,_superior,_rank,_SRradioCH,_LRradioarray,_groupcolor,_grouptickets,_groupmarkerboolean,_grouptype] call _setupgroup;
 	};
 	case independent: {
 		// Find the group in the list of units to the side independent 
@@ -72,7 +74,7 @@ switch (_side) do {
 
 		_group = _findgroup select 0;
 		//Call the code bin above 
-		[_group,_superior,_rank,_SRradioCH,_LRradioarray,_groupcolor,_grouptickets,_grouptype] call _setupgroup;
+		[_group,_superior,_rank,_SRradioCH,_LRradioarray,_groupcolor,_grouptickets,_groupmarkerboolean,_grouptype] call _setupgroup;
 	};
 	default {diag_log format ["Error in the side input for (%1), group(%3)",_side,_groupid]};
 };
