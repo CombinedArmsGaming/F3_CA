@@ -48,6 +48,9 @@ _groupid = groupid ca_previousgroup;
 systemChat format ["Deselected %1, a %2 lead by %4 %3",_groupid,_description,_name,_rank];
 
 _selectedgroupcontrol ctrlSetText ("None");
+tvClear _tree;
+sleep 0.1;
+[] execvm 'ca\hierarchy\ca_hierarchydialogsupport.sqf';
 
 } else {
 ca_previousgroup = ca_selectedgroup;
@@ -72,5 +75,6 @@ systemChat format ["Selected %1, a %2 lead by %4 %3",_groupid,_description,_name
 ca_switchgroupthiscycle = true;
 _selectedgroupcontrol ctrlSetText (format ["%1",(_groupid)]);
 
+_tree tvSetPicture [(tvCurSel _tree),getText (configfile >> "CfgMarkers" >> "hd_pickup" >> "icon")]; 
 };
 

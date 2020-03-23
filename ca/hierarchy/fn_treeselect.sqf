@@ -61,7 +61,7 @@ lbClear _deadplayers;
 
 if(count _findgroup == 0) exitwith {
 	if (_groupid == "Overflow/Dead") then {
-			systemChat "This is the remaining groups that arent in the hierarchy because they don't have a superior, register if necessary, then use select group and move selected group to place them in the hierarchy.";
+			systemChat "This is the remaining groups that arent in the hierarchy because they don't have a superior, register if necessary, then use select group and assign subgroup to place them in the hierarchy.";
 	} else {
 	systemChat "Group doesnt exists in game anymore or is bugged.";
 	};

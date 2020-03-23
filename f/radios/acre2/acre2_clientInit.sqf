@@ -165,6 +165,10 @@ if(!f_radios_settings_acre2_disableRadios) then {
 	};
 
 	_radioSR = [f_radios_settings_acre2_standardSHRadio] call acre_api_fnc_getRadioByType;
+	//Workaround if f_radios_settings_acre2_standardSHRadio = []
+	if(isnil {_radioSR}) then {
+	_radioSR = "";
+	};
 	_radiolist = [] call acre_api_fnc_getCurrentRadioList;
 	_radiolist deleteAt (_radiolist find _radioSR);
 
