@@ -20,7 +20,7 @@
 		f_var_squadMarkersDrawHandlerId_RscDiary = ((uiNamespace getVariable "RscDiary") displayCtrl 51) ctrlAddEventHandler
 		[
 			"Draw",
-			"_this call ca_fnc_drawSquadMarkers"
+			ca_fnc_drawSquadMarkers
 		];
 
 	};
@@ -42,14 +42,14 @@
 	{
 		!(isNil 'f_var_addedFireteamMarkerHooks')
 	};
-	
+
 	{
 		if !(_x getVariable ["ca_var_addedSquadMarkerHook", false]) then
 		{
-			(_x displayCtrl 101) ctrlAddEventHandler ["Draw", ca_fnc_drawSquadMarkers];        
+			(_x displayCtrl 101) ctrlAddEventHandler ["Draw", ca_fnc_drawSquadMarkers];
 			_x setVariable ["ca_var_addedSquadMarkerHook", true];
 		};
-		
+
 	} forEach ((uiNamespace getVariable ["IGUI_Displays", []]) select {ctrlIDD _x == 311});
 
 };
