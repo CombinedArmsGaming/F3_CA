@@ -3,7 +3,7 @@
 if (isNil 'f_arr_squadMarkers') exitWith {};
 if (IS_TRUE(f_var_hideSquadMarkers)) exitWith {};
 
-params ["_map"];
+params ["_map", "_smallMarkers"];
 
 _baseUnitIcon = "\A3\ui_f\data\map\vehicleicons\iconMan_ca.paa";
 
@@ -12,19 +12,21 @@ _baseUnitIcon = "\A3\ui_f\data\map\vehicleicons\iconMan_ca.paa";
 // NOTE: Only supports custom textures (in mission folder).
 _drawMarker =
 {
-	params ["_map", "_icon", "_name", "_colour", "_pos"];
+	params ["_map", "_icon", "_name", "_colour", "_pos", "_smallMarkers"];
+
+	_scaleFactor = if (_smallMarkers) then {0.9} else {1};
 
 	_map drawIcon
 	[
 		format ["%1%2",MISSION_ROOT,_icon],
 		_colour,
 		_pos,
-		28,
-		28,
+		28 * _scaleFactor,
+		28 * _scaleFactor,
 		0,
 		_name,
 		2,
-		0.06
+		0.06 * _scaleFactor
 	];
 
 };
@@ -34,15 +36,17 @@ _drawMarker =
 
 _drawUnitMarker =
 {
-	params ["_map", "_icon", "_name", "_colour", "_pos", "_dir"];
+	params ["_map", "_icon", "_name", "_colour", "_pos", "_dir", "_smallMarkers"];
+
+	_scaleFactor = if (_smallMarkers) then {0.9} else {1};
 
 	_map drawIcon
 	[
 		_baseUnitIcon,
 		[0,0,0,1],
 		_pos,
-		20,
-		20,
+		20 * _scaleFactor,
+		20 * _scaleFactor,
 		_dir
 	];
 
@@ -51,12 +55,12 @@ _drawUnitMarker =
 		_icon,
 		_colour,
 		_pos,
-		16,
-		16,
+		16 * _scaleFactor,
+		16 * _scaleFactor,
 		_dir,
 		_name,
 		2,
-		0.04
+		0.04 * _scaleFactor
 	];
 
 };
@@ -71,7 +75,7 @@ _drawUnitMarker =
 	{
 		_pos = getPosVisual (leader _group);
 
-		[_map, _icon, _name, _colour, _pos] call _drawMarker;
+		[_map, _icon, _name, _colour, _pos, _smallMarkers] call _drawMarker;
 
 	};
 
@@ -87,7 +91,7 @@ _playerGroup = group player;
 
 	_inDifferentGroup = !(_playerGroup isEqualTo _group);
 	_isGroupLeader = (leader _unit isEqualTo _unit);
-	_shouldDrawMarker = _inDifferentGroup and {alive _unit} and {!_isGroupLeader};
+	_shouldDrawMarker = _inDifferentGroup and {[_unit] call ca_fnc_isPlayerAlive} and {!_isGroupLeader};
 
 	if (_shouldDrawMarker) then
 	{
@@ -106,7 +110,7 @@ _playerGroup = group player;
 			_icon = _baseUnitIcon;
 		};
 
-		[_map, _icon, _name, _colour, _pos, _dir] call _drawUnitMarker;
+		[_map, _icon, _name, _colour, _pos, _dir, _smallMarkers] call _drawUnitMarker;
 	};
 
 } forEach f_arr_unitMarkers;

@@ -1,24 +1,26 @@
 #include "macros.hpp"
 
-params ["_map"];
+params ["_map", "_smallMarkers"];
 
 if !(alive player) exitWith {};
 
-_group = (units player) select {alive _x};
+_group = (units player) select {[_x] call ca_fnc_isPlayerAlive};
 _baseIcon = "\A3\ui_f\data\map\vehicleicons\iconMan_ca.paa";
 
 
 _drawMarker =
 {
-	params ["_map", "_icon", "_colour", "_pos", "_dir"];
+	params ["_map", "_icon", "_colour", "_pos", "_dir", "_smallMarkers"];
+
+	_scaleFactor = if (_smallMarkers) then {0.9} else {1};
 
 	_map drawIcon
 	[
 		_baseIcon,
 		[0,0,0,1],
 		_pos,
-		22,
-		22,
+		22 * _scaleFactor,
+		22 * _scaleFactor,
 		_dir
 	];
 
@@ -27,8 +29,8 @@ _drawMarker =
 		_icon,
 		_colour,
 		_pos,
-		18,
-		18,
+		18 * _scaleFactor,
+		18 * _scaleFactor,
 		_dir
 	];
 
@@ -41,7 +43,7 @@ _drawMarker =
 	_unit = _x;
 
 	if (simulationEnabled _unit) then
-	{		
+	{
 		_pos = getPosVisual _unit;
 		_dir = getDirVisual _unit;
 
@@ -61,7 +63,7 @@ _drawMarker =
 			_colour = [1,1,1,1];
 		};
 
-		[_map, _icon, _colour, _pos, _dir] call _drawMarker;
+		[_map, _icon, _colour, _pos, _dir, _smallMarkers] call _drawMarker;
 
 	};
 
