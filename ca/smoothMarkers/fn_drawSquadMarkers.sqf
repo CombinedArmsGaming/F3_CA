@@ -64,56 +64,12 @@ _drawUnitMarker =
 
 
 
-_getSmoothPosition =
-{
-	_unit = _this;
-	_curPos = getPos _unit;
-
-	if (local _unit or {_unit isEqualTo player} or {(vehicle _unit) isEqualTo (vehicle player)}) exitWith
-	{
-		_unit setVariable ["f_var_smoothMarkers_lerpFrom", []];
-		_unit setVariable ["f_var_smoothMarkers_lerpTo", []];
-		_curPos
-	};
-
-	_lerpFrom = _unit getVariable ["f_var_smoothMarkers_lerpFrom", []];
-
-	if (_lerpFrom isEqualTo []) exitWith
-	{
-		_unit setVariable ["f_var_smoothMarkers_lerpFrom", [_curPos, time]];
-		_unit setVariable ["f_var_smoothMarkers_lerpTo", [_curPos, time]];
-		_curPos
-	};
-
-	_lerpFrom = _unit getVariable "f_var_smoothMarkers_lerpFrom";
-	_lerpTo = _unit getVariable "f_var_smoothMarkers_lerpTo";
-
-	if (!(_curPos isEqualTo (_lerpTo select 0)) or {(time - (_lerpTo select 1)) > 0.5}) then
-	{
-		_lerpFrom = _lerpTo;
-		_lerpTo = [_curPos, time];
-
-		_unit setVariable ["f_var_smoothMarkers_lerpFrom", _lerpFrom];
-		_unit setVariable ["f_var_smoothMarkers_lerpTo", _lerpTo];
-
-	};
-
-	_interval = (_lerpTo select 1) - (_lerpFrom select 1);
-	_progress = time - (_lerpTo select 1);
-
-	(vectorLinearConversion [0, _interval, _progress, (_lerpFrom select 0), (_lerpTo select 0), false])
-
-};
-
-
-
-
 {
 	_x params ["_group", "_icon", "_name", "_colour"];
 
 	if !(isNull _group or {count units _group <= 0}) then
 	{
-		_pos = (leader _group) call _getSmoothPosition;
+		_pos = getPosVisual (leader _group);
 
 		[_map, _icon, _name, _colour, _pos] call _drawMarker;
 
@@ -135,8 +91,8 @@ _playerGroup = group player;
 
 	if (_shouldDrawMarker) then
 	{
-		_pos = (_unit call _getSmoothPosition);
-		_dir = getDir _unit;
+		_pos = getPosVisual _unit;
+		_dir = getDirVisual _unit;
 
 		private "_icon";
 
