@@ -60,7 +60,7 @@ _drawUnitMarker =
 		_dir,
 		_name,
 		2,
-		0.04 * _scaleFactor
+		0.045
 	];
 
 };
