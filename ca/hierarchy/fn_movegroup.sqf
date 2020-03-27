@@ -40,7 +40,6 @@ if (ca_switchgroupthiscycle) then {
 	_shortrangechannel = (_newgrouplead) getVariable ["ca_SRradioCH",1];
 	_longrangeArray = (_newgrouplead) getVariable ["ca_LRradioarray",[4]];
 
-	_squadID = _newgrouplead getVariable ["ca_squadID",format ["%1%2",(groupid _newgrouplead),_side]];
 
 	_ranklead = rankid (leader _newgrouplead);
 	if (_ranklead < ca_slrank) exitWith {
@@ -48,12 +47,12 @@ if (ca_switchgroupthiscycle) then {
 	};
 	if (_ranklead == ca_slrank) then {
 
-		[leader _grouptomove,ca_ftlrank] call ca_fnc_setrank;
+		//[leader _grouptomove,ca_ftlrank] call ca_fnc_setrank;
 		_grouptomove setVariable ["ca_superior",_newgroupleadid, true];
 
 	};
 	if (_ranklead >= ca_corank) then {
-		[leader _grouptomove,ca_slrank] call ca_fnc_setrank;
+		//[leader _grouptomove,ca_slrank] call ca_fnc_setrank;
 		_grouptomove setVariable ["ca_superior",_newgroupleadid, true];
 		_description = "Squad";
 	};
@@ -73,9 +72,7 @@ if (ca_switchgroupthiscycle) then {
 
 } else {
 
-	ca_previousgroup = ca_selectedgroup;
 	systemChat "Select the group you wish to change in the hierachy first!";
-	ca_switchgroupthiscycle = true;
 
 };
 

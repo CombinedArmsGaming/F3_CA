@@ -7,13 +7,14 @@ if (!isDedicated && (isNull player)) then
 
 _briefing = "";
 _briefing = _briefing + "
-<font size='18'>Body manager control</font><br/><br/>
-|- <execute expression="" missionNamespace setVariable ['ca_bodymanageon',true, true]; [] remoteexec ['ca_fnc_bodymanage',2,true];"">
-Turn on body manager</execute><br/>
-|- <execute expression=""missionNamespace setVariable ['ca_bodymanageon',false, true];"">
-Turn off body manager</execute><br/>
-|- <execute expression="" hint format ['%1 for bodymanager being on',ca_bodymanageon]"">
-Check bodymanager status</execute><br/>
+<font size='18'>Side ticket control</font><br/><br/>
+|- <execute expression=""_newnumb = ca_WestTickets + 50; missionNamespace setVariable ['ca_WestTickets',_newnumb, true];"">
+Give side west +50 tickets</execute><br/>
+|- <execute expression=""_newnumb = ca_EastTickets + 50; missionNamespace setVariable ['ca_EastTickets',_newnumb, true];"">
+Give side east +50 tickets</execute><br/>
+|- <execute expression=""_newnumb = ca_IndependentTickets + 50; missionNamespace setVariable ['ca_IndependentTickets',_newnumb, true];"">
+Give side independent +50 tickets</execute><br/>
+<br/>
 <font size='18'>Headless client markers(Global)</font><br/><br/>
 |- <execute expression="" missionNamespace setVariable ['ca_hcshowmarkers',true, true];"">
 Show headless markers</execute><br/>
@@ -30,6 +31,22 @@ Give self F3 admin menu</execute><br/>
 Force respawn wave to happen even with 0 waves (Doesn't move respawn marker)</execute><br/>
 |- <execute expression=""hint 'Wave spawned!'; [] call ca_hierarchydialog;"">
 Spawn respawn wave(Move respawn marker)</execute><br/>
+<br/>
+|- <execute expression=""missionNamespace setVariable ['ca_respawnmode',0, true];"">
+Disable respawn (set respawnmode to 0)</execute><br/>
+|- <execute expression=""missionNamespace setVariable ['ca_respawnmode',1, true];"">
+Set respawn mode to base (set respawnmode to 1)</execute><br/>
+|- <execute expression=""missionNamespace setVariable ['ca_respawnmode',2, true];"">
+Set respawn mode to CO waves (set respawnmode to 2)</execute><br/>
+|- <execute expression=""missionNamespace setVariable ['ca_respawnmode',3, true];"">
+Set respawn mode to group respawn (set respawnmode to 3)</execute><br/>
+<br/>
+|- <execute expression=""missionNamespace setVariable ['ca_wavecooldown',1, true];"">
+Set respawn wave time to 1 minutes</execute><br/>
+|- <execute expression=""missionNamespace setVariable ['ca_wavecooldown',540, true];"">
+Set respawn wave time to 10 minutes</execute><br/>
+|- <execute expression=""missionNamespace setVariable ['ca_wavecooldown',1740, true];"">
+Set respawn wave time to 30 minutes</execute><br/>
 ";
 /*
 _briefing = _briefing + "
