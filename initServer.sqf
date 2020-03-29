@@ -32,6 +32,7 @@ missionNamespace setVariable ['f_param_caching',0, true]; // Ai Caching distance
 missionNamespace setVariable ['f_var_smoothMarkers',true, true]; // Use smooth markers instead of the standard markers.
 missionNamespace setVariable ['f_var_smoothMarkers_showAI',true, true]; // Show positions of allied AI groups? (Smooth markers only).
 missionNamespace setVariable ['f_var_smoothMarkers_hide',false, true]; // Hide all squad markers?  Useful for some mission situations, can be changed mid-mission (Smooth markers only).
+missionNamespace setVariable ['f_var_smoothFTMarkers_hide',false, true]; // Same as above, but for fireteam-member markers.  Enable both to hide all markers. (Smooth markers only).
 missionNamespace setVariable ['f_var_smoothMarkers_zeusGroupName',"Zeus Crew", true]; // Running a mission with a zeus player?  Put their squad's callsign/groupid in here to hide them from the map (Smooth markers only).
 
 // Allow init.sqf to go ahead

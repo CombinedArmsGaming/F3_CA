@@ -3,6 +3,7 @@
 params ["_map", "_smallMarkers"];
 
 if !(alive player) exitWith {};
+if (IS_TRUE(f_var_smoothFTMarkers_hide)) exitWith {};
 
 _group = (units player) select {[_x] call ca_fnc_isPlayerAlive};
 _baseIcon = "\A3\ui_f\data\map\vehicleicons\iconMan_ca.paa";
