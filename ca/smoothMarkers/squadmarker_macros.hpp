@@ -39,11 +39,6 @@
 #define SUPPLY      "res\images\squadMarkers\squad_supply.paa"
 #define UNKNOWN     "res\images\squadMarkers\squad_unknown.paa"
 
-
-#define UNIT_MARKER(CLASS,NAME) ([#CLASS, NAME] call ca_fnc_generateUnitMarkerCode)
-#define MEDIC_MARKER UNIT_MARKER(med,"Medic")
-
-
 #define INIT_SQUADS() DICT_CREATE(SQUADS)
 
 #define SQUAD_INDEX(NAME) (format ["%1_%2",#FACTION,#NAME])
@@ -67,8 +62,8 @@
 #define SET_SQUAD_COLOUR_DYNAMIC(NAME,SIDE,COLOUR) (SQUAD_VAR_DYNAMIC(NAME,SIDE)) set [1,COLOUR]
 #define SET_SQUAD_NAME(NAME,OVERRIDE) (SQUAD_VAR(NAME)) set [3,OVERRIDE]
 #define SET_SQUAD_NAME_DYNAMIC(NAME,SIDE,OVERRIDE) (SQUAD_VAR_DYNAMIC(NAME,SIDE)) set [3,OVERRIDE]
-#define ADD_SPECIAL_MARKER(NAME,CODE) ((SQUAD_VAR(NAME)) select 4) pushBack CODE
-#define ADD_SPECIAL_MARKER_DYNAMIC(NAME,SIDE,CODE) ((SQUAD_VAR_DYNAMIC(NAME,SIDE)) select 4) pushBack CODE
+#define ADD_SPECIAL_MARKER(NAME,UNIT) ((SQUAD_VAR(NAME)) select 4) pushBack UNIT
+#define ADD_SPECIAL_MARKER_DYNAMIC(NAME,SIDE,UNIT) ((SQUAD_VAR_DYNAMIC(NAME,SIDE)) select 4) pushBack UNIT
 
 #define SQUAD_VISIBLE(VAR) (VAR) select 0
 #define SQUAD_COLOUR(VAR) (VAR) select 1

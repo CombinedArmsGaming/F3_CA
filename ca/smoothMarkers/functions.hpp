@@ -6,8 +6,7 @@ class smoothMarkers
     class drawSquadMarkers{};
     class getGroupMarker{};
     class initSquadMarkerManager{};
-    class generateUnitMarkerCode{};
-    class addGroupMemberMarkers{};
+    class addSpecialistMarker{};
     class sideToString{};
     class initSmoothSquadMarkers{};
     class convertMarkerNameToImage{};

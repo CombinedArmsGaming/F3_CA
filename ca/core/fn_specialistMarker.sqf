@@ -45,8 +45,7 @@ _side = [side player] call ca_fnc_sideToString;
 _grpId = groupId (group _unt);
 
 // Add info into a dictionary so smooth markers can get what they need to run.
-_markerCode = [_unt, _mkrText] call ca_fnc_generateUnitMarkerCode;
-ADD_SPECIAL_MARKER_DYNAMIC(_grpId,_side,_markerCode);
+ADD_SPECIAL_MARKER_DYNAMIC(_grpId,_side,_unt);
 
 // ====================================================================================
 // If smooth markers are enabled, exit the function here instead of creating a normal marker below.
