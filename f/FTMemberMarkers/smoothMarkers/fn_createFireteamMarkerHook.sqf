@@ -14,7 +14,7 @@
 		f_var_ftMarkersDrawHandlerId_RscDiary = ((uiNamespace getVariable "RscDiary") displayCtrl 51) ctrlAddEventHandler
 		[
 			"Draw",
-			"_this call f_fnc_drawFireteamMarkers"
+			"(_this + [false]) call f_fnc_drawFireteamMarkers"
 		];
 
 	};
@@ -24,21 +24,28 @@
 
 [] spawn
 {
-	waitUntil
+	while {true} do
 	{
-		sleep 1;
-		_display = (uiNamespace getVariable "RscCustomInfoMiniMap");
-		!( (isNull _display) or {isNull (_display displayCtrl 101)} )
-	};
+		waitUntil
+		{
+			sleep 1;
+			_display = (uiNamespace getVariable "RscCustomInfoMiniMap");
+			!( (isNull _display) or {isNull (_display displayCtrl 101)} )
+		};
 
-	if (isNil 'f_var_ftMarkersDrawHandlerId_RscCustomInfoMiniMap') then
-	{
-		f_var_ftMarkersDrawHandlerId_RscCustomInfoMiniMap = ((uiNamespace getVariable "RscCustomInfoMiniMap") displayCtrl 101) ctrlAddEventHandler
-		[
-			"Draw",
-			"_this call f_fnc_drawFireteamMarkers"
-		];
+		{
+			if !(_x getVariable ["ca_var_addedFireteamMarkerHook", false]) then
+			{
+				(_x displayCtrl 101) ctrlAddEventHandler ["Draw", "(_this + [true]) call f_fnc_drawFireteamMarkers"];
+				_x setVariable ["ca_var_addedFireteamMarkerHook", true];
+			};
 
+		} forEach ((uiNamespace getVariable ["IGUI_Displays", []]) select {ctrlIDD _x == 311});
+
+		f_var_addedFireteamMarkerHooks = true;
+
+		sleep 5;
+		
 	};
 
 };

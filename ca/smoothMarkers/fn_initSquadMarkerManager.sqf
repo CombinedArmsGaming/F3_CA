@@ -92,12 +92,32 @@ waitUntil
 
                     };
 
+
+                    _specialists = [];
+
+                    {
+                        _specialists pushBackUnique _x;
+
+                    } forEach _specials;
+
+                    if (!(isNil 'ca_specialistMarkerClasses')) then
+                    {
+                        {
+                            if ((_x getVariable ["f_var_assignGear", "unassigned"]) in ca_specialistMarkerClasses) then
+                            {
+                                _specialists pushBackUnique _x;
+                            };
+
+                        } forEach _units;
+
+                    };
+
+                    {
+                        [_group, _newUnitMarkers, _x] call ca_fnc_addSpecialistMarker;
+
+                    } forEach _specialists;
+
                 };
-
-                {
-                    [_group, _newUnitMarkers] call _x;
-
-                } forEach _specials;
 
             };
 

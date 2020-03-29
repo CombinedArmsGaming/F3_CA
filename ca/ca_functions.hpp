@@ -62,6 +62,7 @@ class CA
 		class incfuelcon{};
 		class parachute{};
         class vehiclespawner{};
+        class isPlayerAlive{};
 	};
 	class respawn
 	{
