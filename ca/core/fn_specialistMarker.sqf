@@ -33,7 +33,6 @@ if (isNull _unt) then
 
 if (!alive _unt) exitWith {};
 
-
 // ====================================================================================
 // Smooth markers support
 
@@ -45,6 +44,11 @@ _side = [side player] call ca_fnc_sideToString;
 _grpId = groupId (group _unt);
 
 // Add info into a dictionary so smooth markers can get what they need to run.
+if !(IS_SQUAD_EDITABLE_DYNAMIC(_grpId,_side)) then
+{
+	MAKE_SQUAD_EDITABLE_DYNAMIC(_grpId,_side);
+};
+
 ADD_SPECIAL_MARKER_DYNAMIC(_grpId,_side,_unt);
 
 // ====================================================================================
