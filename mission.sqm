@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=1209;
+		nextID=1211;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={680.24445,68.975807,676.82874};
-		dir[]={-0.65366459,-0.40702268,-0.63803458};
-		up[]={-0.29126897,0.91341269,-0.28430498};
-		aside[]={-0.69850731,2.2468157e-007,0.71561992};
+		pos[]={919.77307,25,256.07788};
+		dir[]={0,-0.70710683,0.70710683};
+		up[]={0,0.70710677,0.70710677};
+		aside[]={0.99999994,0,-0};
 	};
 };
 binarizationWanted=0;
@@ -42,13 +42,14 @@ addons[]=
 	"ace_explosives",
 	"ace_nouniformrestrictions",
 	"A3_Data_F_Curator_Virtual",
-	"A3_Ui_F"
+	"A3_Ui_F",
+	"AICommand"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=14;
+		items=15;
 		class Item0
 		{
 			className="A3_Armor_F_Beta";
@@ -146,6 +147,11 @@ class AddonsMetaData
 			name="Arma 3 - User Interface";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
+		};
+		class Item14
+		{
+			className="AICommand";
+			name="AICommand";
 		};
 	};
 };
@@ -15873,7 +15879,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=78;
+		items=79;
 		class Item0
 		{
 			dataType="Object";
@@ -31740,6 +31746,17 @@ class Mission
 			type="mil_warning";
 			colorName="ColorRed";
 			id=1208;
+			atlOffset=185.97;
+		};
+		class Item78
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={887.3338,0,1009.1473};
+			};
+			id=1210;
+			type="AdvancedAICommand_Commanders";
 			atlOffset=185.97;
 		};
 	};
