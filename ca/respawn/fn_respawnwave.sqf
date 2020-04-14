@@ -52,7 +52,7 @@ _numbertorespawn = count _listplayers;
 //=================================================================
 
 {
-	if (((side (group _x)) getFriend (side (group player)) < 0.6 ) && alive _x) then {//check for enemies near player
+	if ((((side (group _x)) getFriend (side (group player)) < 0.6 ) && alive _x) && !_isadmin) then {//check for enemies near player
 		if (_x distance _respawner < ca_enemyradius) then {
 			_enemiesclose = true;
 		};
@@ -76,7 +76,7 @@ if (_vehiclehasnoroom) exitWith {Systemchat "Not enough room in the vehicle to r
 if (_sidetickets < (count _listplayers) && !_isadmin) exitWith {Systemchat "Not enough tickets to respawn!";};
 //============================================
 _actuallyrespawned = [];
-if (ca_respawnmode == 2) then {
+if (ca_respawnmode == 2 || ca_respawnmode == 3) then {
 {
     [[player],{
 		params ["_respawnerguy"];
@@ -85,6 +85,7 @@ if (ca_respawnmode == 2) then {
 		ca_respawnwave = true;  
 		sleep 2;
 		if ((vehicle _respawnerguy) != _respawnerguy) then {
+            player setpos (getPosATL  _respawnerguy);
             sleep random 5;
 			player moveincargo (vehicle _respawnerguy);
 			systemchat format ["You've been respawned in %1's vehicle",(name _respawnerguy)];
@@ -135,7 +136,7 @@ if (ca_respawnmode == 1) then {
     sleep 10;
     ca_respawnwave = false; 
     }] remoteExec ['spawn',_x];
-    systemchat format ["%1 has respawned at your position",(name _x)];
+    systemchat format ["%1 has respawned at your base",(name _x)];
     _actuallyrespawned pushBackUnique _x;
 
 } forEach _listplayers;

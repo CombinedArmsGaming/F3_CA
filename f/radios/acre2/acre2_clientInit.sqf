@@ -115,7 +115,7 @@ if(_typeOfUnit != "NIL") then {
 		};
 		if ((f_radios_settings_acre2_leaderLongRange && (leader group _unit == _unit)) || !f_radios_settings_acre2_leaderLongRange) then {
 			// If unit is in the list of units that receive a worse long-range radio, add a 148
-			if(_unitrank in f_radios_settings_acre2_extraRadios) then {
+			if(_unitrank in f_radios_settings_acre2_extraRadios && !(_typeOfUnit in f_radios_settings_acre2_longRange)) then {
 				if (_unit canAdd f_radios_settings_acre2_extraRadio) then {
 					_unit addItem f_radios_settings_acre2_extraRadio;
 				} else {

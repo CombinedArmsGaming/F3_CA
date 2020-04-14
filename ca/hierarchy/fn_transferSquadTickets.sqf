@@ -56,6 +56,8 @@ if (_squadtickets + _ticketdifference < 0) exitWith {
 	systemChat "Not possible to subtract more tickets from this group";
 };
 
+if (ca_respawnmode == 3) exitWith {systemChat "This mission does use group respawn!"; _display closeDisplay 1};
+
 _rankid = rankid player;
 _newticketnumb = 0;
 _newnumber = 0;
@@ -88,7 +90,7 @@ switch (_side) do {
 	};
 };
 _sideticketcontrol ctrlSetText (format ["%1 Tickets:%2",_side,_newticketnumb]);
-_squadticketcontrol ctrlSetText (format ["Group Tickets:%1",(_newnumber)]);
+_squadticketcontrol ctrlSetText (format ["%2 Tickets:%1",(_newnumber),_groupid]);
 
 } else {
     systemChat "You are not Authorized to do this, it can only be done by the commanding officer";

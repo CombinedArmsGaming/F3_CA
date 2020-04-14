@@ -1,4 +1,4 @@
-// F3 - Folk Unit Markers for Specialists
+// F3 - Folk Unit Markers for Specialists CA special edition
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================
 
@@ -11,10 +11,10 @@ private ["_mkr"];
 // SET KEY VARIABLES
 // Using variables passed to the script instance, we will create some local variables:
 
-params["_untName",["_mkrType","b_hq"],"_mkrText",["_mkrColor","ColorBlack"]];
-
-private _mkrName = format ["mkr_%1",_untName];
-private _unt = missionNamespace getVariable [_untName, objNull];
+params["_unt",["_mkrType","b_inf"],["_mkrText",""],["_mkrColor","ColorGrey"]];
+_untName = name _unt;
+private _mkrName = format ["specialistmkr_%1",_untName];
+//private _unt = missionNamespace getVariable [_untName, objNull];
 
 // ====================================================================================
 
@@ -75,15 +75,44 @@ _mkrName setMarkerTextLocal _mkrText;
 // position is updated periodically. This only happens locally - so as not to burden
 // the server.
 
-while {true} do
+
+while {_unt getVariable ["ca_specialistmarker",true]} do
 {
-    if (!alive _unt || isnull _unt) then {
+    _grp = group _unt;
+    _newMkrColor = _grp getVariable ["ca_groupcolor","ColorGrey"];
+    _mkrName setMarkerColorLocal _newMkrColor;
+
+    _specplayers = [] call ace_spectator_fnc_players;
+    _hasmarker = _unt getVariable ["ca_specialistmarker",true];
+    if (_unt in _specplayers || isnull _unt || (leader group _unt == _unt)|| !_hasmarker) then {
         _mkrName setMarkerAlphaLocal 0;
-    } else
-    {
+        _unt setVariable ["ca_specialistmarker",false];
+    } else {
         _mkrName setMarkerAlphaLocal 1;
     };
 
+    _newMkrType = "b_recon";
+    _leader = leader _grp;
+    _vehicle = objectParent _leader;
+    switch (true) do {
+        case ([_unt] call ace_common_fnc_isEngineer): {_newMkrType = "b_maint";};
+        case ([_unt] call ACE_common_fnc_isMedic): {_newMkrType = "b_med";};        
+        case (_vehicle isKindOf "Ship"): { _newMkrType = "b_naval";};
+        case (_vehicle isKindOf "Helicopter"): { _newMkrType = "b_air";};
+        case (_vehicle isKindOf "Plane"): { _newMkrType = "b_plane"; };
+        case (_vehicle isKindOf "StaticWeapon"): { _newMkrType = "b_art"; };
+        case (isnull _vehicle): { _newMkrType = "b_recon";};
+    };
+
+
+    _newmkrText = format ["%1",groupId _grp];
+    _mkrName setMarkerTextLocal _newmkrText;
+
+
+    _mkrName setMarkerTypeLocal  _newMkrType;
     _mkrName setMarkerPosLocal [(getPos _unt select 0),(getPos  _unt select 1)];
 	sleep 2;
 };
+
+
+deleteMarkerLocal _mkrName;

@@ -19,6 +19,9 @@ _groupid = ca_selectedgroupid;
 
 _check = ca_selectedgroup getVariable ['ca_groupsetup',false]; 
 
+if (_groupid == "Overflow/Dead") exitWith {
+		systemChat "Select a real group to register.";
+};
 
 if (_check) exitWith {systemchat format ["%1 is already registered!",_groupid]};
 
@@ -26,7 +29,7 @@ if (_check) exitWith {systemchat format ["%1 is already registered!",_groupid]};
 
 _group setVariable ["ca_groupsetup",true, true];
 _group setVariable ["ca_grouptickets",0, true];
-_group setVariable ["ca_grouptype","none", true];
+_group setVariable ["ca_grouptype","auto", true];
 _group setVariable ["ca_SRradioCH",1, true];
 _group setVariable ["ca_LRradioarray",[4], true];
 _group setVariable ["ca_groupcolor","ColorWhite", true];
@@ -36,14 +39,6 @@ _group setVariable ["ca_superior",_groupid, true];
 
 
 
-/*
-_rank = 1;
-{
-	if (leader _group == _x) then {
-		[leader _group,_rank] spawn ca_fnc_setrank;
-	};
-} forEach (units _group);
-*/
 
 
 systemChat format ["%1 is registered, remember to set rank and give tickets if needed",_groupid];

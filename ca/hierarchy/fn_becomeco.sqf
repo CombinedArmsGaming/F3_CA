@@ -21,7 +21,7 @@ _check = ca_selectedgroup getVariable ['ca_groupsetup',false];
 if (!_check) then {
 _group setVariable ["ca_groupsetup",true, true];
 _group setVariable ["ca_grouptickets",0, true];
-_group setVariable ["ca_grouptype","none", true];
+_group setVariable ["ca_grouptype","auto", true];
 _group setVariable ["ca_SRradioCH",1, true];
 _group setVariable ["ca_LRradioarray",[4], true];
 _group setVariable ["ca_groupcolor","b_hq", true];

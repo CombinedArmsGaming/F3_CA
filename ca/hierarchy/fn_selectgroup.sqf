@@ -16,6 +16,9 @@ _selectedgroupcontrol = _display displayCtrl 1818;
 _group = ca_selectedgroup;
 _groupid = ca_selectedgroupid;
 
+if (_groupid == "Overflow/Dead") exitWith {
+		systemChat "Select a real group to pin.";
+};
 
 // ---------------------------------------------------------------------
 _rankid = rankid player;

@@ -9,9 +9,9 @@ class ca_hierarchydialog
         class frame: RscFrame1
         {
         	idc = 1810;
-            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 30 * pixelH * pixelGrid + safeZoneY;
-            w = 480 * (pixelW * 2);
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 30 * pixelH * 8 + safeZoneY;
+            w = 500 * (pixelW * 2);
             h = 300 * (pixelH * 2);
         };
         class tree: RscTree
@@ -20,8 +20,8 @@ class ca_hierarchydialog
             colorBackground[] = {0,0,0,0.8};
 	        colorText[] = {1,1,1,0.9};
             sizeEx = 10 * (pixelH * 2);
-            x = 30 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 30 * pixelH * pixelGrid + safeZoneY;
+            x = 73 * pixelW * 8 + safeZoneX;
+            y = 30 * pixelH * 8 + safeZoneY;
             w = 90 * (pixelW * 2);
             h = 300 * (pixelH * 2);
             expandOnDoubleclick = 1; // Expand/collapse item upon double-click
@@ -35,19 +35,19 @@ class ca_hierarchydialog
             text = "Group controls";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 30 * pixelH * pixelGrid + safeZoneY;
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 30 * pixelH * 8 + safeZoneY;
             w = 95 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
         class selectsquad: RscButton
         {
             idc = -1;
-            text = "Select/Deselect group";
+            text = "Pin/Unpin group";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 35 * pixelH * pixelGrid + safeZoneY;
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 35 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_selectgroup";
@@ -55,11 +55,11 @@ class ca_hierarchydialog
             class movesquad: RscButton
         {
             idc = -1;
-            text = "Assign subgroup";
+            text = "Assign pinned group to";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 40 * pixelH * pixelGrid + safeZoneY;
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 40 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_movegroup";
@@ -70,8 +70,8 @@ class ca_hierarchydialog
             text = "Register group";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 45 * pixelH * pixelGrid + safeZoneY;
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 45 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_registergroup";
@@ -82,8 +82,8 @@ class ca_hierarchydialog
             text = "Respawn group";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 50 * pixelH * pixelGrid + safeZoneY;
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 50 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_respawngroup";
@@ -91,11 +91,11 @@ class ca_hierarchydialog
         class selectedgroupinfo: RscText
         {
             idc = -1;
-            text = "Selected group:";
+            text = "Pinned group:";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 60 * pixelH * pixelGrid + safeZoneY;
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 60 * pixelH * 8 + safeZoneY;
             w = 100 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
@@ -105,8 +105,8 @@ class ca_hierarchydialog
             text = "None";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 65 * pixelH * pixelGrid + safeZoneY;
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 65 * pixelH * 8 + safeZoneY;
             w = 100 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
@@ -116,8 +116,8 @@ class ca_hierarchydialog
             text = "Superiors callsign:";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 70 * pixelH * pixelGrid + safeZoneY;
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 70 * pixelH * 8 + safeZoneY;
             w = 100 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
@@ -127,8 +127,8 @@ class ca_hierarchydialog
             text = "None";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 21.5 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 75 * pixelH * pixelGrid + safeZoneY;
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 75 * pixelH * 8 + safeZoneY;
             w = 100 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
@@ -136,9 +136,9 @@ class ca_hierarchydialog
         {
         	idc = 1812;
             sizeEx = 10 * (pixelH * 2);
-            x = 40 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 35 * pixelH * pixelGrid + safeZoneY;
-            w = 95 * (pixelW * 2);
+            x = 97 * pixelW * 8 + safeZoneX;
+            y = 35 * pixelH * 8 + safeZoneY;
+            w = 93 * (pixelW * 2);
             h = 120 * (pixelH * 2);
 
         };
@@ -148,8 +148,8 @@ class ca_hierarchydialog
             text = "Alive players in group";
             sizeEx = 10 * (pixelH * 2);
             style = ST_CENTER;
-            x = 40 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 30 * pixelH * pixelGrid + safeZoneY;
+            x = 97 * pixelW * 8 + safeZoneX;
+            y = 30 * pixelH * 8 + safeZoneY;
             w = 95 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
@@ -159,8 +159,8 @@ class ca_hierarchydialog
             text = "Player controls";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 30 * pixelH * pixelGrid + safeZoneY;
+            x = 121 * pixelW * 8 + safeZoneX;
+            y = 30 * pixelH * 8 + safeZoneY;
             w = 95 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
@@ -170,8 +170,8 @@ class ca_hierarchydialog
             text = "Demote player";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 35 * pixelH * pixelGrid + safeZoneY;
+            x = 121 * pixelW * 8 + safeZoneX;
+            y = 35 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[false] spawn ca_fnc_changerank";
@@ -182,8 +182,8 @@ class ca_hierarchydialog
             text = "Promote player";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 40 * pixelH * pixelGrid + safeZoneY;
+            x = 121 * pixelW * 8 + safeZoneX;
+            y = 40 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[true] spawn ca_fnc_changerank";
@@ -194,8 +194,8 @@ class ca_hierarchydialog
             text = "Give map Marker";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 45 * pixelH * pixelGrid + safeZoneY;
+            x = 121 * pixelW * 8 + safeZoneX;
+            y = 45 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_giveSpecialistMarker";
@@ -207,8 +207,8 @@ class ca_hierarchydialog
             text = "Group Marker Controls";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 50 * pixelH * pixelGrid + safeZoneY;
+            x = 121 * pixelW * 8 + safeZoneX;
+            y = 50 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
         };
@@ -218,11 +218,11 @@ class ca_hierarchydialog
             text = "Get groupmarker";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 55 * pixelH * pixelGrid + safeZoneY;
+            x = 121 * pixelW * 8 + safeZoneX;
+            y = 55 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
-            action =  "if(leader player == player) then { [(netId group player)] remoteExec ['ca_fnc_groupMarker', (side player)];} else {hint 'You are not the group leader!'};";
+            action =  "if(leader player == player) then { [(group player)] remoteExec ['ca_fnc_groupMarker', (side player)];} else {hint 'You are not the group leader!'};";
             //closeDialog 0;
         };
         class changegroupmarker: RscButton 
@@ -231,19 +231,19 @@ class ca_hierarchydialog
             text = "Change callsign/color";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 60 * pixelH * pixelGrid + safeZoneY;
+            x = 121 * pixelW * 8 + safeZoneX;
+            y = 60 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
-            action =  "if(leader player == player) then {_groupiddialog=createdialog 'ca_groupid'; } else {hint 'You are not the group leader!'}; 1809 closeDisplay 1;";
+            action =  "if(leader player == player) then {_groupiddialog=createdialog 'ca_groupid'; } else {hint 'You are not the group leader!'};";
         };
         class deadplayers: RscListbox1
         {
         	idc = 1813;
             sizeEx = 10 * (pixelH * 2);
-            x = 40 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 75 * pixelH * pixelGrid + safeZoneY;
-            w = 95 * (pixelW * 2);
+            x = 97 * pixelW * 8 + safeZoneX;
+            y = 75 * pixelH * 8 + safeZoneY;
+            w = 93 * (pixelW * 2);
             h = 115 * (pixelH * 2);
         };
         class deadplayerinfo: RscText
@@ -252,8 +252,8 @@ class ca_hierarchydialog
             text = "Dead players in group";
             style = ST_CENTER;
             sizeEx = 10 * (pixelH * 2);
-            x = 40 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 69 * pixelH * pixelGrid + safeZoneY;
+            x = 97 * pixelW * 8 + safeZoneX;
+            y = 69 * pixelH * 8 + safeZoneY;
             w = 95 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
@@ -262,8 +262,8 @@ class ca_hierarchydialog
             idc = 1814;
             sizeEx = 15 * (pixelH * 2);
             text = "";
-            x = 60 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 35 * pixelH * pixelGrid + safeZoneY;
+            x = 145 * pixelW * 8 + safeZoneX;
+            y = 35 * pixelH * 8 + safeZoneY;
             w = 100 * (pixelW * 2);
             h = 25 * (pixelH * 2);
         };
@@ -272,30 +272,30 @@ class ca_hierarchydialog
             idc = 1815;
             sizeEx = 15 * (pixelH * 2);
             text = "";
-            x = 60 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 50 * pixelH * pixelGrid + safeZoneY;
+            x = 145 * pixelW * 8 + safeZoneX;
+            y = 50 * pixelH * 8 + safeZoneY;
             w = 100 * (pixelW * 2);
             h = 25 * (pixelH * 2);
         };
         class shortrangeinfo: RscText //moved 
         {
             idc = -1;
-            text = "SR radio channel next respawn";
+            text = "Selected group SR radio channel";
             style = ST_LEFT;
             sizeEx = 10 * (pixelH * 2);
-            x = 59 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 30 * pixelH * pixelGrida + safeZoneY;
+            x = 144 * pixelW * 8 + safeZoneX;
+            y = 30 * pixelH * 8 + safeZoneY;
             w = 200 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
         class longrangeinfo: RscText //moved 
         {
             idc = -1;
-            text = "LR radio channels next respawn";
+            text = "Selected group LR radio channels";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 59 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 45 * pixelH * pixelGrid + safeZoneY;
+            x = 144 * pixelW * 8 + safeZoneX;
+            y = 45 * pixelH * 8 + safeZoneY;
             w = 200 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
@@ -305,8 +305,8 @@ class ca_hierarchydialog
             text = "Update Radio Channels";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 60 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 58 * pixelH * pixelGrid + safeZoneY;
+            x = 145 * pixelW * 8 + safeZoneX;
+            y = 58 * pixelH * 8 + safeZoneY;
             w = 90 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_updateradioCHs";
@@ -315,12 +315,12 @@ class ca_hierarchydialog
         class tickinfo: RscText  
         {
             idc = -1;
-            text = "Group Ticket Controls";
+            text = "Group Ticket Controls (Group respawn only)";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 69 * pixelH * pixelGrid + safeZoneY;
-            w = 140 * (pixelW * 2);
+            x = 122 * pixelW * 8 + safeZoneX;
+            y = 69 * pixelH * 8 + safeZoneY;
+            w = 200 * (pixelW * 2);
             h = 20 * (pixelH * 2);
         };
         class sidetickets: RscText
@@ -329,8 +329,8 @@ class ca_hierarchydialog
             text = "Select a group";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 75 * pixelH * pixelGrid + safeZoneY;
+            x = 122 * pixelW * 8 + safeZoneX;
+            y = 75 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
@@ -340,8 +340,8 @@ class ca_hierarchydialog
             text = "To begin";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 80 * pixelH * pixelGrid + safeZoneY;
+            x = 122 * pixelW * 8 + safeZoneX;
+            y = 80 * pixelH * 8 + safeZoneY;
             w = 100 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
@@ -351,8 +351,8 @@ class ca_hierarchydialog
             text = "+1";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 85 * pixelH * pixelGrid + safeZoneY;
+            x = 122 * pixelW * 8 + safeZoneX;
+            y = 85 * pixelH * 8 + safeZoneY;
             w = 15 * (pixelW * 2);
             h = 15 * (pixelH * 2);
             action =  "[1] spawn ca_fnc_transferSquadTickets";
@@ -363,8 +363,8 @@ class ca_hierarchydialog
             text = "-1";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 50 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 90 * pixelH * pixelGrid + safeZoneY;
+            x = 122 * pixelW * 8 + safeZoneX;
+            y = 90 * pixelH * 8 + safeZoneY;
             w = 15 * (pixelW * 2);
             h = 15 * (pixelH * 2);
             action =  "[-1] spawn ca_fnc_transferSquadTickets";
@@ -375,8 +375,8 @@ class ca_hierarchydialog
             text = "+5";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 52 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 85 * pixelH * pixelGrid + safeZoneY;
+            x = 127 * pixelW * 8 + safeZoneX;
+            y = 85 * pixelH * 8 + safeZoneY;
             w = 15 * (pixelW * 2);
             h = 15 * (pixelH * 2);
             action =  "[5] spawn ca_fnc_transferSquadTickets";
@@ -387,11 +387,22 @@ class ca_hierarchydialog
             text = "-5";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 52 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 90 * pixelH * pixelGrid + safeZoneY;
+            x = 127 * pixelW * 8 + safeZoneX;
+            y = 90 * pixelH * 8 + safeZoneY;
             w = 15 * (pixelW * 2);
             h = 15 * (pixelH * 2);
             action =  "[-5] spawn ca_fnc_transferSquadTickets";
+        };
+        class grptimer: RscText
+        {
+            idc = 1820;
+            text = "Group respawn timer";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 122 * pixelW * 8 + safeZoneX;
+            y = 100 * pixelH * 8 + safeZoneY;
+            w = 200 * (pixelW * 2);
+            h = 15 * (pixelH * 2);
         };
             class becomeco: RscButton
         {
@@ -399,8 +410,8 @@ class ca_hierarchydialog
             text = "Become CO";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 60 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 80 * pixelH * pixelGrid + safeZoneY;
+            x = 145 * pixelW * 8 + safeZoneX;
+            y = 80 * pixelH * 8 + safeZoneY;
             w = 90 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_becomeco";
@@ -411,8 +422,8 @@ class ca_hierarchydialog
             text = "Commanding Officer controls";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 60 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 75 * pixelH * pixelGrid + safeZoneY;
+            x = 145 * pixelW * 8 + safeZoneX;
+            y = 75 * pixelH * 8 + safeZoneY;
             w = 140 * (pixelW * 2);
             h = 20 * (pixelH * 2);
         };
@@ -422,8 +433,8 @@ class ca_hierarchydialog
             text = "Wave Respawn Interface";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
-            x = 60 * pixelW * pixelGrid * safezoneW + safeZoneX;
-            y = 85 * pixelH * pixelGrid + safeZoneY;
+            x = 145 * pixelW * 8 + safeZoneX;
+            y = 85 * pixelH * 8 + safeZoneY;
             w = 90 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "if(rankid player <= ca_corank || serverCommandAvailable '#kick') then {_handle=createdialog 'ca_respawndiag'; } else {hint 'You are not the Commanding Officer!'}";

@@ -24,17 +24,20 @@ _unitname = _aliveplayers lbData _index;
 
 _groupid = groupid ca_selectedgroup;
 
-
 {
 	if (name _x == _unitname) then {
+		if (_x getVariable ["ca_specialistmarker",false]) exitWith {
+			systemChat "Removing specialist marker";
+			_x setVariable ["ca_specialistmarker",false];
+		};
 		if (_x == leader ca_selectedgroup) exitWith {
 			systemChat "Unit is the leader of the group, use groupmarker instead";
 		};
 		systemChat format ["Marker assigned for: %1",_unitname];
-		[(str _x),"b_med", format ["%1 M",_groupid], "ColorBlack"] remoteExec ["ca_fnc_SpecialistMarker",_side];
+		_x setVariable ["ca_specialistmarker",true];
+		[_x] remoteExec ["ca_fnc_SpecialistMarker",_side];
 	};
 } forEach (units ca_selectedgroup);
-
 
 
 } else {

@@ -1,5 +1,5 @@
-#include "briefing\ca_markerdialog.hpp"
 #include "respawn\ca_respawndialog.hpp"
+#include "briefing\ca_markerdialog.hpp"
 #include "hierarchy\ca_hierarchydialog.hpp"
 
 // Zeus UI specific files

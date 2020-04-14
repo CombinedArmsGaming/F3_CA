@@ -19,6 +19,9 @@ _groupid = ca_selectedgroupid;
 _rankid = rankid player;
 if (_rankid < ca_corank) exitWith {systemChat "You do not have the sufficient authority to change the hierarchy!";};
 
+if (_groupid == "Overflow/Dead") exitWith {
+		systemChat "Select a real group to move to.";
+};
 
 if (isnil {ca_switchgroupthiscycle}) exitwith {
 	systemChat "Select the group first!";

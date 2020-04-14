@@ -62,10 +62,5 @@ f_radios_settings_acre2_language_blufor = ["english"];
 f_radios_settings_acre2_language_opfor = ["farsi"];
 f_radios_settings_acre2_language_indfor = ["greek"];
 
-// Channel names and group defaults
-// first item in the array will correspond to the first channel
-// item definition: ["CHANNEL NAME", ["GROUP1 NAME", "GROUP2 NAME"]]
-// note that if using a 343 only the first 16 channels are available for the short-range array
-// also note these only work if f_radios_settings_acre2_disableFrequencySplit is set to false
 
 ca_radioSetup = true;

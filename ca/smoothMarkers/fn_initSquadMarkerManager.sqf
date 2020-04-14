@@ -38,9 +38,9 @@ waitUntil
                 _colourText = _group getVariable ["ca_groupcolor","ColorBlack"];
                 _colour = (configfile >> "CfgMarkerColors" >> _colourText >> "color") call BIS_fnc_colorConfigToRGBA;
 
-                _iconText = _group getVariable ["ca_grouptype","none"];
+                _iconText = _group getVariable ["ca_grouptype","auto"];
 
-                if !(_iconText isEqualTo "none") then
+                if !(_iconText isEqualTo "auto") then
                 {
                     _icon = [_iconText] call ca_fnc_convertMarkerNameToImage;
                 };
@@ -96,14 +96,17 @@ waitUntil
                     _specialists = [];
 
                     {
-                        _specialists pushBackUnique _x;
+                        if (_x getVariable ["ca_specialistmarker", false]) then
+                        {
+                            _specialists pushBackUnique _x;
+                        };
 
                     } forEach _specials;
 
                     if (!(isNil 'ca_specialistMarkerClasses')) then
                     {
                         {
-                            if ((_x getVariable ["f_var_assignGear", "unassigned"]) in ca_specialistMarkerClasses) then
+                            if (_x getVariable ["ca_specialistmarker", false]) then
                             {
                                 _specialists pushBackUnique _x;
                             };

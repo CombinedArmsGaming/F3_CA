@@ -83,8 +83,8 @@ while {true} do
 
     _newMkrType = "b_unknown";
     _newMkrColor = _grp getVariable ["ca_groupcolor","ColorBlack"];
-    _grptypevar = _grp getVariable ["ca_grouptype","none"];
-    if (_grptypevar == "none") then {
+    _grptypevar = _grp getVariable ["ca_grouptype","auto"];
+    if (_grptypevar == "auto") then {
         _newMkrType = "b_hq";
         _leader = leader _grp;
         _vehicle = objectParent _leader;
