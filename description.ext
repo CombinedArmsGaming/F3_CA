@@ -315,6 +315,7 @@ class CfgFunctions
 			class GetMarkerColor{};
 			class LocalFTMarkerSync{};
 		};
+		#include "f\FTMemberMarkers\smoothMarkers\functions.hpp"
 		class bodyRemoval
 		{
 			file = "f\removeBody";

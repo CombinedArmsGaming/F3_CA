@@ -8,7 +8,7 @@ _colorarray = ['ColorYellow','ColorRed','ColorBlue','ColorGreen','ColorOrange','
 _typearray = ['b_hq','b_inf','b_support','b_motor_inf','b_mortar','b_maint','b_mech_inf','b_armor','b_recon','b_air','b_plane','b_art'];
 
 {_lb1ctrl lbAdd _x; _lb1ctrl lbSetData [_forEachIndex, _x];} forEach ['ColorYellow','ColorRed','ColorBlue','ColorGreen','ColorOrange','ColorBlack','ColorWhite','ColorGrey','ColorBrown','ColorKhaki'];
-{_lb2ctrl lbAdd _x; _lb2ctrl lbSetData [_forEachIndex, _x];} forEach ['b_hq','b_inf','b_support','b_motor_inf','b_mortar','b_maint','b_mech_inf','b_armor','b_recon','b_air','b_plane','b_art','none'];
+{_lb2ctrl lbAdd _x; _lb2ctrl lbSetData [_forEachIndex, _x];} forEach ['b_hq','b_inf','b_support','b_motor_inf','b_mortar','b_maint','b_mech_inf','b_armor','b_recon','b_air','b_plane','b_art','auto'];
 
 _MkrColor = (group player) getVariable ["ca_groupcolor","ColorBlack"];
 _MkrType = (group player) getVariable ["ca_grouptype","b_hq"];

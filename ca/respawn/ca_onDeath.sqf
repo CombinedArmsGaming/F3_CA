@@ -76,7 +76,7 @@ _loadout = (_unit getVariable "f_var_assignGear");
 _unit setVariable ["f_var_assignGear_done",false,true];
 [_loadout,player] call f_fnc_assignGear;
 [] execVM "f\radios\radio_init.sqf";
-[player,player] call ACE_medical_fnc_treatmentAdvanced_fullHealLocal;
+[player] call ace_medical_treatment_fnc_fullHealLocal;      // medical rewrite compatibility (ACE v3.13.0 and higher)
 
 // Exit spectator and setpos to respawn_west
 // ====================================================================================================================

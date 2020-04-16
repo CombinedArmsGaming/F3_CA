@@ -11,6 +11,9 @@ _longrangechannels = _display displayCtrl 1815;
 _sideticketcontrol = _display displayCtrl 1816;
 _squadticketcontrol = _display displayCtrl 1817;
 _selectedgroupcontrol = _display displayCtrl 1818;
+_superiorgroupcontrol = _display displayCtrl 1819;
+_grouprespawntimer = _display displayCtrl 1820;
+
 
 
 
@@ -59,7 +62,9 @@ lbClear _deadplayers;
 
 if(count _findgroup == 0) exitwith {
 	if (_groupid == "Overflow/Dead") then {
-			systemChat "This is the remaining groups that arent in the hierarchy because they don't have a superior, register if necessary, then use select group and move selected group to place them in the hierarchy.";
+			systemChat "This is the remaining groups that arent in the hierarchy because they don't have a superior, register if necessary, then use select group and assign subgroup to place them in the hierarchy.";
+		ca_selectedgroup = group player;
+		ca_selectedgroupid = "Overflow/Dead";
 	} else {
 	systemChat "Group doesnt exists in game anymore or is bugged.";
 	};
@@ -112,6 +117,18 @@ _squadtickets = _group getVariable ["ca_grouptickets","Not registered!"];
 _sideticketcontrol ctrlSetText (format ["%1 Tickets: %2",_side,_sidetickets]);
 _squadticketcontrol ctrlSetText (format ["%2 Tickets: %1",(_squadtickets),_groupid]);
 
+
+_superiorgroupcontrol ctrlSetText (format ["%1",(ca_selectedgroup getVariable ["ca_superior","None"])]);
+
+
+_respawntime = _group getVariable ["ca_grouprespawntime",900000];
+
+_infotime = ceil (_respawntime - time);
+if (lbSize _deadplayers == 0 || _infotime > 90000 || ca_respawnmode < 3) then {
+	_grouprespawntimer ctrlSetText (format ["%1",ca_selectedgroup]);
+} else {
+	_grouprespawntimer ctrlSetText (format ["%2 can deploy in about %1 sec",(_infotime),_groupid]);
+};
 
 
 if (isnil {ca_switchgroupthiscycle}) then {

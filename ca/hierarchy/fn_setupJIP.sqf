@@ -20,11 +20,11 @@ _unit = player;
 _group = group player;
 _groupid = groupid (group player);
 //If the group is already setup, then exit
-if (!isnil {group player getVariable "ca_superior"}) exitWith {};
+if (!isnil {group player getVariable ["_groupmarkerboolean",false]}) exitWith {};
 _side = side player;
 
 _setupgroup = {
-	params ["_groupid","_superior","_rank","_SRradioCH","_LRradioarray","_groupcolor","_grouptickets","_grouptype"];
+	params ["_groupid","_superior","_SRradioCH","_LRradioarray","_groupcolor","_grouptickets","_groupmarkerboolean","_grouptype"];
 
 	_group = group player;
 
@@ -38,13 +38,10 @@ _setupgroup = {
 	_cooldowntime = ca_grouprespawncooldown + time;
 	_group setVariable ["ca_grouprespawntime",_cooldowntime, true];
 
-	{
-		if (leader _group == _x) then {
-			[leader _group,_rank] spawn ca_fnc_setrank;
-		};
-	} forEach (units _group);
 	//PUT IN GROUP MARKERS HERE (remoteexec becauser its server executing only)
-	_group remoteExec ["ca_fnc_groupMarker",_side,true];
+	if (_groupmarkerboolean) then {
+	_group remoteExec ["ca_fnc_groupMarker",_side,true];	
+	};
 };
 
 
@@ -83,6 +80,6 @@ switch (_side) do {
 
 _setup = group player getVariable ["ca_groupsetup",false];
 if (!_setup) then {
-	[_group,_groupid,2,16,[4],"ColorGrey",0,"none"] call _setupgroup;
+	[_group,_groupid,2,16,[4],"ColorGrey",0,"auto"] call _setupgroup;
 };
-diag_log format [" JIP player(%1)setup side(%2), group (%3)",player, _side,_group];
+diag_log format ["JIP player(%1)setup side(%2), group (%3)",player, _side,_group];

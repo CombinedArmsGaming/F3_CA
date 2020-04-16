@@ -103,35 +103,36 @@ if(_typeOfUnit != "NIL") then {
 
 
 		
-		
 
 		// If unit is in the above list, add a 152
-		if(_unitrank in f_radios_settings_acre2_longRange) then {
+
+		if(_typeOfUnit in f_radios_settings_acre2_longRange) then {
 			if (_unit canAdd f_radios_settings_acre2_standardLRRadio) then {
 				_unit addItem f_radios_settings_acre2_standardLRRadio;
 			} else {
 				f_radios_settings_acre2_standardLRRadio call f_radios_acre2_giveRadioAction;
 			};
 		};
+		if ((f_radios_settings_acre2_leaderLongRange && (leader group _unit == _unit)) || !f_radios_settings_acre2_leaderLongRange) then {
 			// If unit is in the list of units that receive a worse long-range radio, add a 148
-		if(_unitrank in f_radios_settings_acre2_extraRadios) then {
-			if (_unit canAdd f_radios_settings_acre2_extraRadio) then {
-				_unit addItem f_radios_settings_acre2_extraRadio;
-			} else {
-				f_radios_settings_acre2_extraRadio call f_radios_acre2_giveRadioAction;
+			if(_unitrank in f_radios_settings_acre2_extraRadios && !(_typeOfUnit in f_radios_settings_acre2_longRange)) then {
+				if (_unit canAdd f_radios_settings_acre2_extraRadio) then {
+					_unit addItem f_radios_settings_acre2_extraRadio;
+				} else {
+					f_radios_settings_acre2_extraRadio call f_radios_acre2_giveRadioAction;
+				};
+			};
+			// If unit has more long range channels, give 148s to cover 
+			if(count _longrangeArray > 1 &&  (_unitrank in f_radios_settings_acre2_extraRadios) || (count _longrangeArray > 2 && _typeOfUnit in f_radios_settings_acre2_BackpackRadios)) then {
+				for "_i" from 1 to (count _longrangeArray -1) do {
+					if (_unit canAdd f_radios_settings_acre2_extraRadio) then {
+						_unit addItem f_radios_settings_acre2_extraRadio;
+					} else {
+						f_radios_settings_acre2_extraRadio call f_radios_acre2_giveRadioAction;
+					};
+				};
 			};
 		};
-		// If unit has more long range channels, give 148s to cover 
-		if(count _longrangeArray > 1 &&  (_unitrank in f_radios_settings_acre2_extraRadios || _unitrank in f_radios_settings_acre2_longRange) || (count _longrangeArray > 2 && _typeOfUnit in f_radios_settings_acre2_BackpackRadios)) then {
-			for "_i" from 1 to (count _longrangeArray -1) do {
-			if (_unit canAdd f_radios_settings_acre2_extraRadio) then {
-				_unit addItem f_radios_settings_acre2_extraRadio;
-			} else {
-				f_radios_settings_acre2_extraRadio call f_radios_acre2_giveRadioAction;
-			};
-			};
-		};
-		
 			// If unit is in the list of units that receive a backpack radio, then add a 117F
 		if(_typeOfUnit in f_radios_settings_acre2_BackpackRadios) then {
 			if (_unit canAdd f_radios_settings_acre2_BackpackRadio) then {
@@ -164,6 +165,10 @@ if(!f_radios_settings_acre2_disableRadios) then {
 	};
 
 	_radioSR = [f_radios_settings_acre2_standardSHRadio] call acre_api_fnc_getRadioByType;
+	//Workaround if f_radios_settings_acre2_standardSHRadio = []
+	if(isnil {_radioSR}) then {
+	_radioSR = "";
+	};
 	_radiolist = [] call acre_api_fnc_getCurrentRadioList;
 	_radiolist deleteAt (_radiolist find _radioSR);
 

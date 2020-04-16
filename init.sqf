@@ -9,8 +9,8 @@ enableSaving [false, false];
 
 // F3 - Mute Orders and Reports
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-Vcm_ActivateAi = false;  
-Vcm_DrivingActivated = false;  
+Vcm_ActivateAi = false;
+Vcm_DrivingActivated = false;
 enableSentences false;
 // Wait until initServer.sqf is done to get all the variables we need.
 waitUntil {!isnil {ca_initserver}};
@@ -36,7 +36,16 @@ f_var_mapClickSupplyDrop_Height = 1000;									// If > 0 map click Supply Drop 
 // [] execVM "f\mapClickSupplyDrop\f_mapClickSupplyDropAction.sqf";		// Uncommenting assigns addaction to all group leaders to call Supply Drops.
 
 // ====================================================================================
+// Thanks to http://killzonekid.com/arma-scripting-tutorials-mission-root/
+MISSION_ROOT = call
+{
+    private "_arr";
+    _arr = toArray str missionConfigFile;
+    _arr resize (count _arr - 15);
+    toString _arr
+};
 
+// ====================================================================================
 // F3 - Briefing
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
@@ -55,6 +64,13 @@ f_script_setTeamColours = [] execVM "f\setTeamColours\f_setTeamColours.sqf";
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
 [] spawn f_fnc_SetLocalFTMemberMarkers;
+
+// ====================================================================================
+
+// CA - Smooth squad markers, by Bubbus
+// See initServer.sqf for configuration.
+
+[] spawn ca_fnc_initSmoothSquadMarkers;
 
 // ====================================================================================
 

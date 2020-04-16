@@ -62,6 +62,7 @@ class CA
 		class incfuelcon{};
 		class parachute{};
         class vehiclespawner{};
+        class isPlayerAlive{};
 	};
 	class respawn
 	{
@@ -93,4 +94,6 @@ class CA
 		class server_spawnGroup{};
 		class zeusUI{};
 	};
+
+	#include "smoothMarkers\functions.hpp"
 };

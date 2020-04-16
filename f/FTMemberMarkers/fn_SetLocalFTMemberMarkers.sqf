@@ -28,6 +28,18 @@ f_fnc_SetTeamValue =
 	_unit setvariable ["assignedTeam",_color];
 };
 
+
+// ====================================================================================
+
+// Smooth markers support
+// If smooth markers are enabled, skip the normal marker loop below.
+#include "smoothMarkers\macros.hpp"
+
+if (IS_TRUE(f_var_smoothMarkers)) exitWith
+{
+    [] spawn f_fnc_initSmoothFireteamMarkers;
+};
+
 // ====================================================================================
 
 // START DRAWING MARKERS
