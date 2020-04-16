@@ -17,6 +17,8 @@
 		(nothing)
 -------------------------------------------------------------------------------------------------------------------- */
 
+#include "config\macros.hpp"
+
 // Fetch our params
 params ["_roles", "_pos", "_gear", "_side", ["_vehicleClass", ""], ["_enableVCOM", false], ["_guerrillaAI", false], ["_suppressiveAI", false]];
 
@@ -54,9 +56,7 @@ private _allObjects = (units _group) + [_vehicle];
 
 // Disable VCOM, if desired
 if (!_enableVCOM) then {
-	{
-		_x setVariable ["VCOM_NOAI", true, true];
-	} forEach units _group;
+	_group setVariable [MACRO_VCOM_VARNAME_NOAI, true, true];
 };
 
 // Enable guerrilla AI, if desired
