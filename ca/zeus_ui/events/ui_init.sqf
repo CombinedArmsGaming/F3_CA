@@ -346,14 +346,28 @@ case "ui_init": {
 
 			// Hide the UI when pressing backspace
 			_zeusUI displayAddEventHandler ["KeyDown", {
-				params ["", "_key"];
+				params ["_zeusUI", "_key"];
 
 				// If the backspace key was pressed, toggle the UI visibility
 				if (_key == 14) then {
-					private _isShown = !(missionNamespace getVariable [MACRO_VARNAME_UI_ISSHOWN, true]);
-					missionNamespace setVariable [MACRO_VARNAME_UI_ISSHOWN, _isShown];
 
-					["ui_toggle", [_isShown]] call ca_fnc_zeusUI;
+					// Only detect the first keyDown event (so that holding down the key doesn't toggle the UI every frame)
+					if !(_zeusUI getVariable [MACRO_VARNAME_UI_SHOULDHIDE_KEYDOWN, false]) then {
+						_zeusUI setVariable [MACRO_VARNAME_UI_SHOULDHIDE_KEYDOWN, true];
+
+						private _isShown = !(missionNamespace getVariable [MACRO_VARNAME_UI_ISSHOWN, true]);
+						missionNamespace setVariable [MACRO_VARNAME_UI_ISSHOWN, _isShown];
+
+						["ui_toggle", [_isShown]] call ca_fnc_zeusUI;
+					};
+				};
+			}];
+			_zeusUI displayAddEventHandler ["KeyUp", {
+				params ["_zeusUI", "_key"];
+
+				// If the backspace key was pressed, toggle the UI visibility
+				if (_key == 14) then {
+					_zeusUI setVariable [MACRO_VARNAME_UI_SHOULDHIDE_KEYDOWN, false];
 				};
 			}];
 		};
