@@ -7,7 +7,7 @@ if (serverCommandAvailable "#kick") then {
 
 // PabstMirror - Mission Intro
 // Credits: PabstMirror
-[] execVM "ca\misc\PM_missionIntro.sqf";
+[] execVM "ca\misc\CA_missionIntro.sqf";
 
 // Headless join in progress support.
 _ishc = !hasInterface && !isDedicated;
