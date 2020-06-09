@@ -332,6 +332,11 @@ class CfgFunctions
 			file = "f\mapClickSupplyDrop";
 			class mapClickSupplyDropUnit{};
 		};
+		class medical
+		{
+			file = "f\medical";
+			class WoundUnitRandomly{};
+		};
 		class zeus
 		{
 			file = "f\zeus";
@@ -355,6 +360,14 @@ class CfgFunctions
 		#include "f\simplewoundingsystem\config.hpp"
 		#include "f\spect\functions.hpp"
 
+	};
+	class ace_medical_treatment
+	{
+		class test
+		{
+			file = "f\medical";
+			class handleBandageOpening{};
+		};
 	};
 };
 
