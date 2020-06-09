@@ -1,4 +1,9 @@
-// CA - Filling listbox for the ca marker management system.
+/*
+ * Author: Poulern
+ * Create the treeview and fill the hierarchy interface.
+ * 
+ * Called on opening the interface
+ */
 
 disableSerialization;
 _display = findDisplay 1809;
@@ -8,6 +13,7 @@ _side = side player;
 _allsquads = [];
 _allplayergroups = [];
 
+	tvClear _tree;
 
 if(isnil {ca_platoonsetup}) exitwith {systemChat "Hierarchy setup is not done yet, try again"; _display closeDisplay 1};
 
@@ -168,4 +174,3 @@ _tree ctrlAddEventHandler ["TreeSelChanged", {
 }
 ];
 
-//_tree tvSetCurSel [0];

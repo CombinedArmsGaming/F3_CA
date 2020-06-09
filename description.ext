@@ -258,9 +258,6 @@ class ca_respawn
 #include "f\JIP\f_JIP_kitpicker.h"
 #include "f\JIP\f_JIP_grppicker.h"
 
-// Menu components for the Spectator Script
-#include "f\spect\config.hpp"
-
 // ============================================================================================
 
 // F3 - Functions
@@ -316,11 +313,6 @@ class CfgFunctions
 			class LocalFTMarkerSync{};
 		};
 		#include "f\FTMemberMarkers\smoothMarkers\functions.hpp"
-		class bodyRemoval
-		{
-			file = "f\removeBody";
-			class removeBody{};
-		};
 		class mapClickTeleport
 		{
 			file = "f\mapClickTeleport";
@@ -339,22 +331,11 @@ class CfgFunctions
 			class zeusAddAddons{};
 			class zeusAddObjects{};
 		};
-		class tfr
-		{
-			file = "f\radios\tfr";
-			class tfr_removeRadios{};
-			class tfr_addRadios{};
-			class tfr_setRadioFrequencies{};
-			class tfr_configureSpectatorChat{};
-		};
 		class safeStart
 		{
 			file = "f\safeStart";
 			class safety{};
 		};
-		#include "f\simplewoundingsystem\config.hpp"
-		#include "f\spect\functions.hpp"
-
 	};
 };
 

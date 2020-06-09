@@ -8,8 +8,8 @@ _caWestTickets = 50;
 _caEastTickets = _caWestTickets;
 _caIndependentTickets = _caWestTickets;
 
-//To create a seperate hierarchy for another side, just copy this code block and change the variable reference ([west] spawn _hierarchy) near the bottom 
-_hierarchy = {
+//To create a seperate hierarchy for another side, just 
+_hierarchywest = {
 _side = _this select 0;
 
 /*
@@ -51,6 +51,8 @@ Parameters for ca_fnc_setupGroup, which is what the setup below uses to setup ea
 	[_side,"ENG","CO",15,[5],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup;
 };
 
+_hierarchyeast = _hierarchywest;
+_hierarchyindependent = _hierarchywest;
 //Individual speicalist markers (ie medic markers). Refer to assinggear files for a complete list of f3 loadout classes (eg dc, ftl, eng, sp, pp, vc etc.)
 _caSpecialistMarkerClasses = ["m","uav","eng"];
 
@@ -118,12 +120,12 @@ ca_WestJIPgroups = [];
 ca_EastJIPgroups = [];
 ca_IndependentJIPgroups = [];
 sleep 5;
-//If using multiple sides for TvT etc. change the _hierarchy code block here.
+//Setting up the hierarchyblocks It needs to be executed now to allow all the mission variables to be set first. 
 // ====================================================================================
 
-[west] spawn _hierarchy;
-[east] spawn _hierarchy;
-[independent] spawn _hierarchy;
+[west] spawn _hierarchywest;
+[east] spawn _hierarchyeast;
+[independent] spawn _hierarchyindependent;
 
 sleep 10;
 missionNamespace setVariable ['ca_WestJIPgroups',ca_WestJIPgroups, true]; 

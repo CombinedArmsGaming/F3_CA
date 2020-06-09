@@ -29,6 +29,10 @@ Show headless markers</execute><br/>
 Hide headless markers</execute><br/>
 |- <execute expression="" hint format ['%1 for markers being shown',ca_hcshowmarkers]"">
 Check headless marker status</execute><br/>
+|- <execute expression=""missionNamespace setVariable ['ca_showRadioMarkers',true, true];"">
+Show Radio Radio structure markers</execute><br/>
+|- <execute expression=""missionNamespace setVariable ['ca_showRadioMarkers',false, true];"">
+Hide Radio structure markers</execute><br/>
 <font size='18'>F3 admin menu</font><br/><br/>
 |- <execute expression="" [] execvm 'f\briefing\f_briefing_admin.sqf' "">
 Give self F3 admin menu</execute><br/>
@@ -65,13 +69,7 @@ Show smooth fireteam markers</execute><br/>
 |- <execute expression=""missionNamespace setVariable ['f_var_smoothFTMarkers_hide',false, true];"">
 Hide smooth fireteam markers</execute><br/>
 ";
-/*
-_briefing = _briefing + "
-<font size='18'>Ai spawn buttons </font><br/><br/>
-|- <execute expression=""[['SC1_CA','SC1_CA_1','SC1_CA_2'],['ftl','ar','r','r','r'],'SC1_CA_A','opf_f',east] spawn ca_fnc_massattack"">
-Spawn big wave on west, east and north hill</execute><br/>
-";
-*/
+
 // ====================================================================================
 
 // CREATE DIARY ENTRY

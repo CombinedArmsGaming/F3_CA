@@ -9,8 +9,6 @@ enableSaving [false, false];
 
 // F3 - Mute Orders and Reports
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-Vcm_ActivateAi = false;
-Vcm_DrivingActivated = false;
 enableSentences false;
 // Wait until initServer.sqf is done to get all the variables we need.
 waitUntil {!isnil {ca_initserver}};
@@ -88,45 +86,6 @@ if(isServer) then {
 	f_script_setLocalVars = [] execVM "f\common\f_setLocalVars.sqf";
 };
 
-// ====================================================================================
-
-// F3 - Automatic Body Removal
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-// f_var_removeBodyDelay = 180;
-// f_var_removeBodyDistance = 500;
-// f_var_doNotRemoveBodies = [];
-// [] execVM "f\removeBody\f_addRemoveBodyEH.sqf";
-
-// ====================================================================================
-
-// F3 - Dynamic View Distance
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-// f_var_viewDistance_default = 1250;
-// f_var_viewDistance_tank = 2000;
-// f_var_viewDistance_car = 2000;
-// f_var_viewDistance_rotaryWing = 2500;
-// f_var_viewDistance_fixedWing = 5000;
-// f_var_viewDistance_crewOnly = true;
-// [] execVM "f\dynamicViewDistance\f_setViewDistanceLoop.sqf";
-
-// ====================================================================================
-
-// F3 - Casualties Cap
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-// [[GroupName or SIDE],100,1] execVM "f\casualtiesCap\f_CasualtiesCapCheck.sqf";
-// [[GroupName or SIDE],100,{code}] execVM "f\casualtiesCap\f_CasualtiesCapCheck.sqf";
-
-// BLUFOR > NATO
-// [BLUFOR,100,1] execVM "f\casualtiesCap\f_CasualtiesCapCheck.sqf";
-
-// OPFOR > CSAT
-// [OPFOR,100,1] execVM "f\casualtiesCap\f_CasualtiesCapCheck.sqf";
-
-// INDEPENDENT > AAF
-// [INDEPENDENT,100,1] execVM "f\casualtiesCap\f_CasualtiesCapCheck.sqf";
 
 // ====================================================================================
 
@@ -182,15 +141,6 @@ f_var_cachingAggressiveness = 2;
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
 [] execVM "f\radios\radio_init.sqf";
-
-// ====================================================================================
-
-// F3 - JIP setup (CA version)
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-// Note: if you want respawn, go to description.ext and remove "f_spectator" from respawnTemplates[]
-// Note: respawn_west etc. markers are mandatory. When not using respawn, place these markers somewhere players will not go
-
 
 // ====================================================================================
 

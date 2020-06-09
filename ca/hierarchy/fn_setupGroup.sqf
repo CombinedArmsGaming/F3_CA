@@ -17,7 +17,7 @@
 Example: [west,"ASL","CO",1,[4,1],"ColorRed",5] spawn ca_fnc_setupGroup;
 
  */
-params ["_side","_groupid","_superior",["_SRradioCH",16],["_LRradioarray",[4]],["_groupcolor","ColorWhite"],["_grouptickets",5],["_groupmarkerboolean",true],["_grouptype","auto"]];
+params ["_side","_groupid","_superior",["_SRradioCH",16],["_LRradioarray",[4]],["_groupcolor","ColorWhite"],["_grouptickets",0],["_groupmarkerboolean",true],["_grouptype","auto"]];
 
 
 //Create a global variable for this group, so it can be bypassed in the hierarchy if needed (CO-ASl-A1 -> CO-A1)

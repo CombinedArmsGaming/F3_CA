@@ -31,6 +31,9 @@ if (ca_previousgroup == ca_selectedgroup ) exitwith {
 	systemChat "That is the same group!";
 };
 
+_check = ca_selectedgroup getVariable ['ca_groupsetup',false]; 
+
+if (!_check) exitwith { systemChat "Group you are trying to pin to is not registered!"; };
 if (ca_switchgroupthiscycle) then {
 	_grouptomove = ca_previousgroup;
 
