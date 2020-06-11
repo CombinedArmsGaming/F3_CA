@@ -375,6 +375,7 @@ class CfgFunctions
 // ============================================================================================
 
 // F3 - Custom Insignia
+// Default insignia now part of Gibbs_Insignia addon. Mission specific insignia can be added in the define below.
 
 class CfgUnitInsignia {
 	#include "f\assignGear\insignia\define.hpp"
