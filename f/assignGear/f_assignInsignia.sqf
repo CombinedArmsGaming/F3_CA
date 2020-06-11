@@ -28,110 +28,77 @@ _roleBadge = switch (_typeofUnit) do
 	{
 		switch (_faction) do
 		{	
-			case "blu_f": {"insignia_GI_Medic"};
-			case "opf_f": {"insignia_GI_Medic"};
-			case "ind_f": {"insignia_GI_Medic"};
-			default {""};			
+			default {"insignia_GI_Medic"};			
 		};
 	};
 	case "pj":
 	{
 		switch (_faction) do
 		{	
-			case "blu_f": {"insignia_GI_Medic"};
-			case "opf_f": {"insignia_GI_Medic"};
-			case "ind_f": {"insignia_GI_Medic"};
-			default {""};			
+			default {"insignia_GI_Medic"};			
 		};
 	};
 	case "surgeon":
 	{
 		switch (_faction) do
 		{	
-			case "blu_f": {"insignia_GI_SURGEON"};
-			case "opf_f": {"insignia_GI_SURGEON"};
-			case "ind_f": {"insignia_GI_SURGEON"};
-			default {""};			
+			default {"insignia_GI_Surgeon"};			
 		};
 	};
 	case "log":
 	{
 		switch (_faction) do
 		{	
-			case "blu_f": {"insignia_GI_LOG"};
-			case "opf_f": {"insignia_GI_LOG"};
-			case "ind_f": {"insignia_GI_LOG"};
-			default {""};			
+			default {"insignia_GI_LOG"};			
 		};
 	};
 	case "log_sl":
 	{
 		switch (_faction) do
 		{	
-			case "blu_f": {"insignia_GI_LOG_SL"};
-			case "opf_f": {"insignia_GI_LOG_SL"};
-			case "ind_f": {"insignia_GI_LOG_SL"};
-			default {""};			
+			default {"insignia_GI_LOG_SL"};			
 		};
 	};	
 	case "eng":
 	{
 		switch (_faction) do
 		{	
-			case "blu_f": {"insignia_GI_ENG"};
-			case "opf_f": {"insignia_GI_ENG"};
-			case "ind_f": {"insignia_GI_ENG"};
-			default {""};			
+			default {"insignia_GI_ENG"};			
 		};
 	};
 	case "eng_sl":
 	{
 		switch (_faction) do
 		{	
-			case "blu_f": {"insignia_GI_ENG_SL"};
-			case "opf_f": {"insignia_GI_ENG_SL"};
-			case "ind_f": {"insignia_GI_ENG_SL"};
-			default {""};			
+			default {"insignia_GI_ENG_SL"};			
 		};
 	};	
 	case "fac":
 	{
 		switch (_faction) do
 		{	
-			case "blu_f": {"insignia_GI_FAC"};
-			case "opf_f": {"insignia_GI_FAC"};
-			case "ind_f": {"insignia_GI_FAC"};
-			default {""};			
+			default {"insignia_GI_FAC"};			
 		};
 	};
 	case "rto":
 	{
 		switch (_faction) do
 		{	
-			case "blu_f": {"insignia_GI_RTO"};
-			case "opf_f": {"insignia_GI_RTO"};
-			case "ind_f": {"insignia_GI_RTO"};
-			default {""};			
+			default {"insignia_GI_RTO"};			
 		};
 	};
 	case "air":
 	{
 		switch (_faction) do
 		{	
-			case "blu_f": {"insignia_GI_AIR"};
-			case "opf_f": {"insignia_GI_AIR"};
-			case "ind_f": {"insignia_GI_AIR"};
-			default {""};			
+			default {"insignia_GI_AIR"};			
 		};
 	};
 	case "recon":
 	{
 		switch (_faction) do
 		{	
-			case "blu_f": {"insignia_GI_REC"};
-			case "opf_f": {"insignia_GI_REC"};
-			case "ind_f": {"insignia_GI_REC"};
-			default {""};			
+			default {"insignia_GI_REC"};			
 		};
 	};
 	default {""};
