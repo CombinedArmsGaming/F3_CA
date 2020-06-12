@@ -27,40 +27,44 @@ Parameters for ca_fnc_setupGroup, which is what the setup below uses to setup ea
 [_side,"ASL","CO",1,[4,1],"ColorRed",5] spawn ca_fnc_setupGroup;
 [_side,"ELEMENT","ELEMENT IMMEDIATELY ABOVE THEM IN THE HIERARCHY",SR radio channel,[LR radio channels],"ColorOfgroup",Number of group tickets 123,Should the group get a map marker true/false,"grouptype aka which marker they get"] spawn ca_fnc_setupGroup;
 */
-[_side,"COY","COY",16,[5,6],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup;
+[_side,"CO","CO",16,[5,6],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup;
 
-	[_side,"ENG","COY",51,[5],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup;
-	[_side,"EOD","COY",51,[5],"ColorGrey",2,true,"b_eod"] spawn ca_fnc_setupGroup;
-	[_side,"MMG","COY",52,[5],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup;
-	[_side,"MAT","COY",53,[5],"ColorOrange",2, true, "b_antitank"] spawn ca_fnc_setupGroup;
-	[_side,"LOG","COY",44,[5],"ColorOrange",2, true, "b_supply"] spawn ca_fnc_setupGroup;
-	[_side,"HMG","COY",45,[5],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup;
-	[_side,"HAT","COY",46,[5],"ColorOrange",2, true, "b_heavyantitank"] spawn ca_fnc_setupGroup;
-	[_side,"GMG","COY",47,[5],"ColorOrange",2, true, "b_heavyweapons"] spawn ca_fnc_setupGroup;
-	[_side,"MTR","COY",48,[5],"ColorOrange",5, true, "b_mortar"] spawn ca_fnc_setupGroup;
-	[_side,"MOR","COY",48,[5],"ColorOrange",5, true, "b_mortar"] spawn ca_fnc_setupGroup;	
-	[_side,"REC","COY",49,[5],"ColorOrange",5, true, "b_recon"] spawn ca_fnc_setupGroup;
-	[_side,"AAA","COY",50,[5],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup;
-	[_side,"SAM","COY",50,[5],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup;
-	[_side,"SF","COY",50,[5],"ColorBlack",5, true, "b_sf"] spawn ca_fnc_setupGroup;
+	[_side,"ENG","CO",51,[5],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup;
+	[_side,"EOD","CO",51,[5],"ColorGrey",2,true,"b_eod"] spawn ca_fnc_setupGroup;
+	[_side,"MMG","CO",52,[5],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup;
+	[_side,"MAT","CO",53,[5],"ColorOrange",2, true, "b_antitank"] spawn ca_fnc_setupGroup;
+	[_side,"LOGI","CO",44,[5],"ColorOrange",2, true, "b_supply"] spawn ca_fnc_setupGroup;
+	[_side,"HMG","CO",45,[5],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup;
+	[_side,"HAT","CO",46,[5],"ColorOrange",2, true, "b_heavyantitank"] spawn ca_fnc_setupGroup;
+	[_side,"GMG","CO",47,[5],"ColorOrange",2, true, "b_heavyweapons"] spawn ca_fnc_setupGroup;
+	[_side,"MTR","CO",48,[5],"ColorOrange",5, true, "b_mortar"] spawn ca_fnc_setupGroup;	
+	[_side,"REC","CO",49,[5],"ColorOrange",5, true, "b_recon"] spawn ca_fnc_setupGroup;
+	[_side,"AAA","CO",50,[5],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup; // For Vehicle AA
+	[_side,"SAM","CO",50,[5],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup; // For Manpad AA
+	[_side,"SF","CO",50,[5],"ColorBlack",5, true, "b_sf"] spawn ca_fnc_setupGroup;
 
-	[_side,"1PL","COY",16,[5,1],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup;
+    // FOR COMPANY HIERARCHY - UNCOMMENT AS REQUIRED. REMEMBER TO COMMENT OUT THE PREVIOUS ENTRY.
+    //
+    //
+	//[_side,"1PL","COY",16,[5,1],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup;
 
-		[_side,"ASL","1PL",1,[1,2],"ColorRed",5, true, "b_hq"] spawn ca_fnc_setupGroup;
+		[_side,"ASL","CO",1,[1,2],"ColorRed",5, true, "b_hq"] spawn ca_fnc_setupGroup;
+		//[_side,"ASL","1PL",1,[1,2],"ColorRed",5, true, "b_hq"] spawn ca_fnc_setupGroup;
 			[_side,"A1","ASL",2,[2],"ColorRed",2] spawn ca_fnc_setupGroup;
 			[_side,"A2","ASL",3,[2],"ColorRed",2] spawn ca_fnc_setupGroup;
 			[_side,"AV","ASL",4,[11,2],"ColorRed",2] spawn ca_fnc_setupGroup;
 
-		[_side,"BSL","1PL",5,[1,3],"ColorBlue",5, true, "b_hq"] spawn ca_fnc_setupGroup;
+		[_side,"BSL","CO",5,[1,3],"ColorBlue",5, true, "b_hq"] spawn ca_fnc_setupGroup;
+		//[_side,"BSL","1PL",5,[1,3],"ColorBlue",5, true, "b_hq"] spawn ca_fnc_setupGroup;
 			[_side,"B1","BSL",6,[3],"ColorBlue",2] spawn ca_fnc_setupGroup;
 			[_side,"B2","BSL",7,[3],"ColorBlue",2] spawn ca_fnc_setupGroup;
 			[_side,"BV","BSL",8,[11,3],"ColorBlue",2] spawn ca_fnc_setupGroup;
 
-		[_side,"CSL","1PL",9,[1,4],"ColorGreen",5, true, "b_hq"] spawn ca_fnc_setupGroup;
+		[_side,"CSL","CO",9,[1,4],"ColorGreen",5, true, "b_hq"] spawn ca_fnc_setupGroup;
+		//[_side,"CSL","1PL",9,[1,4],"ColorGreen",5, true, "b_hq"] spawn ca_fnc_setupGroup;
 			[_side,"C1","CSL",10,[4],"ColorGreen",2] spawn ca_fnc_setupGroup;
 			[_side,"C2","CSL",11,[4],"ColorGreen",2] spawn ca_fnc_setupGroup;
 			[_side,"CV","CSL",12,[11,3],"ColorGreen",2] spawn ca_fnc_setupGroup;
-
 
 	[_side,"2PL","COY",29,[5,7],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup;
 
@@ -94,15 +98,14 @@ Parameters for ca_fnc_setupGroup, which is what the setup below uses to setup ea
 		[_side,"ISL","3PL",40,[14,17],"ColorGreen",5, true, "b_hq"] spawn ca_fnc_setupGroup;
 			[_side,"I1","ISL",41,[17],"ColorGreen",2] spawn ca_fnc_setupGroup;
 			[_side,"I2","ISL",42,[17],"ColorGreen",2] spawn ca_fnc_setupGroup;
-			[_side,"IV","ISL",43,[13,17],"ColorGreen",2] spawn ca_fnc_setupGroup;
+			[_side,"IV","ISL",43,[13,17],"ColorGreen",2] spawn ca_fnc_setupGroup;	
 
-		
 };
 
 _hierarchyeast = _hierarchywest;
 _hierarchyindependent = _hierarchywest;
 //Individual speicalist markers (ie medic markers). Refer to assinggear files for a complete list of f3 loadout classes (eg dc, ftl, eng, sp, pp, vc etc.)
-_caSpecialistMarkerClasses = ["m","surgeon","uav","eng"];
+_caSpecialistMarkerClasses = ["m","surgeon","uav"];
 
 // Long radio channels setup
 // Long range channel names for 148, 152, 117, Vehicle radios. This correlates to "ALPHA SQUAD" = Channel 1 in the platoon hierarchy array above. 

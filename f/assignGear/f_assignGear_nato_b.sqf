@@ -519,6 +519,28 @@ case "eng":
 	};
 };
 
+case "log":
+{
+	// LOADOUT: LIGHT
+	if (_loadout == 0) then {
+		_unit addBackpack _bagsmall;
+		clearMagazineCargoGlobal (unitBackpack _unit);
+		(unitBackpack _unit) addItemCargoGlobal ["ToolKit",1];
+	};
+	// LOADOUT: MEDIUM
+	if (_loadout == 1) then {
+		_unit addBackpack _baglarge;
+		clearMagazineCargoGlobal (unitBackpack _unit);
+		(unitBackpack _unit) addItemCargoGlobal ["ToolKit",1];
+	};
+	// LOADOUT: HEAVY
+	if (_loadout == 2) then {
+		_unit addBackpack _baglarge;
+		clearMagazineCargoGlobal (unitBackpack _unit);
+		(unitBackpack _unit) addItemCargoGlobal ["ToolKit",1];
+	};
+};
+
 // BACKPACK: ENGINEER (MINES)
 case "engm":
 {

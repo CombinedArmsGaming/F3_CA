@@ -236,7 +236,7 @@ _APmine2 = "APERSMine_Range_Mag";
 // "medium" vests are used for all classes if they are not assigned a specific uniform
 
 _light = [];
-_heavy =  ["eng","engm"];
+_heavy =  ["eng","engm","log"];
 _diver = ["div"];
 _pilot = ["pp","pcc","pc"];
 _crew = ["vc","vg","vd"];
@@ -801,6 +801,18 @@ switch (_typeofUnit) do
 		_unit addItem "ACE_wirecutter";
 		_unit addWeapon "Binocular";
 		["engm"] call _backpack;
+	};
+
+// LOADOUT: LOGISTICS
+	case "log":
+	{
+		_unit addmagazines [_carbinemag,7];
+		_unit addweapon _carbine;
+		_unit addmagazines [_smokegrenade,2];
+		_unit addItem "ACE_DefusalKit";
+		_unit addItem "ACE_wirecutter";
+		_unit addWeapon "Binocular";
+		["log"] call _backpack;
 	};
 
 // LOADOUT: UAV OPERATOR

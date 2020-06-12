@@ -116,6 +116,7 @@ switch (_faction) do
 {	
 	case "blu_f" : {
 		_groupBadges = [
+			["GrpNATO_CO","insignia_GI_CO"],
 			["GrpNATO_COY","insignia_GI_COY"],
 			["GrpNATO_AAA","insignia_GI_AAA"],
 			["GrpNATO_SAM","insignia_GI_SAM"],
@@ -127,7 +128,6 @@ switch (_faction) do
 			["GrpNATO_WEP","insignia_GI_WEP"],
 			["GrpNATO_SPC","insignia_GI_SPC"],
 			["GrpNATO_SF","insignia_GI_SF"],
-			["GrpNATO_MOR","insignia_GI_MOR"],
 			["GrpNATO_MTR","insignia_GI_MTR"],
 			["GrpNATO_REC","insignia_GI_REC"],
 			["GrpNATO_ENG","insignia_GI_ENG"],
@@ -177,6 +177,7 @@ switch (_faction) do
 	};
 	case "opf_f" : {
 		_groupBadges = [
+			["GrpCSAT_CO","insignia_GI_CO"],
 			["GrpCSAT_COY","insignia_GI_COY"],
 			["GrpCSAT_AAA","insignia_GI_AAA"],
 			["GrpCSAT_MAT","insignia_GI_MAT"],
@@ -184,7 +185,6 @@ switch (_faction) do
 			["GrpCSAT_GMG","insignia_GI_GMG"],
 			["GrpCSAT_MMG","insignia_GI_MMG"],
 			["GrpCSAT_HMG","insignia_GI_HMG"],
-			["GrpCSAT_MOR","insignia_GI_MOR"],
 			["GrpCSAT_REC","insignia_GI_REC"],
 			["GrpCSAT_ENG","insignia_GI_ENG"],
 			["GrpCSAT_ENG_SL","insignia_GI_ENG_SL"],
@@ -233,6 +233,7 @@ switch (_faction) do
 	};
 	case "ind_f" : {
 		_groupBadges = [
+			["GrpAAF_CO","insignia_GI_CO"],
 			["GrpAAF_COY","insignia_GI_COY"],
 			["GrpAAF_AAA","insignia_GI_AAA"],
 			["GrpAAF_MAT","insignia_GI_MAT"],
@@ -240,7 +241,6 @@ switch (_faction) do
 			["GrpAAF_GMG","insignia_GI_GMG"],
 			["GrpAAF_MMG","insignia_GI_MMG"],
 			["GrpAAF_HMG","insignia_GI_HMG"],
-			["GrpAAF_MOR","insignia_GI_MOR"],
 			["GrpAAF_REC","insignia_GI_REC"],
 			["GrpAAF_ENG","insignia_GI_ENG"],
 			["GrpAAF_ENG_SL","insignia_GI_ENG_SL"],
@@ -289,6 +289,7 @@ switch (_faction) do
 	};
 	case "blu_g_f" : {
 		_groupBadges = [
+			["GrpFIA_CO","insignia_GI_CO"],
 			["GrpFIA_COY","insignia_GI_COY"],
 			["GrpFIA_AAA","insignia_GI_AAA"],
 			["GrpFIA_MAT","insignia_GI_MAT"],
@@ -296,7 +297,6 @@ switch (_faction) do
 			["GrpFIA_GMG","insignia_GI_GMG"],
 			["GrpFIA_MMG","insignia_GI_MMG"],
 			["GrpFIA_HMG","insignia_GI_HMG"],
-			["GrpFIA_MOR","insignia_GI_MOR"],
 			["GrpFIA_REC","insignia_GI_REC"],
 			["GrpFIA_ENG","insignia_GI_ENG"],
 			["GrpFIA_ENG_SL","insignia_GI_ENG_SL"],
@@ -345,6 +345,7 @@ switch (_faction) do
 	};
 	case "opf_g_f" : {
 		_groupBadges = [
+			["GrpOFIA_CO","insignia_GI_CO"],
 			["GrpOFIA_COY","insignia_GI_COY"],
 			["GrpOFIA_AAA","insignia_GI_AAA"],
 			["GrpOFIA_MAT","insignia_GI_MAT"],
@@ -352,7 +353,6 @@ switch (_faction) do
 			["GrpOFIA_GMG","insignia_GI_GMG"],
 			["GrpOFIA_MMG","insignia_GI_MMG"],
 			["GrpOFIA_HMG","insignia_GI_HMG"],
-			["GrpOFIA_MOR","insignia_GI_MOR"],
 			["GrpOFIA_REC","insignia_GI_REC"],
 			["GrpOFIA_ENG","insignia_GI_ENG"],
 			["GrpOFIA_ENG_SL","insignia_GI_ENG_SL"],
@@ -400,6 +400,7 @@ switch (_faction) do
 		];
 	};case "ind_g_f" : {
 		_groupBadges = [
+			["GrpIFIA_CO","insignia_GI_CO"],
 			["GrpIFIA_COY","insignia_GI_COY"],
 			["GrpIFIA_AAA","insignia_GI_AAA"],
 			["GrpIFIA_MAT","insignia_GI_MAT"],
@@ -407,7 +408,6 @@ switch (_faction) do
 			["GrpIFIA_GMG","insignia_GI_GMG"],
 			["GrpIFIA_MMG","insignia_GI_MMG"],
 			["GrpIFIA_HMG","insignia_GI_HMG"],
-			["GrpIFIA_MOR","insignia_GI_MOR"],
 			["GrpIFIA_REC","insignia_GI_REC"],
 			["GrpIFIA_ENG","insignia_GI_ENG"],
 			["GrpIFIA_ENG_SL","insignia_GI_ENG_SL"],
