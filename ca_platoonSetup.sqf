@@ -27,36 +27,80 @@ Parameters for ca_fnc_setupGroup, which is what the setup below uses to setup ea
 [_side,"ASL","CO",1,[4,1],"ColorRed",5] spawn ca_fnc_setupGroup;
 [_side,"ELEMENT","ELEMENT IMMEDIATELY ABOVE THEM IN THE HIERARCHY",SR radio channel,[LR radio channels],"ColorOfgroup",Number of group tickets 123,Should the group get a map marker true/false,"grouptype aka which marker they get"] spawn ca_fnc_setupGroup;
 */
+[_side,"COY","COY",16,[5,6],"ColorYellow",3] spawn ca_fnc_setupGroup;
 
-[_side,"CO","CO",16,[4,5,6],"ColorYellow",3] spawn ca_fnc_setupGroup;
+	[_side,"ENG","COY",51,[5],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup;
+	[_side,"MMG","COY",52,[5],"ColorOrange",5] spawn ca_fnc_setupGroup;
+	[_side,"MAT","COY",53,[5],"ColorOrange",2] spawn ca_fnc_setupGroup;
+	[_side,"LOG","COY",44,[5],"ColorOrange",2,true] spawn ca_fnc_setupGroup;
+	[_side,"HMG","COY",45,[5],"ColorOrange",5] spawn ca_fnc_setupGroup;
+	[_side,"HAT","COY",46,[5],"ColorOrange",2] spawn ca_fnc_setupGroup;
+	[_side,"GMG","COY",47,[5],"ColorOrange",2,true] spawn ca_fnc_setupGroup;
+	[_side,"MOR","COY",48,[5],"ColorOrange",5] spawn ca_fnc_setupGroup;
+	[_side,"REC","COY",49,[5],"ColorOrange",5] spawn ca_fnc_setupGroup;
+	[_side,"AAA","COY",50,[5],"ColorOrange",5] spawn ca_fnc_setupGroup;
 
-	[_side,"ASL","CO",1,[4,1],"ColorRed",5] spawn ca_fnc_setupGroup;
-		[_side,"A1","ASL",2,[1],"ColorRed",2] spawn ca_fnc_setupGroup;
-		[_side,"A2","ASL",3,[1],"ColorRed",2] spawn ca_fnc_setupGroup;
-		[_side,"AV","ASL",4,[5,1],"ColorRed",2] spawn ca_fnc_setupGroup;
+	[_side,"1PL","COY",16,[5,1],"ColorYellow",3] spawn ca_fnc_setupGroup;
 
-	[_side,"BSL","CO",5,[4,2],"ColorBlue",5] spawn ca_fnc_setupGroup;
-		[_side,"B1","BSL",6,[2],"ColorBlue",2] spawn ca_fnc_setupGroup;
-		[_side,"B2","BSL",7,[2],"ColorBlue",2] spawn ca_fnc_setupGroup;
-		[_side,"BV","BSL",8,[5,2],"ColorBlue",2] spawn ca_fnc_setupGroup;
+		[_side,"ASL","1PL",1,[1,2],"ColorRed",5] spawn ca_fnc_setupGroup;
+			[_side,"A1","ASL",2,[2],"ColorRed",2] spawn ca_fnc_setupGroup;
+			[_side,"A2","ASL",3,[2],"ColorRed",2] spawn ca_fnc_setupGroup;
+			[_side,"AV","ASL",4,[11,2],"ColorRed",2] spawn ca_fnc_setupGroup;
 
-	[_side,"CSL","CO",9,[4,3],"ColorGreen",5] spawn ca_fnc_setupGroup;
-		[_side,"C1","CSL",10,[3],"ColorGreen",2] spawn ca_fnc_setupGroup;
-		[_side,"C2","CSL",11,[3],"ColorGreen",2] spawn ca_fnc_setupGroup;
-		[_side,"CV","CSL",12,[5,3],"ColorGreen",2] spawn ca_fnc_setupGroup;
+		[_side,"BSL","1PL",5,[1,3],"ColorBlue",5] spawn ca_fnc_setupGroup;
+			[_side,"B1","BSL",6,[3],"ColorBlue",2] spawn ca_fnc_setupGroup;
+			[_side,"B2","BSL",7,[3],"ColorBlue",2] spawn ca_fnc_setupGroup;
+			[_side,"BV","BSL",8,[11,3],"ColorBlue",2] spawn ca_fnc_setupGroup;
 
-	[_side,"MMG","CO",13,[4,8],"ColorOrange",5] spawn ca_fnc_setupGroup;
-		[_side,"MAT","MMG",14,[8],"ColorOrange",2] spawn ca_fnc_setupGroup;
+		[_side,"CSL","1PL",9,[1,4],"ColorGreen",5] spawn ca_fnc_setupGroup;
+			[_side,"C1","CSL",10,[4],"ColorGreen",2] spawn ca_fnc_setupGroup;
+			[_side,"C2","CSL",11,[4],"ColorGreen",2] spawn ca_fnc_setupGroup;
+			[_side,"CV","CSL",12,[11,3],"ColorGreen",2] spawn ca_fnc_setupGroup;
 
-	[_side,"ENG","CO",15,[5],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup;
+
+	[_side,"2PL","COY",29,[5,7],"ColorYellow",3] spawn ca_fnc_setupGroup;
+
+		[_side,"DSL","2PL",17,[7,8],"ColorRed",5] spawn ca_fnc_setupGroup;
+			[_side,"D1","DSL",18,[8],"ColorRed",2] spawn ca_fnc_setupGroup;
+			[_side,"D2","DSL",19,[8],"ColorRed",2] spawn ca_fnc_setupGroup;
+			[_side,"DV","DSL",20,[12,8],"ColorRed",2] spawn ca_fnc_setupGroup;
+
+		[_side,"ESL","2PL",21,[7,9],"ColorBlue",5] spawn ca_fnc_setupGroup;
+			[_side,"E1","ESL",22,[9],"ColorBlue",2] spawn ca_fnc_setupGroup;
+			[_side,"E2","ESL",23,[9],"ColorBlue",2] spawn ca_fnc_setupGroup;
+			[_side,"EV","ESL",24,[12,9],"ColorBlue",2] spawn ca_fnc_setupGroup;
+
+		[_side,"FSL","2PL",25,[7,10],"ColorGreen",5] spawn ca_fnc_setupGroup;
+			[_side,"F1","FSL",26,[10],"ColorGreen",2] spawn ca_fnc_setupGroup;
+			[_side,"F2","FSL",27,[10],"ColorGreen",2] spawn ca_fnc_setupGroup;
+			[_side,"FV","FSL",28,[12,10],"ColorGreen",2] spawn ca_fnc_setupGroup;
+
+	[_side,"3PL","COY",44,[5,14],"ColorYellow",3] spawn ca_fnc_setupGroup;
+
+		[_side,"GSL","3PL",32,[14,15],"ColorRed",5] spawn ca_fnc_setupGroup;
+			[_side,"G1","GSL",33,[15],"ColorRed",2] spawn ca_fnc_setupGroup;
+			[_side,"G2","GSL",34,[15],"ColorRed",2] spawn ca_fnc_setupGroup;
+			[_side,"GV","GSL",35,[13,15],"ColorRed",2] spawn ca_fnc_setupGroup;
+
+		[_side,"HSL","3PL",36,[14,16],"ColorBlue",5] spawn ca_fnc_setupGroup;
+			[_side,"H1","HSL",37,[16],"ColorBlue",2] spawn ca_fnc_setupGroup;
+			[_side,"H2","HSL",38,[16],"ColorBlue",2] spawn ca_fnc_setupGroup;
+			[_side,"HV","HSL",39,[13,16],"ColorBlue",2] spawn ca_fnc_setupGroup;
+
+		[_side,"ISL","3PL",40,[14,17],"ColorGreen",5] spawn ca_fnc_setupGroup;
+			[_side,"I1","ISL",41,[17],"ColorGreen",2] spawn ca_fnc_setupGroup;
+			[_side,"I2","ISL",42,[17],"ColorGreen",2] spawn ca_fnc_setupGroup;
+			[_side,"IV","ISL",43,[13,17],"ColorGreen",2] spawn ca_fnc_setupGroup;
+
+		
 };
 
 //Individual speicalist markers (ie medic markers). Refer to assinggear files for a complete list of f3 loadout classes (eg dc, ftl, eng, sp, pp, vc etc.)
-_caSpecialistMarkerClasses = ["m","uav","eng"];
+_caSpecialistMarkerClasses = ["m","surgeon","uav","eng"];
 
 // Long radio channels setup
 // Long range channel names for 148, 152, 117, Vehicle radios. This correlates to "ALPHA SQUAD" = Channel 1 in the platoon hierarchy array above. 
-_caWestLongrangeChannelList = ["ALPHA SQUAD","BRAVO SQUAD","CHARLIE SQUAD","INFANTRY COMMAND","VEHICLE COMMAND","FORWARD AIR CONTROL","AIR COMMAND","WEAPONS SQUAD"];
+_caWestLongrangeChannelList = ["1ST PLATOON","ALPHA","BRAVO","CHARLIE","COMMAND","FORWARD AIR CONTROL","2ND PLATOON","DELTA","ECHO","FOXTROT","3RD PLATOON","GOLF","HOTEL","HOTEL"];
 _caEastLongrangeChannelList = _caWestLongrangeChannelList; // Copy and paste to change for another side eg ["ANNA SQUAD","BORIS SQUAD","CHARITON SQUAD","INFANTRY COMMAND","VEHICLE COMMAND","FORWARD AIR CONTROL","AIR COMMAND","WEAPONS SQUAD"];
 _caIndependentLongrangeChannelList = _caWestLongrangeChannelList;
 /* Default setup on 343 (short range) for the hierarchy above:

@@ -33,7 +33,7 @@ Ranks you want to give the full set of LR channels with the AN-PRC148 long-range
 f_radios_settings_acre2_extraRadios = [1,2,3,4,5,6];
 
 // Set the list of unit types that get one AN-PRC152 long range radio for their primary radio.
-f_radios_settings_acre2_longRange = ["m","co","dc","uav","sp","vc","pp"];
+f_radios_settings_acre2_longRange = ["m","surgeon","co","dc","eng_sl", "log_sl","uav","sp","vc","pp","fac"];
 
 // Unit types you want to give a backpack radio - Note this is loadout specific
 // I'd recommend this is only used for Pilots and FAC (you'll need to sort out a separate FAC loadout in your gearscript, I'd recommend using the "UAV" unit type defined below.)
