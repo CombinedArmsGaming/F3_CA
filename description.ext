@@ -324,6 +324,11 @@ class CfgFunctions
 			file = "f\mapClickSupplyDrop";
 			class mapClickSupplyDropUnit{};
 		};
+		class medical
+		{
+			file = "f\medical";
+			class WoundUnitRandomly{};
+		};
 		class zeus
 		{
 			file = "f\zeus";
@@ -337,12 +342,21 @@ class CfgFunctions
 			class safety{};
 		};
 	};
+	class ace_medical_treatment
+	{
+		class test
+		{
+			file = "f\medical";
+			class handleBandageOpening{};
+		};
+	};
 };
 
 
 // ============================================================================================
 
 // F3 - Custom Insignia
+// Default insignia now part of Gibbs_Insignia addon. Mission specific insignia can be added in the define below.
 
 class CfgUnitInsignia {
 	#include "f\assignGear\insignia\define.hpp"
