@@ -21403,7 +21403,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""eng"",this] call f_fnc_assignGear;}";
+						init="call{[""dc"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_ENG1_SL";
 						description="NATO Engineer Team Leader";
 						isPlayable=1;
@@ -31352,7 +31352,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""eng"",this] call f_fnc_assignGear;}";
+						init="call{[""dc"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_ENG1_FTL";
 						description="CSAT Engineer Team Leader";
 						isPlayable=1;
@@ -31739,7 +31739,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""eng"",this] call f_fnc_assignGear; }";
+						init="call{[""dc"",this] call f_fnc_assignGear; }";
 						name="UnitAAF_ENG_FTL";
 						description="AAF Engineer Team Leader ";
 						isPlayable=1;
@@ -32147,7 +32147,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""log"",this] call f_fnc_assignGear;}";
+						init="call{[""dc"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_LOG1_SL";
 						description="NATO Logistics Team Leader";
 						isPlayable=1;
@@ -34412,7 +34412,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""log"",this] call f_fnc_assignGear;}";
+						init="call{[""dc"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_LOG1_FTL";
 						description="CSAT Logistics Team Leader";
 						isPlayable=1;
@@ -36774,7 +36774,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""log"",this] call f_fnc_assignGear; }";
+						init="call{[""dc"",this] call f_fnc_assignGear; }";
 						name="UnitAAF_LOG_FTL";
 						description="AAF Logistics Team Leader ";
 						isPlayable=1;
