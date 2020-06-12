@@ -17,14 +17,14 @@ if (didJIP) then {[] spawn ca_fnc_setupJIP};
 
 // F3 - MapClick Teleport
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-// f_var_mapClickTeleport_Uses = 0;										// How often the teleport action can be used. 0 = infinite usage.
-// f_var_mapClickTeleport_TimeLimit = 0; 								// If higher than 0 the action will be removed after the given time.
-// f_var_mapClickTeleport_GroupTeleport = false; 						// False: everyone can teleport. True: Only group leaders can teleport and will move their entire group.
-// f_var_mapClickTeleport_Units = [];									// Restrict map click teleport to these units
-// f_var_mapClickTeleport_Height = 0;									// If > 0 map click teleport will act as a HALO drop and automatically assign parachutes to units
-// [] execVM "f\mapClickTeleport\f_mapClickTeleportAction.sqf";
-
+/*
+ f_var_mapClickTeleport_Uses = 0;										// How often the teleport action can be used. 0 = infinite usage.
+ f_var_mapClickTeleport_TimeLimit = 0; 								// If higher than 0 the action will be removed after the given time.
+ f_var_mapClickTeleport_GroupTeleport = false; 						// False: everyone can teleport. True: Only group leaders can teleport and will move their entire group.
+ f_var_mapClickTeleport_Units = [];									// Restrict map click teleport to these units
+ f_var_mapClickTeleport_Height = 0;									// If > 0 map click teleport will act as a HALO drop and automatically assign parachutes to units
+ [] execVM "f\mapClickTeleport\f_mapClickTeleportAction.sqf";
+*/
 // F3 - MapClick Supply Drop
 // Credits: Created by Volc, from the F3 mapClickTeleport script, and the dropit script by Kronzky http://www.kronzky.info/
 
@@ -72,20 +72,12 @@ f_script_setTeamColours = [] execVM "f\setTeamColours\f_setTeamColours.sqf";
 
 // ====================================================================================
 
-// F3 - F3 Folk ARPS Group Markers
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-//f_script_setGroupMarkers = [] execVM "f\groupMarkers\f_setLocalGroupMarkers.sqf";
-
-// ====================================================================================
-
 // F3 - F3 Common Local Variables
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // WARNING: DO NOT DISABLE THIS COMPONENT
 if(isServer) then {
 	f_script_setLocalVars = [] execVM "f\common\f_setLocalVars.sqf";
 };
-
 
 // ====================================================================================
 
@@ -110,13 +102,6 @@ if(isServer) then {
 
 // ====================================================================================
 
-// F3 - Join Group Action
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-//[false] execVM "f\groupJoin\f_groupJoinAction.sqf";
-
-// ====================================================================================
-
 // F3 - Mission Timer/Safe Start
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
@@ -124,23 +109,10 @@ if(isServer) then {
 
 // ====================================================================================
 
-// F3 - AI Unit Caching
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
-
-[30] spawn f_fnc_cInit;
-
-// Note: Caching aggressiveness is set using the f_var_cachingAggressiveness variable; possible values:
-// 1 - cache only non-leaders and non-drivers
-// 2 - cache all non-moving units, always exclude vehicle drivers
-// 3 - cache all units, incl. group leaders and vehicle drivers
-f_var_cachingAggressiveness = 2;
-
-// ====================================================================================
-
 // F3 - Radio Systems Support
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
-[] execVM "f\radios\radio_init.sqf";
+[] execVM "f\acre2\acre2_init.sqf";
 
 // ====================================================================================
 

@@ -292,14 +292,6 @@ class CfgFunctions
 			file = "f\assignGear";
 			class assignGear{};
 		};
-		class cache
-		{
-			file = "f\cache";
-			class cInit {};
-			class cTracker {};
-			class gCache {};
-			class gUncache {};
-		};
 		class groupMarkers {
 			file = "f\groupMarkers";
 			class localGroupMarker{};
