@@ -19,108 +19,81 @@ _faction = toLower (faction _unit);
 // ===================================================================================
 
 // Assign Insignia based on type of the unit.
-_roleBadge = "";
-_roleBadge = switch (_typeofUnit) do
+// Get role from var, or type of unit if no var set.
+_role = _unit getVariable ["badge", ""];
+if(_role == "") then {
+_role = _typeofUnit;
+};
+
+// Check if role has badge set...
+_roleBadge = switch (_role) do
 {
 
 // INSIGNIA: MEDIC
 	case "m":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_Medic"};			
-		};
-	};
-	case "pj":
-	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_Medic"};			
-		};
+		"insignia_GI_Medic"			
 	};
 	case "surgeon":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_Surgeon"};			
-		};
+		"insignia_GI_Surgeon"			
+
 	};
 	case "log":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_LOG"};			
-		};
+		"insignia_GI_LOG"			
+
 	};
 	case "log_sl":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_LOG_SL"};			
-		};
+		"insignia_GI_LOG_SL"			
+
 	};	
 	case "eng":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_ENG"};			
-		};
+		"insignia_GI_ENG"			
+
 	};
 	case "eng_sl":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_ENG_SL"};			
-		};
+		"insignia_GI_ENG_SL"		
+
 	};	
 	case "fac":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_FAC"};			
-		};
+		"insignia_GI_FAC"			
+
 	};
 	case "rto":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_RTO"};			
-		};
+		"insignia_GI_RTO"			
+
 	};
 	case "air":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_AIR"};			
-		};
+		"insignia_GI_AIR"		
+
 	};
 	case "recon":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_REC"};			
-		};
+
+		"insignia_GI_REC"			
+
 	};
 	case "zeus":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_ZEUS"};			
-		};
+		"insignia_GI_ZEUS"			
+
 	};	
 	case "spc":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_SPC"};			
-		};
+		"insignia_GI_SPC"			
+
 	};		
 	case "sf":
 	{
-		switch (_faction) do
-		{	
-			default {"insignia_GI_SF"};			
-		};
+		"insignia_GI_SF"			
+
 	};		
 	default {""};
 };
