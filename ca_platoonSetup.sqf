@@ -30,6 +30,7 @@ Parameters for ca_fnc_setupGroup, which is what the setup below uses to setup ea
 [_side,"COY","COY",16,[5,6],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup;
 
 	[_side,"ENG","COY",51,[5],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup;
+	[_side,"EOD","COY",51,[5],"ColorGrey",2,true,"b_eod"] spawn ca_fnc_setupGroup;
 	[_side,"MMG","COY",52,[5],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup;
 	[_side,"MAT","COY",53,[5],"ColorOrange",2, true, "b_antitank"] spawn ca_fnc_setupGroup;
 	[_side,"LOG","COY",44,[5],"ColorOrange",2, true, "b_supply"] spawn ca_fnc_setupGroup;
@@ -41,6 +42,7 @@ Parameters for ca_fnc_setupGroup, which is what the setup below uses to setup ea
 	[_side,"REC","COY",49,[5],"ColorOrange",5, true, "b_recon"] spawn ca_fnc_setupGroup;
 	[_side,"AAA","COY",50,[5],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup;
 	[_side,"SAM","COY",50,[5],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup;
+	[_side,"SF","COY",50,[5],"ColorBlack",5, true, "b_sf"] spawn ca_fnc_setupGroup;
 
 	[_side,"1PL","COY",16,[5,1],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup;
 
