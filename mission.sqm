@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={1702.1427,618.85443,1081.8331};
-		dir[]={-0.15497297,-0.98759693,0.02560034};
-		up[]={-0.97438544,0.1570458,0.16096133};
-		aside[]={0.16298483,2.9732473e-007,0.98663688};
+		pos[]={1733.0103,176.94458,1318.5789};
+		dir[]={-0.64963698,-0.56488431,-0.50882918};
+		up[]={-0.44473207,0.8251518,-0.34833694};
+		aside[]={-0.61663163,4.7311187e-007,0.78727025};
 	};
 };
 binarizationWanted=0;
@@ -21722,7 +21722,7 @@ class Mission
 			};
 			class Attributes
 			{
-				name="GrpNATO_ENG1";
+				name="GrpNATO_ENG";
 			};
 			id=297;
 			atlOffset=3.8146973e-006;
@@ -21881,6 +21881,7 @@ class Mission
 					};
 					id=371;
 					type="O_medic_F";
+					atlOffset=-3.8146973e-006;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -21965,7 +21966,6 @@ class Mission
 					};
 					id=373;
 					type="O_officer_F";
-					atlOffset=3.8146973e-006;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -22050,7 +22050,6 @@ class Mission
 					};
 					id=1124;
 					type="O_officer_F";
-					atlOffset=3.8146973e-006;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -31671,7 +31670,7 @@ class Mission
 			};
 			class Attributes
 			{
-				name="GrpCSAT_ENG1";
+				name="GrpCSAT_ENG";
 			};
 			id=1166;
 			atlOffset=0.58699799;
@@ -32466,7 +32465,7 @@ class Mission
 			};
 			class Attributes
 			{
-				name="GrpNATO_LOG1";
+				name="GrpNATO_LOG";
 				speedMode="LIMITED";
 			};
 			id=1216;
@@ -34731,7 +34730,7 @@ class Mission
 			};
 			class Attributes
 			{
-				name="GrpCSAT_LOG1";
+				name="GrpCSAT_LOG";
 			};
 			id=1459;
 			atlOffset=0.5870018;
@@ -37094,7 +37093,7 @@ class Mission
 			};
 			class Attributes
 			{
-				name="GrpAAF_LOG1";
+				name="GrpAAF_LOG";
 			};
 			id=1566;
 			class CustomAttributes
@@ -37153,7 +37152,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={1637.0885,50.729668,1388.5359};
-						angles[]={-0,1.7866471,6.2631865};
+						angles[]={0,1.7866471,6.2631865};
 					};
 					side="Independent";
 					flags=6;
