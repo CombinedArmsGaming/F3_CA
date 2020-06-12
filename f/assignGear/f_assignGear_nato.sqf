@@ -9,6 +9,7 @@
 //		co			- commander
 //		dc 			- deputy commander / squad leader
 //		m 			- medic
+//		surgeon		- surgeon (advanced medical -- PAK, surgical kit)
 //		ftl			- fire team leader
 //		ar 			- automatic rifleman
 //		aar			- assistant automatic rifleman
@@ -330,13 +331,13 @@ if (_isMan) then {
 	_unit addItem "ACE_Maptools";
 
 // Add medical items
-	{_unit addItem "ACE_elasticBandage"} forEach [1,2,3,4,5,6,7,8,9,10]; // Bandages
+	{_unit addItem "ACE_fieldDressing"} forEach [1,2,3,4,5,6,7,8,9,10]; // Bandages
 	{_unit addItem "ACE_morphine"} forEach [1,2,3,4,5];
 	{_unit addItem "ACE_tourniquet"} forEach [1,2];
 	{_unit addItem "ACE_splint"} forEach [1,2];	
 	//{_unit addItem "ACE_epinephrine"} forEach [1,2];
 	//{_unit addItem "ACE_adenosine"} forEach [1];	
-	//{_unit addItem "ACE_bloodIV"} forEach [1];
+	{_unit addItem "ACE_bloodIV_500"} forEach [1];
 
 	
 };
@@ -420,7 +421,23 @@ switch (_typeofUnit) do
 		_unit addWeapon "Binocular";		
 		_unit linkItem "ItemGPS";
 		_unit addItem "ACE_microDAGR";
+		_unit addItem "ACE_surgicalKit";
 		["m"] call _backpack;
+	};
+// LOADOUT: SURGEON
+	case "surgeon":
+	{
+		_unit addweapon _carbine;
+		_unit addmagazines [_carbinemag,5];
+		_unit addmagazines [_carbinemag_tr,2];		
+		_unit addmagazines [_smokegrenade,4];
+		{_unit addItem _firstaid} forEach [1,2,3,4];
+		{_unit addItem "ACE_splint"} forEach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addWeapon "Binocular";		
+		_unit linkItem "ItemGPS";
+		_unit addItem "ACE_surgicalKit";
+		_unit addItem "ACE_microDAGR";
+		["surgeon"] call _backpack;
 	};
 
 // LOADOUT: FIRE TEAM LEADER
