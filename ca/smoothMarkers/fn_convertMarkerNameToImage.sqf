@@ -19,5 +19,8 @@ switch (_iconName) do
     case "b_art": {ARTILLERY};
     case "b_naval": {NAVAL};
     case "b_antiair": {ANTIAIR};
-   default {UNKNOWN};
+    case "b_antitank": {ANTITANK};
+    case "b_heavyantitank": {HEAVYANTITANK};
+    case "b_heavyweapons": {HEAVYWEAPONS};
+  default {UNKNOWN};
 }

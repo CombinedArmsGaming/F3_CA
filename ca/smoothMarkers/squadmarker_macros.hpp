@@ -24,8 +24,11 @@
 
 #define HELO        "res\images\squadMarkers\squad_air.paa"
 #define ANTIAIR     "res\images\squadMarkers\squad_antiair.paa"
+#define ANTITANK     "res\images\squadMarkers\squad_antitank.paa"
+#define HEAVYANTITANK     "res\images\squadMarkers\squad_heavyantitank.paa"
 #define ARMOR       "res\images\squadMarkers\squad_armor.paa"
 #define ARTILLERY   "res\images\squadMarkers\squad_art.paa"
+#define HEAVYWEAPONS "res\images\squadMarkers\squad_heavyweapons.paa"
 #define HQ          "res\images\squadMarkers\squad_hq.paa"
 #define INFANTRY    "res\images\squadMarkers\squad_inf.paa"
 #define REPAIR      "res\images\squadMarkers\squad_maint.paa"
