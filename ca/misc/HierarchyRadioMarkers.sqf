@@ -5,6 +5,7 @@
  * Automatically executed on game start by ca_init.sqf
  *
  */
+waitUntil {!isnil {ca_platoonsetup}}; 
 
 ca_showRadioMarkers = true;
 _side = side player;

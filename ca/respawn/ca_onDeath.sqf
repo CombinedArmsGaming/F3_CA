@@ -20,7 +20,7 @@ if ((time < 10) || (isNull _corpse)) exitWith {
     _loadout = (_unit getVariable "f_var_assignGear");
     _unit setVariable ["f_var_assignGear_done",false,true];
     [_loadout,player] call f_fnc_assignGear;
-    [] execVM "f\radios\radio_init.sqf";
+    [] execVM "f\acre2\acre2_init.sqf";
 
     if (!f_var_JIP_JIPMenu) exitWith {}; //do JIP players get teleport menu?
     sleep 5;
@@ -76,7 +76,7 @@ if (count units _group == 1) then {
 _loadout = (_unit getVariable "f_var_assignGear");
 _unit setVariable ["f_var_assignGear_done",false,true];
 [_loadout,player] call f_fnc_assignGear;
-[] execVM "f\radios\radio_init.sqf";
+[] execVM "f\acre2\acre2_init.sqf";
 [player] call ace_medical_treatment_fnc_fullHealLocal;      // medical rewrite compatibility (ACE v3.13.0 and higher)
 
 // ====================================================================================================================

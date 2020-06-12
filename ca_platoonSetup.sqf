@@ -169,9 +169,9 @@ sleep 5;
 //Setting up the hierarchyblocks It needs to be executed now to allow all the mission variables to be set first. 
 // ====================================================================================
 
-[west] spawn _hierarchywest;
-[east] spawn _hierarchyeast;
-[independent] spawn _hierarchyindependent;
+[west] call _hierarchywest;
+[east] call _hierarchyeast;
+[independent] call _hierarchyindependent;
 
 sleep 10;
 missionNamespace setVariable ['ca_WestJIPgroups',ca_WestJIPgroups, true]; 

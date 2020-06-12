@@ -268,18 +268,6 @@ class CfgFunctions
 	#include "ca\ca_functions.hpp"
 	class F // Defines the "owner"
 	{
-		class common // category
-		{
-			file = "f\common";
-			// Defines the function to preInit (the paramArray dosent seem to be constructed at preInit stage).
-			class processParamsArray
-			{
-				preInit = 1;
-				postInit = 1;
-			};
-
-			class nearPlayer{};
-		};
 		class mpEnd
 		{
 			file = "f\mpEnd";
@@ -291,11 +279,6 @@ class CfgFunctions
 			// Defines the functions to preInit the compling of the assignGear function used by units.
 			file = "f\assignGear";
 			class assignGear{};
-		};
-		class groupMarkers {
-			file = "f\groupMarkers";
-			class localGroupMarker{};
-			class localSpecialistMarker{};
 		};
 		class FTMemberMarkers
 		{
