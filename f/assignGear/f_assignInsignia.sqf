@@ -29,10 +29,17 @@ _role = _typeofUnit;
 _roleBadge = switch (_role) do
 {
 
-// INSIGNIA: MEDIC
 	case "m":
 	{
 		"insignia_GI_Medic"			
+	};
+	case "co":
+	{
+		"insignia_GI_CO"			
+	};
+	case "xo":
+	{
+		"insignia_GI_XO"			
 	};
 	case "surgeon":
 	{
