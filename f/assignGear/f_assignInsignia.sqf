@@ -101,6 +101,27 @@ _roleBadge = switch (_typeofUnit) do
 			default {"insignia_GI_REC"};			
 		};
 	};
+	case "zeus":
+	{
+		switch (_faction) do
+		{	
+			default {"insignia_GI_ZEUS"};			
+		};
+	};	
+	case "spc":
+	{
+		switch (_faction) do
+		{	
+			default {"insignia_GI_SPC"};			
+		};
+	};		
+	case "sf":
+	{
+		switch (_faction) do
+		{	
+			default {"insignia_GI_SF"};			
+		};
+	};		
 	default {""};
 };
 
@@ -117,12 +138,17 @@ switch (_faction) do
 		_groupBadges = [
 			["GrpNATO_COY","insignia_GI_COY"],
 			["GrpNATO_AAA","insignia_GI_AAA"],
+			["GrpNATO_SAM","insignia_GI_SAM"],
 			["GrpNATO_MAT","insignia_GI_MAT"],
 			["GrpNATO_HAT","insignia_GI_HAT"],
 			["GrpNATO_GMG","insignia_GI_GMG"],
 			["GrpNATO_MMG","insignia_GI_MMG"],
 			["GrpNATO_HMG","insignia_GI_HMG"],
+			["GrpNATO_WEP","insignia_GI_WEP"],
+			["GrpNATO_SPC","insignia_GI_SPC"],
+			["GrpNATO_SF","insignia_GI_SF"],
 			["GrpNATO_MOR","insignia_GI_MOR"],
+			["GrpNATO_MTR","insignia_GI_MTR"],
 			["GrpNATO_REC","insignia_GI_REC"],
 			["GrpNATO_ENG","insignia_GI_ENG"],
 			["GrpNATO_ENG_SL","insignia_GI_ENG_SL"],
