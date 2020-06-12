@@ -6,10 +6,12 @@ switch (_iconName) do
 {
     case "b_hq": {HQ};
     case "b_inf": {INFANTRY};
+    case "b_sf": {SPECIALFORCES};
     case "b_supply": {SUPPLY};
     case "b_motor_inf": {MOTORINF};
     case "b_mortar": {MORTAR};
     case "b_maint": {REPAIR};
+    case "b_eod": {EOD};
     case "b_med": {MEDIC};
     case "b_mech_inf": {MECHINF};
     case "b_armor": {ARMOR};
