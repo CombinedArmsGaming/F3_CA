@@ -19,15 +19,8 @@ missionNamespace setVariable ["f_var_JIP_RespawnMenu",false, true]; // Do respaw
 missionNamespace setVariable ["f_var_JIP_RemoveCorpse",false, true]; // Remove the old corpse of respawning players?
 missionNamespace setVariable ["f_var_JIP_Spectate",false, true]; // JIP players go into spectate straight away?
 
-_respawnmsg = "Respawn wave deployed"; // Message sent to everyone in chat about reinforcement wave happening, set to "" to have no message
-missionNamespace setVariable ['ca_respawnmsg',_respawnmsg, true];
-
 // F3 Parameters
-missionNamespace setVariable ['f_var_debugMode',0, true]; // Debug mode, deprecated but outputs some info for F3. 0 = off, 1 = on.
-missionNamespace setVariable ['f_param_backpacks',1, true]; // LEGACY SUPPORT! SET IN THE GEARSCRIPT FILE ITSELF NOW! Assigngear backpack loadout. 0 = light, 1 = medium, 2 = heavy
-missionNamespace setVariable ['f_var_radios',3, true]; // Radio system. 0 = none, 2 = TFR, 3 = ACRE2
 missionNamespace setVariable ['f_var_mission_timer',5, true]; // Safestart duration. Value in minutes
-missionNamespace setVariable ['f_param_caching',0, true]; // Ai Caching distance in meters, 0 = off
 
 missionNamespace setVariable ['f_var_smoothMarkers',true, true]; // Use smooth markers instead of the standard markers.
 missionNamespace setVariable ['f_var_smoothMarkers_showAI',true, true]; // Show positions of allied AI groups? (Smooth markers only).
@@ -42,14 +35,3 @@ missionNamespace setVariable ['ca_initserver',true, true];
 [] execVM "ca\ca_initServer.sqf";
 [] execVM "ca_platoonSetup.sqf";
 
-// CA - Parachute spawning
-//_parachutearea = ""; // Name of area marker players will spawn in
-// OR
-//_parachutearea = [[0,1500,3000],[0,1500,3000]]; // Gaussian where first array is x(left to right) and second is y(up and down) with [min,normal,max]
-// missionNamespace setVariable ['ca_parachutearea',_parachutearea, true];
-/*
-waitUntil {time>2; sleep 0.1;}; // initial paradrop, need to wait until spawned
-{
-[_x] remoteExec ["ca_fnc_parachute", _x, false];
-} forEach playableUnits;
-*/

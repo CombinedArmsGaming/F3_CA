@@ -783,6 +783,18 @@ switch (_typeofUnit) do
 		["engm"] call _backpack;
 	};
 
+// LOADOUT: LOGISTICS
+	case "log":
+	{
+		_unit addmagazines [_carbinemag,7];
+		_unit addweapon _carbine;
+		_unit addmagazines [_smokegrenade,2];
+		_unit addItem "ACE_DefusalKit";
+		_unit addItem "ACE_wirecutter";
+		_unit addWeapon "Binocular";
+		["log"] call _backpack;
+	};
+
 // LOADOUT: UAV OPERATOR
 	case "uav":
 	{

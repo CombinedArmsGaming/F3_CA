@@ -8,17 +8,7 @@ if (serverCommandAvailable "#kick") then {
 // PabstMirror - Mission Intro
 // Credits: PabstMirror
 [] execVM "ca\misc\CA_missionIntro.sqf";
-
-// Headless join in progress support.
-_ishc = !hasInterface && !isDedicated;
-if (_ishc) then {
-    [] spawn ca_fnc_hcmarker;
-};
-if (_ishc && didJIP) then {
-	if (!ca_hc) then {
-		remoteExec ["ca_fnc_hcinit", 2];
-	};
-};
+[] execVM "ca\misc\HierarchyRadioMarkers.sqf"; 
 
 
 //Setup specialistmarkers

@@ -20,7 +20,8 @@ _unit = player;
 _group = group player;
 _groupid = groupid (group player);
 //If the group is already setup, then exit
-if (!isnil {group player getVariable ["_groupmarkerboolean",false]}) exitWith {};
+if ((group player) getVariable ["ca_groupsetup",false]) exitWith {};
+
 _side = side player;
 
 _setupgroup = {

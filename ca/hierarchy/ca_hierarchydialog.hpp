@@ -76,6 +76,18 @@ class ca_hierarchydialog
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_registergroup";
         };
+        class joingroup: RscButton
+        {
+            idc = -1;
+            text = "Join group";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 50 * pixelH * 8 + safeZoneY;
+            w = 80 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            action =  "[player] joinSilent ca_selectedgroup";
+        };
         class respawngroup: RscButton
         {
             idc = -1;
@@ -83,7 +95,7 @@ class ca_hierarchydialog
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 52 * pixelW * 8 + safeZoneX;
-            y = 50 * pixelH * 8 + safeZoneY;
+            y = 55 * pixelH * 8 + safeZoneY;
             w = 80 * (pixelW * 2);
             h = 20 * (pixelH * 2);
             action =  "[] spawn ca_fnc_respawngroup";
@@ -312,6 +324,19 @@ class ca_hierarchydialog
             action =  "[] spawn ca_fnc_updateradioCHs";
             //closeDialog 0;
         };
+        class applySRradios: RscButton 
+        {
+            idc = -1;
+            text = "Apply to SR radios";
+            sizeEx = 10 * (pixelH * 2);
+            style = ST_LEFT;
+            x = 145 * pixelW * 8 + safeZoneX;
+            y = 63 * pixelH * 8 + safeZoneY;
+            w = 90 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            action =  "[] spawn ca_fnc_updategroupSRchannels";
+            //closeDialog 0;
+        };     
         class tickinfo: RscText  
         {
             idc = -1;

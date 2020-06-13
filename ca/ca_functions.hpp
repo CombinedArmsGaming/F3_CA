@@ -19,20 +19,11 @@ class CA
 		class setrank{};
 		class specialistMarker{};
 	};
-	class headless
-	{
-		file = "ca\headless";
-		class hccount{};
-		class hcexec{};
-		class hcfind{};
-		class hcinit{postInit = 1;};
-		class hcmarker{};
-	};
 	class hierarchy
 	{
 		file = "ca\hierarchy";
 		class setupGroup{};
-		class becomeco {};
+		class becomeco{};
 		class setupJIP{};
 		class treeselect{};
 		class updateradioCHs{};
@@ -43,24 +34,14 @@ class CA
 		class selectgroup{};
 		class registergroup{};
 		class changerank{};
-	};
-	class massspawn
-	{
-		file = "ca\massspawn";
-		class massattack{};
-		class masscharge{};
-		class massfortify{};
-		class masspatrol{};
-		class massvehicleattack{};
-		class massvehiclepatrol{};
-		class massvehiclestatic{};
+		class updategroupSRchannels{};
 	};
 	class misc
 	{
 		file = "ca\misc";
 		class aidriver{};
+		class hcmarker{};
 		class incfuelcon{};
-		class parachute{};
         class vehiclespawner{};
         class isPlayerAlive{};
 	};

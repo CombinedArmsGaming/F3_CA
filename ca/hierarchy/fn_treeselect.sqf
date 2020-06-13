@@ -1,3 +1,11 @@
+/*
+ * Author: Poulern
+ * When pressing an element in the tree view, fill in the relevant boxes on the hierarchy interface.
+ * 
+ * Called on opening the interface
+ */
+
+
 params ["_groupid"];
 
 _side = side player;

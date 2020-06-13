@@ -46,7 +46,7 @@ class ca_groupid
 				y = 70 * pixelH * 8 + safeZoneY;
 				w = 50 * (pixelW * 2);
 				h = 30 * (pixelH * 2);
-	            action =  "(group player) setgroupidglobal [ctrlText 1400]; _ind1 = lbCurSel 1500;(group player) setVariable ['ca_groupcolor',(lbData [1500,_ind1]),true]; _ind2 = lbCurSel 1501; (group player) setVariable ['ca_grouptype', (lbData [1501,_ind2]),true];";
+	            action =  "(ca_selectedgroup) setgroupidglobal [ctrlText 1400]; _ind1 = lbCurSel 1500;(ca_selectedgroup) setVariable ['ca_groupcolor',(lbData [1500,_ind1]),true]; _ind2 = lbCurSel 1501; (ca_selectedgroup) setVariable ['ca_grouptype', (lbData [1501,_ind2]),true]; closeDialog 0; [] execvm 'ca\hierarchy\ca_hierarchydialogsupport.sqf';";
 	            //closeDialog 0;
 	        };
 	        class button1: RscButton

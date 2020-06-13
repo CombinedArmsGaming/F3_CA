@@ -16,7 +16,7 @@ f_radios_settings_acre2_disableFrequencySplit = FALSE;
 // empty array means that none gets
 f_radios_settings_acre2_shortRange = nil;
 
-// Should only leaders get 148s based on class?
+// Should only leaders get 148s based on rank?
 // Only applies to f_radios_settings_acre2_extraRadios setting.
 // Non leaders will still get a long range if they have the right assigngear class for f_radios_settings_acre2_longRange and  f_radios_settings_acre2_BackpackRadios.
 f_radios_settings_acre2_leaderLongRange = true;
