@@ -3,7 +3,8 @@
 // ====================================================================================
 
 private ["_group","_badge","_groupBadges","_roleBadge","_unit","_typeofUnit"];
-
+// Sleep a bit to allow groupid to initialize
+sleep 10;
 _badge = "insignia_GI_Badge_Black_Stitched"; 
 _unit = _this select 0;
 _typeofUnit = _this select 1;
@@ -28,85 +29,22 @@ _role = _typeofUnit;
 // Check if role has badge set...
 _roleBadge = switch (_role) do
 {
-
-	case "m":
-	{
-		"insignia_GI_Medic"			
-	};
-	case "co":
-	{
-		"insignia_GI_CO"			
-	};
-	case "xo":
-	{
-		"insignia_GI_XO"			
-	};
-	case "surgeon":
-	{
-		"insignia_GI_Surgeon"			
-
-	};
-	case "log":
-	{
-		"insignia_GI_LOG"			
-
-	};
-	case "log_sl":
-	{
-		"insignia_GI_LOG_SL"			
-
-	};	
-	case "eng":
-	{
-		"insignia_GI_ENG"			
-
-	};
-	case "eod":
-	{
-		"insignia_GI_EOD"			
-
-	};
-	case "eng_sl":
-	{
-		"insignia_GI_ENG_SL"		
-
-	};	
-	case "fac":
-	{
-		"insignia_GI_FAC"			
-
-	};
-	case "rto":
-	{
-		"insignia_GI_RTO"			
-
-	};
-	case "air":
-	{
-		"insignia_GI_AIR"		
-
-	};
-	case "recon":
-	{
-
-		"insignia_GI_REC"			
-
-	};
-	case "zeus":
-	{
-		"insignia_GI_ZEUS"			
-
-	};	
-	case "spc":
-	{
-		"insignia_GI_SPC"			
-
-	};		
-	case "sf":
-	{
-		"insignia_GI_SF"			
-
-	};		
+	case "m":{"insignia_GI_Medic"};
+	case "co":{"insignia_GI_CO"};
+	case "xo":{"insignia_GI_XO"};
+	case "sur":{"insignia_GI_Surgeon"};
+	case "log":{"insignia_GI_LOG"};
+	case "log_sl":{"insignia_GI_LOG_SL"};
+	case "eng":{"insignia_GI_ENG"};
+	case "eng_sl":{"insignia_GI_ENG_SL"};
+	case "eod":{"insignia_GI_EOD"};
+	case "fac":{"insignia_GI_FAC"};
+	case "rto":{"insignia_GI_RTO"};
+	case "air":{"insignia_GI_AIR"};
+	case "rec":{"insignia_GI_REC"};
+	case "spc":{"insignia_GI_SPC"};
+	case "sf":{"insignia_GI_SF"};
+	case "zeus":{"insignia_GI_ZEUS"};
 	default {""};
 };
 
@@ -116,66 +54,66 @@ _roleBadge = switch (_role) do
 // Bin by faction (lowers numbers of groups for each unit to be grouped by too!).
 
 _groupBadges = [
-			["COY","insignia_GI_COY"],
-			["CO","insignia_GI_CO"],
-			["AAA","insignia_GI_AAA"],
-			["SAM","insignia_GI_SAM"],
-			["MAT","insignia_GI_MAT"],
-			["HAT","insignia_GI_HAT"],
-			["GMG","insignia_GI_GMG"],
-			["MMG","insignia_GI_MMG"],
-			["HMG","insignia_GI_HMG"],
-			["WEP","insignia_GI_WEP"],
-			["SPC","insignia_GI_SPC"],
-			["SF","insignia_GI_SF"],
-			["MOR","insignia_GI_MOR"],
-			["MTR","insignia_GI_MTR"],
-			["REC","insignia_GI_REC"],
-			["ENG","insignia_GI_ENG"],
-			["EOD","insignia_GI_EOD"],
-			["ENG_SL","insignia_GI_ENG_SL"],
-			["LOG","insignia_GI_LOG"],
-			["LOG_SL","insignia_GI_LOG_SL"],
-			["1PL","insignia_GI_1PL"],
-			["ASL","insignia_GI_ASL"],
-			["A1","insignia_GI_A1"],
-			["A2","insignia_GI_A2"],
-			["AV","insignia_GI_AV"],
-			["BSL","insignia_GI_BSL"],
-			["B1","insignia_GI_B1"],
-			["B2","insignia_GI_B2"],
-			["BV","insignia_GI_BV"],
-			["CSL","insignia_GI_CSL"],
-			["C1","insignia_GI_C1"],
-			["C2","insignia_GI_C2"],
-			["CV","insignia_GI_CV"],
-			["2PL","insignia_GI_2PL"],
-			["DSL","insignia_GI_DSL"],
-			["D1","insignia_GI_D1"],
-			["D2","insignia_GI_D2"],
-			["DV","insignia_GI_DV"],
-			["ESL","insignia_GI_ESL"],
-			["E1","insignia_GI_E1"],
-			["E2","insignia_GI_E2"],
-			["EV","insignia_GI_EV"],
-			["FSL","insignia_GI_FSL"],
-			["F1","insignia_GI_F1"],
-			["F2","insignia_GI_F2"],
-			["FV","insignia_GI_FV"],
-			["3PL","insignia_GI_3PL"],
-			["GSL","insignia_GI_GSL"],
-			["G1","insignia_GI_G1"],
-			["G2","insignia_GI_G2"],
-			["GV","insignia_GI_GV"],
-			["HSL","insignia_GI_HSL"],
-			["H1","insignia_GI_H1"],
-			["H2","insignia_GI_H2"],
-			["HV","insignia_GI_HV"],
-			["ISL","insignia_GI_ISL"],
-			["I1","insignia_GI_I1"],
-			["I2","insignia_GI_I2"],
-			["IV","insignia_GI_IV"]
-		];
+	["COY","insignia_GI_COY"],
+	["CO","insignia_GI_CO"],
+	["AAA","insignia_GI_AAA"],
+	["SAM","insignia_GI_SAM"],
+	["MAT","insignia_GI_MAT"],
+	["HAT","insignia_GI_HAT"],
+	["GMG","insignia_GI_GMG"],
+	["MMG","insignia_GI_MMG"],
+	["HMG","insignia_GI_HMG"],
+	["WEP","insignia_GI_WEP"],
+	["SPC","insignia_GI_SPC"],
+	["SF","insignia_GI_SF"],
+	["MOR","insignia_GI_MOR"],
+	["MTR","insignia_GI_MTR"],
+	["REC","insignia_GI_REC"],
+	["ENG","insignia_GI_ENG"],
+	["EOD","insignia_GI_EOD"],
+	["ENG_SL","insignia_GI_ENG_SL"],
+	["LOG","insignia_GI_LOG"],
+	["LOG_SL","insignia_GI_LOG_SL"],
+	["1PL","insignia_GI_1PL"],
+	["ASL","insignia_GI_ASL"],
+	["A1","insignia_GI_A1"],
+	["A2","insignia_GI_A2"],
+	["AV","insignia_GI_AV"],
+	["BSL","insignia_GI_BSL"],
+	["B1","insignia_GI_B1"],
+	["B2","insignia_GI_B2"],
+	["BV","insignia_GI_BV"],
+	["CSL","insignia_GI_CSL"],
+	["C1","insignia_GI_C1"],
+	["C2","insignia_GI_C2"],
+	["CV","insignia_GI_CV"],
+	["2PL","insignia_GI_2PL"],
+	["DSL","insignia_GI_DSL"],
+	["D1","insignia_GI_D1"],
+	["D2","insignia_GI_D2"],
+	["DV","insignia_GI_DV"],
+	["ESL","insignia_GI_ESL"],
+	["E1","insignia_GI_E1"],
+	["E2","insignia_GI_E2"],
+	["EV","insignia_GI_EV"],
+	["FSL","insignia_GI_FSL"],
+	["F1","insignia_GI_F1"],
+	["F2","insignia_GI_F2"],
+	["FV","insignia_GI_FV"],
+	["3PL","insignia_GI_3PL"],
+	["GSL","insignia_GI_GSL"],
+	["G1","insignia_GI_G1"],
+	["G2","insignia_GI_G2"],
+	["GV","insignia_GI_GV"],
+	["HSL","insignia_GI_HSL"],
+	["H1","insignia_GI_H1"],
+	["H2","insignia_GI_H2"],
+	["HV","insignia_GI_HV"],
+	["ISL","insignia_GI_ISL"],
+	["I1","insignia_GI_I1"],
+	["I2","insignia_GI_I2"],
+	["IV","insignia_GI_IV"]
+];
 
 
 // ====================================================================================
@@ -187,9 +125,6 @@ _isMan = _unit isKindOf "CAManBase";
 if(_isMan) then {
 	_group = group _unit;
 	_groupid = groupId _group;
-	systemChat name _unit;
-	systemChat _groupid;
-	systemChat _role;
 	{
 		if ((_x select 0) == _groupid) then {
 			_badge = _x select 1;
