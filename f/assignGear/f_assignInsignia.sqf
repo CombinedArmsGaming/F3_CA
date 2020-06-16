@@ -10,7 +10,10 @@ _unit = _this select 0;
 _typeofUnit = _this select 1;
 _faction = toLower (faction _unit);
 
-// Note all badges must be defined in description.ext or be included your modpack.
+// Exit if the unit is not local.
+if !(local _unit) exitWith {};
+
+// Note all badges must be defined in description.ext or be included your modpack (Gibbs insignia for F3_CA).
 // See: https://community.bistudio.com/wiki/Arma_3_Unit_Insignia
 
 // This variable stores the final badge to use which will applied at the end of this script.
@@ -141,6 +144,7 @@ if (_roleBadge != "") then {
 };
 
 // Apply the insignia.
+
 if (_badge != "") then {
 	// spawn to avoid waitUntil bug.
 	private["_index","_texture","_cfgTexture"];
@@ -149,18 +153,7 @@ if (_badge != "") then {
 	waitUntil{_unit getVariable ["f_var_assignGear_done",false]};
 	waitUntil{(uniform _unit) != ""};
 
-	// Replicate behaviour of setInsignia
-	_cfgTexture = [["CfgUnitInsignia",_badge],configfile] call bis_fnc_loadclass;
-	if (_cfgTexture == configfile) exitwith {["'%1' not found in CfgUnitInsignia",_badge] call bis_fnc_error; false};
-	_texture = gettext (_cfgTexture >> "texture");
-	
-	_index = -1;
-	{
-		if (_x == "insignia") exitwith {_index = _foreachindex;};
-	} foreach getarray (configfile >> "CfgVehicles" >> gettext (configfile >> "CfgWeapons" >> uniform _unit >> "ItemInfo" >> "uniformClass") >> "hiddenSelections");
-
-	if (_index >= 0) then {
-		_unit setvariable ["bis_fnc_setUnitInsignia_class",_badge,false];
-		_unit setobjecttexture [_index,_texture];
-	};
+	// Remote execute insignia changes to all clients through BIS_fnc_setUnitInsignia, including respawn.
+	[_unit, _badge] call BIS_fnc_setUnitInsignia;
 };
+

@@ -1,3 +1,13 @@
+// CA - Player group change 
+player setVariable ["ca_originalgroup",(group player),true];
+["ace_unconscious", {
+	params ["_unit","_isUnconc"];
+	if ((local _unit && isPlayer _unit) && _isUnconc) then {
+			_group = group _unit;
+			_unit setVariable ["ca_originalgroup",_group,true];
+		};
+	}
+] call CBA_fnc_addEventHandler;
 
 // CA - Mission briefing
 execVM "ca\briefing\ca_briefing_player.sqf";
@@ -8,26 +18,30 @@ if (serverCommandAvailable "#kick") then {
 // PabstMirror - Mission Intro
 // Credits: PabstMirror
 [] execVM "ca\misc\CA_missionIntro.sqf";
+// CA - Hierarchy radio markers
 [] execVM "ca\misc\HierarchyRadioMarkers.sqf"; 
 
 
-//Setup specialistmarkers
+
+//CA - Setup specialistmarkers (Smoothmarkers and normal markers)
 sleep 2;
 waitUntil {!isnil {ca_platoonsetup}}; 
 
 _side = side player;
-
+//Create a switch for each side 
 switch (_side) do {
 	case west: {
-
+//Get all units in the game 
 _allSideplayers = [];
 {
 	if (side _x == west) then {_allSideplayers pushBackUnique _x};
 } forEach allunits;
 {
+	//Check if they should have a specialistmarker
 	_typeOfUnit = _x getVariable ["f_var_assignGear", "NIL"];
 	if (_typeOfUnit in ca_specialistMarkerClasses) then {
 		_x setVariable ["ca_specialistmarker",true];
+		//If you are using smoothmarkers this function will exit shortly after, but smoothmarkers checks if the ca_specialistmarker is set. 
 		[_x] spawn ca_fnc_SpecialistMarker;
 	};
 	

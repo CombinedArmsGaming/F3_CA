@@ -10,6 +10,7 @@ _shortrangech = _display displayCtrl 1814;
 _longrangechannels = _display displayCtrl 1815;
 _sideticketcontrol = _display displayCtrl 1816;
 _squadticketcontrol = _display displayCtrl 1817;
+_selectedgroupcontrol = _display displayCtrl 1818;
 
 _group = ca_selectedgroup;
 _groupid = ca_selectedgroupid;
@@ -70,6 +71,7 @@ if (ca_switchgroupthiscycle) then {
 	_rank = toLower rank (leader _grouptomove);
 	systemchat format ["Moved group (%1) to the command of: %2",groupid _grouptomove,groupid _newgrouplead];
 	systemChat format ["Deselected %1, a %2 lead by %4 %3",_grouptomoveid,_description,_name,_rank];
+	_selectedgroupcontrol ctrlSetText ("None");
 
 	tvClear _tree;
 	sleep 1;

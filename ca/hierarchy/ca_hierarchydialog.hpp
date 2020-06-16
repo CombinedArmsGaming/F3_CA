@@ -2,7 +2,8 @@
 class ca_hierarchydialog
 {
 	idd= 1809;
-	movingenable=false;
+    movingEnable = 1;
+    enableSimulation = 1;
     onLoad= "[] spawn { [] execvm 'ca\hierarchy\ca_hierarchydialogsupport.sqf'}";
 	class controls
 	{
@@ -13,6 +14,21 @@ class ca_hierarchydialog
             y = 30 * pixelH * 8 + safeZoneY;
             w = 500 * (pixelW * 2);
             h = 300 * (pixelH * 2);
+            moving = 1;
+        };
+        class banner: RscText 
+        {
+        	idc = -1;
+            style = ST_CENTER;
+            x = 52 * pixelW * 8 + safeZoneX;
+            y = 24 * pixelH * 8 + safeZoneY;
+            sizeEx = 14 * (pixelH * 2);
+            w = 500 * (pixelW * 2);
+            h = 20 * (pixelH * 2);
+            colorBackground[] = {0.45,0.65,0.34,0.8};
+            colorText[] = {1,1,1,0.9};
+            text = "CA Hierachy User Interface Version 1.4";
+            moving = 1;
         };
         class tree: RscTree
         {
@@ -25,6 +41,7 @@ class ca_hierarchydialog
             w = 90 * (pixelW * 2);
             h = 300 * (pixelH * 2);
             expandOnDoubleclick = 1; // Expand/collapse item upon double-click
+            moving = 1;
 
             class ScrollBar : ScrollBar
             {};
@@ -44,6 +61,7 @@ class ca_hierarchydialog
         {
             idc = -1;
             text = "Pin/Unpin group";
+            tooltip = "Pin/unpins the group you have clicked on in the list of groups";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 52 * pixelW * 8 + safeZoneX;
@@ -56,6 +74,7 @@ class ca_hierarchydialog
         {
             idc = -1;
             text = "Assign pinned group to";
+            tooltip = "Moves the pinned group to underneath the group you have clicked on";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 52 * pixelW * 8 + safeZoneX;
@@ -68,6 +87,7 @@ class ca_hierarchydialog
         {
             idc = -1;
             text = "Register group";
+            tooltip = "Registers the current group";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 52 * pixelW * 8 + safeZoneX;
@@ -80,6 +100,7 @@ class ca_hierarchydialog
         {
             idc = -1;
             text = "Join group";
+            tooltip = "Join the currently selected group";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 52 * pixelW * 8 + safeZoneX;
@@ -90,8 +111,10 @@ class ca_hierarchydialog
         };
         class respawngroup: RscButton
         {
-            idc = -1;
+            idc = 1805;
+            deletable = 1;
             text = "Respawn group";
+            tooltip = "Respawns the current group";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 52 * pixelW * 8 + safeZoneX;
@@ -204,6 +227,7 @@ class ca_hierarchydialog
         {
             idc = -1;
             text = "Give map Marker";
+            tooltip = "Gives the selected player a specialist marker";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 121 * pixelW * 8 + safeZoneX;
@@ -241,6 +265,7 @@ class ca_hierarchydialog
         {
             idc = -1;
             text = "Change callsign/color";
+            tooltip = "Opens a menu to change the group info";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 121 * pixelW * 8 + safeZoneX;
@@ -315,6 +340,7 @@ class ca_hierarchydialog
         {
             idc = -1;
             text = "Update Radio Channels";
+            tooltip = "Only affects new radios issued";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 145 * pixelW * 8 + safeZoneX;
@@ -328,6 +354,7 @@ class ca_hierarchydialog
         {
             idc = -1;
             text = "Apply to SR radios";
+            tooltip = "Changes the 343 radio channel of all units in selected group";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 145 * pixelW * 8 + safeZoneX;
@@ -351,18 +378,19 @@ class ca_hierarchydialog
         class sidetickets: RscText
         {
             idc = 1816;
-            text = "Select a group";
+            text = "Select group to show";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 122 * pixelW * 8 + safeZoneX;
             y = 75 * pixelH * 8 + safeZoneY;
-            w = 80 * (pixelW * 2);
+            w = 90 * (pixelW * 2);
             h = 15 * (pixelH * 2);
         };
         class squadtickets: RscText
         {
             idc = 1817;
-            text = "To begin";
+            text = "";
+            deletable = 1;
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 122 * pixelW * 8 + safeZoneX;
@@ -372,8 +400,10 @@ class ca_hierarchydialog
         };
         class givetickets: RscButton
         {
-            idc = -1;
+            idc = 1806;
             text = "+1";
+            tooltip = "Gives 1 group ticket to the selected group";
+            deletable = 1;
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 122 * pixelW * 8 + safeZoneX;
@@ -384,8 +414,10 @@ class ca_hierarchydialog
         };
         class taketickets: RscButton
         {
-            idc = -1;
+            idc = 1807;
             text = "-1";
+            tooltip = "Takes 1 group ticket from the selected group";
+            deletable = 1;
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 122 * pixelW * 8 + safeZoneX;
@@ -396,8 +428,10 @@ class ca_hierarchydialog
         };
         class give5: RscButton
         {
-            idc = -1;
+            idc = 1808;
             text = "+5";
+            tooltip = "Gives 5 group tickets to the selected group";
+            deletable = 1;
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 127 * pixelW * 8 + safeZoneX;
@@ -408,8 +442,10 @@ class ca_hierarchydialog
         };
         class take5: RscButton
         {
-            idc = -1;
+            idc = 1804;
             text = "-5";
+            tooltip = "Takes 5 group tickets from the selected group";
+            deletable = 1;
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 127 * pixelW * 8 + safeZoneX;
@@ -421,6 +457,7 @@ class ca_hierarchydialog
         class grptimer: RscText
         {
             idc = 1820;
+            deletable = 1;
             text = "Group respawn timer";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
@@ -456,6 +493,7 @@ class ca_hierarchydialog
         {
             idc = -1;
             text = "Wave Respawn Interface";
+            tooltip = "Full list of all dead players";
             sizeEx = 10 * (pixelH * 2);
             style = ST_LEFT;
             x = 145 * pixelW * 8 + safeZoneX;
