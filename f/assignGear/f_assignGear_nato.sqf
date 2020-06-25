@@ -421,7 +421,7 @@ switch (_typeofUnit) do
 		_unit addWeapon "Binocular";		
 		_unit linkItem "ItemGPS";
 		_unit addItem "ACE_microDAGR";
-		_unit addItem "ACE_surgicalKit";
+		// _unit addItem "ACE_surgicalKit"; //uncomment for reopening wounds
 		["m"] call _backpack;
 	};
 // LOADOUT: SURGEON
@@ -435,7 +435,7 @@ switch (_typeofUnit) do
 		{_unit addItem "ACE_splint"} forEach [1,2,3,4,5,6,7,8,9,10];	
 		_unit addWeapon "Binocular";		
 		_unit linkItem "ItemGPS";
-		_unit addItem "ACE_surgicalKit";
+		// _unit addItem "ACE_surgicalKit"; //uncomment for reopening wounds
 		_unit addItem "ACE_microDAGR";
 		["surgeon"] call _backpack;
 	};
