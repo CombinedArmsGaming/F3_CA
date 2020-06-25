@@ -31,6 +31,8 @@ ENEMY FORCES
 FRIENDLY FORCES
 <br/>
 *** Insert information about friendly forces here.***
+<br/>
+*** Missionmaker = smooth of brain if briefing unfilled.***
 "]];
 
 // ====================================================================================
