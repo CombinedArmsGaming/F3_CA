@@ -427,7 +427,24 @@ switch (_typeofUnit) do
 		_unit addWeapon "Binocular";		
 		_unit linkItem "ItemGPS";
 		_unit addItem "ACE_microDAGR";
+		// _unit addItem "ACE_surgicalKit"; //uncomment for reopening wounds
 		["m"] call _backpack;
+	};
+	
+// LOADOUT: SURGEON
+	case "surgeon":
+	{
+		_unit addweapon _carbine;
+		_unit addmagazines [_carbinemag,5];
+		_unit addmagazines [_carbinemag_tr,2];		
+		_unit addmagazines [_smokegrenade,4];
+		{_unit addItem _firstaid} forEach [1,2,3,4];
+		{_unit addItem "ACE_splint"} forEach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addWeapon "Binocular";		
+		_unit linkItem "ItemGPS";
+		// _unit addItem "ACE_surgicalKit"; //uncomment for reopening wounds
+		_unit addItem "ACE_microDAGR";
+		["surgeon"] call _backpack;
 	};
 
 // LOADOUT: FIRE TEAM LEADER
