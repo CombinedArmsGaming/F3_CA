@@ -901,7 +901,8 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_carbinemag, 10];
 		_unit addMagazineCargoGlobal [_armag, 5];
 		_unit addMagazineCargoGlobal [_DMriflemag, 5];		
-		_unit addMagazineCargoGlobal [_ratmag, 1];
+		_unit addMagazineCargoGlobal [_ratmag, 1]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 1];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 4];
 		_unit addMagazineCargoGlobal [_smokegrenade, 4];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 2];
@@ -927,7 +928,8 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_carbinemag, 40];
 		_unit addMagazineCargoGlobal [_armag, 22];
 		_unit addMagazineCargoGlobal [_DMriflemag, 22];		
-		_unit addMagazineCargoGlobal [_ratmag, 6];
+		_unit addMagazineCargoGlobal [_ratmag, 6]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 6];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 12];
 		_unit addmagazineCargoGlobal [_mgrenade,12];
 		_unit addMagazineCargoGlobal [_smokegrenade, 12];
@@ -954,7 +956,8 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_carbinemag, 20];
 		_unit addMagazineCargoGlobal [_armag, 8];
 		_unit addMagazineCargoGlobal [_DMriflemag, 8];		
-		_unit addMagazineCargoGlobal [_ratmag, 2];
+		_unit addMagazineCargoGlobal [_ratmag, 2]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 2];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 8];
 		_unit addmagazineCargoGlobal [_mgrenade,8];
 		_unit addMagazineCargoGlobal [_smokegrenade, 8];
@@ -982,7 +985,8 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_carbinemag, 5];
 		_unit addMagazineCargoGlobal [_glmag, 5];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 4];
-		_unit addMagazineCargoGlobal [_ratmag, 2];
+		_unit addMagazineCargoGlobal [_ratmag, 2]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 2];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 8];
 		_unit addMagazineCargoGlobal [_mgrenade, 8];
 		_unit addMagazineCargoGlobal [_smokegrenade, 8];
@@ -1008,7 +1012,8 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_carbinemag, 20];
 		_unit addMagazineCargoGlobal [_glmag, 20];
 		_unit addMagazineCargoGlobal [_glsmokewhite,16];
-		_unit addMagazineCargoGlobal [_ratmag, 6];
+		_unit addMagazineCargoGlobal [_ratmag, 6]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 6];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 25];
 		_unit addMagazineCargoGlobal [_mgrenade, 25];
 		_unit addMagazineCargoGlobal [_smokegrenade, 25];
@@ -1034,7 +1039,8 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_carbinemag, 60];
 		_unit addMagazineCargoGlobal [_glmag, 60];
 		_unit addMagazineCargoGlobal [_glsmokewhite,50];
-		_unit addMagazineCargoGlobal [_ratmag, 20];
+		_unit addMagazineCargoGlobal [_ratmag, 20]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 20];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 75];
 		_unit addMagazineCargoGlobal [_mgrenade, 75];
 		_unit addMagazineCargoGlobal [_smokegrenade, 75];
