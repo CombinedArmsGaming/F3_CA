@@ -9,28 +9,74 @@ case "m":
 	if (_loadout <= 1) then {
 		_unit addBackpack _bagmedium;
 		clearMagazineCargoGlobal (unitBackpack _unit);
-		(unitBackpack _unit) addMagazineCargoGlobal [_smokegrenade, 4];
-		(unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 25];
+//		(unitBackpack _unit) addMagazineCargoGlobal [_smokegrenade, 4];
+		// (unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 15]; //uncomment these two for reopening wounds setup
+		// (unitBackpack _unit) addItemCargoGlobal ["ACE_quikclot", 10];       //uncomment these two for reopening wounds setup
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 25];    //comment this out for reopening wounds setup
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_morphine", 10];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_epinephrine", 10];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_adenosine", 5];		
-		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 10];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 8];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_tourniquet", 4];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_splint", 4];	
+		(unitBackpack _unit) addItemCargoGlobal ["FSGm_ItemMedicBagMil", 1];	
 	};
 
 	// LOADOUT: HEAVY
 	if (_loadout == 2) then {
 		_unit addBackpack _bagmedium;
 		clearMagazineCargoGlobal (unitBackpack _unit);
-		(unitBackpack _unit) addMagazineCargoGlobal [_smokegrenade, 6];
-		(unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 30];
+//		(unitBackpack _unit) addMagazineCargoGlobal [_smokegrenade, 6];
+		// (unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 20];  //uncomment these two for reopening wounds setup
+		// (unitBackpack _unit) addItemCargoGlobal ["ACE_quikclot", 15]; 	//uncomment these two for reopening wounds setup
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 35];	//comment this out for reopening wounds setup	
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_morphine", 15];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_epinephrine", 15];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_adenosine", 8];		
-		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 15];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 10];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_tourniquet", 8];
 		(unitBackpack _unit) addItemCargoGlobal ["ACE_splint", 8];	
+		(unitBackpack _unit) addItemCargoGlobal ["FSGm_ItemMedicBagMil", 1];	
+	};
+};
+
+// BACKPACK: SURGEON
+case "surgeon":
+{
+	// LOADOUT: MEDIUM
+	if (_loadout <= 1) then {
+		_unit addBackpack _bagmedium;
+		clearMagazineCargoGlobal (unitBackpack _unit);
+//		(unitBackpack _unit) addMagazineCargoGlobal [_smokegrenade, 4];
+		// (unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 15]; //uncomment these two for reopening wounds setup
+		// (unitBackpack _unit) addItemCargoGlobal ["ACE_quikclot", 10];       //uncomment these two for reopening wounds setup
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 25];    //comment this out for reopening wounds setup
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_morphine", 10];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_epinephrine", 10];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_adenosine", 5];		
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 8];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_tourniquet", 4];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_splint", 4];	
+		(unitBackpack _unit) addItemCargoGlobal ["FSGm_ItemMedicBagMil", 1];	
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_personalAidKit", 1];	
+	};
+
+	// LOADOUT: HEAVY
+	if (_loadout == 2) then {
+		_unit addBackpack _bagmedium;
+		clearMagazineCargoGlobal (unitBackpack _unit);
+//		(unitBackpack _unit) addMagazineCargoGlobal [_smokegrenade, 6];
+		// (unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 20];  //uncomment these two for reopening wounds setup
+		// (unitBackpack _unit) addItemCargoGlobal ["ACE_quikclot", 15]; 	//uncomment these two for reopening wounds setup
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_elasticBandage", 35];	//comment this out for reopening wounds setup	
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_morphine", 15];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_epinephrine", 15];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_adenosine", 8];		
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_bloodIV", 10];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_tourniquet", 8];
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_splint", 8];	
+		(unitBackpack _unit) addItemCargoGlobal ["FSGm_ItemMedicBagMil", 1];	
+		(unitBackpack _unit) addItemCargoGlobal ["ACE_personalAidKit", 1];	
 	};
 };
 
