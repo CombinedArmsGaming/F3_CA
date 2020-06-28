@@ -29,12 +29,12 @@ _attackpos = _posdir select 0;
 
 if (typename _attackposition == "STRING") then {
   if (markerShape _attackposition ==  "RECTANGLE" || markerShape _attackposition == "ELLIPSE") then {
-    [_group,_attackposition] call CBA_fnc_taskSearchArea;
+    [_group,500,15,[],_attackpos] call lambs_wp_fnc_taskHunt;
   }else{
-    [_group,_attackpos] call CBA_fnc_taskAttack;
+    [_group,_attackpos] call lambs_wp_fnc_taskAssault;
   };
 }else{
-  [_group,_attackpos] call CBA_fnc_taskAttack;
+  [_group,_attackpos] call lambs_wp_fnc_taskAssault;
 };
 
 _group

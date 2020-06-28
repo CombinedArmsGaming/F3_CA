@@ -23,6 +23,6 @@ if (!isServer) exitWith {};
 params ["_unitarray","_position",["_faction",""],["_side", ca_defaultside]];
 private ["_group"];
 _group = [_unitarray,_position,_faction,_side] call ca_fnc_spawngroup;
-[_group,_group,50,1,false] call CBA_fnc_taskDefend;
+[_group,_position,50] call lambs_wp_fnc_taskGarrison;
 
 _group
