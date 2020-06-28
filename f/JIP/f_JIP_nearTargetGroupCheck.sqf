@@ -34,11 +34,6 @@ if ({alive _x} count (units _grp) == 0) exitWith {
 	["JIP",[format ["All members of %1 have died. Please select a new group",_grp]]] call BIS_fnc_showNotification;
 };
 
-// DEBUG
-if (f_var_debugMode == 1) then
-{
-	player sideChat format ["DEBUG (f\JIP\f_JIP_nearTargetGroupCheck.sqf): _alive = %1",_alive];
-};
 
 // ====================================================================================
 

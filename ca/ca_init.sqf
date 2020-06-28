@@ -7,17 +7,62 @@ if (serverCommandAvailable "#kick") then {
 
 // PabstMirror - Mission Intro
 // Credits: PabstMirror
-[] execVM "ca\misc\PM_missionIntro.sqf";
+[] execVM "ca\misc\CA_missionIntro.sqf";
+[] execVM "ca\misc\HierarchyRadioMarkers.sqf"; 
 
-// Headless join in progress support.
-_ishc = !hasInterface && !isDedicated;
-if (_ishc) then {
-    [] spawn ca_fnc_hcmarker;
-};
-if (_ishc && didJIP) then {
-	if (!ca_hc) then {
-		remoteExec ["ca_fnc_hcinit", 2];
+
+//Setup specialistmarkers
+sleep 2;
+waitUntil {!isnil {ca_platoonsetup}}; 
+
+_side = side player;
+
+switch (_side) do {
+	case west: {
+
+_allSideplayers = [];
+{
+	if (side _x == west) then {_allSideplayers pushBackUnique _x};
+} forEach allunits;
+{
+	_typeOfUnit = _x getVariable ["f_var_assignGear", "NIL"];
+	if (_typeOfUnit in ca_specialistMarkerClasses) then {
+		_x setVariable ["ca_specialistmarker",true];
+		[_x] spawn ca_fnc_SpecialistMarker;
 	};
-};
+	
+} forEach _allSideplayers;
+	 };
+	case east: {
+_allSideplayers = [];
+{
+	if (side _x == east) then {_allSideplayers pushBackUnique  _x};
+} forEach allunits;
+{
+	_typeOfUnit = _x getVariable ["f_var_assignGear", "NIL"];
+	if (_typeOfUnit in ca_specialistMarkerClasses) then {
+		_x setVariable ["ca_specialistmarker",true];
+		[_x] spawn ca_fnc_SpecialistMarker;
+	};
+	
+} forEach _allSideplayers;
 
+	 };
+	case independent: { 
+_allSideplayers = [];
+{
+	if (side _x == independent) then {_allSideplayers pushBackUnique  _x};
+} forEach allunits;
+{
+	_typeOfUnit = _x getVariable ["f_var_assignGear", "NIL"];
+	if (_typeOfUnit in ca_specialistMarkerClasses) then {
+		_x setVariable ["ca_specialistmarker",true];
+		[_x] spawn ca_fnc_SpecialistMarker;
+	};
+	
+} forEach _allSideplayers;
+
+	};
+	default { };
+};
 

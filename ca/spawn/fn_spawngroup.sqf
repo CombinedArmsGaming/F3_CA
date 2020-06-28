@@ -21,13 +21,9 @@
 params ["_unitarray","_position",["_faction",""],["_side", ca_defaultside]];
 private ["_spawnpos","_unittype","_unit","_group","_posdir","_unittype"];
 
-_ishc = !hasInterface && !isDedicated;
-//Use headless instead?
-if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
-//if there is no headless client, and is player, spawn on the server instead.
-if (!ca_hc && hasInterface && !isServer) exitWith {
-     [_this,_fnc_scriptName] spawn ca_fnc_hcexec;
-};
+//If the script is not executed on a server or a headless client, exit as it is likely to be executed on all clients, causing more spawns than intended. 
+if (!isServer) exitWith {};
+
 
 //Getting a good position from the parsed values
 _posdir = _position call ca_fnc_getdirpos;

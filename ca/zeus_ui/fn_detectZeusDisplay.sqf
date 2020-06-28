@@ -59,7 +59,8 @@
 				if (_time >= _nextHeal) then {
 					_nextHeal = _time + 1;
 
-					[objNull, player] call ace_medical_fnc_treatmentAdvanced_fullHealLocal;
+					//[objNull, player] call ace_medical_fnc_treatmentAdvanced_fullHealLocal;		// ACE3 version < v3.13.0 (before the medical rewrite)
+					[player] call ace_medical_treatment_fnc_fullHealLocal;					// ACE3 version >= v3.13.0
 					player setDamage 0;
 				};
 

@@ -16,13 +16,10 @@
  * [["ftl","r","m","rat","ar","aar"],"SC1_FT_AP",200,"opf_f",east] spawn ca_fnc_spawnpatrol;
  *
  */
-_ishc = !hasInterface && !isDedicated;
-//Use headless instead?
-if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
-//if there is no headless client, and is player, spawn on the server instead.
-if (!ca_hc && hasInterface && !isServer) exitWith {
-    [_this,_fnc_scriptName] spawn ca_fnc_hcexec;
-};
+
+//If the script is not executed on a server or a headless client, exit as it is likely to be executed on all clients, causing more spawns than intended. 
+if (!isServer) exitWith {};
+
 
 params ["_unitarray","_position",["_radius", 200, [2]],["_faction",""],["_side", ca_defaultside]];
 private ["_group"];

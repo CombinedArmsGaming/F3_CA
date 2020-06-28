@@ -16,6 +16,9 @@ _selectedgroupcontrol = _display displayCtrl 1818;
 _group = ca_selectedgroup;
 _groupid = ca_selectedgroupid;
 
+if (_groupid == "Overflow/Dead") exitWith {
+		systemChat "Select a real group to pin.";
+};
 
 // ---------------------------------------------------------------------
 _rankid = rankid player;
@@ -25,6 +28,9 @@ if (_rankid < ca_corank) exitWith {systemChat "You do not have the sufficient au
 if (isnil {ca_switchgroupthiscycle}) then {
 	ca_switchgroupthiscycle = false;
 };
+_check = ca_selectedgroup getVariable ['ca_groupsetup',false]; 
+
+if (!_check) exitwith { systemChat "Group you are trying to pin is not registered!"; };
 
 
 if (ca_switchgroupthiscycle) then {
@@ -48,6 +54,9 @@ _groupid = groupid ca_previousgroup;
 systemChat format ["Deselected %1, a %2 lead by %4 %3",_groupid,_description,_name,_rank];
 
 _selectedgroupcontrol ctrlSetText ("None");
+tvClear _tree;
+sleep 0.1;
+[] execvm 'ca\hierarchy\ca_hierarchydialogsupport.sqf';
 
 } else {
 ca_previousgroup = ca_selectedgroup;
@@ -72,5 +81,6 @@ systemChat format ["Selected %1, a %2 lead by %4 %3",_groupid,_description,_name
 ca_switchgroupthiscycle = true;
 _selectedgroupcontrol ctrlSetText (format ["%1",(_groupid)]);
 
+_tree tvSetPicture [(tvCurSel _tree),getText (configfile >> "CfgMarkers" >> "hd_pickup" >> "icon")]; 
 };
 

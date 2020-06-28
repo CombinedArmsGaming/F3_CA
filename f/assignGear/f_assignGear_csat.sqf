@@ -9,6 +9,7 @@
 //		co			- commander
 //		dc 			- deputy commander / squad leader
 //		m 			- medic
+//		surgeon		- surgeon (advanced medical -- PAK, surgical kit)
 //		ftl			- fire team leader
 //		ar 			- automatic rifleman
 //		aar			- assistant automatic rifleman
@@ -336,24 +337,18 @@ if (_isMan) then {
 	_unit addItem "ACE_Flashlight_XL50";	// Add a flashlight for ACE map support.
 	_unit addItem "ACE_Maptools";
 
-<<<<<<< Updated upstream
-	// Add medical items
-	{_unit addItem "ACE_fieldDressing"} forEach [1,2,3,4,5,6,7,8]; // Bandages
-	{_unit addItem "ACE_morphine"} forEach [1,2,3,4];
-	//{_unit addItem "ACE_epinephrine"} forEach [1,2];
-	//{_unit addItem "ACE_bloodIV"} forEach [1,2];
-=======
 // Add medical items
 	{_unit addItem "ACE_elasticBandage"} forEach [1,2,3,4,5,6,7,8,9,10]; // Bandages
 	{_unit addItem "ACE_morphine"} forEach [1,2,3,4,5];
 	{_unit addItem "ACE_tourniquet"} forEach [1,2];
-	{_unit addItem "ACE_splint"} forEach [1];	
+	{_unit addItem "ACE_splint"} forEach [1,2];	
 	//{_unit addItem "ACE_epinephrine"} forEach [1,2];
 	//{_unit addItem "ACE_adenosine"} forEach [1];	
 	//{_unit addItem "ACE_bloodIV"} forEach [1];
 
->>>>>>> Stashed changes
+	
 };
+
 
 // ====================================================================================
 
@@ -424,13 +419,33 @@ switch (_typeofUnit) do
 // LOADOUT: MEDIC
 	case "m":
 	{
-		_unit addmagazines [_carbinemag,7];
 		_unit addweapon _carbine;
+		_unit addmagazines [_carbinemag,5];
+		_unit addmagazines [_carbinemag_tr,2];		
 		_unit addmagazines [_smokegrenade,4];
 		{_unit addItem _firstaid} forEach [1,2,3,4];
+		{_unit addItem "ACE_splint"} forEach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addWeapon "Binocular";		
 		_unit linkItem "ItemGPS";
 		_unit addItem "ACE_microDAGR";
+		// _unit addItem "ACE_surgicalKit"; //uncomment for reopening wounds
 		["m"] call _backpack;
+	};
+	
+// LOADOUT: SURGEON
+	case "surgeon":
+	{
+		_unit addweapon _carbine;
+		_unit addmagazines [_carbinemag,5];
+		_unit addmagazines [_carbinemag_tr,2];		
+		_unit addmagazines [_smokegrenade,4];
+		{_unit addItem _firstaid} forEach [1,2,3,4];
+		{_unit addItem "ACE_splint"} forEach [1,2,3,4,5,6,7,8,9,10];	
+		_unit addWeapon "Binocular";		
+		_unit linkItem "ItemGPS";
+		// _unit addItem "ACE_surgicalKit"; //uncomment for reopening wounds
+		_unit addItem "ACE_microDAGR";
+		["surgeon"] call _backpack;
 	};
 
 // LOADOUT: FIRE TEAM LEADER
@@ -455,7 +470,7 @@ switch (_typeofUnit) do
 // LOADOUT: AUTOMATIC RIFLEMAN
 	case "ar":
 	{
-		_unit addmagazines [_ARmag,2];
+		_unit addmagazines [_ARmag,4];
 		_unit addweapon _AR;
 		_unit addmagazines [_grenade,1];
 		_unit addmagazines [_mgrenade,1];
@@ -463,6 +478,7 @@ switch (_typeofUnit) do
 		_unit addmagazines [_pistolmag,4];
 		_unit addweapon _pistol;
 		["ar"] call _backpack;
+		_attachments pushback (_bipod1);
 	};
 
 // LOADOUT: ASSISTANT AUTOMATIC RIFLEMAN
@@ -677,7 +693,6 @@ switch (_typeofUnit) do
 		["hsamag"] call _backpack;
 	};
 
-
 // LOADOUT: SNIPER
 	case "sn":
 	{
@@ -686,7 +701,7 @@ switch (_typeofUnit) do
 		_unit addmagazines [_pistolmag,4];
 		_unit addweapon _pistol;
 		_unit addmagazines [_smokegrenade,2];
-		_attachments = [_scope3,_bipod2];
+		_attachments = [_scope3];
 		_unit addItem "ACE_Kestrel4500";
 	};
 
@@ -695,8 +710,8 @@ switch (_typeofUnit) do
 	{
 		_unit addmagazines [_glriflemag,7];
 		_unit addmagazines [_glriflemag_tr,2];
-		_unit addmagazines [_glmag,2];
-		_unit addmagazines [_glsmokewhite,2];
+		_unit addmagazines [_glmag,3];
+		_unit addmagazines [_glsmokewhite,4];
 		_unit addweapon _glrifle;					//_COrifle
 		_unit addmagazines [_smokegrenade,2];
 		_unit addWeapon "Rangefinder";
@@ -772,7 +787,6 @@ switch (_typeofUnit) do
 		_unit addmagazines [_grenade,1];
 		_unit addmagazines [_mgrenade,1];
 		_unit addmagazines [_satchel,2];
-		_unit addItem "MineDetector";
 		_unit addItem "ACE_M26_Clacker";
 		_unit addItem "ACE_DefusalKit";
 		_unit addItem "ACE_wirecutter";
@@ -795,6 +809,18 @@ switch (_typeofUnit) do
 		_unit addItem "ACE_wirecutter";
 		_unit addWeapon "Binocular";
 		["engm"] call _backpack;
+	};
+
+// LOADOUT: LOGISTICS
+	case "log":
+	{
+		_unit addmagazines [_carbinemag,7];
+		_unit addweapon _carbine;
+		_unit addmagazines [_smokegrenade,2];
+		_unit addItem "ACE_DefusalKit";
+		_unit addItem "ACE_wirecutter";
+		_unit addWeapon "Binocular";
+		["log"] call _backpack;
 	};
 
 // LOADOUT: UAV OPERATOR
@@ -879,22 +905,24 @@ switch (_typeofUnit) do
 		clearMagazineCargoGlobal _unit;
 		clearItemCargoGlobal _unit;
 		clearBackpackCargoGlobal _unit;
-		_unit addWeaponCargoGlobal [_carbine, 1];
+		_unit addWeaponCargoGlobal [_carbine, 2];
 		_unit addMagazineCargoGlobal [_riflemag, 8];
 		_unit addMagazineCargoGlobal [_glriflemag, 8];
-		_unit addMagazineCargoGlobal [_carbinemag, 8];
+		_unit addMagazineCargoGlobal [_carbinemag, 10];
 		_unit addMagazineCargoGlobal [_armag, 5];
-		_unit addMagazineCargoGlobal [_ratmag, 1];
+		_unit addMagazineCargoGlobal [_DMriflemag, 5];		
+		_unit addMagazineCargoGlobal [_ratmag, 1]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 1];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 4];
 		_unit addMagazineCargoGlobal [_smokegrenade, 4];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 2];
 		_unit addMagazineCargoGlobal [_glmag, 4];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 4];
-		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
+		_unit addItemCargoGlobal ["ACE_elasticBandage", 20];
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
-		_unit addItemCargoGlobal ["ACE_adenosine", 5];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
+		_unit addItemCargoGlobal ["ACE_splint", 10];		
 	};
 
 // CARGO: TRUCK - room for 50 weapons and 200 cargo items
@@ -904,18 +932,25 @@ switch (_typeofUnit) do
 		clearMagazineCargoGlobal _unit;
 		clearItemCargoGlobal _unit;
 		clearBackpackCargoGlobal _unit;
-		_unit addWeaponCargoGlobal [_carbine, 4];
+		_unit addWeaponCargoGlobal [_carbine, 10];
+		_unit addMagazineCargoGlobal [_riflemag, 40];
+		_unit addMagazineCargoGlobal [_glriflemag, 40];
+		_unit addMagazineCargoGlobal [_carbinemag, 40];
+		_unit addMagazineCargoGlobal [_armag, 22];
+		_unit addMagazineCargoGlobal [_DMriflemag, 22];		
+		_unit addMagazineCargoGlobal [_ratmag, 6]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 6];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 12];
 		_unit addmagazineCargoGlobal [_mgrenade,12];
 		_unit addMagazineCargoGlobal [_smokegrenade, 12];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 4];
 		_unit addMagazineCargoGlobal [_glmag, 12];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 12];
-		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
+		_unit addItemCargoGlobal ["ACE_elasticBandage", 20];
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
-		_unit addItemCargoGlobal ["ACE_adenosine", 5];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
+		_unit addItemCargoGlobal ["ACE_splint", 10];			
 	};
 
 // CARGO: IFV - room for 10 weapons and 100 cargo items
@@ -925,23 +960,25 @@ switch (_typeofUnit) do
 		clearMagazineCargoGlobal _unit;
 		clearItemCargoGlobal _unit;
 		clearBackpackCargoGlobal _unit;
-		_unit addWeaponCargoGlobal [_carbine, 2];
-		_unit addMagazineCargoGlobal [_riflemag, 10];
-		_unit addMagazineCargoGlobal [_glriflemag, 10];
-		_unit addMagazineCargoGlobal [_carbinemag, 12];
+		_unit addWeaponCargoGlobal [_carbine, 4];
+		_unit addMagazineCargoGlobal [_riflemag, 20];
+		_unit addMagazineCargoGlobal [_glriflemag, 20];
+		_unit addMagazineCargoGlobal [_carbinemag, 20];
 		_unit addMagazineCargoGlobal [_armag, 8];
-		_unit addMagazineCargoGlobal [_ratmag, 2];
+		_unit addMagazineCargoGlobal [_DMriflemag, 8];		
+		_unit addMagazineCargoGlobal [_ratmag, 2]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 2];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 8];
 		_unit addmagazineCargoGlobal [_mgrenade,8];
 		_unit addMagazineCargoGlobal [_smokegrenade, 8];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 2];
 		_unit addMagazineCargoGlobal [_glmag, 8];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 4];
-		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
+		_unit addItemCargoGlobal ["ACE_elasticBandage", 20];
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
-		_unit addItemCargoGlobal ["ACE_adenosine", 5];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
+		_unit addItemCargoGlobal ["ACE_splint", 10];			
 	};
 
 // CRATE: Small, ammo for 1 fireteam
@@ -954,19 +991,21 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_riflemag, 5];
 		_unit addMagazineCargoGlobal [_glriflemag, 5];
 		_unit addMagazineCargoGlobal [_armag, 5];
+		_unit addMagazineCargoGlobal [_DMriflemag, 5];		
 		_unit addMagazineCargoGlobal [_carbinemag, 5];
 		_unit addMagazineCargoGlobal [_glmag, 5];
 		_unit addMagazineCargoGlobal [_glsmokewhite, 4];
-		_unit addMagazineCargoGlobal [_ratmag, 2];
+		_unit addMagazineCargoGlobal [_ratmag, 2]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 2];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 8];
 		_unit addMagazineCargoGlobal [_mgrenade, 8];
 		_unit addMagazineCargoGlobal [_smokegrenade, 8];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 2];
-		_unit addItemCargoGlobal ["ACE_fieldDressing", 20];
+		_unit addItemCargoGlobal ["ACE_elasticBandage", 20];
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
-		_unit addItemCargoGlobal ["ACE_adenosine", 5];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
+		_unit addItemCargoGlobal ["ACE_splint", 10];			
 };
 
 // CRATE: Medium, ammo for 1 squad
@@ -979,19 +1018,21 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_riflemag, 15];
 		_unit addMagazineCargoGlobal [_glriflemag, 20];
 		_unit addMagazineCargoGlobal [_armag, 15];
+		_unit addMagazineCargoGlobal [_DMriflemag, 15];		
 		_unit addMagazineCargoGlobal [_carbinemag, 20];
 		_unit addMagazineCargoGlobal [_glmag, 20];
 		_unit addMagazineCargoGlobal [_glsmokewhite,16];
-		_unit addMagazineCargoGlobal [_ratmag, 6];
+		_unit addMagazineCargoGlobal [_ratmag, 6]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 6];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 25];
 		_unit addMagazineCargoGlobal [_mgrenade, 25];
 		_unit addMagazineCargoGlobal [_smokegrenade, 25];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 6];
-		_unit addItemCargoGlobal ["ACE_fieldDressing", 100];
+		_unit addItemCargoGlobal ["ACE_elasticBandage", 100];
 		_unit addItemCargoGlobal ["ACE_morphine", 50];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 25];
-		_unit addItemCargoGlobal ["ACE_adenosine", 12];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 10];
+		_unit addItemCargoGlobal ["ACE_splint", 20];			
 };
 
 // CRATE: Large, ammo for 1 platoon
@@ -1004,19 +1045,22 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_riflemag, 45];
 		_unit addMagazineCargoGlobal [_glriflemag, 60];
 		_unit addMagazineCargoGlobal [_armag, 45];
+		_unit addMagazineCargoGlobal [_DMriflemag, 45];		
 		_unit addMagazineCargoGlobal [_carbinemag, 60];
 		_unit addMagazineCargoGlobal [_glmag, 60];
 		_unit addMagazineCargoGlobal [_glsmokewhite,50];
-		_unit addMagazineCargoGlobal [_ratmag, 20];
+		_unit addMagazineCargoGlobal [_ratmag, 20]; // COMMENT THIS OUT IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
+		// _unit addWeaponCargoGlobal [_rat, 20];		UNCOMMENT THIS IF YOU ARE USING SINGLE SHOT LAUNCHERS E.G RPG-26/LAW/AT4
 		_unit addMagazineCargoGlobal [_grenade, 75];
 		_unit addMagazineCargoGlobal [_mgrenade, 75];
 		_unit addMagazineCargoGlobal [_smokegrenade, 75];
 		_unit addMagazineCargoGlobal [_smokegrenadegreen, 20];
-		_unit addItemCargoGlobal ["ACE_fieldDressing", 150];
+		_unit addItemCargoGlobal ["ACE_elasticBandage", 150];
 		_unit addItemCargoGlobal ["ACE_morphine", 75];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 50];
-		_unit addItemCargoGlobal ["ACE_adenosine", 25];		
 		_unit addItemCargoGlobal ["ACE_bloodIV", 25];
+		_unit addItemCargoGlobal ["ACE_splint", 50];			
+
 };
 
 // LOADOUT: DEFAULT/UNDEFINED (use RIFLEMAN)

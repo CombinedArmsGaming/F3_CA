@@ -17,17 +17,6 @@ _state = if (count _this > 1) then {_this select 1} else {true};
 if (isServer) then
 {
 	sleep 3;
-// DEBUG
-	if (f_var_debugMode == 1) then
-	{
-		player sideChat "DEBUG (f_fnc_mpEndReciever): This is the server.";
-	};
-};
-
-// DEBUG
-if (f_var_debugMode == 1) then
-{
-	player sideChat format ["DEBUG (f_fnc_mpEndReciever): _ending = %1, _state = %2",_ending,_state];
 };
 
 // ====================================================================================

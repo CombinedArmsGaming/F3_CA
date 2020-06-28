@@ -65,7 +65,7 @@ forceRotorLibSimulation = 0;
 
 // CA - Disable playableunits AI
 
-//disabledAI = true;
+disabledAI = 1;
 
 // ============================================================================================
 
@@ -258,9 +258,6 @@ class ca_respawn
 #include "f\JIP\f_JIP_kitpicker.h"
 #include "f\JIP\f_JIP_grppicker.h"
 
-// Menu components for the Spectator Script
-#include "f\spect\config.hpp"
-
 // ============================================================================================
 
 // F3 - Functions
@@ -271,18 +268,6 @@ class CfgFunctions
 	#include "ca\ca_functions.hpp"
 	class F // Defines the "owner"
 	{
-		class common // category
-		{
-			file = "f\common";
-			// Defines the function to preInit (the paramArray dosent seem to be constructed at preInit stage).
-			class processParamsArray
-			{
-				preInit = 1;
-				postInit = 1;
-			};
-
-			class nearPlayer{};
-		};
 		class mpEnd
 		{
 			file = "f\mpEnd";
@@ -295,19 +280,6 @@ class CfgFunctions
 			file = "f\assignGear";
 			class assignGear{};
 		};
-		class cache
-		{
-			file = "f\cache";
-			class cInit {};
-			class cTracker {};
-			class gCache {};
-			class gUncache {};
-		};
-		class groupMarkers {
-			file = "f\groupMarkers";
-			class localGroupMarker{};
-			class localSpecialistMarker{};
-		};
 		class FTMemberMarkers
 		{
 			file = "f\FTMemberMarkers";
@@ -315,11 +287,7 @@ class CfgFunctions
 			class GetMarkerColor{};
 			class LocalFTMarkerSync{};
 		};
-		class bodyRemoval
-		{
-			file = "f\removeBody";
-			class removeBody{};
-		};
+		#include "f\FTMemberMarkers\smoothMarkers\functions.hpp"
 		class mapClickTeleport
 		{
 			file = "f\mapClickTeleport";
@@ -331,6 +299,11 @@ class CfgFunctions
 			file = "f\mapClickSupplyDrop";
 			class mapClickSupplyDropUnit{};
 		};
+		class medical
+		{
+			file = "f\medical";
+			class WoundUnitRandomly{};
+		};
 		class zeus
 		{
 			file = "f\zeus";
@@ -338,22 +311,19 @@ class CfgFunctions
 			class zeusAddAddons{};
 			class zeusAddObjects{};
 		};
-		class tfr
-		{
-			file = "f\radios\tfr";
-			class tfr_removeRadios{};
-			class tfr_addRadios{};
-			class tfr_setRadioFrequencies{};
-			class tfr_configureSpectatorChat{};
-		};
 		class safeStart
 		{
 			file = "f\safeStart";
 			class safety{};
 		};
-		#include "f\simplewoundingsystem\config.hpp"
-		#include "f\spect\functions.hpp"
-
+	};
+	class ace_medical_treatment
+	{
+		class test
+		{
+			file = "f\medical";
+			class handleBandageOpening{};
+		};
 	};
 };
 
@@ -361,6 +331,7 @@ class CfgFunctions
 // ============================================================================================
 
 // F3 - Custom Insignia
+// Default insignia now part of Gibbs_Insignia addon. Mission specific insignia can be added in the define below.
 
 class CfgUnitInsignia {
 	#include "f\assignGear\insignia\define.hpp"

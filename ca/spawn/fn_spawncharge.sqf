@@ -17,13 +17,10 @@
  * [["ftl","r","m","rat","ar","aar"],"SC1_CA",300,"opf_f",east] spawn ca_fnc_spawncharge;
  *
  */
-_ishc = !hasInterface && !isDedicated;
-//Use headless instead?
-if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
-//if there is no headless client, and is player, spawn on the server instead.
-if (!ca_hc && hasInterface && !isServer) exitWith {
-		[_this,_fnc_scriptName] spawn ca_fnc_hcexec;
-};
+
+//If the script is not executed on a server or a headless client, exit as it is likely to be executed on all clients, causing more spawns than intended. 
+if (!isServer) exitWith {};
+
 
 params ["_unitarray","_position","_attackdistance",["_faction",""],["_side", ca_defaultside]];
 private ["_group"];
@@ -38,16 +35,7 @@ _attackvector = _origo getpos [_attackdistance,_attackdir];
 	[_group] call CBA_fnc_clearWaypoints;
 	[_group, _attackvector, 50, "SAD", "AWARE", "RED","FULL","LINE","this spawn CBA_fnc_searchNearby"] call CBA_fnc_addWaypoint;
 	uisleep 5;
-	{
-	  _x allowFleeing 0;
-		_x doMove _attackvector;
-	  _x setspeedmode "FULL";
-	  _x setbehaviour "AWARE";
-	  _x setskill ["spotDistance",0.1];
-	  _x setskill ["spotTime",0.1];
-	  _x setskill ["courage",1];
-	  _x setskill ["commanding",0.1];
-	  _x setskill ["general",0.1];
-	} forEach (units _group);
+	[_group, 3, 2] spawn ca_fnc_groupSuppressiveAI;
+	[_group] spawn ca_fnc_groupGuerrillaAI;  
 };
 _group

@@ -19,6 +19,9 @@ _groupid = ca_selectedgroupid;
 _rankid = rankid player;
 if (_rankid < ca_corank) exitWith {systemChat "You do not have the sufficient authority to change the hierarchy!";};
 
+if (_groupid == "Overflow/Dead") exitWith {
+		systemChat "Select a real group to move to.";
+};
 
 if (isnil {ca_switchgroupthiscycle}) exitwith {
 	systemChat "Select the group first!";
@@ -28,6 +31,9 @@ if (ca_previousgroup == ca_selectedgroup ) exitwith {
 	systemChat "That is the same group!";
 };
 
+_check = ca_selectedgroup getVariable ['ca_groupsetup',false]; 
+
+if (!_check) exitwith { systemChat "Group you are trying to pin to is not registered!"; };
 if (ca_switchgroupthiscycle) then {
 	_grouptomove = ca_previousgroup;
 
@@ -40,7 +46,6 @@ if (ca_switchgroupthiscycle) then {
 	_shortrangechannel = (_newgrouplead) getVariable ["ca_SRradioCH",1];
 	_longrangeArray = (_newgrouplead) getVariable ["ca_LRradioarray",[4]];
 
-	_squadID = _newgrouplead getVariable ["ca_squadID",format ["%1%2",(groupid _newgrouplead),_side]];
 
 	_ranklead = rankid (leader _newgrouplead);
 	if (_ranklead < ca_slrank) exitWith {
@@ -48,12 +53,12 @@ if (ca_switchgroupthiscycle) then {
 	};
 	if (_ranklead == ca_slrank) then {
 
-		[leader _grouptomove,ca_ftlrank] call ca_fnc_setrank;
+		//[leader _grouptomove,ca_ftlrank] call ca_fnc_setrank;
 		_grouptomove setVariable ["ca_superior",_newgroupleadid, true];
 
 	};
 	if (_ranklead >= ca_corank) then {
-		[leader _grouptomove,ca_slrank] call ca_fnc_setrank;
+		//[leader _grouptomove,ca_slrank] call ca_fnc_setrank;
 		_grouptomove setVariable ["ca_superior",_newgroupleadid, true];
 		_description = "Squad";
 	};
@@ -73,9 +78,7 @@ if (ca_switchgroupthiscycle) then {
 
 } else {
 
-	ca_previousgroup = ca_selectedgroup;
 	systemChat "Select the group you wish to change in the hierachy first!";
-	ca_switchgroupthiscycle = true;
 
 };
 
