@@ -27,6 +27,10 @@ _group = [_unitarray,_position,_faction,_side] call ca_fnc_spawngroup;
 _posdir = _position call ca_fnc_getdirpos;
 _patrolpos = _posdir select 0;
 
+_group setBehaviour "SAFE";
+_group setVariable ["VCM_TOUGHSQUAD",true];
+_group setVariable ["Vcm_Disable",true];
+
 [_group, _patrolpos,_radius,4,[],true] call lambs_wp_fnc_taskPatrol;
 
 _group
