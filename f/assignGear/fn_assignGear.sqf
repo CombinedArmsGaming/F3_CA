@@ -4,7 +4,6 @@
 
 // DECLARE VARIABLES AND FUNCTIONS
 
-private ["_faction","_typeofUnit","_unit"];
 
 // ====================================================================================
 
@@ -12,23 +11,19 @@ private ["_faction","_typeofUnit","_unit"];
 // The following code detects what faction the unit's slot belongs to, and stores
 // it in the private variable _faction. It can also be passed as an optional parameter.
 
-_typeofUnit = toLower (_this select 0);
-_unit = _this select 1;
+params ["_typeofUnit","_unit",["_faction",(toLower faction _unit)]];
 
-_faction = toLower (faction _unit);
-if(count _this > 2) then
-{
-  _faction = toLower (_this select 2);
+_insigniaclass = toLower _typeofUnit;
+if (count _this > 3) then {
+	_insigniaclass = toLower (_this select 3)
 };
 
+_typeofUnit = toLower _typeofUnit;
 // ====================================================================================
 
 // INSIGNIA
 // This block will give units insignia on their uniforms.
-[_unit,_typeofUnit] spawn {
-	#include "f_assignInsignia.sqf"
-};
-
+[_unit,_insigniaclass] execVM "f\assignGear\f_assignInsignia.sqf";
 // ====================================================================================
 
 // DECIDE IF THE SCRIPT SHOULD RUN

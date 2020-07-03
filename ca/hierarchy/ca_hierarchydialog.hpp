@@ -27,7 +27,7 @@ class ca_hierarchydialog
             h = 20 * (0.0016835 * 2);
             colorBackground[] = {0.45,0.65,0.34,0.8};
             colorText[] = {1,1,1,0.9};
-            text = "CA Hierachy User Interface Version 1.4";
+            text = "CA Hierachy User Interface Version 1.4.1";
             moving = 1;
         };
         class tree: RscTree

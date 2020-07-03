@@ -10,6 +10,7 @@ if (!isDedicated && (isNull player)) then
 };
 
 params ["_unit","_corpse"];
+(format ["CA ondeath: Poulern caondeath debug. UNIT: %1. GROUP: %2",_unit,(group _unit)]) remoteExec ["diag_log"];
 if (!f_var_JIP_JIPMenu && isNull _corpse) exitWith {}; // If no corpse exists the player is spawned for the first time.
 if (time < 10 && isNull _corpse) exitWith {}; //if not a JIP and its the start of the mission exit out
 
@@ -46,8 +47,10 @@ _originalgroup = _unit getVariable ["ca_originalgroup", grpNull];
 
 if !(_originalgroup == _groupLocal) then {
     _originalgroup = _unit getVariable ["ca_originalgroup", grpNull];
-    [player] joinsilent _groupLocal;
-    diag_log format ["Desynch between units in group:%1, Originalgroup: %2, Localgroup: %3 .Player executing code %3",_group,_originalgroup,_groupLocal,name _unit]
+
+    _unit setVariable ["ca_originalgroup",group player,true];
+    [_unit] joinsilent _groupLocal;
+    [format ["CA Ondeath: Desynch between units in group:%1, Originalgroup: %2 .Player executing code %3. Unit Desynched %4",_groupLocal,_originalgroup,name player, name _unit]] remoteExec ["diag_log"]; 
     };
 
 }]remoteExec ["spawn",_group];

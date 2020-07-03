@@ -1,5 +1,15 @@
 // CA - Player group change 
 player setVariable ["ca_originalgroup",(group player),true];
+
+
+player addMPEventHandler ["MPkilled", {
+	params ["_unit"];
+	if ((local _unit && isPlayer _unit)) then {
+			_group = group _unit;
+			_unit setVariable ["ca_originalgroup",_group,true];
+		};
+}];
+/*
 ["ace_unconscious", {
 	params ["_unit","_isUnconc"];
 	if ((local _unit && isPlayer _unit) && _isUnconc) then {
@@ -8,7 +18,7 @@ player setVariable ["ca_originalgroup",(group player),true];
 		};
 	}
 ] call CBA_fnc_addEventHandler;
-
+*/
 // CA - Mission briefing
 execVM "ca\briefing\ca_briefing_player.sqf";
 if (serverCommandAvailable "#kick") then {
@@ -18,15 +28,11 @@ if (serverCommandAvailable "#kick") then {
 // PabstMirror - Mission Intro
 // Credits: PabstMirror
 [] execVM "ca\misc\CA_missionIntro.sqf";
-// CA - Hierarchy radio markers
-[] execVM "ca\misc\HierarchyRadioMarkers.sqf"; 
-
-
 
 //CA - Setup specialistmarkers (Smoothmarkers and normal markers)
 sleep 2;
 waitUntil {!isnil {ca_platoonsetup}}; 
-
+if (f_var_smoothMarkers) exitWith {};
 _side = side player;
 //Create a switch for each side 
 switch (_side) do {
