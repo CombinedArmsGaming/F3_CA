@@ -8,12 +8,8 @@ _caWestTickets = 50;
 _caEastTickets = _caWestTickets;
 _caIndependentTickets = _caWestTickets;
 
-//To create a seperate hierarchy for another side, copy the brackets from line 12 to 71.
-_hierarchywest = {
-_side = _this select 0;
-
 /*
-Parameters for ca_fnc_setupGroup, which is what the setup below uses to setup each group. 
+Parameters for ca_fnc_setupGroup, which is what the setup inside the _hierarchywest block uses to setup each group. 
  * 0: Side (Side): This is set automatically, if you need to set up for multiple sides copy the _hierachy code block and name it _westhierarchy, _easthierachy etc. as needed and change the call below.
  * 1: Superior (String): The groupid of the group that ranks above it in the hierarchy, if equal to groupid, then the group is an independent group or its own platoon.
  * 2:  Groupid (String): The groupid that is set in the editor field callsign.
@@ -27,21 +23,12 @@ Parameters for ca_fnc_setupGroup, which is what the setup below uses to setup ea
 [_side,"ASL","CO",1,[4,1],"ColorRed",5] spawn ca_fnc_setupGroup;
 [_side,"ELEMENT","ELEMENT IMMEDIATELY ABOVE THEM IN THE HIERARCHY",SR radio channel,[LR radio channels],"ColorOfgroup",Number of group tickets 123,Should the group get a map marker true/false,"grouptype aka which marker they get"] spawn ca_fnc_setupGroup;
 */
-[_side,"CO","CO",16,[1,3],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR FAC
-// [_side,"COY","COY",16,[1,3],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR FAC
+// FOR COMPANY HIERARCHY -- COPY THE OTHER PLATOONS/GROUPS FROM THE BOTTOM OF THE FILE. 
+//To create a seperate hierarchy for another side, copy the brackets from line 29 to 56.
 
-//	-- UNCOMMENT SPECIALIST TEAMS AS REQUIRED
-	[_side,"ENG","CO",13,[1],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"MMG","CO",14,[1],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"MAT","CO",14,[1],"ColorOrange",2, true, "b_antitank"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"LOGI","CO",13,[1],"ColorOrange",2, true, "b_supply"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"HAT","CO",14,[1],"ColorOrange",2, true, "b_heavyantitank"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"MTR","CO",14,[1],"ColorOrange",5, true, "b_mortar"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"REC","CO",14,[1],"ColorOrange",5, true, "b_recon"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"SAM","CO",14,[1],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 // For Manpad AA
-
-    // FOR COMPANY HIERARCHY -- COPY THE OTHER PLATOONS/GROUPS FROM THE BOTTOM OF THE FILE. 
-	//[_side,"1PL","COY",16,[5,1],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; 
+_hierarchywest = {
+	_side = _this select 0;
+	[_side,"CO","CO",16,[1,3],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR FAC
 
 		[_side,"ASL","CO",1,[1,4],"ColorRed",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR ALPHA
 			[_side,"A1","ASL",2,[4],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR ALPHA
@@ -57,6 +44,15 @@ Parameters for ca_fnc_setupGroup, which is what the setup below uses to setup ea
 			[_side,"C1","CSL",10,[6],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CHARLIE
 			[_side,"C2","CSL",11,[6],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CHARLIE
 			[_side,"CV","CSL",12,[2,6],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR CHARLIE
+		//	SPECIALIST TEAMS - MORE AT THE BOTTOM OF THE FILE. 
+		[_side,"ENG","CO",13,[1],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"LOGI","CO",13,[1],"ColorOrange",2, true, "b_supply"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"MMG","CO",14,[1],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"MAT","CO",14,[1],"ColorOrange",2, true, "b_antitank"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"REC","CO",14,[1],"ColorOrange",5, true, "b_recon"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"HAT","CO",15,[1],"ColorOrange",2, true, "b_heavyantitank"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"MTR","CO",15,[1],"ColorOrange",5, true, "b_mortar"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"SAM","CO",15,[1],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 // For Manpad AA
 };
 
 _hierarchyeast = _hierarchywest;
@@ -70,10 +66,10 @@ _caWestLongrangeChannelList = ["COMMAND 1","COMMAND 2","FORWARD AIR","ALPHA","BR
 _caEastLongrangeChannelList = _caWestLongrangeChannelList; // Copy and paste to change for another side eg ["COMMAND 1","COMMAND 2","FORWARD AIR","ANNA","BRAVO","CHARITON","1ST PLATOON","DMITRI","ELENA","FEDOR","2ND PLATOON","GREGORY","ZHENYA","IVAN","3RD PLATOON"];
 _caIndependentLongrangeChannelList = _caWestLongrangeChannelList;
 /* Default setup on 343 (short range) for the hierarchy above:
-CH1:ASL CH2:A1 CH3:A2 CH4:AV CH5:BSL CH6:B1 CH7:B2 CH8:BV CH9:CSL CH10:C1 CH11:C2 CH12:CV CH13:MMG CH14:MAT CH15:ENG CH16:CO
+CH1:ASL CH2:A1 CH3:A2 CH4:AV CH5:BSL CH6:B1 CH7:B2 CH8:BV CH9:CSL CH10:C1 CH11:C2 CH12:CV CH13:ENG/LOGI CH14:WEAPONS CH15:STATICS CH16:CO
 */
 // ====================================================================================
-/* Ranks for various actions like respawning, adjusting the hierachy. CO rank can change all elements of the hierarchy and call respawn waves.
+/* Ranks for various actions like respawning and adjusting the hierachy. CO rank can change all elements of the hierarchy and call respawn waves.
 0 - Private
 1 - Corporal - Default for Fireteam lead
 2 - Sergeant - Default for Squad lead
@@ -89,7 +85,7 @@ _ftlrank = 1;
 // Respawn settings
 // ====================================================================================
 // How far away an enemy must be for respawn to be available
-ca_enemyradius = 200;
+ca_enemyradius = 150;
 // Delay for when a group can be respawn after the first player enters spectate. If group respawn is ready and another player dies, the respawn timer goes on cooldown again.
 // If the timer is low then its reccomended to increase ca_enemyradius so you're unable to respawn in the middle of combat.
 ca_grouprespawncooldown = 180;
@@ -156,6 +152,9 @@ missionNamespace setVariable ['ca_platoonsetup',true, true];
     // FOR COMPANY HIERARCHY - COPY AS REQUIRED. REMEMBER TO DOUBLE CHECK FOR DUPLICATE GROUPS.
     //
     // EXTRA SUPPORT TEAMS
+// [_side,"COY","COY",16,[1,3],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR FAC
+
+	//[_side,"1PL","COY",16,[5,1],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; 
 
 	//	[_side,"EOD","CO",51,[1],"ColorGrey",2,true,"b_eod"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
 	//	[_side,"GMG","CO",47,[1],"ColorOrange",2, true, "b_heavyweapons"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
