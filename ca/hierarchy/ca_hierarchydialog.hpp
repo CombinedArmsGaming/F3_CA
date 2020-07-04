@@ -251,7 +251,7 @@ class ca_hierarchydialog
         class givegroupmarker: RscButton 
         {
             idc = -1;
-            text = "Get groupmarker";
+            text = "Give groupmarker";
             tooltip = "Gives the group you've selected a groupmarker";
             sizeEx = 10 * (0.0016835 * 2);
             style = ST_LEFT;
@@ -259,7 +259,7 @@ class ca_hierarchydialog
             y = 55 * 0.0016835 * 8 + safeZoneY;
             w = 80 * (0.00126263 * 2);
             h = 20 * (0.0016835 * 2);
-            action =  "if(rankid player >= ca_ftlrank && (!isnil {ca_selectedgroup})) then { [(group player)] remoteExec ['ca_fnc_groupMarker', (side player)];} else {hint 'You are not FTL rank or don't have a group selected!'};";
+            action =  "if(rankid player >= ca_ftlrank && (!isnil {ca_selectedgroup})) then { [(ca_selectedgroup)] remoteExec ['ca_fnc_groupMarker', (side player)];} else {hint 'You are not FTL rank or don't have a group selected!'};";
             //closeDialog 0;
         };
         class changegroupmarker: RscButton 

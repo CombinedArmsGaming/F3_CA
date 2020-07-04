@@ -9,16 +9,6 @@ player addMPEventHandler ["MPkilled", {
 			_unit setVariable ["ca_originalgroup",_group,true];
 		};
 }];
-/*
-["ace_unconscious", {
-	params ["_unit","_isUnconc"];
-	if ((local _unit && isPlayer _unit) && _isUnconc) then {
-			_group = group _unit;
-			_unit setVariable ["ca_originalgroup",_group,true];
-		};
-	}
-] call CBA_fnc_addEventHandler;
-*/
 // CA - Mission briefing
 execVM "ca\briefing\ca_briefing_player.sqf";
 if (serverCommandAvailable "#kick") then {
@@ -30,6 +20,7 @@ if (serverCommandAvailable "#kick") then {
 [] execVM "ca\misc\CA_missionIntro.sqf";
 
 //CA - Setup specialistmarkers (Smoothmarkers and normal markers)
+ca_selectedgroup = group player;
 sleep 2;
 waitUntil {!isnil {ca_platoonsetup}}; 
 if (f_var_smoothMarkers) exitWith {};
