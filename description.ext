@@ -317,14 +317,6 @@ class CfgFunctions
 			class safety{};
 		};
 	};
-	class ace_medical_treatment
-	{
-		class test
-		{
-			file = "f\medical";
-			class handleBandageOpening{};
-		};
-	};
 };
 
 

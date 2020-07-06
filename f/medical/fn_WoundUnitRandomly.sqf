@@ -6,7 +6,7 @@
   0: The Unit to target <OBJECT>
 
   Example Usage:
-  [player] call functions_fnc_woundunitrandomly
+  [player] call f_fnc_woundunitrandomly
 */
 
 params ["_unit"];

@@ -132,8 +132,8 @@ _superiorgroupcontrol ctrlSetText (format ["%1",(ca_selectedgroup getVariable ["
 _respawntime = _group getVariable ["ca_grouprespawntime",900000];
 
 _infotime = ceil (_respawntime - time);
-if (lbSize _deadplayers == 0 || _infotime > 90000 || ca_respawnmode < 3) then {
-	_grouprespawntimer ctrlSetText (format ["%1",ca_selectedgroup]);
+if (lbSize _deadplayers == 0 || _infotime > 90000 || ca_respawnmode < 3 || (_infotime < 1)) then {
+	_grouprespawntimer ctrlSetText (format ["%1 is ready to respawn!",_groupid]);
 } else {
 	_grouprespawntimer ctrlSetText (format ["%2 can deploy in about %1 sec",(_infotime),_groupid]);
 };

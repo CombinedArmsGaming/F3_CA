@@ -11,10 +11,10 @@ _briefing = _briefing + "
 Platoon Hierarchy, wave respawn and marker management</execute><br/>
 <br/>
 <font size='20'>Addactions</font><br/><br/>
-|- <execute expression=""player addAction ['Hierarchy', {_handle=createdialog 'ca_hierarchydialog';}];"">
-Add Platoon Hierarchy as an addaction</execute><br/>
-|- <execute expression=""removeAllActions player"">
-Remove all addactions</execute><br/>
+|- <execute expression=""ca_hierarchyaddaction = player addAction ['Hierarchy', {_handle=createdialog 'ca_hierarchydialog';}];"">
+Add Platoon Hierarchy as an addaction for ease of access</execute><br/>
+|- <execute expression=""player removeAction ca_hierarchyaddaction"">
+Remove hierarchy addaction</execute><br/>
 <br/>
 <font size='20'>Admin actions</font><br/><br/>
 |- <execute expression=""if (serverCommandAvailable '#kick') then { [] execvm 'ca\briefing\ca_briefing_admin.sqf'}else {hint 'You need to be an admin to get this!'};"">

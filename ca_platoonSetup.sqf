@@ -8,12 +8,8 @@ _caWestTickets = 50;
 _caEastTickets = _caWestTickets;
 _caIndependentTickets = _caWestTickets;
 
-//To create a seperate hierarchy for another side, just 
-_hierarchywest = {
-_side = _this select 0;
-
 /*
-Parameters for ca_fnc_setupGroup, which is what the setup below uses to setup each group. 
+Parameters for ca_fnc_setupGroup, which is what the setup inside the _hierarchywest block uses to setup each group. 
  * 0: Side (Side): This is set automatically, if you need to set up for multiple sides copy the _hierachy code block and name it _westhierarchy, _easthierachy etc. as needed and change the call below.
  * 1: Superior (String): The groupid of the group that ranks above it in the hierarchy, if equal to groupid, then the group is an independent group or its own platoon.
  * 2:  Groupid (String): The groupid that is set in the editor field callsign.
@@ -27,85 +23,41 @@ Parameters for ca_fnc_setupGroup, which is what the setup below uses to setup ea
 [_side,"ASL","CO",1,[4,1],"ColorRed",5] spawn ca_fnc_setupGroup;
 [_side,"ELEMENT","ELEMENT IMMEDIATELY ABOVE THEM IN THE HIERARCHY",SR radio channel,[LR radio channels],"ColorOfgroup",Number of group tickets 123,Should the group get a map marker true/false,"grouptype aka which marker they get"] spawn ca_fnc_setupGroup;
 */
-[_side,"CO","CO",16,[1,3],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR FAC
-// [_side,"COY","COY",16,[1,3],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR FAC
+// FOR COMPANY HIERARCHY -- COPY THE OTHER PLATOONS/GROUPS FROM THE BOTTOM OF THE FILE. 
+//To create a seperate hierarchy for another side, copy the brackets from line 29 to 56.
 
-	[_side,"ENG","CO",51,[1],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"EOD","CO",51,[1],"ColorGrey",2,true,"b_eod"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"MMG","CO",52,[1],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"MAT","CO",53,[1],"ColorOrange",2, true, "b_antitank"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"LOGI","CO",44,[1],"ColorOrange",2, true, "b_supply"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"HMG","CO",45,[1],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"HAT","CO",46,[1],"ColorOrange",2, true, "b_heavyantitank"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"GMG","CO",47,[1],"ColorOrange",2, true, "b_heavyweapons"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"MTR","CO",48,[1],"ColorOrange",5, true, "b_mortar"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"REC","CO",49,[1],"ColorOrange",5, true, "b_recon"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-	[_side,"AAA","CO",50,[1],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 // For Vehicle AA
-	[_side,"SAM","CO",50,[1],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 // For Manpad AA
-	[_side,"SF","CO",50,[1],"ColorBlack",5, true, "b_sf"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
-
-    // FOR COMPANY HIERARCHY - UNCOMMENT AS REQUIRED. REMEMBER TO COMMENT OUT THE PREVIOUS ENTRY.
-    //
-    //
-	//[_side,"1PL","COY",16,[5,1],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup;
+_hierarchywest = {
+	_side = _this select 0;
+	[_side,"CO","CO",16,[1,3],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR FAC
 
 		[_side,"ASL","CO",1,[1,4],"ColorRed",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR ALPHA
-		//[_side,"ASL","1PL",1,[7,4],"ColorRed",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 1PL and LR ALPHA
 			[_side,"A1","ASL",2,[4],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR ALPHA
 			[_side,"A2","ASL",3,[4],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR ALPHA
 			[_side,"AV","ASL",4,[2,4],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR ALPHA
 
 		[_side,"BSL","CO",5,[1,5],"ColorBlue",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR BRAVO
-		//[_side,"BSL","1PL",5,[7,5],"ColorBlue",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 1PL and LR BRAVO
 			[_side,"B1","BSL",6,[5],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR BRAVO
 			[_side,"B2","BSL",7,[5],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR BRAVO
 			[_side,"BV","BSL",8,[2,5],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR BRAVO
 
 		[_side,"CSL","CO",9,[1,6],"ColorGreen",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR CHARLIE
-		//[_side,"CSL","1PL",9,[7,6],"ColorGreen",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 1PL and LR CHARLIE
 			[_side,"C1","CSL",10,[6],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CHARLIE
 			[_side,"C2","CSL",11,[6],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CHARLIE
 			[_side,"CV","CSL",12,[2,6],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR CHARLIE
-
-	[_side,"2PL","COY",29,[1,11],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR 2PL
-
-		[_side,"DSL","2PL",17,[8,11],"ColorRed",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 2PL and LR DELTA
-			[_side,"D1","DSL",18,[8],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR DELTA
-			[_side,"D2","DSL",19,[8],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR DELTA
-			[_side,"DV","DSL",20,[2,8],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR DELTA
-
-		[_side,"ESL","2PL",21,[9,11],"ColorBlue",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 2PL and LR ECHO
-			[_side,"E1","ESL",22,[9],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR ECHO
-			[_side,"E2","ESL",23,[9],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR ECHO
-			[_side,"EV","ESL",24,[2,9],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR ECHO
-
-		[_side,"FSL","2PL",25,[10,11],"ColorGreen",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 2PL and LR FOXTROT
-			[_side,"F1","FSL",26,[10],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR FOXTROT
-			[_side,"F2","FSL",27,[10],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR FOXTROT
-			[_side,"FV","FSL",28,[2,10],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR FOXTROT
-
-	[_side,"3PL","COY",44,[1,15],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR 3PL
-
-		[_side,"GSL","3PL",32,[12,15],"ColorRed",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 3PL and LR GOLF
-			[_side,"G1","GSL",33,[12],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR GOLF
-			[_side,"G2","GSL",34,[12],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR GOLF
-			[_side,"GV","GSL",35,[2,12],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR GOLF
-
-		[_side,"HSL","3PL",36,[13,15],"ColorBlue",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 3PL and LR HOTEL
-			[_side,"H1","HSL",37,[13],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR HOTEL
-			[_side,"H2","HSL",38,[13],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR HOTEL
-			[_side,"HV","HSL",39,[2,13],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR HOTEL
-
-		[_side,"ISL","3PL",40,[14,15],"ColorGreen",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 3PL and LR INDIA
-			[_side,"I1","ISL",41,[14],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR INDIA
-			[_side,"I2","ISL",42,[14],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR INDIA
-			[_side,"IV","ISL",43,[2,14],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR INDIA
-
+		//	SPECIALIST TEAMS - MORE AT THE BOTTOM OF THE FILE. 
+		[_side,"ENG","CO",13,[1],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"LOGI","CO",13,[1],"ColorOrange",2, true, "b_supply"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"MMG","CO",14,[1],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"MAT","CO",14,[1],"ColorOrange",2, true, "b_antitank"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"REC","CO",14,[1],"ColorOrange",5, true, "b_recon"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"HAT","CO",15,[1],"ColorOrange",2, true, "b_heavyantitank"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"MTR","CO",15,[1],"ColorOrange",5, true, "b_mortar"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+		[_side,"SAM","CO",15,[1],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 // For Manpad AA
 };
 
 _hierarchyeast = _hierarchywest;
 _hierarchyindependent = _hierarchywest;
-//Individual speicalist markers (ie medic markers). Refer to assinggear files for a complete list of f3 loadout classes (eg dc, ftl, eng, sp, pp, vc etc.)
+//Smoothmarkers and normal markers: Individual speicalist markers (ie medic markers). Refer to assinggear files for a complete list of f3 loadout classes (eg dc, ftl, eng, sp, pp, vc etc.).
 _caSpecialistMarkerClasses = ["m","surgeon","uav"];
 
 // Long radio channels setup
@@ -114,10 +66,10 @@ _caWestLongrangeChannelList = ["COMMAND 1","COMMAND 2","FORWARD AIR","ALPHA","BR
 _caEastLongrangeChannelList = _caWestLongrangeChannelList; // Copy and paste to change for another side eg ["COMMAND 1","COMMAND 2","FORWARD AIR","ANNA","BRAVO","CHARITON","1ST PLATOON","DMITRI","ELENA","FEDOR","2ND PLATOON","GREGORY","ZHENYA","IVAN","3RD PLATOON"];
 _caIndependentLongrangeChannelList = _caWestLongrangeChannelList;
 /* Default setup on 343 (short range) for the hierarchy above:
-CH1:ASL CH2:A1 CH3:A2 CH4:AV CH5:BSL CH6:B1 CH7:B2 CH8:BV CH9:CSL CH10:C1 CH11:C2 CH12:CV CH13:MMG CH14:MAT CH15:ENG CH16:CO
+CH1:ASL CH2:A1 CH3:A2 CH4:AV CH5:BSL CH6:B1 CH7:B2 CH8:BV CH9:CSL CH10:C1 CH11:C2 CH12:CV CH13:ENG/LOGI CH14:WEAPONS CH15:STATICS CH16:CO
 */
 // ====================================================================================
-/* Ranks for various actions like respawning, adjusting the hierachy. CO rank can change all elements of the hierarchy and call respawn waves.
+/* Ranks for various actions like respawning and adjusting the hierachy. CO rank can change all elements of the hierarchy and call respawn waves.
 0 - Private
 1 - Corporal - Default for Fireteam lead
 2 - Sergeant - Default for Squad lead
@@ -133,7 +85,7 @@ _ftlrank = 1;
 // Respawn settings
 // ====================================================================================
 // How far away an enemy must be for respawn to be available
-ca_enemyradius = 200;
+ca_enemyradius = 150;
 // Delay for when a group can be respawn after the first player enters spectate. If group respawn is ready and another player dies, the respawn timer goes on cooldown again.
 // If the timer is low then its reccomended to increase ca_enemyradius so you're unable to respawn in the middle of combat.
 ca_grouprespawncooldown = 180;
@@ -194,4 +146,61 @@ missionNamespace setVariable ['ca_grouprespawncooldown',ca_grouprespawncooldown,
 
 sleep 2;
 missionNamespace setVariable ['ca_platoonsetup',true, true]; 
-diag_log "Hierarchy setup done, ca_platoonsetup = true";
+"CA Hierarchy setup done, ca_platoonsetup = true" remoteExec ["diag_log"];
+
+/*
+    // FOR COMPANY HIERARCHY - COPY AS REQUIRED. REMEMBER TO DOUBLE CHECK FOR DUPLICATE GROUPS.
+    //
+    // EXTRA SUPPORT TEAMS
+// [_side,"COY","COY",16,[1,3],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR FAC
+
+	//[_side,"1PL","COY",16,[5,1],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; 
+
+	//	[_side,"EOD","CO",51,[1],"ColorGrey",2,true,"b_eod"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+	//	[_side,"GMG","CO",47,[1],"ColorOrange",2, true, "b_heavyweapons"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+	//	[_side,"HMG","CO",45,[1],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+	//	[_side,"AAA","CO",50,[1],"ColorOrange",5, true, "b_antiair"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 // For Vehicle AA
+	//	[_side,"EOD","CO",51,[1],"ColorGrey",2,true,"b_eod"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+	//	[_side,"SF","CO",50,[1],"ColorBlack",5, true, "b_sf"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
+
+	[_side,"1PL","COY",16,[5,1],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup;
+		[_side,"ASL","1PL",1,[7,4],"ColorRed",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 1PL and LR ALPHA
+		[_side,"BSL","1PL",5,[7,5],"ColorBlue",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 1PL and LR BRAVO
+		[_side,"CSL","1PL",9,[7,6],"ColorGreen",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 1PL and LR CHARLIE
+
+
+	[_side,"2PL","COY",29,[1,11],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR 2PL
+
+		[_side,"DSL","2PL",17,[8,11],"ColorRed",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 2PL and LR DELTA
+			[_side,"D1","DSL",18,[8],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR DELTA
+			[_side,"D2","DSL",19,[8],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR DELTA
+			[_side,"DV","DSL",20,[2,8],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR DELTA
+
+		[_side,"ESL","2PL",21,[9,11],"ColorBlue",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 2PL and LR ECHO
+			[_side,"E1","ESL",22,[9],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR ECHO
+			[_side,"E2","ESL",23,[9],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR ECHO
+			[_side,"EV","ESL",24,[2,9],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR ECHO
+
+		[_side,"FSL","2PL",25,[10,11],"ColorGreen",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 2PL and LR FOXTROT
+			[_side,"F1","FSL",26,[10],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR FOXTROT
+			[_side,"F2","FSL",27,[10],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR FOXTROT
+			[_side,"FV","FSL",28,[2,10],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR FOXTROT
+
+	[_side,"3PL","COY",44,[1,15],"ColorYellow",3, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1 and LR 3PL
+
+		[_side,"GSL","3PL",32,[12,15],"ColorRed",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 3PL and LR GOLF
+			[_side,"G1","GSL",33,[12],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR GOLF
+			[_side,"G2","GSL",34,[12],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR GOLF
+			[_side,"GV","GSL",35,[2,12],"ColorRed",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR GOLF
+
+		[_side,"HSL","3PL",36,[13,15],"ColorBlue",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 3PL and LR HOTEL
+			[_side,"H1","HSL",37,[13],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR HOTEL
+			[_side,"H2","HSL",38,[13],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR HOTEL
+			[_side,"HV","HSL",39,[2,13],"ColorBlue",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR HOTEL
+
+		[_side,"ISL","3PL",40,[14,15],"ColorGreen",5, true, "b_hq"] spawn ca_fnc_setupGroup; // Radio Nets: LR 3PL and LR INDIA
+			[_side,"I1","ISL",41,[14],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR INDIA
+			[_side,"I2","ISL",42,[14],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR INDIA
+			[_side,"IV","ISL",43,[2,14],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR INDIA
+
+*/

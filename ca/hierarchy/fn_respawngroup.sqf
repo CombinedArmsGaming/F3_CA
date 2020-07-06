@@ -70,7 +70,7 @@ _superior = group player getVariable ["ca_superior","meme"];
 _samesquad = (ca_selectedgroup getVariable ["ca_superior","sdferaNO"]) == _superior;
 
 // Setup a check if the player can respawn this group 
-_allowed = (((ca_selectedgroup == (group player)) && _rankid >= ca_slrank) || _samesquad && _rankid >= ca_slrank) || (_rankid >= ca_corank) || (serverCommandAvailable '#kick');
+_allowed = (((ca_selectedgroup == (group player)) && _rankid >= ca_ftlrank) || _samesquad && _rankid >= ca_slrank) || (_rankid >= ca_corank) || (serverCommandAvailable '#kick');
 
 if (!_allowed) exitWith {systemChat "You are not Authorized to do this, it can only be done by the Squad Lead or Platoon officer of sufficient rank" };
 
@@ -145,7 +145,7 @@ if (_vehiclehasnoroom) exitWith {Systemchat "Not enough room in the vehicle to r
 // ==================================================================
 _actuallyrespawned = [];
 {
-	//Get the original group of the player 
+	//Get the original group of the player from the player
 	_pgrp = _x getvariable "ca_originalgroup";
 	_goodtorespawn = false;
 	if (isnil {_pgrp}) then {
@@ -185,6 +185,9 @@ _actuallyrespawned = [];
     };
 
 } forEach _specplayers;
+
+//Reset group respawn
+_group setVariable ["ca_groupspectatebool",true, true];	
 
 //Deduct tickets based on mode 
 if (count _actuallyrespawned == 0) exitWith {Systemchat "No units respawned, please take a screenshot and bugreport to github/discord";};
