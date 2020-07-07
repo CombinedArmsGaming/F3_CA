@@ -1,5 +1,5 @@
-// F3 - Folk ARPS Assign Gear Script (Server-side)
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
+// F3_CA - Assigngear for units, vehicle content and crates
+// Credits: Please see the github
 // ====================================================================================
 
 // DECLARE VARIABLES AND FUNCTIONS
@@ -11,14 +11,21 @@
 // The following code detects what faction the unit's slot belongs to, and stores
 // it in the private variable _faction. It can also be passed as an optional parameter.
 
-params ["_typeofUnit","_unit",["_faction",(toLower faction _unit)]];
+params ["_typeofUnit","_unit"];
 
-_insigniaclass = toLower _typeofUnit;
-if (count _this > 3) then {
-	_insigniaclass = toLower (_this select 3)
+// Manually setup faction and insignia if not passed as additional parameters
+_typeofUnit = toLower _typeofUnit;
+_insigniaclass = _typeofUnit;
+_faction = toLower faction _unit;
+
+// If passed as additional parameters, setup _faction and _insigniaclass
+if (count _this > 2) then {
+	_faction = toLower (_this select 2);
+	if (count _this > 3) then {
+		_insigniaclass = toLower (_this select 3);
+	};
 };
 
-_typeofUnit = toLower _typeofUnit;
 // ====================================================================================
 
 // INSIGNIA
