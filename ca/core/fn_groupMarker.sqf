@@ -74,7 +74,10 @@ _mkrName setMarkerTextLocal _newmkrText;
 while {true} do
 {
     _specplayers = [] call ace_spectator_fnc_players;
-    if ( (leader _grp in _specplayers)) then {
+    _grpId = groupId (_grp);
+    _zeusGroup = missionNamespace getVariable ["f_var_smoothMarkers_zeusGroupName", ""];
+
+    if ( (leader _grp in _specplayers) || (_grpId isEqualTo _zeusGroup)) then {
         _mkrName setMarkerAlphaLocal 0;
     } else {
         _mkrName setMarkerAlphaLocal 1;

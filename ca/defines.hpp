@@ -107,7 +107,7 @@ class RscText
 	colorText[] = {1,1,1,1};
 	text = "";
 	shadow = 0;
-	font = "PuristaLight";
+	font = "RobotoCondensed";
 	SizeEx = 0.02300;
 	fixedWidth = 0;
 	x = 0;
@@ -125,7 +125,7 @@ class RscPicture
 	colorBackground[] = {1,1,1,0};
 	colorText[] = {1,1,1,1};
 	colorActive[] = {1,1,1,1};
-	font = "PuristaLight";
+	font = "RobotoCondensed";
 	sizeEx = 0;
 	lineSpacing = 0;
 	text = "";
@@ -160,7 +160,7 @@ class RscButton
 	w = 0.055589;
 	h = 0.039216;
 	shadow = 2;
-	font = "PuristaLight";
+	font = "RobotoCondensed";
 	sizeEx = 0.03921;
 	offsetX = 0.003;
 	offsetY = 0.003;
@@ -176,7 +176,7 @@ class RscTree
 	shadow = 2;
 	colorBackground[] = {1,1,1,1};
 	colorText[] = {1,1,1,0.9};
-	font = "PuristaLight";
+	font = "RobotoCondensed";
 	text = "";
 	colorDisabled[] = {0,0,0,0}; // Does nothing, but must be present, otherwise an error is shown
 	colorSelectText[] = {1,1,1,1}; // Selected text color (when multiselectEnabled is 0)
@@ -206,7 +206,7 @@ class RscFrame
 	shadow = 2;
 	colorBackground[] = {1,1,1,1};
 	colorText[] = {1,1,1,0.9};
-	font = "PuristaLight";
+	font = "RobotoCondensed";
 	sizeEx = 0.03;
 	text = "";
 };
@@ -218,7 +218,7 @@ class RscBox
 	shadow = 2;
 	colorBackground[] = {0, 0, 0, 0.2};
 	colorText[] = {1 ,1, 1, 0.8};
-	font = "PuristaLight";
+	font = "RobotoCondensed";
 	sizeEx = 0.03;
 	text = "";
 };
@@ -228,7 +228,7 @@ class RscEdit
 	type = CT_EDIT;
 	style = "16";
 	text = "";
-	font = "PuristaLight";
+	font = "RobotoCondensed";
 	sizeEx = 0.04;
 	autocomplete = "";
 	canModify = true;

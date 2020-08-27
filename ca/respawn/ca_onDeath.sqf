@@ -10,6 +10,7 @@ if (!isDedicated && (isNull player)) then
 };
 
 params ["_unit","_corpse"];
+(format ["CA ondeath: Poulern caondeath debug. UNIT: %1. GROUP: %2",_unit,(group _unit)]) remoteExec ["diag_log"];
 if (!f_var_JIP_JIPMenu && isNull _corpse) exitWith {}; // If no corpse exists the player is spawned for the first time.
 if (time < 10 && isNull _corpse) exitWith {}; //if not a JIP and its the start of the mission exit out
 
@@ -30,8 +31,30 @@ if ((time < 10) || (isNull _corpse)) exitWith {
 };
 
 _group = group player;
-//Set the group for repsawn purposes
-player setvariable ["ca_originalgroup",_group];
+_originalgroup = _unit getVariable ["ca_originalgroup", grpNull];
+//Check if player is part of his original group, if not rejoin it (TEST, not 100% sure if group leaving is a result of respawn or ace spectator, this is a fix for the latter)
+if !(_originalgroup == _group) then {
+    _group = createGroup [(side player), true];
+    [player] joinsilent _originalgroup;
+};
+
+[[_unit,_group],{
+params ["_unit","_originalgroup"];
+
+_groupLocal = group player;
+
+_originalgroup = _unit getVariable ["ca_originalgroup", grpNull];
+
+if !(_originalgroup == _groupLocal) then {
+    _originalgroup = _unit getVariable ["ca_originalgroup", grpNull];
+
+    _unit setVariable ["ca_originalgroup",group player,true];
+    [_unit] joinsilent _groupLocal;
+    [format ["CA Ondeath: Desynch between units in group:%1, Originalgroup: %2 .Player executing code %3. Unit Desynched %4",_groupLocal,_originalgroup,name player, name _unit]] remoteExec ["diag_log"]; 
+    };
+
+}]remoteExec ["spawn",_group];
+
 
 // Enter spectator
 // ====================================================================================================================
@@ -47,10 +70,12 @@ player remoteExec ["hideObjectGlobal", 2];
 
 // Get time when respawn will be available
 _respawntime = _group getVariable ["ca_grouprespawntime",1];
-// If time to respawn is less than current time, add cooldown to the group
-if (_respawntime < time) then {
+// If time to respawn is less than current time and a member of the group is not already in spectate, add cooldown to the group
+
+if (_respawntime < time && (_group getVariable ["ca_groupspectatebool",true])) then {
     _cooldowntime = ca_grouprespawncooldown + time;
     _group setVariable ["ca_grouprespawntime",_cooldowntime, true];
+    _group setVariable ["ca_groupspectatebool",false, true];	
 };
 
 
@@ -62,14 +87,6 @@ player setvariable ["ace_medical_allowdamage",true];
 // Exit spectator
 // ====================================================================================================================
 [false] call ace_spectator_fnc_setSpectator;
-//Check if player is part of his original group, if not rejoin it (TEST, not 100% sure if group leaving is a result of respawn or ace spectator, this is a fix for the latter)
-if (count units _group == 1) then {
-    _group setVariable ["ca_originalgroup", _group, true];
-} else {
-    _group = createGroup [(side player), true];
-    [player] join _group;
-    player setVariable ["ca_originalgroup", _group, true];
-};
 
 // F3 assign radio and gear
 // ====================================================================================================================
@@ -88,3 +105,11 @@ if (isNil "F3_JIP_reinforcementOptionsAction") then {
     [player] execVM "f\JIP\f_JIP_addReinforcementOptionsAction.sqf";
 };
 
+/*
+
+{
+        _x setVariable ["ca_grouprespawntime",1];
+    _x setVariable ["ca_groupspectatebool",true];	
+    
+} forEach allgroups;
+*/
