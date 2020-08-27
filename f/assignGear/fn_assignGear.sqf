@@ -1,5 +1,5 @@
-// F3 - Folk ARPS Assign Gear Script (Server-side)
-// Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
+// F3_CA - Assigngear for units, vehicle content and crates
+// Credits: Please see the github
 // ====================================================================================
 
 // DECLARE VARIABLES AND FUNCTIONS
@@ -25,6 +25,7 @@ if (count _this > 2) then {
 		_insigniaclass = toLower (_this select 3);
 	};
 };
+
 // ====================================================================================
 
 // INSIGNIA
