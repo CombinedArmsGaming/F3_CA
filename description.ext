@@ -164,7 +164,7 @@ class CfgDebriefing
 {
 	class End1
 	{
-		title = "Mision Successful";
+		title = "Ending #1";
 		subtitle = "";
 		description = "Please post to the AAR thread!";
 		// pictureBackground = "";
@@ -174,7 +174,7 @@ class CfgDebriefing
 
 	class End2
 	{
-		title = "Mission Failed";
+		title = "Ending #2";
 		subtitle = "";
 		description = "Please post to the AAR thread!";
 		// pictureBackground = "";
@@ -184,7 +184,7 @@ class CfgDebriefing
 
 	class End3
 	{
-		title = "BLUFOR WIN";
+		title = "Ending #3";
 		subtitle = "";
 		description = "Please post to the AAR thread!";
 		// pictureBackground = "";
@@ -194,7 +194,7 @@ class CfgDebriefing
 
 	class End4
 	{
-		title = "OPFOR WIN";
+		title = "Ending #4";
 		subtitle = "";
 		description = "Please post to the AAR thread!";
 		// pictureBackground = "";
@@ -204,7 +204,7 @@ class CfgDebriefing
 
 	class End5
 	{
-		title = "INDFOR WIN";
+		title = "Ending #5";
 		subtitle = "";
 		description = "Please post to the AAR thread!";
 		// pictureBackground = "";
@@ -214,7 +214,7 @@ class CfgDebriefing
 
 	class End6
 	{
-		title = "Mission Broke";
+		title = "Ending #6";
 		subtitle = "";
 		description = "Please post to the AAR thread!";
 		// pictureBackground = "";
@@ -315,6 +315,14 @@ class CfgFunctions
 		{
 			file = "f\safeStart";
 			class safety{};
+		};
+	};
+	class ace_medical_treatment
+	{
+		class test
+		{
+			file = "f\medical";
+			class handleBandageOpening{};
 		};
 	};
 };

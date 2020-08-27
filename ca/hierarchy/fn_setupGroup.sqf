@@ -76,6 +76,6 @@ switch (_side) do {
 		//Call the code bin above 
 		[_group,_superior,_SRradioCH,_LRradioarray,_groupcolor,_grouptickets,_groupmarkerboolean,_grouptype] call _setupgroup;
 	};
-	default {(format ["CA Hierarchy setupgroup: Error in the side input for (%1), group(%2)",_side,_groupid]) remoteExec ["diag_log"]};
+	default {diag_log format ["Error in the side input for (%1), group(%3)",_side,_groupid]};
 };
 

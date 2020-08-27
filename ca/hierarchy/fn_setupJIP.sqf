@@ -75,12 +75,12 @@ switch (_side) do {
 			};
 		} forEach ca_IndependentJIPgroups;
 	};
-	default {(format ["CA hierarchy SetupJIP: Error JIP player(%1) not correctly setup side(%2), group (%3)",player, _side,_group]) remoteExec ["diag_log"]};
+	default {diag_log format ["Error JIP player(%1) not correctly setup side(%2), group (%3)",player, _side,_group]};
 };
 
-//If the group is not setup, set it up.
+
 _setup = group player getVariable ["ca_groupsetup",false];
 if (!_setup) then {
-	[_group,_groupid,2,16,[4],"ColorGrey",0,false,"auto"] call _setupgroup;
+	[_group,_groupid,2,16,[4],"ColorGrey",0,"auto"] call _setupgroup;
 };
-(format ["CA Hierarchy SetupJIP: JIP player(%1)setup side(%2), group (%3)",player, _side,_group]) remoteExec ["diag_log"];
+diag_log format ["JIP player(%1)setup side(%2), group (%3)",player, _side,_group];

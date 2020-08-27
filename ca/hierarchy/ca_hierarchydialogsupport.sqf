@@ -10,21 +10,15 @@ _display = findDisplay 1809;
 _tree = _display displayCtrl 1811;
 _side = side player;
 
-//If the mission does not use group tickets, hide those elements from the UI. 
-_groupticketdisplays = [1804,1805,1806,1807,1808,1817,1820];
-if (ca_respawnmode < 3) then {
-    {
-        _controltohide = _display displayCtrl _x;
-        ctrlDelete _controltohide; 
-    } forEach _groupticketdisplays;
-};
+_allsquads = [];
+_allplayergroups = [];
 
-tvClear _tree;
+	tvClear _tree;
 
 if(isnil {ca_platoonsetup}) exitwith {systemChat "Hierarchy setup is not done yet, try again"; _display closeDisplay 1};
 
 if (ca_respawnmode == 0) exitWith {systemChat "This mission does not allow respawn!"; _display closeDisplay 1};
-//Create a code block to give the hierarchy squads the right color
+
 _findcolor = {
         params ["_input"];  
         _output = [];  
@@ -41,8 +35,6 @@ _findcolor = {
     _rgbarray
 };
 
-//Get every group in the game and sort based on side
-_allplayergroups = [];
 _allWestPlayerGroupsfill = [];
 _allEastPlayerGroupsfill = [];
 _allIndependentPlayerGroupsfill = [];
@@ -67,6 +59,10 @@ switch (_side) do {
 	};
 };
 _allCOgroups = [];
+/*
+_allSLgroups = [];
+_allFTLgroups = [];
+*/
 _overflow = [];
 {
     _d = _x getVariable ["ca_superior",[]];
@@ -78,7 +74,14 @@ _overflow = [];
         if (_rankid >= ca_corank) then {
             _allCOgroups pushBackUnique _x;
         };
-
+        /*
+        if (_rankid == ca_slrank) then {
+            _allSLgroups pushBackUnique _x;
+        };
+        if (_rankid == ca_ftlrank) then {
+            _allFTLgroups pushBackUnique _x;
+        };
+        */
     };
 } forEach _allplayergroups;
 

@@ -29,10 +29,10 @@ if ((((ca_selectedgroup == (group player)) && _rankid >= ca_ftlrank) || _samesqu
     _LRradioarray = call compile ctrlText _longrangechannels;
 
     if ( typename _SRradioarray != "SCALAR" ) exitWith {
-    systemChat "Input not accepted, must be a number from 1-256, or else it will break";
+    systemChat "Input not accepted, must be a number from 1-16, or else it will break";
     };
-    if (_SRradioarray > 256 ) exitWith {
-    systemChat "Number must be from 1-256, or else it will break radio assignment";
+    if (_SRradioarray > 16 ) exitWith {
+    systemChat "Number must be from 1-16, or else it will break radio assignment";
     };
     if (typename _LRradioarray != "ARRAY" ) exitWith {
     systemChat "Input not accepted, must be a an array in the form of [1,2,3] (With square brackets!), or else it will break";
