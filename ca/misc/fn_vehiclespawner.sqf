@@ -1,10 +1,6 @@
 /*
  * Author: Poulern
- * Enables logistics truck to spawn vehicle. Note that the addaction is available on every client this is run. To restrict access do for example
- if (group player == logigroup) then {
-    [logitruck] call ca_fnc_vehiclespawner;
-};
-Where logigroup is the group variable and logitruck is the parameter for this function. Will Throw an error when logi team is not slotted for testing.
+ * Enables logistics truck to spawn vehicle. Note that the addaction is available on every client this is run.
  *
  * Arguments:
  * 0: Logistics Truck thats placed on the map, Object
@@ -33,7 +29,7 @@ if(isnil {ca_platoonsetup}) exitwith {systemChat "Hierarchy setup is not done ye
   _ticketdifference = _this select 3 select 2;
   _aidriver = _this select 3 select 3;
   _side = side player;
-  if (rankid player <= ca_slrank) exitWith {systemChat "You need to be authorized to do this!"};
+  if (rankid player < ca_slrank) exitWith {systemChat "You need to be authorized to do this, you need to be at least SL rank!"};
   _sidetickets = 0;
 switch (_side) do {
 	case west: {
