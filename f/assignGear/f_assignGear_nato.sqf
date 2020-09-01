@@ -85,9 +85,9 @@ _hg_attachments= []; // The default attachment set for handguns, overwritten in 
 
 // AMMO SETTINGS
 // Ratio between tracers and normal mags 0 = all normal magazines, 1 = all tracer magazines. Values are rounded.
-_tracermagpercent = 0.2;
+_tracermagfraction = 0.2;
 // How much the assistant carries compared to the gunner
-_assistantpercent = 0.5;
+_assistantfraction = 0.5;
 
 // ====================================================================================
 
@@ -229,8 +229,11 @@ _SNrifleMagamount = 15;
 // Demolition items, 1 each per item in the array. eg _demoitems = ["DemoCharge_Remote_Mag","DemoCharge_Remote_Mag"]; Gives 2 democharges.
 _demoitems = ["MineDetector","ACE_M26_Clacker","ACE_wirecutter","ACE_DefusalKit,""ATMine_Range_Mag","DemoCharge_Remote_Mag","APERSMine_Range_Mag"];
 // Engineer items 
-_engineeritems = ["ACE_wirecutter","ACE_DefusalKit","ACE_EntrenchingTool"];
+_engineeritems = ["ACE_wirecutter","ACE_DefusalKit"];
 
+// Entrenching tools 
+_entrenchingtool = "ACE_EntrenchingTool";
+_entrenchingclasses = ["med","aar","lat","ammg","ahmg","acsw","amat","amtr","sp","dem","eng","rif","car","gren"];
 // Night Vision Goggles (NVGoggles)
 _nvg = "NVGoggles";
 
@@ -340,6 +343,32 @@ _typeofUnit = toLower (_this select 0);			// Tidy input for SWITCH/CASE statemen
 _unit = _this select 1;					// expecting name of unit; originally passed by using 'this' in unit init
 _isMan = _unit isKindOf "CAManBase";	// We check if we're dealing with a soldier or a vehicle
 
+// Convert old names into new ones -- Backwards compatibility
+switch (_typeofunit) do {
+	case "dc": { _typeofunit = "sl"};
+	case "m": { _typeofunit = "med"};
+	case "surgeon": { _typeofunit = "sur"};
+	case "rat": { _typeofunit = "lat"};
+	case "mmgg": { _typeofunit = "mmg"};
+	case "mmgag": { _typeofunit = "ammg"};
+	case "matg": { _typeofunit = "mat"};
+	case "matag": { _typeofunit = "amat"};
+	case "hmgg": { _typeofunit = "hmg"};
+	case "hmgag": { _typeofunit = "ahmg"};
+	case "hatg": { _typeofunit = "hat"};
+	case "hatag": { _typeofunit = "ahat"};
+	case "mtrg": { _typeofunit = "mtr"};
+	case "mtrag": { _typeofunit = "amtr"};
+	case "msamg": { _typeofunit = "sam"};
+	case "msamag": { _typeofunit = "asam"};
+	case "hsamg": { _typeofunit = "sam"};
+	case "hsamag": { _typeofunit = "asam"};
+	case "pp": { _typeofunit = "pil"};
+	case "pc": { _typeofunit = "pcc"};
+	case "div": { _typeofunit = "rif"};
+	case "r": { _typeofunit = "rif"};
+	case "engm": { _typeofunit = "dem"};
+};
 // A quick function to add more than one item for readability
 _additems = {params ["_item","_amount","_unit"]; if (_amount > 0) then {for "_i" from 1 to _amount do { _unit additem _item };};};
 _addrandomitems = {params ["_itemarray","_amount","_unit"]; if (_amount > 0) then {for "_i" from 1 to _amount do { _unit additem (selectrandom _itemarray) };};};
@@ -390,7 +419,6 @@ if (_isMan) then {
 	_unit linkItem _nvg;					// Add and equip the faction's nvg
 	_unit linkItem "ItemMap";				// Add and equip the map
 	_unit linkItem "ItemCompass";			// Add and equip a compass
-	//_unit linkItem "ItemRadio";			// Add and equip A3's default radio. Only uncomment if not using acre2
 	_unit linkItem "ItemWatch";				// Add and equip a watch
 	//_unit linkItem "ItemGPS"; 			// Add and equip a GPS
 
@@ -514,8 +542,8 @@ switch (_typeofUnit) do
 		_unit addmagazines [_grenade,_grenadeamount];
 		_unit addmagazines [_mgrenade,_Mgrenadeamount];
 		_unit addmagazines [_smokegrenade,_smokegrenadeamount];
-		_unit addmagazines [_ARmag,round(_ARmagamount * (1-_tracermagpercent))];
-		_unit addmagazines [_ARmag_tr,round(_ARmagamount * (_tracermagpercent))];
+		_unit addmagazines [_ARmag,round(_ARmagamount * (1-_tracermagfraction))];
+		_unit addmagazines [_ARmag_tr,round(_ARmagamount * (_tracermagfraction))];
 		_unit addweapon (selectrandom _AR);
 		_attachments pushback (_bipod1);
 	};
@@ -526,8 +554,8 @@ switch (_typeofUnit) do
 		_unit addmagazines [_grenade,_grenadeamount];
 		_unit addmagazines [_mgrenade,_Mgrenadeamount];
 		_unit addmagazines [_smokegrenade,_smokegrenadeamount];
-		_unit addmagazines [_ARmag,round((_ARmagamount * (1-_tracermagpercent))*_assistantpercent)];
-		_unit addmagazines [_ARmag_tr,round((_ARmagamount * _tracermagpercent)*_assistantpercent)];
+		_unit addmagazines [_ARmag,ceil((_ARmagamount * (1-_tracermagfraction))*_assistantfraction)];
+		_unit addmagazines [_ARmag_tr,ceil((_ARmagamount * _tracermagfraction)*_assistantfraction)];
 
 		_unit addWeapon _binocular;
 	};
@@ -573,8 +601,8 @@ switch (_typeofUnit) do
 		_unit addmagazines [_mgrenade,_Mgrenadeamount];
 		_unit addmagazines [_smokegrenade,_smokegrenadeamount];
 
-		_unit addmagazines [_MMGmag,round((_ARmagamount * (1-_tracermagpercent))*_assistantpercent)];
-		_unit addmagazines [_MMGmag_tr,round((_ARmagamount * _tracermagpercent)*_assistantpercent)];
+		_unit addmagazines [_MMGmag,ceil((_ARmagamount * (1-_tracermagfraction))*_assistantfraction)];
+		_unit addmagazines [_MMGmag_tr,ceil((_ARmagamount * _tracermagfraction)*_assistantfraction)];
 	};
 
 // LOADOUT: HEAVY MG GUNNER
@@ -851,7 +879,14 @@ switch (_typeofUnit) do
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
-		_unit addItemCargoGlobal ["ACE_splint", 10];		
+		_unit addItemCargoGlobal ["ACE_splint", 10];
+		_unit addMagazineCargoGlobal [_pistolmag, 2];
+		_unit addMagazineCargoGlobal [_glredsmoke, 2];
+		_unit addMagazineCargoGlobal [_glbluesmoke, 2];
+		_unit addMagazineCargoGlobal [_glgreensmoke, 2];
+		_unit addMagazineCargoGlobal [_redsmoke, 2];
+		_unit addMagazineCargoGlobal [_bluesmoke, 2];
+		_unit addMagazineCargoGlobal [_greensmoke, 2];
 	};
 
 // CARGO: TRUCK - room for 50 weapons and 200 cargo items
@@ -880,7 +915,21 @@ switch (_typeofUnit) do
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
-		_unit addItemCargoGlobal ["ACE_splint", 10];			
+		_unit addItemCargoGlobal ["ACE_splint", 10];
+		_unit addMagazineCargoGlobal [_pistolmag, 5];
+		_unit addMagazineCargoGlobal [_glredsmoke, 5];
+		_unit addMagazineCargoGlobal [_glbluesmoke, 5];
+		_unit addMagazineCargoGlobal [_glgreensmoke, 5];
+		_unit addMagazineCargoGlobal [_glyellowsmoke, 5];
+		_unit addMagazineCargoGlobal [_glorangesmoke, 5];
+		_unit addMagazineCargoGlobal [_glpurplesmoke, 5];
+		_unit addMagazineCargoGlobal [_redsmoke, 5];
+		_unit addMagazineCargoGlobal [_bluesmoke, 5];
+		_unit addMagazineCargoGlobal [_greensmoke, 5];
+		_unit addMagazineCargoGlobal [_yellowsmoke, 5];
+		_unit addMagazineCargoGlobal [_orangesmoke, 5];
+		_unit addMagazineCargoGlobal [_purplesmoke, 5];
+			
 	};
 
 // CARGO: IFV - room for 10 weapons and 100 cargo items
@@ -909,7 +958,21 @@ switch (_typeofUnit) do
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
-		_unit addItemCargoGlobal ["ACE_splint", 10];			
+		_unit addItemCargoGlobal ["ACE_splint", 10];
+		_unit addMagazineCargoGlobal [_pistolmag, 3];
+		_unit addMagazineCargoGlobal [_glredsmoke, 3];
+		_unit addMagazineCargoGlobal [_glbluesmoke, 3];
+		_unit addMagazineCargoGlobal [_glgreensmoke, 3];
+		_unit addMagazineCargoGlobal [_glyellowsmoke, 3];
+		_unit addMagazineCargoGlobal [_glorangesmoke, 3];
+		_unit addMagazineCargoGlobal [_glpurplesmoke, 3];
+		_unit addMagazineCargoGlobal [_redsmoke, 3];
+		_unit addMagazineCargoGlobal [_bluesmoke, 3];
+		_unit addMagazineCargoGlobal [_greensmoke, 3];
+		_unit addMagazineCargoGlobal [_yellowsmoke, 3];
+		_unit addMagazineCargoGlobal [_orangesmoke, 3];
+		_unit addMagazineCargoGlobal [_purplesmoke, 3];
+			
 	};
 
 // CRATE: Small, ammo for 1 fireteam
@@ -937,7 +1000,15 @@ switch (_typeofUnit) do
 		_unit addItemCargoGlobal ["ACE_morphine", 10];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 10];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 5];
-		_unit addItemCargoGlobal ["ACE_splint", 10];			
+		_unit addItemCargoGlobal ["ACE_splint", 10];
+		_unit addMagazineCargoGlobal [_pistolmag, 2];
+		_unit addMagazineCargoGlobal [_glredsmoke, 2];
+		_unit addMagazineCargoGlobal [_glbluesmoke, 2];
+		_unit addMagazineCargoGlobal [_glgreensmoke, 2];
+		_unit addMagazineCargoGlobal [_redsmoke, 2];
+		_unit addMagazineCargoGlobal [_bluesmoke, 2];
+		_unit addMagazineCargoGlobal [_greensmoke, 2];
+			
 };
 
 // CRATE: Medium, ammo for 1 squad
@@ -965,7 +1036,20 @@ switch (_typeofUnit) do
 		_unit addItemCargoGlobal ["ACE_morphine", 50];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 25];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 10];
-		_unit addItemCargoGlobal ["ACE_splint", 20];			
+		_unit addItemCargoGlobal ["ACE_splint", 20];
+		_unit addMagazineCargoGlobal [_pistolmag, 3];
+		_unit addMagazineCargoGlobal [_glredsmoke, 3];
+		_unit addMagazineCargoGlobal [_glbluesmoke, 3];
+		_unit addMagazineCargoGlobal [_glgreensmoke, 3];
+		_unit addMagazineCargoGlobal [_glyellowsmoke, 3];
+		_unit addMagazineCargoGlobal [_glorangesmoke, 3];
+		_unit addMagazineCargoGlobal [_glpurplesmoke, 3];
+		_unit addMagazineCargoGlobal [_redsmoke, 3];
+		_unit addMagazineCargoGlobal [_bluesmoke, 3];
+		_unit addMagazineCargoGlobal [_greensmoke, 3];
+		_unit addMagazineCargoGlobal [_yellowsmoke, 3];
+		_unit addMagazineCargoGlobal [_orangesmoke, 3];
+		_unit addMagazineCargoGlobal [_purplesmoke, 3];
 };
 
 // CRATE: Large, ammo for 1 platoon
@@ -987,14 +1071,24 @@ switch (_typeofUnit) do
 		_unit addMagazineCargoGlobal [_glsmokewhite,50];
 		if(_ratmag == "") then { _unit addWeaponCargoGlobal [_rat, 20] } else { _unit addMagazineCargoGlobal [_ratmag, 20] };
 		_unit addMagazineCargoGlobal [_grenade, 75];
-		_unit addMagazineCargoGlobal [_mgrenade, 75];
-		_unit addMagazineCargoGlobal [_smokegrenade, 75];
+		_unit addMagazineCargoGlobal [_pistolmag, 5];
+		_unit addMagazineCargoGlobal [_glredsmoke, 5];
+		_unit addMagazineCargoGlobal [_glbluesmoke, 5];
+		_unit addMagazineCargoGlobal [_glgreensmoke, 5];
+		_unit addMagazineCargoGlobal [_glyellowsmoke, 5];
+		_unit addMagazineCargoGlobal [_glorangesmoke, 5];
+		_unit addMagazineCargoGlobal [_glpurplesmoke, 5];
+		_unit addMagazineCargoGlobal [_redsmoke, 5];
+		_unit addMagazineCargoGlobal [_bluesmoke, 5];
+		_unit addMagazineCargoGlobal [_greensmoke, 5];
+		_unit addMagazineCargoGlobal [_yellowsmoke, 5];
+		_unit addMagazineCargoGlobal [_orangesmoke, 5];
+		_unit addMagazineCargoGlobal [_purplesmoke, 5];
 		_unit addItemCargoGlobal ["ACE_elasticBandage", 150];
 		_unit addItemCargoGlobal ["ACE_morphine", 75];
 		_unit addItemCargoGlobal ["ACE_epinephrine", 50];
 		_unit addItemCargoGlobal ["ACE_bloodIV", 25];
 		_unit addItemCargoGlobal ["ACE_splint", 50];			
-
 };
 
 // LOADOUT: DEFAULT/UNDEFINED (use RIFLEMAN)
@@ -1082,24 +1176,24 @@ if (_typeofunit in _coloredsmokeclasses) then {
 
 // Add weapons according to class
 if (_typeofunit in _rifleclasses) then {
-	_unit addmagazines [_riflemag,round(_riflemagamount * (1-_tracermagpercent))];
-	_unit addmagazines [_riflemag_tr,round(_riflemagamount * (_tracermagpercent))];
+	_unit addmagazines [_riflemag,round(_riflemagamount * (1-_tracermagfraction))];
+	_unit addmagazines [_riflemag_tr,round(_riflemagamount * (_tracermagfraction))];
 	_unit addweapon (selectrandom _rifle);
 };
 if (_typeofunit in _carbineclasses) then {
-	_unit addmagazines [_carbinemag,round(_carbinemagamount * (1-_tracermagpercent))];
-	_unit addmagazines [_carbinemag_tr,round(_carbinemagamount * (_tracermagpercent))];
+	_unit addmagazines [_carbinemag,round(_carbinemagamount * (1-_tracermagfraction))];
+	_unit addmagazines [_carbinemag_tr,round(_carbinemagamount * (_tracermagfraction))];
 	_unit addweapon (selectrandom _carbine);
 };
 if (_typeofunit in _smgclasses) then {
-	_unit addmagazines [_smgmag,round(_smgmagamount * (1-_tracermagpercent))];
-	_unit addmagazines [_smgmag_tr,round(_smgmagamount * (_tracermagpercent))];
+	_unit addmagazines [_smgmag,round(_smgmagamount * (1-_tracermagfraction))];
+	_unit addmagazines [_smgmag_tr,round(_smgmagamount * (_tracermagfraction))];
 	_unit addweapon (selectrandom _smg);
 };
 if (_typeofunit in _glrifleclasses) then {
-	_unit addmagazines [_glriflemag,round(_glriflemagamount * (1-_tracermagpercent))];
+	_unit addmagazines [_glriflemag,round(_glriflemagamount * (1-_tracermagfraction))];
 	_unit addmagazines [_glsmokewhite,_glsmokewhiteamount];
-	_unit addmagazines [_glriflemag_tr,round(_glriflemagamount * (_tracermagpercent))];
+	_unit addmagazines [_glriflemag_tr,round(_glriflemagamount * (_tracermagfraction))];
 	_unit addmagazines [_glsmokewhite,_glsmokewhiteamount];
 	_unit addmagazines [_glmag,_glmagamount];
 	if (_glflareamount > 0) then {for "_i" from 1 to _glflareamount do { _unit addmagazine (selectrandom _glflare); };};
@@ -1110,7 +1204,9 @@ if (_typeofunit in _pistolclasses) then {
 	_unit addmagazines [_pistolmag,_pistolmagamount];
 	_unit addweapon (selectrandom _pistol);
 };
-
+if (_typeofunit in _entrenchingclasses) then {
+	_unit additem _entrenchingtool;
+};
 // ====================================================================================
 
 // Handle weapon attachments
