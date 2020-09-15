@@ -246,6 +246,7 @@ _chemlightsamount = 0;
 //Binoculars 
 _binocular = "Binocular"; // Regular 
 _rangefinder = "Rangefinder"; // Rangefinder
+_laserdesignator = "Laserdesignator"; // Laser Designator
 
 // ====================================================================================
 
