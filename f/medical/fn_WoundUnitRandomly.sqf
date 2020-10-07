@@ -48,7 +48,6 @@ for "_i" from 0 to _numberOfWounds do
     _woundType = selectRandom _woundTypes;
     _damage = random _damageRange;
 
-    systemChat format ["%1, %2, %3", _woundLocation, _woundType, _damage];
 
     [_unit, _damage, _woundLocation, _woundType] call ace_medical_fnc_addDamageToUnit;
 
