@@ -3,12 +3,8 @@
 // ====================================================================================
 
 private ["_group","_badge","_groupBadges","_roleBadge","_unit","_typeofUnit"];
-// Sleep a bit to allow groupid to initialize
-if (time < 1) then {
-	sleep 10;
-};
 
-_badge = "insignia_GI_Badge_Black_Stitched"; 
+_badge = "insignia_GI_Badge_Black_Stitched";
 _unit = _this select 0;
 _typeofUnit = _this select 1;
 _faction = toLower (faction _unit);
@@ -96,7 +92,7 @@ _groupBadges = [
 	["2PL","insignia_GI_2PL"],
 	["DSL","insignia_GI_DSL"],
 	["D1","insignia_GI_D1"],
-	["D2","insignia_GI_D2"], 
+	["D2","insignia_GI_D2"],
 	["DV","insignia_GI_DV"],
 	["ESL","insignia_GI_ESL"],
 	["E1","insignia_GI_E1"],
@@ -146,34 +142,10 @@ if (_roleBadge != "") then {
 	_badge = _roleBadge;
 };
 
-// Apply the insignia.
-
+// Broadcast the insignia assignment (JIP compatible)
 if (_badge != "") then {
-
-	// Wait till they have the proper uniform assigned.
-	waitUntil{_unit getVariable ["f_var_assignGear_done",false]};
-	waitUntil{(uniform _unit) != ""};
-	// Remote execute insignia changes to all clients through BIS_fnc_setUnitInsignia, including respawn.
-
-	[[_unit,_badge],{
-		params ["_unit","_badge"];
-	private["_index","_texture","_cfgTexture"];
-	
-	// Replicate behaviour of setInsignia
-	_cfgTexture = [["CfgUnitInsignia",_badge],configfile] call bis_fnc_loadclass;
-	if (_cfgTexture == configfile) exitwith {["'%1' not found in CfgUnitInsignia",_badge] call bis_fnc_error; false};
-	_texture = gettext (_cfgTexture >> "texture");
-	
-	_index = -1;
-	{
-		if (_x == "insignia") exitwith {_index = _foreachindex;};
-	} foreach getarray (configfile >> "CfgVehicles" >> gettext (configfile >> "CfgWeapons" >> uniform _unit >> "ItemInfo" >> "uniformClass") >> "hiddenSelections");
-
-	if (_index >= 0) then {
-		_unit setvariable ["bis_fnc_setUnitInsignia_class",_badge,false];
-		_unit setobjecttexture [_index,_texture];
-	};
-
-	}] remoteExec ["call",0,true];
-
+	[{
+		params ["_unit", "_badge"];
+		[_unit, _badge] remoteExecCall ["f_fnc_assignInsignia_local", 0, format ["f_insignia_%1", netId _unit]];
+	}, [_unit, _badge], 1] call CBA_fnc_waitAndExecute;
 };
