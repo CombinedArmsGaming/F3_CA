@@ -246,7 +246,7 @@ _chemlightsamount = 0;
 //Binoculars 
 _binocular = "Binocular"; // Regular 
 _rangefinder = "Rangefinder"; // Rangefinder
-_laserdesignator = "Laserdesignator"; // Laser Designator
+_laserdesignator = "Laserdesignator"; 
 
 // ====================================================================================
 
@@ -369,6 +369,8 @@ switch (_typeofunit) do {
 	case "div": { _typeofunit = "rif"};
 	case "r": { _typeofunit = "rif"};
 	case "engm": { _typeofunit = "dem"};
+	case "log": { _typeofunit = "eng"};
+	case "fac": { _typeofunit = "rad"};
 };
 // A quick function to add more than one item for readability
 _additems = {params ["_item","_amount","_unit"]; if (_amount > 0) then {for "_i" from 1 to _amount do { _unit additem _item };};};
@@ -1177,29 +1179,30 @@ if (_typeofunit in _coloredsmokeclasses) then {
 
 // Add weapons according to class
 if (_typeofunit in _rifleclasses) then {
-	_unit addmagazines [_riflemag,round(_riflemagamount * (1-_tracermagfraction))];
 	_unit addmagazines [_riflemag_tr,round(_riflemagamount * (_tracermagfraction))];
 	_unit addweapon (selectrandom _rifle);
+	_unit addmagazines [_riflemag,round(_riflemagamount * (1-_tracermagfraction))];
 };
 if (_typeofunit in _carbineclasses) then {
-	_unit addmagazines [_carbinemag,round(_carbinemagamount * (1-_tracermagfraction))];
 	_unit addmagazines [_carbinemag_tr,round(_carbinemagamount * (_tracermagfraction))];
 	_unit addweapon (selectrandom _carbine);
+	_unit addmagazines [_carbinemag,round(_carbinemagamount * (1-_tracermagfraction))];
 };
 if (_typeofunit in _smgclasses) then {
-	_unit addmagazines [_smgmag,round(_smgmagamount * (1-_tracermagfraction))];
 	_unit addmagazines [_smgmag_tr,round(_smgmagamount * (_tracermagfraction))];
 	_unit addweapon (selectrandom _smg);
+	_unit addmagazines [_smgmag,round(_smgmagamount * (1-_tracermagfraction))];
 };
 if (_typeofunit in _glrifleclasses) then {
-	_unit addmagazines [_glriflemag,round(_glriflemagamount * (1-_tracermagfraction))];
-	_unit addmagazines [_glsmokewhite,_glsmokewhiteamount];
 	_unit addmagazines [_glriflemag_tr,round(_glriflemagamount * (_tracermagfraction))];
+	_unit addmagazines [_glsmokewhite,_glsmokewhiteamount];
 	_unit addmagazines [_glsmokewhite,_glsmokewhiteamount];
 	_unit addmagazines [_glmag,_glmagamount];
 	if (_glflareamount > 0) then {for "_i" from 1 to _glflareamount do { _unit addmagazine (selectrandom _glflare); };};
 
 	_unit addweapon (selectrandom _glrifle);
+	_unit addmagazines [_glriflemag,round(_glriflemagamount * (1-_tracermagfraction))];
+
 };
 if (_typeofunit in _pistolclasses) then {
 	_unit addmagazines [_pistolmag,_pistolmagamount];
