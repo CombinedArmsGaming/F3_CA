@@ -1,5 +1,6 @@
 /*
- * Author: Poulern
+ * F3 CA edition
+ * Function: Spawn patrol
  * Spawns a group that patrols an area
  *
  * Arguments:

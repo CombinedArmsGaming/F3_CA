@@ -72,7 +72,7 @@ waitUntil{[] call acre_api_fnc_isInitialized};
 
 //Get CA hierarchy information 
 _shortrangeCH = (group _unit) getVariable ["ca_SRradioCH",1];
-_longrangeArray = (group _unit) getVariable ["ca_LRradioarray",[4]];
+_longrangeArray = (group _unit) getVariable ["ca_LRradioarray",[1]];
 _unitrank = rankId _unit;
 // ====================================================================================
 

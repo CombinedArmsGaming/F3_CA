@@ -1,4 +1,5 @@
-//Captainblaffer's most inefficiently written JIP TP script ever
+// F3_CA JIP teleport
+// Author: Captainblaffer
 
 scopeName "main";
 _id = _this select 2;

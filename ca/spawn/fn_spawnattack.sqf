@@ -1,5 +1,6 @@
 /*
- * Author: Poulern
+ * F3 CA edition
+ * Function: Spawn attack
  * Spawns a group that attacks a location or area.
  *
  * Arguments:

@@ -1,5 +1,6 @@
 /*
- * Author: Poulern
+ * F3 CA edition
+ * Function: Spawn fortify.
  * Spawns a group that fortifies a location or area.
  *
  * Arguments:

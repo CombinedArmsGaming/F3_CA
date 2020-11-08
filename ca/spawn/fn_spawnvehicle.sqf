@@ -1,5 +1,6 @@
 /*
- * Author: Poulern
+ * F3 CA edition
+ * Function: Spawn vehicle. Possibly the most useless function in the framework since it doesn't support air.
  * Creates a vehicle and locks it and removes whatever is inside of it and locks it for players
  *
  * Arguments:

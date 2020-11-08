@@ -78,14 +78,14 @@ _mkrName setMarkerTextLocal _mkrText;
 
 while {_unt getVariable ["ca_specialistmarker",true]} do
 {
-    _zeusGroup = missionNamespace getVariable ["f_var_smoothMarkers_zeusGroupName", ""];
+    _zeusGroups = missionNamespace getVariable ["f_var_hiddenGroups", []];
     _grp = group _unt;
     _newMkrColor = _grp getVariable ["ca_groupcolor","ColorGrey"];
     _mkrName setMarkerColorLocal _newMkrColor;
 
     _specplayers = [] call ace_spectator_fnc_players;
     _hasmarker = _unt getVariable ["ca_specialistmarker",true];
-    if (_unt in _specplayers || isnull _unt || (leader group _unt == _unt)|| !_hasmarker || (_grpId isEqualTo _zeusGroup)) then {
+    if (_unt in _specplayers || isnull _unt || (leader group _unt == _unt)|| !_hasmarker || (_grpId in _zeusGroups)) then {
         _mkrName setMarkerAlphaLocal 0;
         _unt setVariable ["ca_specialistmarker",false];
     } else {

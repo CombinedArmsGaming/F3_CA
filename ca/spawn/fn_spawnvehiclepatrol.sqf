@@ -1,5 +1,5 @@
 /*
- * Author: Poulern
+ * Function: spawnvehiclepatrol
  * Spawns a vehicle that patrols an area in a radius from spawnpoint.
  *
  * Arguments:

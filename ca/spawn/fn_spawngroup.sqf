@@ -1,6 +1,7 @@
 
 /*
- * Author: Poulern
+ * F3 CA edition
+ * Function: Spawn Group 
  * Spawns a group according to F3 assign gear
  *
  * Arguments:

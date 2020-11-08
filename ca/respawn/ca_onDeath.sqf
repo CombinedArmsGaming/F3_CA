@@ -10,7 +10,7 @@ if (!isDedicated && (isNull player)) then
 };
 
 params ["_unit","_corpse"];
-(format ["CA ondeath: Poulern caondeath debug. UNIT: %1. GROUP: %2",_unit,(group _unit)]) remoteExec ["diag_log"];
+(format ["CA ondeath: UNIT: %1. GROUP: %2. NAME: %3",_unit,(group _unit), name _unit]) remoteExec ["diag_log"];
 if (!f_var_JIP_JIPMenu && isNull _corpse) exitWith {}; // If no corpse exists the player is spawned for the first time.
 if (time < 10 && isNull _corpse) exitWith {}; //if not a JIP and its the start of the mission exit out
 
@@ -34,12 +34,11 @@ _group = group player;
 _originalgroup = _unit getVariable ["ca_originalgroup", grpNull];
 //Check if player is part of his original group, if not rejoin it (TEST, not 100% sure if group leaving is a result of respawn or ace spectator, this is a fix for the latter)
 if !(_originalgroup == _group) then {
-    _group = createGroup [(side player), true];
-    [player] joinsilent _originalgroup;
+    [player,_originalgroup] remoteExec ["joinsilent",_originalgroup];
 };
 
 [[_unit,_group],{
-params ["_unit","_originalgroup"];
+params ["_unit","_group"];
 
 _groupLocal = group player;
 
@@ -50,10 +49,10 @@ if !(_originalgroup == _groupLocal) then {
 
     _unit setVariable ["ca_originalgroup",group player,true];
     [_unit] joinsilent _groupLocal;
-    [format ["CA Ondeath: Desynch between units in group:%1, Originalgroup: %2 .Player executing code %3. Unit Desynched %4",_groupLocal,_originalgroup,name player, name _unit]] remoteExec ["diag_log"]; 
+    [format ["CA Ondeath: Desynch between units in playergroup: %1. and Originalgroup: %2. Player executing code %3. Unit Desynched %4. Unit desynched Original group: %5.",_groupLocal,_originalgroup,name player, name _unit,_group]] remoteExec ["diag_log"]; 
     };
 
-}]remoteExec ["spawn",_group];
+}] remoteExec ["spawn",_group];
 
 
 // Enter spectator

@@ -1,5 +1,5 @@
 /*
- * Author: Poulern
+ * Function: spawnvehiclestatic
  * Creates a static vehicle that sort of sits there idle because its out of fuel.
  *
  * Arguments:

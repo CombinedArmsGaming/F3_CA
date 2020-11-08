@@ -41,7 +41,6 @@ class CA
 		file = "ca\misc";
 		class aidriver{};
 		class hcmarker{};
-		class incfuelcon{};
         class vehiclespawner{};
         class isPlayerAlive{};
 	};

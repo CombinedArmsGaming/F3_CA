@@ -1,6 +1,6 @@
 /*
- * Author: Poulern (With "inspiration" from killzone kid)
- * Enables the vehicle to become self driving. 
+ * Author: Killzone kid (F3_CA version)
+ * Enables the vehicle to become self driving. Uses agent, which might have degraded performance under heavy server load. Caveat emptor. 
  *
  * Arguments:
  * 0: Vehicle to be driveable, Object 

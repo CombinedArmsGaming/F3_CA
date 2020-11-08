@@ -1,6 +1,7 @@
 /*
- * Author: Poulern
- * Enables logistics truck to spawn vehicle. Note that the addaction is available on every client this is run.
+ * F3_CA
+ * Function: Vehicle Spawner. 
+ * Enables a vehicle (could also be a static object like a light pole) to spawn vehicle.
  *
  * Arguments:
  * 0: Logistics Truck thats placed on the map, Object
@@ -29,7 +30,7 @@ if(isnil {ca_platoonsetup}) exitwith {systemChat "Hierarchy setup is not done ye
   _ticketdifference = _this select 3 select 2;
   _aidriver = _this select 3 select 3;
   _side = side player;
-  if (rankid player < ca_slrank) exitWith {systemChat "You need to be authorized to do this, you need to be at least SL rank!"};
+  if (rankid player >= ca_slrank) exitWith {systemChat "You need to be authorized to do this, you need to be at least SL rank!"};
   _sidetickets = 0;
 switch (_side) do {
 	case west: {

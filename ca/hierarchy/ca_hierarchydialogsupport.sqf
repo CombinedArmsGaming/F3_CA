@@ -1,5 +1,5 @@
 /*
- * Author: Poulern
+ * CA Hierarchy Dialog
  * Create the treeview and fill the hierarchy interface.
  * 
  * Called on opening the interface
@@ -9,6 +9,7 @@ disableSerialization;
 _display = findDisplay 1809;
 _tree = _display displayCtrl 1811;
 _side = side player;
+_zeusGroups = missionNamespace getVariable ["f_var_hiddenGroups", []];
 
 //If the mission does not use group tickets, hide those elements from the UI. 
 _groupticketdisplays = [1804,1805,1806,1807,1808,1817,1820];
@@ -75,7 +76,7 @@ _overflow = [];
     }else
     {
         _rankid = (rankid leader _x);
-        if (_rankid >= ca_corank) then {
+        if (_rankid >= ca_corank && !(_x in _zeusGroups)) then {
             _allCOgroups pushBackUnique _x;
         };
 
@@ -91,7 +92,7 @@ if (count _allCOgroups == 0) then {
 
 
 //Setup the tree view 
-_noncogroups = _allplayergroups - _allCOgroups;
+_noncogroups = _allplayergroups - _allCOgroups - _zeusGroups;
 {
     _parentIndex = _tree tvAdd [[],(groupid _x)];
     _rawcolor = "";

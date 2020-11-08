@@ -1,6 +1,7 @@
 /*
- * Author: Poulern
- * Spawns a group that charges(attacks without formation, often in a line) a position a set distance away from the origin.
+ * F3 CA edition
+ * Function: Spawn CHAAARGE!
+ * Spawns a group that charges (attacks without formation, often in a line) a position a set distance away from the origin.
  * You must include a direction in the location parameter(IE have it be a marker, object or make the array look like this: [[2334,3242,0],90]) or else the group will charge north.
  *
  * Arguments:

@@ -174,7 +174,7 @@ _actuallyrespawned = [];
 			player moveincargo (vehicle _respawnerguy);
 			systemchat format ["You've been respawned in %1's vehicle",(name _respawnerguy)];
 		} else {
-			player setpos (getPosATL  _respawnerguy);
+			player setpos (getPosASL  _respawnerguy);
 			systemchat format ["You've been respawned at %1's position",(name _respawnerguy)];
 		};
 		titleCut ["", "BLACK IN", 5];

@@ -1,8 +1,9 @@
 /*
- * Author: Poulern
+ * F3_CA Hierarchy
+ * Function: Tree select
  * When pressing an element in the tree view, fill in the relevant boxes on the hierarchy interface.
  * 
- * Called on opening the interface
+ * Not called on opening the interface
  */
 
 
@@ -109,7 +110,7 @@ _shortrangech = _display displayCtrl 1814;
 _longrangechannels = _display displayCtrl 1815;
 
 _shortrangechannel = (_group) getVariable ["ca_SRradioCH",1];
-_longrangeArray = (_group) getVariable ["ca_LRradioarray",[4]];
+_longrangeArray = (_group) getVariable ["ca_LRradioarray",[1]];
 
 _shortrangech ctrlSetText (format ["%1",(_shortrangechannel)]);
 _longrangechannels ctrlSetText (format ["%1",(_longrangeArray)]);

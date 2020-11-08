@@ -1,5 +1,5 @@
 /*
- * Author: Poulern
+ * Function: spawnvehicleattack
  * Spawns a vehicle that attacks a location or area.
  *
  * Arguments:

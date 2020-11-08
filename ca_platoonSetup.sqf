@@ -1,5 +1,4 @@
-// CA Hierarchy setup 
-// Author: Poulern (@me for issues)
+// F3_CA Hierarchy setup 
 // Server execution only and run once at the start of mission
 
 //Side tickets available (Where one ticket = 1 respawn, default 5 for vehicles) per team in addition to the group tickets;
@@ -44,7 +43,7 @@ _hierarchywest = {
 			[_side,"C1","CSL",10,[6],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CHARLIE
 			[_side,"C2","CSL",11,[6],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CHARLIE
 			[_side,"CV","CSL",12,[2,6],"ColorGreen",2] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD2 and LR CHARLIE
-		//	SPECIALIST TEAMS - MORE AT THE BOTTOM OF THE FILE. 
+		//	SPECIALIST TEAMS - MORE AT THE BOTTOM OF THIS SCRIPT. 
 		[_side,"ENG","CO",13,[1],"ColorGrey",2,true,"b_maint"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
 		[_side,"LOGI","CO",13,[1],"ColorOrange",2, true, "b_supply"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
 		[_side,"MMG","CO",14,[1],"ColorOrange",5, true, "b_heavyweapons"] spawn ca_fnc_setupGroup; // Radio Nets: LR CMD1
@@ -57,8 +56,6 @@ _hierarchywest = {
 
 _hierarchyeast = _hierarchywest;
 _hierarchyindependent = _hierarchywest;
-//Smoothmarkers and normal markers: Individual speicalist markers (ie medic markers). Refer to assinggear files for a complete list of f3 loadout classes (eg dc, ftl, eng, sp, pp, vc etc.).
-_caSpecialistMarkerClasses = ["m","surgeon","uav"];
 
 // Long radio channels setup
 // Long range channel names for 148, 152, 117, Vehicle radios. This correlates to "ALPHA SQUAD" = Channel 1 in the platoon hierarchy array above. 
@@ -108,7 +105,6 @@ missionNamespace setVariable ['ca_corank',_corank, true];
 missionNamespace setVariable ['ca_slrank',_slrank, true]; 
 missionNamespace setVariable ['ca_ftlrank',_ftlrank, true]; 
 
-missionNamespace setVariable ['ca_specialistMarkerClasses',_caSpecialistMarkerClasses, true]; 
 
 ca_allWestPlayerGroups = [];
 ca_allEastPlayerGroups = [];
