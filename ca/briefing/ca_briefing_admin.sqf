@@ -37,8 +37,17 @@ Hide Radio structure markers</execute><br/>
 |- <execute expression="" [] execvm 'f\briefing\f_briefing_admin.sqf' "">
 Give self F3 admin menu</execute><br/>
 <font size='18'>Respawn Options</font><br/><br/>
-|- <execute expression=""hint 'Wave spawned!'; [] call ca_fnc_respawnwave;"">
+|- <execute expression=""hint 'Wave spawned!'; [west] call ca_fnc_respawnwave;[east] call ca_fnc_respawnwave;[independent] call ca_fnc_respawnwave;"">
 Spawn respawn wave(Note respawns everyone including different sides together)</execute><br/>
+<br/>
+|- <execute expression=""systemChat 'Wave spawned West!'; [west] call ca_fnc_respawnwave;"">
+Spawn respawn wave(West)</execute><br/>
+<br/>
+|- <execute expression=""systemChat 'Wave spawned East!'; [east] call ca_fnc_respawnwave;"">
+Spawn respawn wave(East)</execute><br/>
+<br/>
+|- <execute expression=""systemChat 'Wave spawned independent!'; [independent] call ca_fnc_respawnwave;"">
+Spawn respawn wave(Independent)</execute><br/>
 <br/>
 |- <execute expression=""missionNamespace setVariable ['ca_respawnmode',0, true];"">
 Disable respawn (set respawnmode to 0)</execute><br/>
@@ -56,10 +65,6 @@ Set respawn wave time to 10 minutes</execute><br/>
 |- <execute expression=""missionNamespace setVariable ['ca_wavecooldown',1740, true];"">
 Set respawn wave time to 30 minutes</execute><br/>
 <font size='18'>Smooth markers Options</font><br/><br/>
-|- <execute expression=""missionNamespace setVariable ['f_var_smoothMarkers',true, true];missionNamespace setVariable ['f_var_smoothMarkers_hide',false, true];"">
-Enable smooth markers (Won't appear automatically unless enabled at mission start, need to spawn groupmarker function)</execute><br/>
-|- <execute expression=""missionNamespace setVariable ['f_var_smoothMarkers',false, true];missionNamespace setVariable ['f_var_smoothMarkers_hide',true, true];"">
-Disable smooth markers (Need to reassign normal markers again unless enabled at mission start)</execute><br/>
 |- <execute expression=""missionNamespace setVariable ['f_var_smoothMarkers_hide',true, true];"">
 Hide smooth markers</execute><br/>
 |- <execute expression=""missionNamespace setVariable ['f_var_smoothMarkers_hide',false, true];"">
