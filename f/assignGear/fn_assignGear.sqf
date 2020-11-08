@@ -26,7 +26,11 @@ if (count _this > 2) then {
 	};
 };
 
+// ====================================================================================
 
+// INSIGNIA
+// This block will give units insignia on their uniforms.
+[_unit,_insigniaclass] execVM "f\assignGear\f_assignInsignia.sqf";
 // ====================================================================================
 
 // DECIDE IF THE SCRIPT SHOULD RUN
@@ -119,12 +123,5 @@ if (isNil "_carbine") then { //_carbine should exist unless no faction has been 
 	player globalchat format ["DEBUG (assignGear.sqf): Faction %1 is not defined.",_faction];
 } else {
 };
-
-// ====================================================================================
-
-
-// INSIGNIA
-// This block will give units insignia on their uniforms.
-[_unit,_insigniaclass] call f_fnc_assignInsignia;
 
 // ====================================================================================
