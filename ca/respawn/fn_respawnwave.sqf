@@ -84,12 +84,12 @@ if (ca_respawnmode == 2 || ca_respawnmode == 3) then {
 		ca_respawnwave = true;  
 		sleep 2;
 		if ((vehicle _respawnerguy) != _respawnerguy) then {
-            player setpos (getPosASL _respawnerguy);
+            player setposASL (getPosASL _respawnerguy);
             sleep random 5;
 			player moveincargo (vehicle _respawnerguy);
 			systemchat format ["You've been respawned in %1's vehicle",(name _respawnerguy)];
 		} else {
-			player setpos (getPosASL  _respawnerguy);
+			player setposASL (getPosASL  _respawnerguy);
 			systemchat format ["You've been respawned at %1's position",(name _respawnerguy)];
 		};
         player action ["WeaponOnBack", player];
@@ -127,7 +127,7 @@ if (ca_respawnmode == 1) then {
     ca_respawnwave = true;  
     sleep 2;
     player action ["WeaponOnBack", player];
-    player setPos (getMarkerPos [_respawnmarker, true]);
+    player setposASL (getMarkerPos [_respawnmarker, true]);
 
     systemchat format ["You've been respawned at %1's base",(_side)];
 
