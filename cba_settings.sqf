@@ -1,4 +1,6 @@
-// ACE Medical
+// CA cba_settings.sqf
+
+// ACE medical with reopening 80%
 force ace_medical_ai_enabledFor = 2;
 force ace_medical_AIDamageThreshold = 1;
 force ace_medical_bleedingCoefficient = 1;

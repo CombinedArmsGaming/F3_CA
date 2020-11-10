@@ -69,6 +69,13 @@ disabledAI = 1;
 
 // ============================================================================================
 
+// CA - Enable cba_settings.sqf
+// Warning: Do not remove cba_settings.sqf without changing this line.
+
+cba_settings_hasSettingsFile = 1;
+
+// ============================================================================================
+
 // CA Remove corpse manager
 
 corpseManagerMode = 1;
