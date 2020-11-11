@@ -67,9 +67,7 @@ _scope3 = "optic_SOS";			// SOS Scope - 18x - 75x
 _bipod1 = "bipod_01_F_snd";		// Default bipod
 _bipod2 = "bipod_02_F_blk";		// Black bipod
 
-// Default setup
-_attachments = [_attach1,_scope1]; // The default attachment set for most units, overwritten in the individual unitType
-
+// Examples of Attachment Definitions:
 // [] = remove all
 // [_attach1,_scope1,_silencer] = remove all, add items assigned in _attach1, _scope1 and _silencer1
 // [_scope2] = add _scope2, remove rest
@@ -98,6 +96,7 @@ _rifle = ["arifle_Katiba_F"];
 _riflemag = "30Rnd_65x39_caseless_green";
 _riflemag_tr = "30Rnd_65x39_caseless_green_mag_Tracer";
 _riflemagamount = 10;
+_rifleattachments = [_scope1,_attach1];
 _rifleclasses = ["rif","aar","lat","ammg"];
 
 // Standard Carabineer
@@ -105,6 +104,7 @@ _carbine = ["arifle_Katiba_C_F"];
 _carbinemag = "30Rnd_65x39_caseless_green";
 _carbinemag_tr = "30Rnd_65x39_caseless_green_mag_Tracer";
 _carbinemagamount = 6;
+_carbineattachments = [_scope1,_attach1];
 _carbineclasses = ["car","med","sur","mat","amat","mtr","amtr","eng","dem","hmg","ahmg","hat","ahat","sam","asam"];
 
 // Standard Submachine Gun/Personal Defence Weapon
@@ -112,6 +112,7 @@ _smg = ["SMG_02_F"];
 _smgmag = "30Rnd_9x21_Mag_SMG_02";
 _smgmag_tr = "30Rnd_9x21_Green_Mag";
 _smgmagamount = 5;
+_smgattachments = [_scope1];
 _smgclasses = ["smg","pil","pcc","vc","vg","vd","uav","rad","csw","acsw"];
 
 // Rifle with GL and HE grenades
@@ -119,6 +120,7 @@ _glrifle = ["arifle_Katiba_GL_F"];
 _glriflemag = "30Rnd_65x39_caseless_green";
 _glriflemag_tr = "30Rnd_65x39_caseless_green_mag_Tracer";
 _glriflemagamount = 10;
+_glrifleattachments = [_scope1,_attach1];
 _glmag = "1Rnd_HE_Grenade_shell";
 _glmagamount = 10;
 _glrifleclasses = ["gren","co","sl","ftl","sp"];
@@ -171,12 +173,14 @@ _pistolclasses = ["co","sl","ar","mmg","rad","sur","dm","sn"];
 _AR = ["LMG_Zafir_F"];
 _ARmag = "150Rnd_762x54_Box";
 _ARmag_tr = "150Rnd_762x54_Box_Tracer";
+_ARattachments = [_scope1,_attach1,_bipod1];
 _ARmagamount = 7;
 
 // Medium MG
 _MMG = "MMG_01_hex_F";
 _MMGmag = "150Rnd_93x64_Mag";
 _MMGmag_tr = "150Rnd_93x64_Mag";
+_MMGattachments = [_scope2,_attach1,_bipod1];
 _MMGmagamount = 4;
 
 // NON-DLC ALTERNATIVE:
@@ -187,7 +191,9 @@ _MMGmagamount = 4;
 // Marksman rifle - DM
 _DMrifle = "srifle_DMR_01_F";
 _DMriflemag = "10Rnd_762x54_Mag";
+_DMattachments = [_scope2,_attach1,_bipod1];
 _DMriflemagamount = 10;
+
 
 // DLC ALTERNATIVE - Cyrus 9.3mm
 //_DMrifle = "srifle_DMR_05_hex_F";
@@ -197,6 +203,7 @@ _DMriflemagamount = 10;
 _RAT = "launch_RPG32_F";
 _RATmag = "RPG32_F";
 _RATmagamount = 2;
+
 // Medium AT
 _MAT = "launch_RPG32_F";
 _MATmag1 = "RPG32_F";
@@ -225,7 +232,9 @@ _CSWmagamount = 2;
 // Sniper rifle
 _SNrifle = "srifle_GM6_camo_F";
 _SNrifleMag = "5Rnd_127x108_Mag";
+_SNattachments = [_scope3,_bipod1];
 _SNrifleMagamount = 15;
+
 
 // Demolition items, 1 each per item in the array. eg _demoitems = ["DemoCharge_Remote_Mag","DemoCharge_Remote_Mag"]; Gives 2 democharges.
 _demoitems = ["MineDetector","ACE_M26_Clacker","ACE_wirecutter","ACE_DefusalKit,""ATMine_Range_Mag","DemoCharge_Remote_Mag","APERSMine_Range_Mag"];
@@ -549,7 +558,11 @@ switch (_typeofUnit) do
 		_unit addmagazines [_ARmag,round(_ARmagamount * (1-_tracermagfraction))];
 		_unit addmagazines [_ARmag_tr,round(_ARmagamount * (_tracermagfraction))];
 		_unit addweapon (selectrandom _AR);
-		_attachments pushback (_bipod1);
+		removeAllPrimaryWeaponItems _unit;
+		{
+			// loop trough the attachments and add them to the weapon
+			_unit addPrimaryWeaponItem _x;
+		} 	foreach _ARattachments;	
 	};
 
 // LOADOUT: ASSISTANT AUTOMATIC RIFLEMAN
@@ -582,8 +595,11 @@ switch (_typeofUnit) do
 		_unit addmagazines [_smokegrenade,_smokegrenadeamount];
 		_unit addmagazines [_DMriflemag,_DMriflemagamount];
 		_unit addweapon _DMrifle;
-
-		_attachments = [_attach1,_scope2];
+		removeAllPrimaryWeaponItems _unit;
+		{
+			// loop trough the attachments and add them to the weapon
+			_unit addPrimaryWeaponItem _x;
+		} 	foreach _DMattachments;			
 	};
 
 // LOADOUT: MEDIUM MG GUNNER
@@ -592,8 +608,12 @@ switch (_typeofUnit) do
 		_unit addmagazines [_MMGmag,_MMGmagamount];
 		_unit addmagazines [_MMGmag,_MMGmagamount];
 		_unit addweapon _MMG;
+		removeAllPrimaryWeaponItems _unit;
+		{
+			// loop trough the attachments and add them to the weapon
+			_unit addPrimaryWeaponItem _x;
+		} 	foreach _MMGattachments;			
 		_unit addmagazines [_smokegrenade,_smokegrenadeamount];
-		_attachments pushback (_bipod1);
 	};
 
 // LOADOUT: MEDIUM MG ASSISTANT GUNNER
@@ -737,8 +757,12 @@ switch (_typeofUnit) do
 	{
 		_unit addmagazines [_SNrifleMag,_SNrifleMagamount];
 		_unit addweapon _SNrifle;
+		removeAllPrimaryWeaponItems _unit;
+		{
+			// loop trough the attachments and add them to the weapon
+			_unit addPrimaryWeaponItem _x;
+		} 	foreach _SNattachments;			
 		_unit addmagazines [_smokegrenade,_smokegrenadeamount];
-		_attachments = [_scope3];
 		_unit addItem "ACE_Kestrel4500";
 	};
 
@@ -1178,21 +1202,33 @@ if (_typeofunit in _coloredsmokeclasses) then {
 	};
 };
 
-// Add weapons according to class
+// Add weapons & attachments according to class
 if (_typeofunit in _rifleclasses) then {
 	_unit addmagazines [_riflemag_tr,round(_riflemagamount * (_tracermagfraction))];
 	_unit addweapon (selectrandom _rifle);
 	_unit addmagazines [_riflemag,round(_riflemagamount * (1-_tracermagfraction))];
+	{
+		// loop trough the attachments and add them to the weapon
+		_unit addPrimaryWeaponItem _x;
+	} foreach _rifleattachments;
 };
 if (_typeofunit in _carbineclasses) then {
 	_unit addmagazines [_carbinemag_tr,round(_carbinemagamount * (_tracermagfraction))];
 	_unit addweapon (selectrandom _carbine);
 	_unit addmagazines [_carbinemag,round(_carbinemagamount * (1-_tracermagfraction))];
+	{
+		// loop trough the attachments and add them to the weapon
+		_unit addPrimaryWeaponItem _x;
+	} foreach _carbineattachments;	
 };
 if (_typeofunit in _smgclasses) then {
 	_unit addmagazines [_smgmag_tr,round(_smgmagamount * (_tracermagfraction))];
 	_unit addweapon (selectrandom _smg);
 	_unit addmagazines [_smgmag,round(_smgmagamount * (1-_tracermagfraction))];
+	{
+		// loop trough the attachments and add them to the weapon
+		_unit addPrimaryWeaponItem _x;
+	} foreach _smgattachments;	
 };
 if (_typeofunit in _glrifleclasses) then {
 	_unit addmagazines [_glriflemag_tr,round(_glriflemagamount * (_tracermagfraction))];
@@ -1203,6 +1239,11 @@ if (_typeofunit in _glrifleclasses) then {
 
 	_unit addweapon (selectrandom _glrifle);
 	_unit addmagazines [_glriflemag,round(_glriflemagamount * (1-_tracermagfraction))];
+	{
+		// loop trough the attachments and add them to the weapon
+		_unit addPrimaryWeaponItem _x;
+	} foreach _glrifleattachments;	
+
 };
 if (_typeofunit in _pistolclasses) then {
 	_unit addmagazines [_pistolmag,_pistolmagamount];
@@ -1212,15 +1253,6 @@ if (_typeofunit in _entrenchingclasses) then {
 	_unit additem _entrenchingtool;
 };
 // ====================================================================================
-
-// Handle weapon attachments
-if (typeName _attachments == typeName []) then {
-	removeAllPrimaryWeaponItems _unit;
-	{
-		// loop trough the attachments and add them to the weapon
-		_unit addPrimaryWeaponItem _x;
-	} foreach _attachments;
-};
 
 // Handle handgun attachments
 if (typeName _hg_attachments == typeName []) then {
