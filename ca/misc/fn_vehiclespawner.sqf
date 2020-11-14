@@ -1,7 +1,7 @@
 /*
  * F3_CA
  * Function: Vehicle Spawner. 
- * Enables a vehicle (could also be a static object like a light pole) to spawn vehicle.
+ * Enables a vehicle (could also be a static object like a flag pole) to spawn vehicle.
  *
  * Arguments:
  * 0: Logistics Truck thats placed on the map, Object
@@ -13,9 +13,9 @@
  *
  * Example:
  *    Initline: [this,"I_APC_tracked_03_cannon_F",5,"Warrior",10,true] call ca_fnc_vehiclespawner;
- *    Script where logitruck is the ingame vehicle variable [logitruck,"I_APC_tracked_03_cannon_F",5,"Warrior",10,true] call ca_fnc_vehiclespawner;
+ *    Script where logitruck is the ingame vehicle variable [logitruck,"I_APC_tracked_03_cannon_F",5,"Warrior",10,false] call ca_fnc_vehiclespawner;
  */
-params ["_spawner","_classname","_sparevehicles",["_description","Vehicle"],["_ticketcost",5],["_aidriver",false]];
+params ["_spawner","_classname","_sparevehicles",["_description","Vehicle"],["_ticketcost",5],["_aidriver",true]];
 _addactiontext = str format ["Unload %1",_description];
 
 missionNamespace setVariable [_classname,_sparevehicles, true];
