@@ -463,13 +463,6 @@ if (_isMan) then {
 switch (_typeofUnit) do
 {
 
-// DEFINE UNIT TYPE LOADOUTS
-// The following blocks of code define loadouts for each type of unit (the unit type
-// is passed to the script in the first variable)
-
-switch (_typeofUnit) do
-{
-
 // ====================================================================================
 
 // LOADOUT: COMMANDER
