@@ -285,7 +285,7 @@ _glasses = [];
 _helmet = ["H_HelmetIA"];
 _uniform = ["U_I_CombatUniform","U_I_CombatUniform_shortsleeve"];
 _vest = ["V_PlateCarrierIA1_dgtl"]; 	// default for all infantry classes
-_backpack = ["B_AssaultPack_dgtl"];
+_backpack = ["B_TacticalPack_oli"];
 _outfit = [_glasses,_helmet,_uniform,_vest,_backpack];
 
 // Light Uniform, big backpack
@@ -619,8 +619,6 @@ switch (_typeofUnit) do
 	{
 
 		_unit addWeapon _rangefinder;
-		_unit addmagazines [_grenade,_grenadeamount];
-		_unit addmagazines [_mgrenade,_Mgrenadeamount];
 		_unit addmagazines [_smokegrenade,_smokegrenadeamount];
 
 		_unit addmagazines [_MMGmag,ceil((_ARmagamount * (1-_tracermagfraction))*_assistantfraction)];
