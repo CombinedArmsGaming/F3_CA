@@ -10,8 +10,8 @@ _caIndependentTickets = _caWestTickets;
 /*
 Parameters for ca_fnc_setupGroup, which is what the setup inside the _hierarchywest block uses to setup each group. 
  * 0: Side (Side): This is set automatically, if you need to set up for multiple sides copy the _hierachy code block and name it _westhierarchy, _easthierachy etc. as needed and change the call below.
- * 1: Superior (String): The groupid of the group that ranks above it in the hierarchy, if equal to groupid, then the group is an independent group or its own platoon.
- * 2:  Groupid (String): The groupid that is set in the editor field callsign.
+ * 1: Groupid (String): The groupid that is set in the editor field callsign.
+ * 2: Superior (String): The groupid of the group that ranks above it in the hierarchy, if equal to groupid, then the group is an independent group or its own platoon.
  * 3: Short range radio channel (Number): What channel the 343 will be on by default and on respawn. 
  * 4: Long range radio Array (Array): Array of channels the long range radios will be on by default and on respawn. There will be one radio given per channel to ranks set in ca_acre2settings.sqf
  * 5: Group color (String): The color of the group in the hierarchy and its groupmarker. Available colors: "ColorBlack","ColorGrey","ColorRed","ColorBrown","ColorOrange","ColorYellow","ColorKhaki","ColorGreen","ColorBlue","ColorPink","ColorWhite"
