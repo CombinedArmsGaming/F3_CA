@@ -31,7 +31,7 @@ _role = _typeofUnit;
 // Check if role has badge set...
 _roleBadge = switch (_role) do
 {
-	case "m":{"insignia_GI_Medic"};
+	case "med":{"insignia_GI_Medic"};
 	case "co":{"insignia_GI_CO"};
 	case "xo":{"insignia_GI_XO"};
 	case "sur":{"insignia_GI_Surgeon"};

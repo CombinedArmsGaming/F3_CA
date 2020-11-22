@@ -32,7 +32,7 @@ missionNamespace setVariable ['f_var_smoothFTMarkers_hide',false, true]; // Same
 // Running a mission with a zeus player?  Put all squads callsign/groupid in here to hide them from the map and hierarchy (Smooth and regular markers).
 missionNamespace setVariable ['f_var_hiddenGroups',["Zeus Crew","GOD"], true]; 
 
-missionNamespace setVariable ['ca_specialistMarkerClasses',["m","surgeon","uav"], true]; //Individual specialist markers (ie medic markers). Refer to assinggear files for a complete list of f3 loadout classes (eg dc, ftl, eng, sp, pp, vc etc.). Smooth markers and normal markers
+missionNamespace setVariable ['ca_specialistMarkerClasses',["med","sur","uav"], true]; //Individual specialist markers (ie medic markers). Refer to assinggear files for a complete list of f3 loadout classes (eg dc, ftl, eng, sp, pp, vc etc.). Smooth markers and normal markers
 
 // Allow init.sqf to go ahead
 missionNamespace setVariable ['ca_initserver',true, true];

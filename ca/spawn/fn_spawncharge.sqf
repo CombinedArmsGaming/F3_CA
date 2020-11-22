@@ -15,7 +15,7 @@
  * Group.
  *
  * Example:
- * [["ftl","r","m","rat","ar","aar"],"SC1_CA",300,"opf_f",east] spawn ca_fnc_spawncharge;
+ * [["ftl","rif","med","lat","ar","aar"],"SC1_CA",300,"opf_f",east] spawn ca_fnc_spawncharge;
  *
  */
 

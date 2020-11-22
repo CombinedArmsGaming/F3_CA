@@ -16,15 +16,35 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={14792.662,148.46951,16578.75};
-		dir[]={-0.4231416,-0.80124921,0.42304};
-		up[]={-0.56663674,0.59832776,0.56649995};
-		aside[]={0.7070263,-3.3865217e-007,0.70719802};
+		pos[]={-3316.9761,20,-5753.1958};
+		dir[]={-0.51269323,-0.42082918,0.74834388};
+		up[]={-0.23784393,0.907139,0.34717929};
+		aside[]={0.82495451,1.4831312e-007,0.56516361};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
+	"A3_Armor_F_Beta_APC_Tracked_01",
+	"acre_sys_intercom",
+	"A3_Armor_F_Beta_APC_Wheeled_02",
+	"A3_Armor_F_Gamma_APC_Wheeled_03",
+	"A3_Soft_F_Beta_Truck_02",
+	"A3_Soft_F_Beta_MRAP_03",
+	"A3_Soft_F_MRAP_01",
+	"A3_Soft_F_Beta_Truck_01",
+	"A3_Soft_F_Exp_Truck_01",
+	"UK3CB_BAF_Vehicles_Servicing",
+	"ace_cargo",
+	"A3_Soft_F_MRAP_02",
+	"A3_Weapons_F_Ammoboxes",
+	"A3_Modules_F_Curator_Curator",
+	"A3_Characters_F",
+	"ace_explosives",
+	"ace_nouniformrestrictions",
+	"A3_Data_F_Curator_Virtual",
+	"A3_Ui_F",
+	"AICommand"
 };
 class AddonsMetaData
 {
@@ -15835,7 +15855,26 @@ class CustomAttributes
 				};
 			};
 		};
-		nAttributes=2;
+		class Attribute2
+		{
+			property="cba_settings_hasSettingsFile";
+			expression="false";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"BOOL"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		nAttributes=3;
 	};
 };
 class Mission
@@ -15871,7 +15910,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={672.64282,2.632719,511.4491};
+				position[]={632.08362,2.632719,451.49744};
 				angles[]={0,2.3719556,0};
 			};
 			side="West";
@@ -15914,7 +15953,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={635.81567,2.632719,480.53699};
+				position[]={595.25647,2.632719,420.58533};
 				angles[]={0,2.3719556,0};
 			};
 			side="West";
@@ -15957,7 +15996,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={606.58228,2.632719,450.83972};
+				position[]={566.02307,2.632719,390.88806};
 				angles[]={0,2.3719556,0};
 			};
 			side="West";
@@ -16299,7 +16338,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={590.66431,2.205946,432.11902};
+				position[]={550.1051,2.205946,372.16541};
 				angles[]={0,2.3903332,0};
 			};
 			side="Empty";
@@ -16318,7 +16357,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={568.5354,2.2247906,413.44519};
+				position[]={527.9762,2.2247906,353.49353};
 				angles[]={0,2.3903332,0};
 			};
 			side="Empty";
@@ -16418,7 +16457,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={701.27368,0.89242172,417.46082};
+				position[]={660.71448,0.89242172,357.50916};
 				angles[]={0,2.3903332,0};
 			};
 			side="Empty";
@@ -16733,7 +16772,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={706.76196,0.0014381409,413.31238};
+						position[]={666.20276,0.0014381409,353.36072};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -16818,7 +16857,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={696.52661,0.0014381409,409.50378};
+						position[]={655.96741,0.0014381409,349.55212};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -16826,7 +16865,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""surgeon"",this] call f_fnc_assignGear;}";
+						init="call{[""sur"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_CO_Surgeon";
 						description="NATO Surgeon";
 						isPlayable=1;
@@ -16901,7 +16940,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={707.47583,0.0014381409,416.9198};
+						position[]={666.91699,0.0014381409,356.96777};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -16909,7 +16948,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""dc"",this] call f_fnc_assignGear; this setVariable [""badge"", ""xo"", true];}";
+						init="call{[""co"",this] call f_fnc_assignGear; this setVariable [""badge"", ""xo"", true];}";
 						name="UnitNATO_CO_DC";
 						description="NATO Deputy Commander";
 						isPlayable=1;
@@ -16984,7 +17023,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={701.01392,0.0014381409,410.24402};
+						position[]={660.45471,0.0014381409,350.29236};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -16992,7 +17031,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""fac"",this] call f_fnc_assignGear;}";
+						init="call{[""rad"",this] call f_fnc_assignGear; this setVariable [""badge"", ""fac"", true];}";
 						name="UnitNATO_CO_FAC";
 						description="NATO Forward Air Controller";
 						isPlayable=1;
@@ -17124,8 +17163,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={719.82349,0.0014381409,463.59949};
-						angles[]={0,2.3719556,0};
+						position[]={679.26398,0.0014381409,403.64777};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					flags=2;
@@ -17133,7 +17172,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="[""dc"",this] call f_fnc_assignGear;";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_ASL_SL";
 						description="NATO Alpha Squad Leader";
 						isPlayable=1;
@@ -17208,15 +17247,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={715.08423,0.0014381409,461.30652};
-						angles[]={0,2.3719556,0};
+						position[]={674.52502,0.0014381409,401.35486};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""m"",this] call f_fnc_assignGear;";
+						init="call{[""med"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_ASL_M";
 						description="NATO Alpha Medic";
 						isPlayable=1;
@@ -17348,7 +17387,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={704.95142,0.0014381409,479.24402};
+						position[]={664.39221,0.0014381409,419.29236};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -17432,7 +17471,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={700.21313,0.0014381409,476.95105};
+						position[]={659.65393,0.0014381409,416.99939};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -17476,7 +17515,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={707.3938,0.0014381409,483.91003};
+						position[]={666.83459,0.0014381409,423.95837};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -17520,14 +17559,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={694.71704,0.0014381409,475.43738};
-						angles[]={0,2.3719556,0};
+						position[]={654.15784,0.0014381409,415.48572};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_A1_AT";
 						description="NATO Alpha 1 Assaultman (AT)";
 						isPlayable=1;
@@ -17556,7 +17595,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male12ENG";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.95999998;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -17564,7 +17641,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={709.08032,0.0014381409,489.35535};
+						position[]={668.52112,0.0014381409,429.40369};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -17577,7 +17654,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=212;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -17608,7 +17685,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={687.96216,0.0014381409,475.22449};
+						position[]={647.40295,0.0014381409,415.27283};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -17621,7 +17698,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=213;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -17709,7 +17786,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={688.41431,0.0014381409,496.0155};
+						position[]={647.8551,0.0014381409,436.06384};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -17755,7 +17832,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={683.67505,0.0014381409,493.72253};
+						position[]={643.11584,0.0014381409,433.77087};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -17799,7 +17876,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={690.85669,0.0014381409,500.67957};
+						position[]={650.29749,0.0014381409,440.72791};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -17843,14 +17920,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={678.17798,0.0014381409,492.21082};
-						angles[]={0,2.3719556,0};
+						position[]={637.61877,0.0014381409,432.25916};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_A2_AT";
 						description="NATO Alpha 2 Assaultman (AT)";
 						isPlayable=1;
@@ -17879,7 +17956,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male09ENG";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -17887,7 +18002,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={692.54028,0.0014381409,506.12683};
+						position[]={651.98108,0.0014381409,446.17517};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -17900,7 +18015,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=219;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -17931,7 +18046,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={671.42212,0.0014381409,491.99597};
+						position[]={630.86292,0.0014381409,432.04431};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -17944,7 +18059,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=220;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -18032,7 +18147,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={672.64282,0.0014381409,511.49988};
+						position[]={632.08362,0.0014381409,451.54822};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18097,7 +18212,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={672.64282,0.0014381409,511.49988};
+						position[]={632.08362,0.0014381409,451.54822};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18119,7 +18234,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={672.64282,0.0014381409,511.49988};
+						position[]={632.08362,0.0014381409,451.54822};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18240,8 +18355,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={686.33911,0.0014381409,431.82996};
-						angles[]={0,2.3719556,0};
+						position[]={645.77991,0.0014381409,371.8783};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					flags=2;
@@ -18249,7 +18364,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="[""dc"",this] call f_fnc_assignGear;";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_BSL_SL";
 						description="NATO Bravo Squad Leader";
 						isPlayable=1;
@@ -18324,15 +18439,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={681.59985,0.0014381409,429.53503};
-						angles[]={0,2.3719556,0};
+						position[]={641.04065,0.0014381409,369.58337};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""m"",this] call f_fnc_assignGear;";
+						init="call{[""med"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_BSL_M";
 						description="NATO Bravo Medic";
 						isPlayable=1;
@@ -18464,7 +18579,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={671.18481,0.0014381409,447.46277};
+						position[]={630.62561,0.0014381409,387.51111};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18510,7 +18625,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={666.44556,0.0014381409,445.1698};
+						position[]={625.88635,0.0014381409,385.21814};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18554,7 +18669,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={673.6272,0.0014381409,452.12878};
+						position[]={633.06799,0.0014381409,392.17712};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18598,14 +18713,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={660.94751,0.0014381409,443.65808};
-						angles[]={0,2.3719556,0};
+						position[]={620.38831,0.0014381409,383.70642};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_B1_AT";
 						description="NATO Bravo 1 Assaultman (AT)";
 						isPlayable=1;
@@ -18634,7 +18749,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male12ENG";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -18642,7 +18795,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={675.31177,0.0014381409,457.5741};
+						position[]={634.75256,0.0014381409,397.62244};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18655,7 +18808,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=233;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -18686,7 +18839,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={654.19263,0.0014381409,443.44519};
+						position[]={613.63342,0.0014381409,383.49353};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18699,7 +18852,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=234;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -18787,7 +18940,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={654.9231,0.0014381409,464.50378};
+						position[]={614.36389,0.0014381409,404.55212};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18833,7 +18986,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={650.18286,0.0014381409,462.21082};
+						position[]={609.62366,0.0014381409,402.25916};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18877,7 +19030,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={657.36548,0.0014381409,469.1698};
+						position[]={616.80627,0.0014381409,409.21814};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18921,14 +19074,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={644.68677,0.0014381409,460.6991};
-						angles[]={0,2.3719556,0};
+						position[]={604.12756,0.0014381409,400.74744};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_B2_AT";
 						description="NATO Bravo 2 Assaultman (AT)";
 						isPlayable=1;
@@ -18957,7 +19110,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male04ENG";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -18965,7 +19156,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={659.05005,0.0014381409,474.61511};
+						position[]={618.49084,0.0014381409,414.66345};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -18978,7 +19169,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=240;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -19009,7 +19200,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={637.93188,0.0014381409,460.48425};
+						position[]={597.37268,0.0014381409,400.53259};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -19022,7 +19213,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=241;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -19110,7 +19301,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={635.81567,0.0014381409,480.58777};
+						position[]={595.25647,0.0014381409,420.63611};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -19175,7 +19366,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={635.81567,0.0014381409,480.58777};
+						position[]={595.25647,0.0014381409,420.63611};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -19197,7 +19388,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={635.81567,0.0014381409,480.58777};
+						position[]={595.25647,0.0014381409,420.63611};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -19318,8 +19509,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={656.11157,0.0014381409,401.22449};
-						angles[]={0,2.3719556,0};
+						position[]={615.55237,0.0014381409,341.27283};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					flags=2;
@@ -19327,7 +19518,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="[""dc"",this] call f_fnc_assignGear;";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_CSL_SL";
 						description="NATO Charlie Squad Leader";
 						isPlayable=1;
@@ -19402,15 +19593,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={651.37329,0.0014381409,398.92957};
-						angles[]={0,2.3719556,0};
+						position[]={610.81409,0.0014381409,338.97791};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""m"",this] call f_fnc_assignGear;";
+						init="call{[""med"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_CSL_M";
 						description="NATO Charlie Medic";
 						isPlayable=1;
@@ -19542,7 +19733,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={640.50513,0.0014381409,417.53113};
+						position[]={599.94592,0.0014381409,357.57947};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -19588,7 +19779,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={635.76587,0.0014381409,415.23816};
+						position[]={595.20667,0.0014381409,355.2865};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -19632,7 +19823,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={642.94751,0.0014381409,422.19714};
+						position[]={602.38831,0.0014381409,362.24548};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -19676,14 +19867,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={630.2688,0.0014381409,413.72644};
-						angles[]={0,2.3719556,0};
+						position[]={589.70959,0.0014381409,353.77478};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_C1_AT";
 						description="NATO Charlie 1 Assaultman (AT)";
 						isPlayable=1;
@@ -19758,7 +19949,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={644.63306,0.0014381409,427.64246};
+						position[]={604.07385,0.0014381409,367.6908};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -19771,7 +19962,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=254;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -19802,7 +19993,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={623.51392,0.0014381409,413.5116};
+						position[]={582.95471,0.0014381409,353.55994};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -19815,7 +20006,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=255;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -19903,7 +20094,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={623.71216,0.0014381409,433.87878};
+						position[]={583.15295,0.0014381409,373.92712};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -19949,7 +20140,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={618.97192,0.0014381409,431.58582};
+						position[]={578.41272,0.0014381409,371.63416};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -19993,7 +20184,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={626.15356,0.0014381409,438.54285};
+						position[]={585.59436,0.0014381409,378.59119};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -20037,14 +20228,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={613.47485,0.0014381409,430.0741};
-						angles[]={0,2.3719556,0};
+						position[]={572.91565,0.0014381409,370.12244};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_C2_AT";
 						description="NATO Charlie 2 Assaultman (AT)";
 						isPlayable=1;
@@ -20073,7 +20264,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male08ENG";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.94999999;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -20081,7 +20310,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={627.83813,0.0014381409,443.99207};
+						position[]={587.27893,0.0014381409,384.04041};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -20094,7 +20323,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=261;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -20125,7 +20354,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={606.71997,0.0014381409,429.85925};
+						position[]={566.16077,0.0014381409,369.90759};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -20138,7 +20367,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=262;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -20226,7 +20455,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={606.58228,0.0014381409,450.8905};
+						position[]={566.02307,0.0014381409,390.93884};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -20291,7 +20520,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={606.58228,0.0014381409,450.8905};
+						position[]={566.02307,0.0014381409,390.93884};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -20313,7 +20542,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={606.58228,0.0014381409,450.8905};
+						position[]={566.02307,0.0014381409,390.93884};
 						angles[]={0,2.3719556,0};
 					};
 					side="West";
@@ -20434,7 +20663,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={602.60864,0.0014381409,400.33582};
+						position[]={562.04944,0.0014381409,340.38416};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -20443,7 +20672,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""dc"",this] call f_fnc_assignGear;}";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MMG_SL";
 						description="NATO Medium MG Team Leader";
 						isPlayable=1;
@@ -20518,20 +20747,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={597.89087,0.0014381409,398.75964};
+						position[]={557.33167,0.0014381409,338.80798};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""mmgag"",this] call f_fnc_assignGear;}";
+						init="call{[""ammg"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MMG_A1";
 						description="NATO Medium MG Team Assistant";
 						isPlayable=1;
 					};
 					id=1154;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -20600,20 +20829,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={594.15161,0.0014381409,396.89636};
+						position[]={553.59241,0.0014381409,336.9447};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""mmgg"",this] call f_fnc_assignGear;";
+						init="call{[""mmg"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MMG_G1";
 						description="NATO Medium MG Team Gunner";
 						isPlayable=1;
 					};
 					id=1633;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -20682,7 +20911,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={603.57739,0.0014381409,405.0155};
+						position[]={563.01819,0.0014381409,345.0658};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -20690,13 +20919,13 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""mmgg"",this] call f_fnc_assignGear;}";
+						init="call{[""mmg"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MMG_G2";
 						description="NATO Medium MG Team Gunner";
 						isPlayable=1;
 					};
 					id=1634;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -20765,20 +20994,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={605.35474,0.0014381409,409.97253};
+						position[]={564.79553,0.0014381409,350.02087};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""mmgag"",this] call f_fnc_assignGear;}";
+						init="call{[""ammg"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MMG_A2";
 						description="NATO Medium MG Team Assistant";
 						isPlayable=1;
 					};
 					id=1635;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -20904,7 +21133,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={572.31177,0.0014381409,393.05847};
+						position[]={531.75256,0.0014381409,333.10681};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -20913,7 +21142,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""dc"",this] call f_fnc_assignGear;      }";
+						init="call{[""sl"",this] call f_fnc_assignGear;      }";
 						name="UnitNATO_MAT_SL";
 						description="NATO Medium AT Team Leader";
 						isPlayable=1;
@@ -20988,14 +21217,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={567.57153,0.0014381409,390.7655};
+						position[]={527.01233,0.0014381409,330.8158};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""matg"",this] call f_fnc_assignGear; ";
+						init="call{[""mat"",this] call f_fnc_assignGear; }";
 						name="UnitNATO_MAT_G1";
 						description="NATO Medium AT Team Gunner";
 						isPlayable=1;
@@ -21070,14 +21299,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={574.77368,0.0014381409,401.97449};
+						position[]={534.2135,0.0014381409,342.02283};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""matg"",this] call f_fnc_assignGear;}";
+						init="call{[""mat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MAT_G2";
 						description="NATO Medium AT Team Gunner";
 						isPlayable=1;
@@ -21152,14 +21381,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={574.15063,0.0014381409,398.03503};
+						position[]={533.59143,0.0014381409,338.08337};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""matag"",this] call f_fnc_assignGear;}";
+						init="call{[""amat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MAT_A2";
 						description="NATO Medium AT Team Assistant";
 						isPlayable=1;
@@ -21234,14 +21463,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={562.54126,0.0014381409,389.89832};
+						position[]={521.98199,0.0014381409,329.94479};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""matag"",this] call f_fnc_assignGear;}";
+						init="call{[""amat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MAT_A1";
 						description="NATO Medium AT Team Assistant";
 						isPlayable=1;
@@ -21373,7 +21602,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={629.27173,0.0014381409,377.42175};
+						position[]={588.71252,0.0014381409,317.47009};
 						angles[]={0,2.3602087,0};
 					};
 					side="West";
@@ -21382,7 +21611,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""dc"",this] call f_fnc_assignGear; this setVariable [""badge"", ""eng_sl"", true];}";
+						init="call{[""sl"",this] call f_fnc_assignGear; this setVariable [""badge"", ""eng_sl"", true];}";
 						name="UnitNATO_ENG_SL";
 						description="NATO Engineer Team Leader";
 						isPlayable=1;
@@ -21457,16 +21686,16 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={623.77563,0.0014381409,375.23035};
+						position[]={583.21643,0.0014381409,315.27869};
 						angles[]={0,2.3602087,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""eng"",this] call f_fnc_assignGear;}";
+						init="call{[""dem"",this] call f_fnc_assignGear; this setVariable [""badge"", ""eng"", true];}";
 						name="UnitNATO_ENG_A1";
-						description="NATO Engineer Team Assistant (Demo)";
+						description="NATO Engineer Team Assistant (Demolitions)";
 						isPlayable=1;
 					};
 					id=299;
@@ -21539,16 +21768,16 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={629.77563,0.0014381409,383.30261};
+						position[]={589.21643,0.0014381409,323.35095};
 						angles[]={0,2.3602087,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""engm"",this] call f_fnc_assignGear;}";
+						init="call{[""eng"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_ENG_A3";
-						description="NATO Engineer Team Assistant (Mines)";
+						description="NATO Engineer Team Assistant ";
 						isPlayable=1;
 					};
 					id=300;
@@ -21621,7 +21850,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={618.29614,0.0014381409,373.65222};
+						position[]={577.73694,0.0014381409,313.70056};
 						angles[]={0,2.3602087,0};
 					};
 					side="West";
@@ -21630,7 +21859,7 @@ class Mission
 						skill=0.60000002;
 						init="call{[""eng"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_ENG_A2";
-						description="NATO Engineer Team Assistant (Demo)";
+						description="NATO Engineer Team Assistant";
 						isPlayable=1;
 					};
 					id=301;
@@ -21845,7 +22074,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={996.73462,0.0014381409,682.58313};
+						position[]={996.73499,0.0014388561,682.58301};
 						angles[]={0,2.3141146,0};
 					};
 					side="East";
@@ -21853,7 +22082,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""surgeon"",this] call f_fnc_assignGear;}";
+						init="call{[""sur"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_CO_Surgeon";
 						description="CSAT Surgeon";
 						isPlayable=1;
@@ -21928,7 +22157,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1002.7532,0.0014381409,684.47766};
+						position[]={1002.753,0.0014388561,684.47797};
 						angles[]={0,2.3141146,0};
 					};
 					side="East";
@@ -21937,7 +22166,7 @@ class Mission
 						skill=0.60000002;
 						rank="SERGEANT";
 						lock="UNLOCKED";
-						init="[""dc"",this] call f_fnc_assignGear;";
+						init="call{[""co"",this] call f_fnc_assignGear; this setVariable [""badge"", ""xo"", true];}";
 						name="UnitCSAT_CO_DC";
 						description="CSAT Deputy Commander";
 						isPlayable=1;
@@ -22021,7 +22250,7 @@ class Mission
 						skill=0.60000002;
 						rank="SERGEANT";
 						lock="UNLOCKED";
-						init="call{[""fac"",this] call f_fnc_assignGear; this setVariable [""badge"", ""xo"", true];}";
+						init="call{[""rad"",this] call f_fnc_assignGear; this setVariable [""badge"", ""fac"", true];}";
 						name="UnitCSAT_CO_FAC";
 						description="CSAT Forward Air Controller";
 						isPlayable=1;
@@ -22153,7 +22382,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1019.342,0.35594559,741.88391};
+						position[]={1019.342,0.35643458,741.88397};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -22163,14 +22392,14 @@ class Mission
 						skill=0.60000002;
 						rank="SERGEANT";
 						lock="UNLOCKED";
-						init="[""dc"",this] call f_fnc_assignGear;";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_ASL_SL";
 						description="CSAT Alpha Squad Leader";
 						isPlayable=1;
 					};
 					id=382;
 					type="O_Soldier_SL_F";
-					atlOffset=186.32451;
+					atlOffset=186.325;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -22193,6 +22422,25 @@ class Mission
 							};
 						};
 						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03PER";
+								};
+							};
+						};
+						class Attribute2
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -22211,7 +22459,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 				class Item1
@@ -22219,7 +22467,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1014.7444,0.23451614,739.31946};
+						position[]={1014.744,0.23444057,739.31897};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -22228,14 +22476,14 @@ class Mission
 						skill=0.60000002;
 						rank="CORPORAL";
 						lock="UNLOCKED";
-						init="[""m"",this] call f_fnc_assignGear;";
+						init="call{[""med"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_ASL_M";
 						description="CSAT Alpha Medic";
 						isPlayable=1;
 					};
 					id=383;
 					type="O_medic_F";
-					atlOffset=186.20308;
+					atlOffset=186.203;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -22259,6 +22507,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01PER";
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -22276,7 +22543,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 			};
@@ -22285,7 +22552,7 @@ class Mission
 				name="GrpCSAT_ASL";
 			};
 			id=381;
-			atlOffset=186.32451;
+			atlOffset=186.325;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -22535,15 +22802,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={989.97192,0.0014381409,753.86438};
-						angles[]={0,2.3141048,0};
+						position[]={989.97198,0.0014388561,753.86401};
+						angles[]={0,2.3140972,0};
 					};
 					side="East";
 					class Attributes
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_A1_AT";
 						description="CSAT Alpha 1 Assaultman (AT)";
 						isPlayable=1;
@@ -22574,6 +22841,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01PER";
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -22591,7 +22877,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -22978,22 +23264,22 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={970.55981,0.41432571,771.38391};
-						angles[]={0,2.3141048,0};
+						position[]={970.56,0.41443324,771.38397};
+						angles[]={0,2.3140972,0};
 					};
 					side="East";
 					class Attributes
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_A2_AT";
 						description="CSAT Alpha 2 Assaultman (AT)";
 						isPlayable=1;
 					};
 					id=395;
 					type="O_Soldier_LAT_F";
-					atlOffset=186.38289;
+					atlOffset=186.383;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -23017,6 +23303,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02PER";
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -23034,7 +23339,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -23416,7 +23721,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={984.21216,0.91089249,703.74719};
+						position[]={984.21198,0.91043544,703.74701};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -23426,14 +23731,14 @@ class Mission
 						skill=0.60000002;
 						rank="SERGEANT";
 						lock="UNLOCKED";
-						init="[""dc"",this] call f_fnc_assignGear;";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_BSL_SL";
 						description="CSAT Bravo Squad Leader";
 						isPlayable=1;
 					};
 					id=403;
 					type="O_Soldier_SL_F";
-					atlOffset=186.87946;
+					atlOffset=186.879;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -23456,6 +23761,25 @@ class Mission
 							};
 						};
 						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01PER";
+								};
+							};
+						};
+						class Attribute2
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -23474,7 +23798,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 				class Item1
@@ -23482,7 +23806,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={979.61255,0.3598671,701.18274};
+						position[]={979.61298,0.35944057,701.18298};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -23491,14 +23815,14 @@ class Mission
 						skill=0.60000002;
 						rank="CORPORAL";
 						lock="UNLOCKED";
-						init="[""m"",this] call f_fnc_assignGear;";
+						init="call{[""med"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_BSL_M";
 						description="CSAT Bravo Medic";
 						isPlayable=1;
 					};
 					id=404;
 					type="O_medic_F";
-					atlOffset=186.32843;
+					atlOffset=186.328;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -23522,6 +23846,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02PER";
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -23539,7 +23882,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 			};
@@ -23548,7 +23891,7 @@ class Mission
 				name="GrpCSAT_BSL";
 			};
 			id=402;
-			atlOffset=186.87946;
+			atlOffset=186.879;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -23798,7 +24141,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={954.34009,0.0014381409,716.01672};
+						position[]={954.34003,0.0014388561,716.01697};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -23806,7 +24149,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_B1_AT";
 						description="CSAT Bravo 1 Assaultman (AT)";
 						isPlayable=1;
@@ -23837,6 +24180,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01PER";
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -23854,7 +24216,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -24241,22 +24603,22 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={935.3645,0.12726212,734.08704};
-						angles[]={0,2.3141048,0};
+						position[]={935.36499,0.12743068,734.08698};
+						angles[]={0,2.3140972,0};
 					};
 					side="East";
 					class Attributes
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_B2_AT";
 						description="CSAT Bravo 2 Assaultman (AT)";
 						isPlayable=1;
 					};
 					id=416;
 					type="O_Soldier_LAT_F";
-					atlOffset=186.09583;
+					atlOffset=186.09599;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -24280,6 +24642,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03PER";
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -24297,7 +24678,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -24702,8 +25083,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={948.24243,0.0014381409,664.48547};
-						angles[]={0,2.3141048,0};
+						position[]={948.242,0.0014388561,664.48499};
+						angles[]={0,2.3140972,0};
 					};
 					side="East";
 					flags=2;
@@ -24712,7 +25093,7 @@ class Mission
 						skill=0.60000002;
 						rank="SERGEANT";
 						lock="UNLOCKED";
-						init="[""dc"",this] call f_fnc_assignGear;";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_CSL_SL";
 						description="CSAT Charlie Squad Leader";
 						isPlayable=1;
@@ -24743,6 +25124,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02PER";
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -24760,7 +25160,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 				class Item1
@@ -24768,8 +25168,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={943.64478,0.0014381409,661.92102};
-						angles[]={0,2.3141048,0};
+						position[]={943.64502,0.0014388561,661.92096};
+						angles[]={0,2.3140972,0};
 					};
 					side="East";
 					class Attributes
@@ -24777,7 +25177,7 @@ class Mission
 						skill=0.60000002;
 						rank="CORPORAL";
 						lock="UNLOCKED";
-						init="[""m"",this] call f_fnc_assignGear;";
+						init="call{[""med"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_CSL_M";
 						description="CSAT Charlie Medic";
 						isPlayable=1;
@@ -24808,6 +25208,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01PER";
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -24825,7 +25244,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 			};
@@ -25084,15 +25503,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={918.58032,0.0014381409,677.09485};
-						angles[]={0,2.3141048,0};
+						position[]={918.58002,0.0014388561,677.09497};
+						angles[]={0,2.3140972,0};
 					};
 					side="East";
 					class Attributes
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_C1_AT";
 						description="CSAT Charlie 1 Assaultman (AT)";
 						isPlayable=1;
@@ -25123,6 +25542,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03PER";
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -25140,7 +25578,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -25527,15 +25965,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={899.72583,0.0014381409,694.76282};
-						angles[]={0,2.3141048,0};
+						position[]={899.72601,0.0014388561,694.763};
+						angles[]={0,2.3140972,0};
 					};
 					side="East";
 					class Attributes
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_C2_AT";
 						description="CSAT Charlie 2 Assaultman (AT)";
 						isPlayable=1;
@@ -25566,6 +26004,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02PER";
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -25583,7 +26040,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -25965,8 +26422,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1050.3567,0.0014381409,809.61047};
-						angles[]={0,2.3141048,0};
+						position[]={1050.3571,0.0014388561,809.60999};
+						angles[]={0,2.3140972,0};
 					};
 					side="East";
 					flags=2;
@@ -25975,7 +26432,7 @@ class Mission
 						skill=0.60000002;
 						rank="CORPORAL";
 						lock="UNLOCKED";
-						init="call{[""mmgag"",this] call f_fnc_assignGear;}";
+						init="call{[""ftl"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MMG_SL";
 						description="CSAT Medium MG Team Leader";
 						isPlayable=1;
@@ -26050,7 +26507,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1040.3118,0.0014381409,807.19641};
+						position[]={1040.312,0.0014388561,807.19598};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -26058,7 +26515,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""mmgag"",this] call f_fnc_assignGear;}";
+						init="call{[""ammg"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MMG_A1";
 						description="CSAT Medium MG Team Assistant";
 						isPlayable=1;
@@ -26133,7 +26590,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1053.3069,0.0014381409,819.29797};
+						position[]={1053.307,0.0014388561,819.29797};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -26142,7 +26599,7 @@ class Mission
 						skill=0.60000002;
 						rank="CORPORAL";
 						lock="UNLOCKED";
-						init="call{[""mmgag"",this] call f_fnc_assignGear;}";
+						init="call{[""ammg"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MMG_A2";
 						description="CSAT Medium MG Team Assistant";
 						isPlayable=1;
@@ -26217,7 +26674,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1053.0706,0.0014381409,814.67102};
+						position[]={1053.071,0.0014388561,814.67096};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -26225,7 +26682,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""mmgg"",this] call f_fnc_assignGear;}";
+						init="call{[""mmg"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MMG_G2";
 						description="CSAT Medium MG Team Gunner";
 						isPlayable=1;
@@ -26300,7 +26757,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1045.7561,0.0014381409,807.04797};
+						position[]={1045.756,0.0014388561,807.04797};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -26308,7 +26765,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="[""mmgg"",this] call f_fnc_assignGear;";
+						init="call{[""mmg"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MMG_G1";
 						description="CSAT Medium MG Team Gunner";
 						isPlayable=1;
@@ -26440,7 +26897,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1039.2278,0.0014381409,816.40149};
+						position[]={1039.228,0.0014388561,816.40198};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -26449,7 +26906,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""dc"",this] call f_fnc_assignGear;}";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MAT_SL";
 						description="CSAT Medium AT Team Leader";
 						isPlayable=1;
@@ -26532,7 +26989,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""matag"",this] call f_fnc_assignGear;}";
+						init="call{[""amat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MAT_A1";
 						description="CSAT Medium AT Team Assistant";
 						isPlayable=1;
@@ -26615,7 +27072,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""matag"",this] call f_fnc_assignGear;}";
+						init="call{[""amat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MAT_A2";
 						description="CSAT Medium AT Team Assistant";
 						isPlayable=1;
@@ -26690,14 +27147,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1034.6272,0.0014381409,813.83899};
+						position[]={1034.627,0.0014388561,813.83899};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""matg"",this] call f_fnc_assignGear;";
+						init="call{[""mat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MAT_G1";
 						description="CSAT Medium AT Team Gunner";
 						isPlayable=1;
@@ -26772,7 +27229,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1044.2366,0.0014381409,823.0968};
+						position[]={1044.2371,0.0014388561,823.09698};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -26780,7 +27237,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""matg"",this] call f_fnc_assignGear;}";
+						init="call{[""mat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MAT_G2";
 						description="CSAT Medium AT Team Gunner";
 						isPlayable=1;
@@ -26996,7 +27453,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={825.12549,0.0014381409,505.89417};
+						position[]={825.125,0.0014388561,505.89398};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
@@ -27004,7 +27461,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""surgeon"",this] call f_fnc_assignGear;}";
+						init="call{[""sur"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_CO_Surgeon";
 						description="AAF Surgeon";
 						isPlayable=1;
@@ -27087,7 +27544,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""dc"",this] call f_fnc_assignGear; this setVariable [""badge"", ""xo"", true];}";
+						init="call{[""co"",this] call f_fnc_assignGear; this setVariable [""badge"", ""xo"", true];}";
 						name="UnitAAF_CO_DC";
 						description="AAF Deputy Commander";
 						isPlayable=1;
@@ -27162,7 +27619,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={835.5874,0.0014381409,512.84143};
+						position[]={835.58698,0.0014388561,512.841};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
@@ -27170,7 +27627,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""fac"",this] call f_fnc_assignGear;}";
+						init="call{[""rad"",this] call f_fnc_assignGear; this setVariable [""badge"", ""fac"", true];}";
 						name="UnitAAF_CO_FAC";
 						description="AAF Forward Air Controller";
 						isPlayable=1;
@@ -27302,8 +27759,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={843.00439,0.0014381409,562.41956};
-						angles[]={0,2.3358727,0};
+						position[]={843.00403,0.0014388561,562.41998};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					flags=2;
@@ -27311,7 +27768,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="[""dc"",this] call f_fnc_assignGear;";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_ASL_SL";
 						description="AAF Alpha Squad Leader";
 						isPlayable=1;
@@ -27340,7 +27797,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male04GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.95999998;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item1
@@ -27348,15 +27843,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={838.35107,0.0014381409,559.95471};
-						angles[]={0,2.3358727,0};
+						position[]={838.35101,0.0014388561,559.95502};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""m"",this] call f_fnc_assignGear;";
+						init="call{[""med"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_ASL_M";
 						description="AAF Alpha Medic";
 						isPlayable=1;
@@ -27385,7 +27880,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 			};
@@ -27586,15 +28119,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={819.36572,0.0014381409,571.64807};
-						angles[]={0,2.3358727,0};
+						position[]={819.36603,0.0014388561,571.64801};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_A1_AT";
 						description="AAF Alpha 1 Assaultman (AT)";
 						isPlayable=1;
@@ -27623,7 +28156,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -27912,15 +28483,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={800.92139,0.0014381409,589.72229};
-						angles[]={0,2.3358727,0};
+						position[]={800.92102,0.0014388561,589.72198};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_A2_AT";
 						description="AAF Alpha 2 Assaultman (AT)";
 						isPlayable=1;
@@ -27949,7 +28520,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male04GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.99000001;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -28268,8 +28877,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={813.2251,0.0014381409,531.26135};
-						angles[]={0,2.3358727,0};
+						position[]={813.22498,0.0014388561,531.26099};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					flags=2;
@@ -28277,7 +28886,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="[""dc"",this] call f_fnc_assignGear;";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_BSL_SL";
 						description="AAF Bravo Squad Leader";
 						isPlayable=1;
@@ -28306,7 +28915,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.04;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item1
@@ -28314,15 +28961,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={808.5708,0.0014381409,528.79846};
-						angles[]={0,2.3358727,0};
+						position[]={808.57098,0.0014388561,528.79797};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""m"",this] call f_fnc_assignGear;";
+						init="call{[""med"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_BSL_M";
 						description="AAF Bravo Medic";
 						isPlayable=1;
@@ -28351,7 +28998,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male06GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.99000001;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 			};
@@ -28552,15 +29237,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={789.95068,0.0014381409,541.08948};
-						angles[]={0,2.3358727,0};
+						position[]={789.95099,0.0014388561,541.08899};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_B1_AT";
 						description="AAF Bravo 1 Assaultman (AT)";
 						isPlayable=1;
@@ -28589,7 +29274,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male05GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.03;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -28878,15 +29601,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={771.20361,0.0014381409,559.52698};
-						angles[]={0,2.3358727,0};
+						position[]={771.20398,0.0014388561,559.52698};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_B2_AT";
 						description="AAF Bravo 2 Assaultman (AT)";
 						isPlayable=1;
@@ -28915,7 +29638,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male04GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.98000002;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -29234,8 +29995,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={783.1792,0.0014381409,500.72034};
-						angles[]={0,2.3358727,0};
+						position[]={783.17902,0.0014388561,500.72};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					flags=2;
@@ -29243,7 +30004,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="[""dc"",this] call f_fnc_assignGear;";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_CSL_SL";
 						description="AAF Charlie Squad Leader";
 						isPlayable=1;
@@ -29272,7 +30033,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.02;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item1
@@ -29280,15 +30079,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={778.52588,0.0014381409,498.25745};
-						angles[]={0,2.3358727,0};
+						position[]={778.526,0.0014388561,498.25699};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""m"",this] call f_fnc_assignGear;";
+						init="call{[""med"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_CSL_M";
 						description="AAF Charlie Medic";
 						isPlayable=1;
@@ -29317,7 +30116,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 			};
@@ -29518,15 +30355,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={758.98779,0.0014381409,510.86682};
-						angles[]={0,2.3358727,0};
+						position[]={758.98798,0.0014388561,510.86697};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_C1_AT";
 						description="AAF Charlie 1 Assaultman (AT)";
 						isPlayable=1;
@@ -29555,7 +30392,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.99000001;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -29844,15 +30719,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={741.22021,0.0014381409,528.36682};
-						angles[]={0,2.3358727,0};
+						position[]={741.21997,0.0014388561,528.367};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="[""rat"",this] call f_fnc_assignGear;";
+						init="call{[""lat"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_C2_AT";
 						description="AAF Charlie 2 Assaultman (AT)";
 						isPlayable=1;
@@ -29881,7 +30756,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						class Attribute1
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male06GRE";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.98000002;
+								};
+							};
+						};
+						nAttributes=3;
 					};
 				};
 				class Item4
@@ -30200,7 +31113,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={881.3999,0.0014381409,623.59924};
+						position[]={881.40002,0.0014388561,623.599};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
@@ -30209,7 +31122,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""dc"",this] call f_fnc_assignGear;}";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_MMG_SL";
 						description="AAF Medium MG Team Leader";
 						isPlayable=1;
@@ -30284,14 +31197,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={866.22314,0.0014381409,621.18323};
+						position[]={866.22302,0.0014388561,621.18298};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""mmgag"",this] call f_fnc_assignGear;}";
+						init="call{[""ammg"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_MMG_A1";
 						description="AAF Medium MG Team Assistant";
 						isPlayable=1;
@@ -30366,7 +31279,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={882.61182,0.0014381409,632.40588};
+						position[]={882.612,0.0014388561,632.40601};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
@@ -30374,7 +31287,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""mmgag"",this] call f_fnc_assignGear;}";
+						init="call{[""ammg"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_MMG_A2";
 						description="AAF Medium MG Team Assistant";
 						isPlayable=1;
@@ -30449,7 +31362,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={884.15479,0.0014381409,640.7301};
+						position[]={884.15503,0.0014388561,640.72998};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
@@ -30457,7 +31370,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""mmgg"",this] call f_fnc_assignGear;}";
+						init="call{[""mmg"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_MMG_G2";
 						description="AAF Medium MG Team Gunner";
 						isPlayable=1;
@@ -30532,14 +31445,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={873.6665,0.0014381409,622.46838};
+						position[]={873.66699,0.0014388561,622.46802};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""mmgg"",this] call f_fnc_assignGear;";
+						init="call{[""mmg"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_MMG_G1";
 						description="AAF Medium MG Team Gunner";
 						isPlayable=1;
@@ -30671,7 +31584,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={874.16943,0.0014381409,633.80823};
+						position[]={874.16901,0.0014388561,633.80798};
 						angles[]={0,2.366806,0};
 					};
 					side="Independent";
@@ -30680,7 +31593,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""dc"",this] call f_fnc_assignGear;  }";
+						init="call{[""sl"",this] call f_fnc_assignGear;  }";
 						name="UnitAAF_MAT_SL";
 						description="AAF Medium AT Team Leader";
 						isPlayable=1;
@@ -30755,14 +31668,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={862.09619,0.0014381409,631.92346};
+						position[]={862.09601,0.0014388561,631.92297};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""matag"",this] call f_fnc_assignGear;  }";
+						init="call{[""amat"",this] call f_fnc_assignGear;  }";
 						name="UnitAAF_MAT_A1";
 						description="AAF Medium AT Team Assistant";
 						isPlayable=1;
@@ -30837,14 +31750,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={879.26807,0.0014381409,647.31018};
+						position[]={879.26801,0.0014388561,647.31};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""matg"",this] call f_fnc_assignGear;}";
+						init="call{[""mat"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_MAT_G2";
 						description="AAF Medium AT Team Gunner";
 						isPlayable=1;
@@ -30919,7 +31832,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={877.78076,0.0014381409,641.80627};
+						position[]={877.78101,0.0014388561,641.80597};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
@@ -30927,7 +31840,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""matag"",this] call f_fnc_assignGear;}";
+						init="call{[""amat"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_MAT_A2";
 						description="AAF Medium AT Team Assistant";
 						isPlayable=1;
@@ -31002,14 +31915,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={868.03662,0.0014381409,632.7262};
+						position[]={868.03699,0.0014388561,632.72601};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""matg"",this] call f_fnc_assignGear;  }";
+						init="call{[""mat"",this] call f_fnc_assignGear;  }";
 						name="UnitAAF_MAT_G1";
 						description="AAF Medium AT Team Gunner";
 						isPlayable=1;
@@ -31263,7 +32176,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""dc"",this] call f_fnc_assignGear; this setVariable [""badge"", ""eng_sl"", true];}";
+						init="call{[""sl"",this] call f_fnc_assignGear; this setVariable [""badge"", ""eng_sl"", true];}";
 						name="UnitCSAT_ENG_SL";
 						description="CSAT Engineer Team Leader";
 						isPlayable=1;
@@ -31338,16 +32251,16 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1025.6614,0.0014381409,783.46985};
+						position[]={1025.661,0.0014388561,783.46997};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""eng"",this] call f_fnc_assignGear;";
+						init="call{[""eng"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_ENG_A1";
-						description="CSAT Engineer Team Assistant (Demo)";
+						description="CSAT Engineer Team Assistant";
 						isPlayable=1;
 					};
 					id=1168;
@@ -31427,9 +32340,9 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""engm"",this] call f_fnc_assignGear;}";
+						init="call{[""dem"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_ENG_A3";
-						description="CSAT Engineer Team Assistant (Mines)";
+						description="CSAT Engineer Team Assistant (Demo)";
 						isPlayable=1;
 					};
 					id=1169;
@@ -31502,14 +32415,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1020.261,0.0014381409,781.64368};
+						position[]={1020.261,0.0014388561,781.64398};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""eng"",this] call f_fnc_assignGear;}";
+						init="call{[""dem"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_ENG_A2";
 						description="CSAT Engineer Team Assistant (Demo)";
 						isPlayable=1;
@@ -31650,7 +32563,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""dc"",this] call f_fnc_assignGear; this setVariable [""badge"", ""eng_sl"", true];}";
+						init="call{[""sl"",this] call f_fnc_assignGear; this setVariable [""badge"", ""eng_sl"", true];}";
 						name="UnitAAF_ENG_SL";
 						description="AAF Engineer Team Leader ";
 						isPlayable=1;
@@ -31725,14 +32638,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={854.09229,0.0014381409,597.3219};
+						position[]={854.09198,0.0014388561,597.32196};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""eng"",this] call f_fnc_assignGear; ";
+						init="call{[""dem"",this] call f_fnc_assignGear; this setVariable [""badge"", ""eng"", true];}";
 						name="UnitAAF_ENG_A1";
 						description="AAF Engineer Team Assistant (Demo)";
 						isPlayable=1;
@@ -31814,9 +32727,9 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""engm"",this] call f_fnc_assignGear;}";
+						init="call{[""eng"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_ENG_A3";
-						description="AAF Engineer Team Assistant (Mines)";
+						description="AAF Engineer Team Assistant";
 						isPlayable=1;
 					};
 					id=1201;
@@ -31889,14 +32802,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={848.65381,0.0014381409,595.61292};
+						position[]={848.65399,0.0014388561,595.61298};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""eng"",this] call f_fnc_assignGear; }";
+						init="call{[""dem"",this] call f_fnc_assignGear; this setVariable [""badge"", ""eng"", true];}";
 						name="UnitAAF_ENG_A2";
 						description="AAF Engineer Team Assistant (Demo)";
 						isPlayable=1;
@@ -32052,7 +32965,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={616.28442,0.0014381409,391.93738};
+						position[]={575.72522,0.0014381409,331.98572};
 						angles[]={0,2.3602087,0};
 					};
 					side="West";
@@ -32061,7 +32974,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""dc"",this] call f_fnc_assignGear; this setVariable [""badge"", ""log_sl"", true];}";
+						init="call{[""sl"",this] call f_fnc_assignGear; this setVariable [""badge"", ""log_sl"", true];}";
 						name="UnitNATO_LOG_SL";
 						description="NATO Logistics Team Leader";
 						isPlayable=1;
@@ -32136,14 +33049,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={611.57251,0.0014381409,389.58582};
+						position[]={571.01331,0.0014381409,329.63416};
 						angles[]={0,2.3602087,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""log"",this] call f_fnc_assignGear;}";
+						init="call{[""eng"",this] call f_fnc_assignGear;this setVariable [""badge"", ""log"", true];}";
 						name="UnitNATO_LOG_A1";
 						description="NATO Logistics Team";
 						isPlayable=1;
@@ -32218,14 +33131,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={616.80688,0.0014381409,397.4491};
+						position[]={576.24768,0.0014381409,337.49744};
 						angles[]={0,2.3602087,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""log"",this] call f_fnc_assignGear;}";
+						init="call{[""eng"",this] call f_fnc_assignGear;this setVariable [""badge"", ""log"", true];}";
 						name="UnitNATO_LOG_A2";
 						description="NATO Logistics Team";
 						isPlayable=1;
@@ -32300,14 +33213,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={606.09302,0.0014381409,388.0116};
+						position[]={565.53381,0.0014381409,328.05994};
 						angles[]={0,2.3602087,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""log"",this] call f_fnc_assignGear;}";
+						init="call{[""eng"",this] call f_fnc_assignGear;this setVariable [""badge"", ""log"", true];}";
 						name="UnitNATO_LOG_A3";
 						description="NATO Logistics Team";
 						isPlayable=1;
@@ -32440,8 +33353,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={591.42407,0.47998428,411.48621};
-						angles[]={0,2.3719492,0};
+						position[]={550.86389,0.48043823,351.53455};
+						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					flags=2;
@@ -32456,7 +33369,7 @@ class Mission
 					};
 					id=1370;
 					type="B_Soldier_TL_F";
-					atlOffset=186.44855;
+					atlOffset=186.44901;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -32524,14 +33437,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={586.68481,0.23443985,409.19324};
+						position[]={546.12561,0.23443985,349.24158};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""hatg"",this] call f_fnc_assignGear; }";
+						init="call{[""hat"",this] call f_fnc_assignGear; }";
 						name="UnitNATO_HAT_G1";
 						description="NATO Heavy AT Team Gunner";
 						isPlayable=1;
@@ -32606,20 +33519,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={581.65356,0.0014381409,408.328};
+						position[]={541.09338,0.0014381409,348.37634};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""hatag"",this] call f_fnc_assignGear;}";
+						init="call{[""ahat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_HAT_A1";
 						description="NATO Heavy AT Team Assistant Gunner";
 						isPlayable=1;
 					};
 					id=1372;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -32688,20 +33601,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={591.32153,0.0014381409,416.55457};
+						position[]={550.76233,0.0014381409,356.60291};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""hatg"",this] call f_fnc_assignGear;}";
+						init="call{[""hat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_HAT_G2";
 						description="NATO Heavy AT Team Gunner";
 						isPlayable=1;
 					};
 					id=1373;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -32770,14 +33683,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={591.5481,0.0014381409,421.21082};
+						position[]={550.98889,0.0014381409,361.25916};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""hatag"",this] call f_fnc_assignGear;}";
+						init="call{[""ahat"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_HAT_A2";
 						description="NATO Heavy AT Team Assistant";
 						isPlayable=1;
@@ -32853,7 +33766,7 @@ class Mission
 				name="GrpNATO_HAT";
 			};
 			id=1369;
-			atlOffset=186.44855;
+			atlOffset=186.44901;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -32909,7 +33822,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={581.09106,0.0014381409,385.29285};
+						position[]={540.53186,0.0014381409,325.34119};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -32918,7 +33831,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""dc"",this] call f_fnc_assignGear;}";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_SAM_SL";
 						description="NATO SAM Team Leader";
 						isPlayable=1;
@@ -32993,20 +33906,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={576.37329,0.0014381409,383.71472};
+						position[]={535.81409,0.0014381409,323.76306};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""msamg"",this] call f_fnc_assignGear;}";
+						init="call{[""sam"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_SAM_G1";
 						description="NATO SAM Gunner";
 						isPlayable=1;
 					};
 					id=1378;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -33075,20 +33988,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={572.63403,0.0014381409,381.85144};
+						position[]={532.07483,0.0014381409,321.89978};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""msamag"",this] call f_fnc_assignGear;}";
+						init="call{[""asam"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_SAM_A1";
 						description="NATO SAM Assistant";
 						isPlayable=1;
 					};
 					id=1627;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -33157,7 +34070,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={582.06177,0.0014381409,389.97253};
+						position[]={541.50256,0.0014381409,330.02087};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -33165,13 +34078,13 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""msamg"",this] call f_fnc_assignGear;}";
+						init="call{[""sam"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_SAM_G2";
 						description="NATO SAM Gunner";
 						isPlayable=1;
 					};
 					id=1628;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -33240,20 +34153,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={583.83813,0.0014381409,394.92957};
+						position[]={543.27893,0.0014381409,334.97791};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""msamag"",this] call f_fnc_assignGear;}";
+						init="call{[""asam"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_SAM_A2";
 						description="NATO SAM Assistant";
 						isPlayable=1;
 					};
 					id=1629;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -33379,7 +34292,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={612.29126,0.0014381409,357.10535};
+						position[]={571.73206,0.0014381409,297.15369};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -33388,7 +34301,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""dc"",this] call f_fnc_assignGear;}";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MTR_SL";
 						description="NATO Mortar Team Leader";
 						isPlayable=1;
@@ -33463,20 +34376,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={607.57251,0.0014381409,355.52722};
+						position[]={567.01331,0.0014381409,295.57556};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""mtrag"",this] call f_fnc_assignGear;}";
+						init="call{[""amtr"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MTR_AG1";
 						description="NATO Mortar Team Assistant";
 						isPlayable=1;
 					};
 					id=1390;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -33545,20 +34458,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={603.83325,0.0014381409,353.66589};
+						position[]={563.27405,0.0014381409,293.71619};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""mtrg"",this] call f_fnc_assignGear;}";
+						init="call{[""mtr"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MTR_G1";
 						description="NATO Mortar Team Gunner";
 						isPlayable=1;
 					};
 					id=1621;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -33627,7 +34540,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={613.26001,0.0014381409,361.78503};
+						position[]={572.70081,0.0014381409,301.83337};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -33635,13 +34548,13 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""mtrag"",this] call f_fnc_assignGear;}";
+						init="call{[""amtr"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MTR_AG2";
 						description="NATO Mortar Team Assistant";
 						isPlayable=1;
 					};
 					id=1622;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -33710,20 +34623,20 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={615.03735,0.0014381409,366.74207};
+						position[]={574.47717,0.0014381409,306.79041};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""mtrg"",this] call f_fnc_assignGear;}";
+						init="call{[""mtr"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_MTR_G2";
 						description="NATO Mortar Team Gunner";
 						isPlayable=1;
 					};
 					id=1623;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -33849,7 +34762,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={595.42505,0.0014381409,375.29285};
+						position[]={554.86584,0.0014381409,315.34119};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -33858,7 +34771,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""dc"",this] call f_fnc_assignGear;}";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitNATO_REC_SL";
 						description="NATO Recon Team Leader";
 						isPlayable=1;
@@ -33933,7 +34846,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={590.68774,0.0014381409,372.99988};
+						position[]={550.12854,0.0014381409,313.04822};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -33946,7 +34859,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=1624;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -34015,7 +34928,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={585.19165,0.0014381409,371.48816};
+						position[]={544.63245,0.0014381409,311.5365};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -34028,7 +34941,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=1625;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -34097,7 +35010,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={597.87036,0.0014381409,379.96082};
+						position[]={557.31116,0.0014381409,320.00916};
 						angles[]={0,2.3719547,0};
 					};
 					side="West";
@@ -34110,7 +35023,7 @@ class Mission
 						isPlayable=1;
 					};
 					id=1626;
-					type="B_Soldier_F";
+					type="B_soldier_F";
 					atlOffset=185.97;
 					class CustomAttributes
 					{
@@ -34245,7 +35158,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""dc"",this] call f_fnc_assignGear; this setVariable [""badge"", ""log_sl"", true];}";
+						init="call{[""sl"",this] call f_fnc_assignGear; this setVariable [""badge"", ""log_sl"", true];}";
 						name="UnitCSAT_LOG_SL";
 						description="CSAT Logistics Team Leader";
 						isPlayable=1;
@@ -34327,7 +35240,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""log"",this] call f_fnc_assignGear;}";
+						init="call{[""eng"",this] call f_fnc_assignGear; this setVariable [""badge"", ""log"", true];}";
 						name="UnitCSAT_LOG_A1";
 						description="CSAT Logistics Team";
 						isPlayable=1;
@@ -34409,7 +35322,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""log"",this] call f_fnc_assignGear;}";
+						init="call{[""eng"",this] call f_fnc_assignGear; this setVariable [""badge"", ""log"", true];}";
 						name="UnitCSAT_LOG_A2";
 						description="CSAT Logistics Team";
 						isPlayable=1;
@@ -34491,7 +35404,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""log"",this] call f_fnc_assignGear;}";
+						init="call{[""eng"",this] call f_fnc_assignGear; this setVariable [""badge"", ""log"", true];}";
 						name="UnitCSAT_LOG_A3";
 						description="CSAT Logistics Team";
 						isPlayable=1;
@@ -34623,7 +35536,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1026.7942,0.0014381409,825.61243};
+						position[]={1026.7939,0.0014388561,825.612};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -34632,7 +35545,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""dc"",this] call f_fnc_assignGear;}";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_HAT_SL";
 						description="CSAT Heavy AT Team Leader";
 						isPlayable=1;
@@ -34715,7 +35628,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""hatag"",this] call f_fnc_assignGear;}";
+						init="call{[""ahat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_HAT_A1";
 						description="CSAT Heavy AT Team Assistant";
 						isPlayable=1;
@@ -34798,7 +35711,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""hatg"",this] call f_fnc_assignGear;}";
+						init="call{[""hat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_HAT_G2";
 						description="CSAT Heavy AT Team Gunner";
 						isPlayable=1;
@@ -34880,7 +35793,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""hatg"",this] call f_fnc_assignGear;}";
+						init="call{[""hat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_HAT_G1";
 						description="CSAT Heavy AT Team Gunner";
 						isPlayable=1;
@@ -34963,7 +35876,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""hatag"",this] call f_fnc_assignGear;}";
+						init="call{[""ahat"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_HAT_A2";
 						description="CSAT Heavy AT Team Assistant";
 						isPlayable=1;
@@ -35095,7 +36008,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1003.6956,0.0014381409,803.29016};
+						position[]={1003.696,0.0014388561,803.28998};
 						angles[]={0,2.3141146,0};
 					};
 					side="East";
@@ -35103,9 +36016,9 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						rank="CORPORAL";
+						rank="SERGEANT";
 						lock="UNLOCKED";
-						init="call{[""mmgag"",this] call f_fnc_assignGear;}";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_SAM_SL";
 						description="CSAT AAA Team Leader";
 						isPlayable=1;
@@ -35188,7 +36101,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""msamag"",this] call f_fnc_assignGear;}";
+						init="call{[""asam"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_SAM_A1";
 						description="CSAT SAM Team Assistant";
 						isPlayable=1;
@@ -35271,7 +36184,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""msamg"",this] call f_fnc_assignGear;}";
+						init="call{[""sam"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_SAM_G1";
 						description="CSAT SAM Team Gunner";
 						isPlayable=1;
@@ -35355,7 +36268,7 @@ class Mission
 						skill=0.60000002;
 						rank="CORPORAL";
 						lock="UNLOCKED";
-						init="call{[""msamag"",this] call f_fnc_assignGear;}";
+						init="call{[""asam"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_SAM_A2";
 						description="CSAT SAM Team Assistant";
 						isPlayable=1;
@@ -35438,7 +36351,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""msamg"",this] call f_fnc_assignGear;}";
+						init="call{[""sam"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_SAM_G2";
 						description="CSAT SAM Team Gunner";
 						isPlayable=1;
@@ -35579,7 +36492,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""matag"",this] call f_fnc_assignGear;}";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MTR_SL";
 						description="CSAT Mortar Team Leader";
 						isPlayable=1;
@@ -35662,7 +36575,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""mtrag"",this] call f_fnc_assignGear;}";
+						init="call{[""amtr"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MTR_A1";
 						description="CSAT Mortar Team Assistant";
 						isPlayable=1;
@@ -35745,7 +36658,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""mtrag"",this] call f_fnc_assignGear;}";
+						init="call{[""amtr"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MTR_A2";
 						description="CSAT Mortar Team Assistant";
 						isPlayable=1;
@@ -35827,7 +36740,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""mtrg"",this] call f_fnc_assignGear;}";
+						init="call{[""mtr"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MTR_G1";
 						description="CSAT Mortar Team Gunner";
 						isPlayable=1;
@@ -35910,7 +36823,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""mtrg"",this] call f_fnc_assignGear;}";
+						init="call{[""mtr"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_MTR_G2";
 						description="CSAT Mortar Team Gunner";
 						isPlayable=1;
@@ -36042,7 +36955,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1018.0862,0.0014381409,835.94055};
+						position[]={1018.086,0.0014388561,835.94098};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -36050,9 +36963,9 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						rank="LIEUTENANT";
+						rank="SERGEANT";
 						lock="UNLOCKED";
-						init="call{[""SL"",this] call f_fnc_assignGear;}";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_REC_SL";
 						description="CSAT Recon Team Leader";
 						isPlayable=1;
@@ -36127,7 +37040,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1007.3772,0.0014381409,833.43274};
+						position[]={1007.377,0.0014388561,833.43298};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -36293,7 +37206,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1020.2561,0.0014381409,840.73938};
+						position[]={1020.256,0.0014388561,840.73901};
 						angles[]={0,2.3140972,0};
 					};
 					side="East";
@@ -36301,7 +37214,7 @@ class Mission
 					{
 						skill=0.60000002;
 						lock="UNLOCKED";
-						init="call{[""DM"",this] call f_fnc_assignGear;}";
+						init="call{[""dm"",this] call f_fnc_assignGear;}";
 						name="UnitCSAT_REC_DM";
 						description="CSAT Recon Marksman";
 						isPlayable=1;
@@ -36442,7 +37355,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""dc"",this] call f_fnc_assignGear; this setVariable [""badge"", ""log_sl"", true];}";
+						init="call{[""sl"",this] call f_fnc_assignGear; this setVariable [""badge"", ""log_sl"", true];}";
 						name="UnitAAF_LOG_SL";
 						description="AAF Logistics Team Leader ";
 						isPlayable=1;
@@ -36517,14 +37430,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={843.20752,0.0014381409,607.40198};
-						angles[]={0,2.3358793,0};
+						position[]={843.20801,0.0014388561,607.40198};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""eng"",this] call f_fnc_assignGear; ";
+						init="call{[""eng"",this] call f_fnc_assignGear; this setVariable [""badge"", ""log"", true];}";
 						name="UnitAAF_LOG_A1";
 						description="AAF Logistics Team";
 						isPlayable=1;
@@ -36599,14 +37512,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={850.1333,0.0014381409,614.61682};
+						position[]={850.133,0.0014388561,614.617};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""log"",this] call f_fnc_assignGear; }";
+						init="call{[""eng"",this] call f_fnc_assignGear;  this setVariable [""badge"", ""log"", true];}";
 						name="UnitAAF_LOG_A2";
 						description="AAF Logistics Team";
 						isPlayable=1;
@@ -36681,14 +37594,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={837.76904,0.0014381409,605.69495};
-						angles[]={0,2.3358793,0};
+						position[]={837.76898,0.0014388561,605.69501};
+						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="[""engm"",this] call f_fnc_assignGear; ";
+						init="call{[""eng"",this] call f_fnc_assignGear;  this setVariable [""badge"", ""log"", true];}";
 						name="UnitAAF_LOG_A3";
 						description="AAF Logistics Team";
 						isPlayable=1;
@@ -36820,7 +37733,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={862.32959,0.0014381409,644.01917};
+						position[]={862.33002,0.0014388561,644.01898};
 						angles[]={0,2.366806,0};
 					};
 					side="Independent";
@@ -36829,7 +37742,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""dc"",this] call f_fnc_assignGear;  }";
+						init="call{[""sl"",this] call f_fnc_assignGear;  }";
 						name="UnitAAF_HAT_SL";
 						description="AAF Heavy AT Team Leader";
 						isPlayable=1;
@@ -36904,14 +37817,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={850.25439,0.0014381409,642.13245};
+						position[]={850.25403,0.0014388561,642.13196};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""hatag"",this] call f_fnc_assignGear;  }";
+						init="call{[""ahat"",this] call f_fnc_assignGear;  }";
 						name="UnitAAF_HAT_A1";
 						description="AAF Heavy AT Team Assistant Gunner";
 						isPlayable=1;
@@ -36986,14 +37899,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={867.42627,0.0014381409,657.51917};
+						position[]={867.42603,0.0014388561,657.51898};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""hatg"",this] call f_fnc_assignGear;}";
+						init="call{[""hat"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_HAT_G2";
 						description="AAF Heavy AT Team Gunner";
 						isPlayable=1;
@@ -37068,14 +37981,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={855.78955,0.0014381409,642.79456};
+						position[]={855.78998,0.0014388561,642.79498};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""hatg"",this] call f_fnc_assignGear;  }";
+						init="call{[""hat"",this] call f_fnc_assignGear;  }";
 						name="UnitAAF_HAT_G1";
 						description="AAF Heavy AT Team Gunner";
 						isPlayable=1;
@@ -37151,7 +38064,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={865.93896,0.0014381409,652.01721};
+						position[]={865.93903,0.0014388561,652.01697};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
@@ -37159,7 +38072,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""hatag"",this] call f_fnc_assignGear;}";
+						init="call{[""ahat"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_HAT_A2";
 						description="AAF Heavy AT Team Assistant";
 						isPlayable=1;
@@ -37291,7 +38204,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={844.77588,0.0014381409,656.65784};
+						position[]={844.776,0.0014388561,656.65796};
 						angles[]={0,2.366806,0};
 					};
 					side="Independent";
@@ -37299,8 +38212,8 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						rank="CORPORAL";
-						init="call{[""dc"",this] call f_fnc_assignGear;  }";
+						rank="SERGEANT";
+						init="call{[""sl"",this] call f_fnc_assignGear;  }";
 						name="UnitAAF_MTR_SL";
 						description="AAF Mortar Team Leader";
 						isPlayable=1;
@@ -37375,14 +38288,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={832.69971,0.0014381409,654.77112};
+						position[]={832.70001,0.0014388561,654.771};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""mtrag"",this] call f_fnc_assignGear;  }";
+						init="call{[""amtr"",this] call f_fnc_assignGear;  }";
 						name="UnitAAF_MTR_A1";
 						description="AAF Mortar Team Assistant";
 						isPlayable=1;
@@ -37457,14 +38370,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={849.87354,0.0014381409,670.15784};
+						position[]={849.87402,0.0014388561,670.15796};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""mtrg"",this] call f_fnc_assignGear;}";
+						init="call{[""mtr"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_MTR_G2";
 						description="AAF Mortar Team Gunner";
 						isPlayable=1;
@@ -37539,14 +38452,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={838.72314,0.0014381409,654.90784};
+						position[]={838.72302,0.0014388561,654.90796};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""mtrg"",this] call f_fnc_assignGear;  }";
+						init="call{[""mtr"",this] call f_fnc_assignGear;  }";
 						name="UnitAAF_MTR_G1";
 						description="AAF Mortar Team Gunner";
 						isPlayable=1;
@@ -37622,15 +38535,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={848.38623,0.0014381409,664.65393};
+						position[]={848.38599,0.0014388561,664.65399};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						rank="SERGEANT";
-						init="call{[""mtrag"",this] call f_fnc_assignGear;}";
+						init="call{[""amtr"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_MTR_A2";
 						description="AAF Mortar Team Assistant";
 						isPlayable=1;
@@ -37762,7 +38674,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={838.09619,0.0014381409,616.47229};
+						position[]={838.09601,0.0014388561,616.47198};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
@@ -37771,7 +38683,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="SERGEANT";
-						init="call{[""dc"",this] call f_fnc_assignGear;}";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_SAM_SL";
 						description="AAF SAM Team Leader";
 						isPlayable=1;
@@ -37846,14 +38758,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={822.91943,0.0014381409,614.05627};
+						position[]={822.91901,0.0014388561,614.05597};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""msamag"",this] call f_fnc_assignGear;}";
+						init="call{[""asam"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_SAM_A1";
 						description="AAF SAM Team Assistant Gunner";
 						isPlayable=1;
@@ -37928,14 +38840,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={831.20654,0.0014381409,613.73987};
+						position[]={831.20697,0.0014388561,613.73999};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
 					class Attributes
 					{
 						skill=0.60000002;
-						init="call{[""msamg"",this] call f_fnc_assignGear;}";
+						init="call{[""sam"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_SAM_G1";
 						description="AAF SAM Team Gunner";
 						isPlayable=1;
@@ -38010,7 +38922,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={839.30615,0.0014381409,625.27698};
+						position[]={839.30603,0.0014388561,625.27698};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
@@ -38018,7 +38930,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""msamag"",this] call f_fnc_assignGear;}";
+						init="call{[""asam"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_SAM_A2";
 						description="AAF SAM Assistant";
 						isPlayable=1;
@@ -38093,7 +39005,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={840.8501,0.0014381409,633.60315};
+						position[]={840.84998,0.0014388561,633.60297};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
@@ -38101,7 +39013,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="call{[""msamg"",this] call f_fnc_assignGear;}";
+						init="call{[""sam"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_SAM_G2";
 						description="AAF SAM Team Gunner";
 						isPlayable=1;
@@ -38233,7 +39145,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={822.12646,0.0014381409,630.75745};
+						position[]={822.12598,0.0014388561,630.75696};
 						angles[]={0,2.3358788,0};
 					};
 					side="Independent";
@@ -38241,8 +39153,8 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						rank="CORPORAL";
-						init="call{[""dc"",this] call f_fnc_assignGear;}";
+						rank="SERGEANT";
+						init="call{[""sl"",this] call f_fnc_assignGear;}";
 						name="UnitAAF_REC_SL";
 						description="AAF Recon Team Leader";
 						isPlayable=1;
