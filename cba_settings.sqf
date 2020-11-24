@@ -53,3 +53,14 @@ force ace_medical_treatment_medicPAK = 1;
 force ace_medical_treatment_medicSurgicalKit = 2;
 force ace_medical_treatment_timeCoefficientPAK = 0.5;
 force ace_medical_treatment_woundReopenChance = 0.2;
+
+
+// ACEX Headless
+force acex_headless_delay = 15;
+force acex_headless_enabled = true;
+force acex_headless_endMission = 0;
+force acex_headless_log = false;
+force acex_headless_transferLoadout = 1;
+
+// ACRE 2
+force acre_sys_core_terrainLoss = 0;
