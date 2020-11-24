@@ -13,7 +13,7 @@
  * Array of [group,vehicle]
  *
  * Example:
- * [["ftl","r","ar","m"],"SC1_VC_S","C_Offroad_default_F","opf_f",east] spawn ca_fnc_spawnvehiclegroup;
+ * [["ftl","rif","med","lat","ar","aar"],"SC1_VC_S","C_Offroad_default_F","opf_f",east] spawn ca_fnc_spawnvehiclegroup;
  *
  */
 //If the script is not executed on a server, exit as it is likely to be executed on all clients, causing more spawns than intended. 

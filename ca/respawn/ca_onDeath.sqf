@@ -14,7 +14,6 @@ params ["_unit","_corpse"];
 if (!f_var_JIP_JIPMenu && isNull _corpse) exitWith {}; // If no corpse exists the player is spawned for the first time.
 if (time < 10 && isNull _corpse) exitWith {}; //if not a JIP and its the start of the mission exit out
 
-{_unit removeItem _x;} forEach ([] call acre_api_fnc_getCurrentRadioList);  //Remove any additional radios that might get spawned
 
 // Join in progress and instant respawn handling
 if ((time < 10) || (isNull _corpse)) exitWith {

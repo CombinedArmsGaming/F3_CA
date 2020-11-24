@@ -13,7 +13,7 @@
  * Group.
  *
  * Example:
- * [["ftl","r","m","rat","ar","aar"],"SC1_FT_BF","opf_f",east] spawn ca_fnc_spawnfortify;
+ * [["ftl","rif","med","lat","ar","aar"],"SC1_FT_BF","opf_f",east] spawn ca_fnc_spawnfortify;
  *
  */
 

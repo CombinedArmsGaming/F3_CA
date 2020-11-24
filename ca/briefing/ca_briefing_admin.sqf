@@ -29,10 +29,6 @@ Show headless markers</execute><br/>
 Hide headless markers</execute><br/>
 |- <execute expression="" hint format ['%1 for markers being shown',ca_hcshowmarkers]"">
 Check headless marker status</execute><br/>
-|- <execute expression=""missionNamespace setVariable ['ca_showRadioMarkers',true, true];"">
-Show Radio Radio structure markers</execute><br/>
-|- <execute expression=""missionNamespace setVariable ['ca_showRadioMarkers',false, true];"">
-Hide Radio structure markers</execute><br/>
 <font size='18'>F3 admin menu</font><br/><br/>
 |- <execute expression="" [] execvm 'f\briefing\f_briefing_admin.sqf' "">
 Give self F3 admin menu</execute><br/>

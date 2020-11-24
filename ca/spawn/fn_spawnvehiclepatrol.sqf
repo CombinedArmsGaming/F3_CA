@@ -14,7 +14,7 @@
  * Array of [group,vehicle]
  *
  * Example:
- * [["ftl","r","ar","m"],"SC1_VC_P","C_Offroad_default_F",500,"opf_f",east] spawn ca_fnc_spawnvehiclepatrol;
+ * [["ftl","rif","med","lat","ar","aar"],"SC1_VC_P","C_Offroad_default_F",500,"opf_f",east] spawn ca_fnc_spawnvehiclepatrol;
  *
  */
 

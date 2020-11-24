@@ -14,9 +14,9 @@
  * Group
  *
  * Example:
- * [["ftl","r","ar","m"],"spawnmarker","opf_f",west] spawn ca_fnc_spawngroup;
- * [["ftl","r","ar","m"],player,"opf_f",west] spawn ca_fnc_spawngroup;
- * [["ftl","r","ar","m"],[123,67,0],"blu_f",east] spawn ca_fnc_spawngroup;
+ * [["ftl","rif","med","lat","ar","aar"],"spawnmarker","opf_f",west] spawn ca_fnc_spawngroup;
+ * [["ftl","rif","med","lat","ar","aar"],player,"opf_f",west] spawn ca_fnc_spawngroup;
+ * [["ftl","rif","med","lat","ar","aar"],[123,67,0],"blu_f",east] spawn ca_fnc_spawngroup;
  */
 
 params ["_unitarray","_position",["_faction",""],["_side", ca_defaultside]];
