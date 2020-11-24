@@ -1,4 +1,6 @@
-// CA cba_settings.sqf
+// CA cba_settings.sqf 
+// All settings not defined here will use the standard CBA settings defined in Configure addons menu (See https://github.com/CBATeam/CBA_A3/wiki/CBA-Settings-System for more info)
+// Make sure to change line 75 in description.ext if you delete this file
 
 // ACE medical with reopening 80%
 force ace_medical_ai_enabledFor = 2;
@@ -63,3 +65,15 @@ ace_medical_treatment_treatmentTimeSplint = 7;
 force ace_medical_treatment_treatmentTimeTourniquet = 3;
 force ace_medical_treatment_woundReopenChance = 0.2;
 force ace_medical_treatment_woundStitchTime = 2.5;
+
+// ACEX Headless	
+force acex_headless_delay = 15;	
+force acex_headless_enabled = true;	
+force acex_headless_endMission = 0;	
+force acex_headless_log = false;	
+force acex_headless_transferLoadout = 1;	
+
+// ACRE 2	
+force acre_sys_core_terrainLoss = 0;	
+
+
