@@ -7,6 +7,7 @@ player addMPEventHandler ["MPkilled", {
 	if ((local _unit && isPlayer _unit)) then {
 			_group = group _unit;
 			_unit setVariable ["ca_originalgroup",_group,true];
+			(format ["CA MPkilled: UNIT: %1. GROUP: %2. NAME: %3",_unit,(group _unit), name _unit]) remoteExec ["diag_log"];
 		};
 }];
 // CA - Mission briefing

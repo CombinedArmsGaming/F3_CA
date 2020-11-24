@@ -49,7 +49,7 @@ enableDebugConsole = 1;
 // respawn_west, respawn_guerilla, respawn_east, respawn_civillian.
 
 respawn = 3; //Suggested NOT to change this
-respawndelay = 3;
+respawndelay = 1;
 respawnOnStart = 0;
 respawnTemplates[] = {"ca_respawn"};	// remove "f_spectator" when using respawn.
 respawnDialog = 0;
@@ -171,7 +171,7 @@ class CfgDebriefing
 {
 	class End1
 	{
-		title = "Mision Successful";
+		title = "Mission Successful";
 		subtitle = "";
 		description = "Please post to the AAR thread!";
 		// pictureBackground = "";
