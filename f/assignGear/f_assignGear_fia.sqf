@@ -337,9 +337,9 @@ _sfOutfit = [_sfGlasses,_sfhelmet,_sfuniform,_sfVest,_sfBackpack];
 
 // Officer
 _officerGlasses = [];
-_officerHelmet = ["H_Cap_headphones"];
+_officerHelmet = _hemet
 _officeruniform = _uniform;
-_officerVest = ["V_TacVest_camo","V_I_G_resistanceLeader_F"];
+_officerVest = _vest
 _officerBackpack = _backpack;
 _officerOutfit = [_officerGlasses,_officerHelmet,_officeruniform,_officerVest,_officerBackpack];
 
