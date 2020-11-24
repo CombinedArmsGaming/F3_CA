@@ -1,17 +1,26 @@
-/* CA Mission Intro. Replacement for the defunct and pretty useless PM Mission Intro.
-Pulls from the mission name (located in the mission.sqm file) and displays it using the BIS 
-Info Text function. Also shows the current in game date, and the grid position of the player.
+/* CA Mission Intro
+by Khaki
+_missionName and _author are set in description.ext
+Date and time are set to real world UTC
 */
 
 waitUntil{!(isNil "BIS_fnc_init")};
-sleep 5;
-[briefingName, str(date select 1) + "." + str(date select 2) + "." + str(date select 0), mapGridPosition player] spawn BIS_fnc_infoText;
-sleep 5;
+sleep 30;
 
 
-/*
+_hour = if (systemTimeUTC select 3 < 10) then {"0" + str(systemTimeUTC select 3)} else {str(systemTimeUTC select 3)};
+_min = if (systemTimeUTC select 4 < 10) then {"0" + str(systemTimeUTC select 4)} else {str(systemTimeUTC select 4)};
 
-Other examples of BIS Text functions that could work, the InfoText was chosen for it's relatively clean look and nice typing effect.
+_missionName = getText (missionConfigFile >> "onLoadName");
+_author = getText (missionConfigFile >> "author");
+_terrain = worldName;
 
-[ briefingName, format ["Year %1", date select 0], mapGridPosition player ] spawn BIS_fnc_infoText;
-[[briefingName,4,5],[str(date select 1) + "." + str(date select 2) + "." + str(date select 0),3,5,8]] spawn BIS_fnc_EXP_camp_SITREP;
+[
+	[
+		[_missionName, "<t align = 'right' shadow = '1' size = '0.7'>%1</t><br/>"],
+		["by " + _author, "<t align = 'right' shadow = '1' size = '0.5'>%1</t><br/><br/>"],
+		[_terrain, "<t align = 'right' shadow = '1' size = '0.7' font='PuristaBold'>%1</t><br/>"],
+		[str(systemTimeUTC select 2) + "." + str(systemTimeUTC select 1) + "." + str(systemTimeUTC select 0) + " - " + _hour + _min + " Zulu", "<t align = 'right' shadow = '1' size = '0.5'>%1</t>",60]
+	],
+	0.5,1
+] spawn BIS_fnc_typeText;
