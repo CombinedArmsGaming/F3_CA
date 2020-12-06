@@ -40,7 +40,7 @@ class CA
 	{
 		file = "ca\misc";
 		class aidriver{};
-		class hcmarker{postInit = 1;};
+		class hcmarker{};
         class vehiclespawner{};
         class isPlayerAlive{};
 	};

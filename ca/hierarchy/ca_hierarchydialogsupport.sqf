@@ -76,7 +76,7 @@ _overflow = [];
     }else
     {
         _rankid = (rankid leader _x);
-        if (_rankid >= ca_corank && !(_x in _zeusGroups)) then {
+        if (_rankid >= ca_corank && !(groupid _x in _zeusGroups)) then {
             _allCOgroups pushBackUnique _x;
         };
 
@@ -92,7 +92,7 @@ if (count _allCOgroups == 0) then {
 
 
 //Setup the tree view 
-_noncogroups = _allplayergroups - _allCOgroups - _zeusGroups;
+_noncogroups = _allplayergroups - _allCOgroups;
 {
     _parentIndex = _tree tvAdd [[],(groupid _x)];
     _rawcolor = "";
@@ -144,8 +144,9 @@ _noncogroups = _allplayergroups - _allCOgroups - _zeusGroups;
 //Pushback those groups that arent in the hierarchy
 if (count _noncogroups > 0) then {
     {
-        _overflow pushBackUnique _x;
-        
+        if (!(groupid _x in _zeusGroups)) then {
+            _overflow pushBackUnique _x;
+        };        
     } forEach _noncogroups;
 };
 

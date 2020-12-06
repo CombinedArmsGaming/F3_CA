@@ -5,7 +5,7 @@ To change a setting Change the middle variable in the array. ie for the example 
 */
 // CA - Public Variables for CA folder
 missionNamespace setVariable ["ca_defaultside",east, true]; // Default side for spawning enemies if side parameter is not present
-missionNamespace setVariable ["ca_hcshowmarkers",false, true]; // If FPS markers should be viewable in the bottom left corner (Server plus HC)
+missionNamespace setVariable ["ca_hcshowmarkers",true, true]; // If FPS markers should be viewable in the bottom left corner (Server plus HC)
 
 
 // CA - Public Variables for Respawn system

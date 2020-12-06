@@ -20,7 +20,10 @@ if (serverCommandAvailable "#kick") then {
 // Credits: PabstMirror
 [] execVM "ca\misc\CA_missionIntro.sqf";
 
-//CA - Setup specialistmarkers (Smoothmarkers and normal markers)
+// CA - Setup HC/server markers
+[] spawn ca_fnc_hcmarker;
+
+// CA - Setup specialistmarkers (Smoothmarkers and normal markers)
 ca_selectedgroup = group player;
 sleep 2;
 waitUntil {!isnil {ca_platoonsetup}}; 
