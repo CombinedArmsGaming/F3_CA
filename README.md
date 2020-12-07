@@ -4,7 +4,7 @@ F3_CA is a heavily forked version of F3, a mission framework for Arma 3.
 
 To install, download the master branch as a .zip, extract into a folder in your mpmissions folder (Default My Documents\Arma 3 - Other Profiles\*Profilename*\mpmissions) and rename to CA_Yourname_CO/TVT##_Missionname.map
 
-Check out #missionmaking on our discord for help and useful pins.
+Check out #missionmaking on our discord for help and useful pins. You can find a link to the discord on the subreddit sidebar!
 
 
 Check out Bubbus's mission making checklist/guide: https://github.com/Bubbus/CA-Missionmaking-Wiki/wiki
