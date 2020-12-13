@@ -30,6 +30,22 @@ if (!isServer) exitWith {};
 _posdir = _position call ca_fnc_getdirpos;
 _spawnpos = _posdir select 0;
 
+/* 
+Unit identity options
+Classnames to use for specific nationality combinations, gear is irrelevant as the unit gets stripped down by assignGear anyway
+Be mindful of mod dependencies if editing Vanilla+, WW2, etc
+
+American: rhsusf_usmc_marpat_wd_rifleman_m4
+British: UK3CB_BAF_Rifleman_DPMW
+Russian: rhs_vdv_rifleman
+Greek: I_Soldier_F
+African/ Tanoan French: O_GEN_Soldier_F
+Middle Eastern: O_Soldier_F
+African: UK3CB_ADA_B_RIF_1
+East Asian: C_man_polo_1_F_asia
+
+*/
+
 switch(_side) do {
 	case west: {_group = createGroup [west,true]; _unittype = "B_Soldier_F";};
 	case east: {_group = createGroup [east,true]; _unittype = "O_Soldier_F";};
