@@ -31,7 +31,7 @@ if ((time < 10) || (isNull _corpse)) exitWith {
 };
 
 _group = group player;
-_originalgroup = _unit getVariable ["ca_originalgroup", grpNull];
+_originalgroup = _unit getvariable ["ca_originalgroup","nogroupfound"];
 //Check if player is part of his original group, if not rejoin it (TEST, not 100% sure if group leaving is a result of respawn or ace spectator, this is a fix for the latter)
 if !(_originalgroup == _group) then {
     [_unit] joinsilent _originalgroup;
@@ -42,9 +42,9 @@ if !(_originalgroup == _group) then {
 
     _groupLocal = group player;
 
-    _originalgroup = _unit getVariable ["ca_originalgroup", "failedtogetgroup"];
+    _originalgroup = _unit getvariable ["ca_originalgroup","nogroupfoundremote"];
 
-if !(_originalgroup == _groupLocal) then {
+if (_originalgroup != _groupLocal) then {
     //  _unit setVariable ["ca_originalgroup",group player,true];
     //    [_unit] joinsilent _groupLocal;
     [format ["CA Ondeath: Desynch between units in playergroup: %1. and Originalgroup: %2. Player executing code %3. Unit Desynched %4. Unit desynched Original group: %5.",_groupLocal,_originalgroup,name player, name _unit,_group]] remoteExec ["diag_log"]; 

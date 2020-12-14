@@ -4,10 +4,11 @@ player setVariable ["ca_originalgroup",(group player),true];
 
 player addMPEventHandler ["MPkilled", {
 	params ["_unit"];
-	if ((local _unit && isPlayer _unit)) then {
+	if ((local _unit && isPlayer _unit)) then { 
+			_originalgroup = _unit getvariable ["ca_originalgroup","nogroupfoundmpkilled"];
 			_group = group _unit;
+			(format ["CA MPkilled: UNIT: %1. GROUP: %2. NAME: %3. CA_originalgroup: %4",_unit,(group _unit), name _unit,_originalgroup]) remoteExec ["diag_log"];
 			_unit setVariable ["ca_originalgroup",_group,true];
-			(format ["CA MPkilled: UNIT: %1. GROUP: %2. NAME: %3",_unit,(group _unit), name _unit]) remoteExec ["diag_log"];
 		};
 }];
 // CA - Mission briefing

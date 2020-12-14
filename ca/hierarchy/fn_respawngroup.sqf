@@ -146,9 +146,9 @@ if (_vehiclehasnoroom) exitWith {Systemchat "Not enough room in the vehicle to r
 _actuallyrespawned = [];
 {
 	//Get the original group of the player from the player
-	_pgrp = _x getvariable "ca_originalgroup";
+	_pgrp = _x getvariable ["ca_originalgroup","nogroupfound"];
 	_goodtorespawn = false;
-	if (isnil {_pgrp}) then {
+	if (_pgrp == "nogroupfound") then {
 		if (group _x == ca_selectedgroup) then {
 				_goodtorespawn = true;
 		};

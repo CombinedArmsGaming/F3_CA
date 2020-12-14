@@ -20,17 +20,22 @@ _addactiontext = str format ["Unload %1",_description];
 
 missionNamespace setVariable [_classname,_sparevehicles, true];
 
-_spawner addaction [_addactiontext, {
+_action = {
 
-  params ["_spawner"];
+
 if(isnil {ca_platoonsetup}) exitwith {systemChat "Hierarchy setup is not done yet, try again";};
-
-  _classname = _this select 3 select 0;
-  _description = _this select 3 select 1;
-  _ticketdifference = _this select 3 select 2;
-  _aidriver = _this select 3 select 3;
+ _spawner = _this select 3 select 0;
+  _classname = _this select 3 select 1;
+  _description = _this select 3 select 2;
+  _ticketdifference = _this select 3 select 3;
+  _aidriver = _this select 3 select 4;
   _side = side player;
-  if (rankid player < ca_slrank) exitWith {systemChat "You need to be authorized to do this, you need to be at least SL rank!"};
+  _groupid = groupid group player;
+  _zeusGroups = missionNamespace getVariable ["f_var_hiddenGroups", []];
+
+	_authorized = (_groupid == "LOGI")||(_groupid in _zeusGroups);
+  if (!_authorized) exitWith {systemChat "You need to be authorized to do this, you need to be at least SL rank!"};
+
   _sidetickets = 0;
 switch (_side) do {
 	case west: {
@@ -92,7 +97,11 @@ if using textures change it here Wallace
 
   _vehicle setpos _pos;
 
-  hint format ["%2 deployed, %1 %2 (s) left", _newnumb,_description];
+  systemchat format ["%2 deployed, %1 %2 (s) left", _newnumb,_description];
 
-},[_classname,_description,_ticketcost,_aidriver]];
+};
+
+
+_action = ["ca_unloadvehicle",_addactiontext,"",_action,{true},{},[_classname,_description,_ticketcost,_aidriver], [0,0,0], 100] call ace_interact_menu_fnc_createAction;
+[_spawner, 0, ["ACE_MainActions"], _action] call ace_interact_menu_fnc_addActionToObject;
 
