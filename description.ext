@@ -1,4 +1,7 @@
 // ============================================================================================
+// F3_CA Version
+version = "5.0.0";
+
 
 // F3 - Mission Header
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
@@ -49,7 +52,7 @@ enableDebugConsole = 1;
 // respawn_west, respawn_guerilla, respawn_east, respawn_civillian.
 
 respawn = 3; //Suggested NOT to change this
-respawndelay = 3;
+respawndelay = 1;
 respawnOnStart = 0;
 respawnTemplates[] = {"ca_respawn"};	// remove "f_spectator" when using respawn.
 respawnDialog = 0;
@@ -66,6 +69,13 @@ forceRotorLibSimulation = 0;
 // CA - Disable playableunits AI
 
 disabledAI = 1;
+
+// ============================================================================================
+
+// CA - Enable cba_settings.sqf
+// Warning: Do not remove cba_settings.sqf without changing this line.
+
+cba_settings_hasSettingsFile = 1;
 
 // ============================================================================================
 
@@ -164,7 +174,7 @@ class CfgDebriefing
 {
 	class End1
 	{
-		title = "Mision Successful";
+		title = "Mission Successful";
 		subtitle = "";
 		description = "Please post to the AAR thread!";
 		// pictureBackground = "";
@@ -278,7 +288,10 @@ class CfgFunctions
 		{
 			// Defines the functions to preInit the compling of the assignGear function used by units.
 			file = "f\assignGear";
+
 			class assignGear{};
+			class assigninsignia{};
+			class assigninsignia_local{};
 		};
 		class FTMemberMarkers
 		{

@@ -4,8 +4,10 @@ player setVariable ["ca_originalgroup",(group player),true];
 
 player addMPEventHandler ["MPkilled", {
 	params ["_unit"];
-	if ((local _unit && isPlayer _unit)) then {
+	if ((local _unit && isPlayer _unit)) then { 
+			_originalgroup = _unit getvariable ["ca_originalgroup","nogroupfoundmpkilled"];
 			_group = group _unit;
+			(format ["CA MPkilled: UNIT: %1. GROUP: %2. NAME: %3. CA_originalgroup: %4",_unit,(group _unit), name _unit,_originalgroup]) remoteExec ["diag_log"];
 			_unit setVariable ["ca_originalgroup",_group,true];
 		};
 }];
@@ -19,7 +21,10 @@ if (serverCommandAvailable "#kick") then {
 // Credits: PabstMirror
 [] execVM "ca\misc\CA_missionIntro.sqf";
 
-//CA - Setup specialistmarkers (Smoothmarkers and normal markers)
+// CA - Setup HC/server markers
+[] spawn ca_fnc_hcmarker;
+
+// CA - Setup specialistmarkers (Smoothmarkers and normal markers)
 ca_selectedgroup = group player;
 sleep 2;
 waitUntil {!isnil {ca_platoonsetup}}; 

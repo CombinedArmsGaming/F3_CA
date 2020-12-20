@@ -146,9 +146,9 @@ if (_vehiclehasnoroom) exitWith {Systemchat "Not enough room in the vehicle to r
 _actuallyrespawned = [];
 {
 	//Get the original group of the player from the player
-	_pgrp = _x getvariable "ca_originalgroup";
+	_pgrp = _x getvariable ["ca_originalgroup","nogroupfound"];
 	_goodtorespawn = false;
-	if (isnil {_pgrp}) then {
+	if (_pgrp == "nogroupfound") then {
 		if (group _x == ca_selectedgroup) then {
 				_goodtorespawn = true;
 		};
@@ -174,7 +174,7 @@ _actuallyrespawned = [];
 			player moveincargo (vehicle _respawnerguy);
 			systemchat format ["You've been respawned in %1's vehicle",(name _respawnerguy)];
 		} else {
-			player setpos (getPosATL  _respawnerguy);
+			player setposASL (getPosASL  _respawnerguy);
 			systemchat format ["You've been respawned at %1's position",(name _respawnerguy)];
 		};
 		titleCut ["", "BLACK IN", 5];

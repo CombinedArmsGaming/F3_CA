@@ -31,17 +31,17 @@ _group setVariable ["ca_groupsetup",true, true];
 _group setVariable ["ca_grouptickets",0, true];
 _group setVariable ["ca_grouptype","auto", true];
 _group setVariable ["ca_SRradioCH",1, true];
-_group setVariable ["ca_LRradioarray",[4], true];
+_group setVariable ["ca_LRradioarray",[1], true];
 _group setVariable ["ca_groupcolor","ColorWhite", true];
 _cooldowntime = ca_grouprespawncooldown + time;
 _group setVariable ["ca_grouprespawntime",_cooldowntime, true];
 _group setVariable ["ca_superior",_groupid, true];
-
+_group setVariable ["ca_groupmarkerboolean",true, true];
 
 
 
 
 systemChat format ["%1 is registered, remember to set rank and give tickets if needed",_groupid];
-	tvClear _tree;
-	sleep 1;
-	[] execvm 'ca\hierarchy\ca_hierarchydialogsupport.sqf';
+tvClear _tree;
+sleep 1;
+[] execvm 'ca\hierarchy\ca_hierarchydialogsupport.sqf';

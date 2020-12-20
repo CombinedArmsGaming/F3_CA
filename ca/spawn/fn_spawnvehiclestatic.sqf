@@ -1,5 +1,5 @@
 /*
- * Author: Poulern
+ * Function: spawnvehiclestatic
  * Creates a static vehicle that sort of sits there idle because its out of fuel.
  *
  * Arguments:
@@ -13,7 +13,7 @@
  * Array of [group,vehicle]
  *
  * Example:
- * [["ftl","r","ar","m"],"SC1_VC_S","C_Offroad_default_F","opf_f",east] spawn ca_fnc_spawnvehiclestatic;
+ * [["ftl","rif","med","lat","ar","aar"],"SC1_VC_S","C_Offroad_default_F","opf_f",east] spawn ca_fnc_spawnvehiclestatic;
  *
  */
 

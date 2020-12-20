@@ -1,14 +1,7 @@
 /*
- * Author: Poulern
+ * Function: Setup JIP
  * If given an array by the Hierachy, find a string in element 0 and send it to fnc handlestring, else send off array to this function again.
  *
- * Arguments:
- * 0: Array
- * 
- *
- * Example:
- * 
-	["AV", 1,[1],west,"ASLWEST"] spawn ca_fnc_setupGroup;
  *
  */
 if (!isDedicated && (isNull player)) then
@@ -25,7 +18,7 @@ if ((group player) getVariable ["ca_groupsetup",false]) exitWith {};
 _side = side player;
 
 _setupgroup = {
-	params ["_groupid","_superior","_SRradioCH","_LRradioarray","_groupcolor","_grouptickets","_groupmarkerboolean","_grouptype"];
+	params ["_groupid","_superior","_SRradioCH","_LRradioarray","_groupcolor","_grouptickets","_groupmarkerboolean","_grouptype","_side"];
 
 	_group = group player;
 
@@ -38,6 +31,7 @@ _setupgroup = {
 	_group setVariable ["ca_grouptype",_grouptype, true];
 	_cooldowntime = ca_grouprespawncooldown + time;
 	_group setVariable ["ca_grouprespawntime",_cooldowntime, true];
+	_group setVariable ["ca_groupmarkerboolean",_groupmarkerboolean, true];
 
 	//PUT IN GROUP MARKERS HERE (remoteexec becauser its server executing only)
 	if (_groupmarkerboolean) then {
@@ -81,6 +75,6 @@ switch (_side) do {
 //If the group is not setup, set it up.
 _setup = group player getVariable ["ca_groupsetup",false];
 if (!_setup) then {
-	[_group,_groupid,2,16,[4],"ColorGrey",0,false,"auto"] call _setupgroup;
+	[_group,_groupid,16,[1],"ColorGrey",0,false,"auto"] call _setupgroup;
 };
 (format ["CA Hierarchy SetupJIP: JIP player(%1)setup side(%2), group (%3)",player, _side,_group]) remoteExec ["diag_log"];

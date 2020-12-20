@@ -1,5 +1,5 @@
 /*
- * Author: Poulern
+ * Function: spawnvehiclegroup
  * Spawns a vehicle with a crew inside of it
  *
  * Arguments:
@@ -13,10 +13,9 @@
  * Array of [group,vehicle]
  *
  * Example:
- * [["ftl","r","ar","m"],"SC1_VC_S","C_Offroad_default_F","opf_f",east] spawn ca_fnc_spawnvehiclegroup;
+ * [["ftl","rif","med","lat","ar","aar"],"SC1_VC_S","C_Offroad_default_F","opf_f",east] spawn ca_fnc_spawnvehiclegroup;
  *
  */
- 
 //If the script is not executed on a server, exit as it is likely to be executed on all clients, causing more spawns than intended. 
 if (!isServer) exitWith {};
 
@@ -38,7 +37,7 @@ _gunno = true;
 
 {
 
-if((_vehicle emptyPositions "Commander")>0 && _comno) then {
+if((_vehicle emptyPositions "Commander") > 0 && _comno) then {
     _check = (_x in _assigned);
     if (!_check) then {
         _x assignAsCommander _vehicle;

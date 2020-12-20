@@ -45,7 +45,7 @@ if (ca_switchgroupthiscycle) then {
 
 	_description = "Fire team";
 	_shortrangechannel = (_newgrouplead) getVariable ["ca_SRradioCH",1];
-	_longrangeArray = (_newgrouplead) getVariable ["ca_LRradioarray",[4]];
+	_longrangeArray = (_newgrouplead) getVariable ["ca_LRradioarray",[1]];
 
 
 	_ranklead = rankid (leader _newgrouplead);

@@ -1,5 +1,6 @@
 /*
- * Author: Poulern
+ * F3 CA edition
+ * Function: Spawn patrol
  * Spawns a group that patrols an area
  *
  * Arguments:
@@ -13,7 +14,7 @@
  * Group.
  *
  * Example:
- * [["ftl","r","m","rat","ar","aar"],"SC1_FT_AP",200,"opf_f",east] spawn ca_fnc_spawnpatrol;
+ * [["ftl","rif","med","lat","ar","aar"],"SC1_FT_AP",200,"opf_f",east] spawn ca_fnc_spawnpatrol;
  *
  */
 

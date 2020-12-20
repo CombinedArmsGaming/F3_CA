@@ -1,5 +1,5 @@
 /*
- * Author: Lib & Poulern
+ * Author: Liberation (Adapted to F3_CA)
  * Create markers to show fps on each headless client and the server. Spawn on Headless client and server only.
  *
  * Example:

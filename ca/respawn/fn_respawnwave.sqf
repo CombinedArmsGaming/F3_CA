@@ -1,5 +1,9 @@
 
 _side = side player;
+
+if (count _this > 0) then {
+    _side = _this select 0;
+};
 _isadmin = serverCommandAvailable '#kick';
 
 
@@ -29,23 +33,18 @@ _allIndependentPlayerGroupsfill = [];
 } forEach _specplayers;
 
 _sidetickets = ca_WestTickets;
-if (_isadmin) then {
-    _listplayers = _specplayers;
-
-} else {
-    switch (_side) do {
-        case west: {
-        _listplayers = _allWestPlayerGroupsfill;
-        _sidetickets = ca_WestTickets;
-        };
-        case east: {
-        _listplayers = _allEastPlayerGroupsfill;
-        _sidetickets = ca_EastTickets;
-        };
-        case independent: {
-        _listplayers = _allIndependentPlayerGroupsfill;
-        _sidetickets = ca_IndependentTickets;
-        };
+switch (_side) do {
+    case west: {
+    _listplayers = _allWestPlayerGroupsfill;
+    _sidetickets = ca_WestTickets;
+    };
+    case east: {
+    _listplayers = _allEastPlayerGroupsfill;
+    _sidetickets = ca_EastTickets;
+    };
+    case independent: {
+    _listplayers = _allIndependentPlayerGroupsfill;
+    _sidetickets = ca_IndependentTickets;
     };
 };
 _numbertorespawn = count _listplayers;
@@ -85,12 +84,12 @@ if (ca_respawnmode == 2 || ca_respawnmode == 3) then {
 		ca_respawnwave = true;  
 		sleep 2;
 		if ((vehicle _respawnerguy) != _respawnerguy) then {
-            player setpos (getPosATL  _respawnerguy);
+            player setposASL (getPosASL _respawnerguy);
             sleep random 5;
 			player moveincargo (vehicle _respawnerguy);
 			systemchat format ["You've been respawned in %1's vehicle",(name _respawnerguy)];
 		} else {
-			player setpos (getPosATL  _respawnerguy);
+			player setposASL (getPosASL  _respawnerguy);
 			systemchat format ["You've been respawned at %1's position",(name _respawnerguy)];
 		};
         player action ["WeaponOnBack", player];
@@ -128,7 +127,7 @@ if (ca_respawnmode == 1) then {
     ca_respawnwave = true;  
     sleep 2;
     player action ["WeaponOnBack", player];
-    player setPos (getMarkerPos [_respawnmarker, true]);
+    player setposASL (getMarkerPos [_respawnmarker, true]);
 
     systemchat format ["You've been respawned at %1's base",(_side)];
 

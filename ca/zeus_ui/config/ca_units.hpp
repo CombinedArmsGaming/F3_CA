@@ -20,25 +20,25 @@ class CA_ZeusUI_Units
 		class Rifleman
 		{
 			unitName = "NATO Rifleman";		// This is the name of the squad which will be shown in-game.
-			units[] = {"r"};			// This is the squad which will spawn - this just spawns one rifleman.
+			units[] = {"rif"};			// This is the squad which will spawn - this just spawns one rifleman.
 		};
 
 		class Fireteam_6x
 		{
 			unitName = "NATO Fireteam 6x";
-			units[] = {"ftl", "ar", "aar", "rat", "r", "r"};	// This spawns a full 6-man fireteam. You can have as many or as few units in a squad as you want.
+			units[] = {"ftl", "ar", "aar", "lat", "rif", "rif"};	// This spawns a full 6-man fireteam. You can have as many or as few units in a squad as you want.
 		};
 
 		class MAT_Team
 		{
 			unitName = "NATO MAT Team";
-			units[] = {"matag", "matg"};
+			units[] = {"mat", "amat"};
 		};
 
 		class MMG_Team
 		{
 			unitName = "NATO MMG Team";
-			units[] = {"mmgag", "mmgg"};
+			units[] = {"mmg", "ammg"};
 		};
 	};
 
@@ -87,25 +87,25 @@ class CA_ZeusUI_Units
 		class Rifleman
 		{
 			unitName = "CSAT Rifleman";
-			units[] = {"r"};
+			units[] = {"rif"};
 		};
 
 		class Fireteam_6x
 		{
 			unitName = "CSAT Fireteam 6x";
-			units[] = {"ftl", "ar", "aar", "rat", "r", "r"};
+			units[] = {"ftl", "ar", "aar", "lat", "rif", "rif"};
 		};
 
 		class MAT_Team
 		{
 			unitName = "CSAT MAT Team";
-			units[] = {"matag", "matg"};
+			units[] = {"amat", "mat"};
 		};
 
 		class MMG_Team
 		{
 			unitName = "CSAT MMG Team";
-			units[] = {"mmgag", "mmgg"};
+			units[] = {"mgag", "ammg"};
 		};
 	};
 
@@ -154,25 +154,25 @@ class CA_ZeusUI_Units
 		class Rifleman
 		{
 			unitName = "AAF Rifleman";
-			units[] = {"r"};
+			units[] = {"rif"};
 		};
 
 		class Fireteam_6x
 		{
 			unitName = "AAF Fireteam 6x";
-			units[] = {"ftl", "ar", "aar", "rat", "r", "r"};
+			units[] = {"ftl", "ar", "aar", "lat", "rif", "rif"};
 		};
 
 		class MAT_Team
 		{
 			unitName = "AAF MAT Team";
-			units[] = {"matag", "matg"};
+			units[] = {"mat", "amat"};
 		};
 
 		class MMG_Team
 		{
 			unitName = "AAF MMG Team";
-			units[] = {"mmgag", "mmgg"};
+			units[] = {"ammg", "mmg"};
 		};
 	};
 
