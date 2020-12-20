@@ -12,7 +12,8 @@ Check out Bubbus's mission making checklist/guide: https://github.com/Bubbus/CA-
 For F3_CA contributors see https://github.com/CombinedArmsGaming/F3_CA/graphs/contributors
 
 ### F3 Version History ###
-
+* 5-0-0     | 20 DEC 2020 | F3_CA Christmas release
+* 4-X-X     | 2016-2020   | Various updates, big and small. Highlights are smoothmarkers and the CA folder.
 * 4-0-0     | 24 OCT 2016 | F3_CA initial Release - Volc
 
 Please see https://github.com/ferstaberinde/F3 for a full list of F3 contributors. We are grateful for their contributions to the arma community.
