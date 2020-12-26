@@ -1,5 +1,8 @@
 // CA - Player group change 
+waitUntil { !isnull (group player)};
+
 player setVariable ["ca_originalgroup",(group player),true];
+player setVariable ["ca_playerisdeaddead",false];
 
 
 player addMPEventHandler ["MPkilled", {
@@ -11,11 +14,18 @@ player addMPEventHandler ["MPkilled", {
 			_unit setVariable ["ca_originalgroup",_group,true];
 		};
 }];
+
+if (didJIP) then {[] spawn ca_fnc_setupJIP};
+
 // CA - Mission briefing
 execVM "ca\briefing\ca_briefing_player.sqf";
 if (serverCommandAvailable "#kick") then {
   execVM "ca\briefing\ca_briefing_admin.sqf";
 };
+// Hierarchy self interact
+_hierachyaction = ['ca_hierachyaction','CA Hierarchy','',{_handle=createdialog 'ca_hierarchydialog';},{true},{}] call ace_interact_menu_fnc_createAction;
+
+[player, 1, ['ACE_SelfActions'], _hierachyaction] call ace_interact_menu_fnc_addActionToObject;
 
 // PabstMirror - Mission Intro
 // Credits: PabstMirror
@@ -26,8 +36,14 @@ if (serverCommandAvailable "#kick") then {
 
 // CA - Setup specialistmarkers (Smoothmarkers and normal markers)
 ca_selectedgroup = group player;
+[] execVM "ca\downtime\init_component.sqf";
+
 sleep 2;
+//Start downtime monitor
+
+
 waitUntil {!isnil {ca_platoonsetup}}; 
+//Proceed with specialist marker setup
 if (f_var_smoothMarkers) exitWith {};
 _side = side player;
 //Create a switch for each side 

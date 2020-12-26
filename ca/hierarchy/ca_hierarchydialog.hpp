@@ -107,7 +107,7 @@ class ca_hierarchydialog
             y = 50 * 0.0016835 * 8 + safeZoneY;
             w = 80 * (0.00126263 * 2);
             h = 20 * (0.0016835 * 2);
-            action =  "[player] joinSilent ca_selectedgroup";
+            action =  "[player] joinSilent ca_selectedgroup;";
         };
         class respawngroup: RscButton
         {

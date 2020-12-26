@@ -74,6 +74,6 @@ class CA
 		class server_spawnGroup{};
 		class zeusUI{};
 	};
-
+	#include "downtime\functions.hpp"
 	#include "smoothMarkers\functions.hpp"
 };

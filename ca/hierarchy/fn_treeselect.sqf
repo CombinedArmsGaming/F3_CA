@@ -88,7 +88,6 @@ if (_x in _specplayers) then {
 	_deadplayers lbAdd (name _x); _deadplayers lbSetData [_forEachIndex, (name _x)];	
 } else {
 	if (alive _x) then {
-
 _aliveplayers lbAdd (name _x); _aliveplayers lbSetData [_forEachIndex, (name _x)];	
 };
 
