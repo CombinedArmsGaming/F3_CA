@@ -50,7 +50,7 @@ else
         _time = (group player) getVariable ["ca_grouprespawntime",900000];
         _infotime = ceil (_time - time);
 
-        if (_time < 1) then
+        if (_infotime < 1) then
         {
             _text = "Group respawn is available to leaders.";
         }

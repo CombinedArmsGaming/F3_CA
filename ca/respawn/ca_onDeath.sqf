@@ -10,7 +10,6 @@ if (!isDedicated && (isNull player)) then
 };
 
 params ["_unit","_corpse"];
-(format ["CA ondeath: UNIT: %1. GROUP: %2. NAME: %3. CORPSE %4. ISEQUAL CORPSE %5",_unit,(group _unit), name _unit,_corpse,(_unit == _corpse)]) remoteExec ["diag_log"];
 
 if (!f_var_JIP_JIPMenu && isNull _corpse) exitWith {}; // If no corpse exists the player is spawned for the first time.
 if (time < 10 && isNull _corpse) exitWith {}; //if not a JIP and its the start of the mission exit out
@@ -22,9 +21,13 @@ if ((time < 10) || (isNull _corpse)) exitWith {
     _unit setVariable ["f_var_assignGear_done",false,true];
     [_loadout,player] call f_fnc_assignGear;
     [] execVM "f\acre2\acre2_init.sqf";
-
-    if (!f_var_JIP_JIPMenu) exitWith {}; //do JIP players get teleport menu?
     sleep 5;
+    if (isnil {f_var_downtimeExperienceActive}) then {
+    [] spawn ca_fnc_downtimeMonitor;
+    [] spawn ca_fnc_blockSelfInteractWhileUnconscious;
+    };
+    if (!f_var_JIP_JIPMenu) exitWith {}; //do JIP players get teleport menu?
+    
     if (isNil "F3_JIP_reinforcementOptionsAction") then {
     	[player] execVM "f\JIP\f_JIP_addReinforcementOptionsAction.sqf";
     };
@@ -41,26 +44,6 @@ _OGgroupid = groupid _originalgroup;
 if (_OGgroupid != _groupid) then {
     [_unit] joinsilent _originalgroup;
 };
-
-
-[[_unit,_group],{
-    params ["_unit","_group"];
-
-    _groupLocal = group player;
-    _localgroupid = groupid _groupLocal;
-    _originalgroup = _unit getvariable ["ca_originalgroup","nogroupfoundremote"];
-    _OGgroupid = groupid _originalgroup;
-
-if (_OGgroupid != _localgroupid) then {
-    //  _unit setVariable ["ca_originalgroup",group player,true];
-    //    [_unit] joinsilent _groupLocal;
-    [format ["CA Ondeath: Desynch between units in playergroup: %1. and Originalgroup: %2. Player executing code %3. Unit Desynched %4. Unit desynched Original group: %5.",_groupLocal,_originalgroup,name player, name _unit,_group]] remoteExec ["diag_log"]; 
-    } else {
-        if (isNull _originalgroup) then {
-            [format ["CA Ondeath: _originalgroup is null",_originalgroup]] remoteExec ["diag_log"]; 
-        };
-    }
-}] remoteExec ["spawn",_group];
 
 // Enter spectator - See downtime\fn_downtimeSpectate.sqf
 // ====================================================================================================================
@@ -83,7 +66,11 @@ if (_respawntime < time && (_group getVariable ["ca_groupspectatebool",true])) t
     _group setVariable ["ca_grouprespawntime",_cooldowntime, true];
     _group setVariable ["ca_groupspectatebool",false, true];	
 };
-
+//
+if (isnil {f_var_downtimeExperienceActive}) then {
+    [] spawn ca_fnc_downtimeMonitor;
+    [] spawn ca_fnc_blockSelfInteractWhileUnconscious;
+};
 
 // Wait for respawn to happen
 // ====================================================================================================================

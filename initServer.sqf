@@ -9,6 +9,7 @@ missionNamespace setVariable ["ca_hcshowmarkers",true, true]; // If FPS markers 
 
 
 // CA - Public Variables for Respawn system
+// Check other respawn settings in ca_platoonsetup.sqf
 missionNamespace setVariable ['ca_respawnmode',2, true]; // Respawn modes: 0: Off, 1: Base respawn, 2: Hierarchy Wave Spawn 3: Hierarchy group spawn (use group tickets)
 missionNamespace setVariable ['ca_respawnwave',false, true]; // set to true to disable the respawn system, and respawn players as soon as they die.
 missionNamespace setVariable ['ca_wavecooldown',540, true]; // Seconds between each wave plus wavetime below

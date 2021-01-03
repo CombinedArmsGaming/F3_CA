@@ -34,7 +34,7 @@ class CA
 		class selectgroup{};
 		class registergroup{};
 		class changerank{};
-		class updategroupSRchannels{};
+		class applyradiochannels{};
 	};
 	class misc
 	{
