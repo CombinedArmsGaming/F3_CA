@@ -14,8 +14,8 @@ _testsr = compile ctrlText _shortrangech;
 
 if (lbSize _aliveplayers == 0) exitWith {systemChat "Select a group first!";};
 
-if (isnil _test) exitWith {systemChat "Error! Long Range channel field cannot be empty or is corrupted!";};
-if (isnil _testsr) exitWith {systemChat "Short range channel field cannot be empty!";};
+if (isnil {_test}) exitWith {systemChat "Error! Long Range channel field cannot be empty or is corrupted!";};
+if (isnil {_testsr}) exitWith {systemChat "Short range channel field cannot be empty!";};
 
 _rankid = rankId player;
 _superior = group player getVariable ["ca_superior","meme"];

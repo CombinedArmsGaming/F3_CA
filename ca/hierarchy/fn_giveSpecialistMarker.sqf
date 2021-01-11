@@ -16,7 +16,7 @@ _superior = group player getVariable ["ca_superior","meme"];
 _samesquad = (ca_selectedgroup getVariable ["ca_superior","sdferaNO"]) == _superior;
 
 
-if ((((ca_selectedgroup == (group player)) && _rankid >= ca_ftlrank) || _samesquad && _rankid >= ca_slrank) || (_rankid >= ca_corank)) then {
+if ((((ca_selectedgroup == (group player)) && _rankid >= ca_ftlrank) || _samesquad && _rankid >= ca_slrank) || (_rankid >= ca_corank) || (serverCommandAvailable '#kick')) then {
 
 
 _index = lbCurSel _aliveplayers;

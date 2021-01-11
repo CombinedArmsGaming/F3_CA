@@ -1,27 +1,24 @@
 #include "macros.hpp"
 
-params ["_map", "_smallMarkers"];
+params ["_map"];
 
 if !(alive player) exitWith {};
-if (IS_TRUE(f_var_smoothFTMarkers_hide)) exitWith {};
 
-_group = (units player) select {[_x] call ca_fnc_isPlayerAlive};
+_group = (units player) select {alive _x};
 _baseIcon = "\A3\ui_f\data\map\vehicleicons\iconMan_ca.paa";
 
 
 _drawMarker =
 {
-	params ["_map", "_icon", "_colour", "_pos", "_dir", "_smallMarkers"];
-
-	_scaleFactor = if (_smallMarkers) then {0.9} else {1};
+	params ["_map", "_icon", "_colour", "_pos", "_dir"];
 
 	_map drawIcon
 	[
 		_baseIcon,
 		[0,0,0,1],
 		_pos,
-		22 * _scaleFactor,
-		22 * _scaleFactor,
+		24,
+		24,
 		_dir
 	];
 
@@ -30,14 +27,12 @@ _drawMarker =
 		_icon,
 		_colour,
 		_pos,
-		18 * _scaleFactor,
-		18 * _scaleFactor,
+		20,
+		20,
 		_dir
 	];
 
 };
-
-
 
 
 {
@@ -51,20 +46,30 @@ _drawMarker =
 		private "_icon";
 		private "_colour";
 
-		// Requires shacktac hud.
-		if !(isNil 'STHud_Icon') then
+		// Requires Diwako's DUI.
+		if !(isNil 'diwako_dui_font') then
 		{
-			_icon = _unit call STHud_Icon;
-			_teamIdx = _unit call STUI_assignedTeamIndex;
-			_colour = STHud_PlayerColours select _teamIdx;
+			_icon = _unit getVariable ["diwako_dui_radar_compass_icon", "a3\ui_f\data\map\vehicleicons\iconMan_ca.paa"];
+			_colour = (_unit getVariable ["diwako_dui_main_compass_color", [1,1,1]]) + [1];
 		}
 		else
 		{
-			_icon = _baseIcon;
-			_colour = [1,1,1,1];
+			// Requires shacktac hud.
+			if !(isNil 'STHud_Icon') then
+			{
+				_icon = _unit call STHud_Icon;
+				_teamIdx = _unit call STUI_assignedTeamIndex;
+				_colour = STHud_PlayerColours select _teamIdx;
+			}
+			else
+			{
+				_icon = _baseIcon;
+				_colour = [1,1,1,1];
+			};
+
 		};
 
-		[_map, _icon, _colour, _pos, _dir, _smallMarkers] call _drawMarker;
+		[_map, _icon, _colour, _pos, _dir] call _drawMarker;
 
 	};
 

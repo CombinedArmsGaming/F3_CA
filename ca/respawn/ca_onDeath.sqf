@@ -1,7 +1,7 @@
 // CA respawn system with wave respawns
 
-if (isDedicated) exitWith{};
 
+if (isDedicated) exitWith{};
 
 // MAKE SURE THE PLAYER INITIALIZES PROPERLY
 if (!isDedicated && (isNull player)) then
@@ -10,7 +10,6 @@ if (!isDedicated && (isNull player)) then
 };
 
 params ["_unit","_corpse"];
-(format ["CA ondeath: UNIT: %1. GROUP: %2. NAME: %3. CORPSE %4. ISEQUAL CORPSE %5",_unit,(group _unit), name _unit,_corpse,(_unit == _corpse)]) remoteExec ["diag_log"];
 
 if (!f_var_JIP_JIPMenu && isNull _corpse) exitWith {}; // If no corpse exists the player is spawned for the first time.
 if (time < 10 && isNull _corpse) exitWith {}; //if not a JIP and its the start of the mission exit out
@@ -22,47 +21,37 @@ if ((time < 10) || (isNull _corpse)) exitWith {
     _unit setVariable ["f_var_assignGear_done",false,true];
     [_loadout,player] call f_fnc_assignGear;
     [] execVM "f\acre2\acre2_init.sqf";
-
-    if (!f_var_JIP_JIPMenu) exitWith {}; //do JIP players get teleport menu?
     sleep 5;
+    if (isnil {f_var_downtimeExperienceActive}) then {
+    [] spawn ca_fnc_downtimeMonitor;
+    [] spawn ca_fnc_blockSelfInteractWhileUnconscious;
+    };
+    if (!f_var_JIP_JIPMenu) exitWith {}; //do JIP players get teleport menu?
+    
     if (isNil "F3_JIP_reinforcementOptionsAction") then {
     	[player] execVM "f\JIP\f_JIP_addReinforcementOptionsAction.sqf";
     };
 };
+//Set player to dead
+player setVariable ["ca_playerisdeaddead",true];
 
 _group = group player;
+_groupid = groupid _group;
 _originalgroup = _unit getvariable ["ca_originalgroup","nogroupfound"];
+_OGgroupid = groupid _originalgroup;
+
 //Check if player is part of his original group, if not rejoin it (TEST, not 100% sure if group leaving is a result of respawn or ace spectator, this is a fix for the latter)
-if !(_originalgroup == _group) then {
+if (_OGgroupid != _groupid) then {
     [_unit] joinsilent _originalgroup;
 };
 
-[[_unit,_group],{
-    params ["_unit","_group"];
-
-    _groupLocal = group player;
-
-    _originalgroup = _unit getvariable ["ca_originalgroup","nogroupfoundremote"];
-
-if (_originalgroup != _groupLocal) then {
-    //  _unit setVariable ["ca_originalgroup",group player,true];
-    //    [_unit] joinsilent _groupLocal;
-    [format ["CA Ondeath: Desynch between units in playergroup: %1. and Originalgroup: %2. Player executing code %3. Unit Desynched %4. Unit desynched Original group: %5.",_groupLocal,_originalgroup,name player, name _unit,_group]] remoteExec ["diag_log"]; 
-    } else {
-        if (isNull _originalgroup) then {
-            [format ["CA Ondeath: _originalgroup is null",_originalgroup]] remoteExec ["diag_log"]; 
-        };
-    }
-}] remoteExec ["spawn",_group];
-
-
-// Enter spectator
+// Enter spectator - See downtime\fn_downtimeSpectate.sqf
 // ====================================================================================================================
-[true,true,false] call ace_spectator_fnc_setSpectator;
+//[true,true,false] call ace_spectator_fnc_setSpectator;
 
 player setvariable ["ace_medical_allowdamage",false];
 player remoteExec ["hideObjectGlobal", 2];
-{_unit removeItem _x;} forEach ([] call acre_api_fnc_getCurrentRadioList);  //Remove any additional radios for sure
+{_unit removeItem _x;} forEach ([] call acre_api_fnc_getCurrentRadioList);  //Remove any additional radios for sure, readded in gearscript
 
 
 // Setup respawn variables 
@@ -77,16 +66,22 @@ if (_respawntime < time && (_group getVariable ["ca_groupspectatebool",true])) t
     _group setVariable ["ca_grouprespawntime",_cooldowntime, true];
     _group setVariable ["ca_groupspectatebool",false, true];	
 };
-
+//
+if (isnil {f_var_downtimeExperienceActive}) then {
+    [] spawn ca_fnc_downtimeMonitor;
+    [] spawn ca_fnc_blockSelfInteractWhileUnconscious;
+};
 
 // Wait for respawn to happen
 // ====================================================================================================================
-waitUntil { ca_respawnwave };
 
-player setvariable ["ace_medical_allowdamage",true];
+waitUntil { ca_respawnwave };
+player setVariable ["ca_playerisdeaddead",false];
+
+//player setvariable ["ace_medical_allowdamage",true];
 // Exit spectator
 // ====================================================================================================================
-[false] call ace_spectator_fnc_setSpectator;
+//[false] call ace_spectator_fnc_setSpectator;
 
 // F3 assign radio and gear
 // ====================================================================================================================
@@ -97,7 +92,9 @@ _unit setVariable ["f_var_assignGear_done",false,true];
 [player] call ace_medical_treatment_fnc_fullHealLocal;      // medical rewrite compatibility (ACE v3.13.0 and higher)
 
 // ====================================================================================================================
-[player,false] remoteExec ["hideObjectGlobal", 2];
+//[player,false] remoteExec ["hideObjectGlobal", 2];
+// Reset for downtime
+
 
 if (!f_var_JIP_RespawnMenu) exitWith {}; //do respawning players get menu?
 sleep 5;

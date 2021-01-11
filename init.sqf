@@ -12,7 +12,6 @@ enableSaving [false, false];
 enableSentences false;
 // Wait until initServer.sqf is done to get all the variables we need.
 waitUntil {!isnil {ca_initserver}};
-if (didJIP) then {[] spawn ca_fnc_setupJIP};
 // ====================================================================================
 
 // F3 - MapClick Teleport

@@ -3,7 +3,7 @@
 
 //Side tickets available (Where one ticket = 1 respawn, default 5 for vehicles) per team in addition to the group tickets;
 // Change to for example _caEastTickets = 49 if needed for TvTs/events with multiple sides
-_caWestTickets = 50;
+_caWestTickets = 20;
 _caEastTickets = _caWestTickets;
 _caIndependentTickets = _caWestTickets;
 
@@ -17,8 +17,7 @@ Parameters for ca_fnc_setupGroup, which is what the setup inside the _hierarchyw
  * 5: Group color (String): The color of the group in the hierarchy and its groupmarker. Available colors: "ColorBlack","ColorGrey","ColorRed","ColorBrown","ColorOrange","ColorYellow","ColorKhaki","ColorGreen","ColorBlue","ColorPink","ColorWhite"
  * 6: Group tickets (Number): The number of tickets this group gets to play with at the start of the mission. 
  * 7: Group marker (Boolean): Should each team get a group marker assigned to them? Default: True. 
- * 8: Group type (String): What markertype the unit has. This is if you want to use the non-automatic mode that the groupmarker uses. For non smooth markers its any A3 marker, for smooth markers its "b_hq","b_inf","b_support","b_motor_inf","b_mortar","b_maint","b_mech_inf","b_armor","b_recon","b_air","b_plane","b_art"
-
+ * 8: Group type (String): What markertype the unit has. This is if you want to use the non-automatic mode that the groupmarker uses. For non smooth markers its any A3 marker, for smooth markers its b_hq,b_inf,b_sf,b_supply,b_motor_inf,b_mortar,b_maint,b_eod,b_med,b_mech_inf,b_armor,b_recon,b_air,b_plane,b_art,b_naval,b_antiair,b_antitank,b_heavyantitank,b_heavyweapons
 [_side,"ASL","CO",1,[4,1],"ColorRed",5] spawn ca_fnc_setupGroup;
 [_side,"ELEMENT","ELEMENT IMMEDIATELY ABOVE THEM IN THE HIERARCHY",SR radio channel,[LR radio channels],"ColorOfgroup",Number of group tickets 123,Should the group get a map marker true/false,"grouptype aka which marker they get"] spawn ca_fnc_setupGroup;
 */
@@ -81,14 +80,14 @@ _ftlrank = 1;
 
 // Respawn settings
 // ====================================================================================
-// How far away an enemy must be for respawn to be available
-ca_enemyradius = 150;
+// How far away an enemy in meters must be for respawn to be available. Intentionally set to 1 meters.
+ca_enemyradius = 1;
 // Delay for when a group can be respawn after the first player enters spectate. If group respawn is ready and another player dies, the respawn timer goes on cooldown again.
-// If the timer is low then its reccomended to increase ca_enemyradius so you're unable to respawn in the middle of combat.
+// If the timer is low then it is recommended to increase ca_enemyradius so you're unable to respawn in the middle of combat.
 ca_grouprespawncooldown = 180;
 // Hardcore option: How close you must be to your squad lead or CO to be able to recieve more tickets (Creating a sort of group based rally point system). 
 //If the group is out of tickets then they won't be able to respawn (Except with a respawn wave, if you leave that option open as a mission maker). Defaulted to false.
-ca_ticketradius = 50;
+ca_ticketradius = 50; // Meters
 ca_ticketradiusmechanic = false; 
 
 // END OF SETUP VARIABLES

@@ -34,7 +34,7 @@ class CA
 		class selectgroup{};
 		class registergroup{};
 		class changerank{};
-		class updategroupSRchannels{};
+		class applyradiochannels{};
 	};
 	class misc
 	{
@@ -74,6 +74,6 @@ class CA
 		class server_spawnGroup{};
 		class zeusUI{};
 	};
-
+	#include "downtime\functions.hpp"
 	#include "smoothMarkers\functions.hpp"
 };

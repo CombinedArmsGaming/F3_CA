@@ -3,7 +3,8 @@
  * Create the treeview and fill the hierarchy interface.
  * 
  * Called on opening the interface
- */
+ * fn_treeselect updates the interface when a group has been selected in the three view.
+*/
 
 disableSerialization;
 _display = findDisplay 1809;
@@ -11,15 +12,23 @@ _tree = _display displayCtrl 1811;
 _side = side player;
 _zeusGroups = missionNamespace getVariable ["f_var_hiddenGroups", []];
 
-//If the mission does not use group tickets, hide those elements from the UI. 
+//If the mission does not use group tickets, hide those elements from the UI. Except group respawn for admin.
 _groupticketdisplays = [1804,1805,1806,1807,1808,1817,1820];
+if (serverCommandAvailable '#kick') then {
+    _groupticketdisplays deleteAt 1;
+};
+
 if (ca_respawnmode < 3) then {
     {
         _controltohide = _display displayCtrl _x;
         ctrlDelete _controltohide; 
     } forEach _groupticketdisplays;
 };
-
+// If using smoothmarkers delete non functional button. 
+if (f_var_smoothMarkers) then {
+        _controltohide = _display displayCtrl 1822;
+        ctrlDelete _controltohide; 
+};
 tvClear _tree;
 
 if(isnil {ca_platoonsetup}) exitwith {systemChat "Hierarchy setup is not done yet, try again"; _display closeDisplay 1};
@@ -144,9 +153,7 @@ _noncogroups = _allplayergroups - _allCOgroups;
 //Pushback those groups that arent in the hierarchy
 if (count _noncogroups > 0) then {
     {
-        if (!(groupid _x in _zeusGroups)) then {
-            _overflow pushBackUnique _x;
-        };        
+        _overflow pushBackUnique _x;
     } forEach _noncogroups;
 };
 
@@ -154,12 +161,16 @@ if (count _noncogroups > 0) then {
 _overflowIndex = _tree tvAdd [[],"Overflow/Dead"];
 
 {
-    _childIndex = _tree tvAdd [[_overflowIndex],(groupid _x)];
+    if ((groupid _x) in _zeusGroups) then {
+        
+    } else {
+            _childIndex = _tree tvAdd [[_overflowIndex],(groupid _x)];
     _rawcolor = "";
     _rawcolor = _x getVariable ["ca_groupcolor","ColorGrey"];
     _color = _rawcolor call _findcolor;
     _tree tvSetColor [[_overflowIndex,_childIndex], _color];
 
+    }
 } forEach _overflow;
 
 

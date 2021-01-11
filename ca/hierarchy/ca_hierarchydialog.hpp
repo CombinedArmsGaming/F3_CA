@@ -27,7 +27,7 @@ class ca_hierarchydialog
             h = 20 * (0.0016835 * 2);
             colorBackground[] = {0.45,0.65,0.34,0.8};
             colorText[] = {1,1,1,0.9};
-            text = "CA Hierachy User Interface Version 1.4.2";
+            text = "CA Hierachy User Interface";
             moving = 1;
         };
         class tree: RscTree
@@ -107,7 +107,7 @@ class ca_hierarchydialog
             y = 50 * 0.0016835 * 8 + safeZoneY;
             w = 80 * (0.00126263 * 2);
             h = 20 * (0.0016835 * 2);
-            action =  "[player] joinSilent ca_selectedgroup";
+            action =  "[player] joinSilent ca_selectedgroup; closeDialog 0; systemchat 'Joined selected group!'";
         };
         class respawngroup: RscButton
         {
@@ -250,7 +250,8 @@ class ca_hierarchydialog
         };
         class givegroupmarker: RscButton 
         {
-            idc = -1;
+            idc = 1822;
+            deletable = 1;
             text = "Give groupmarker";
             tooltip = "Gives the group you've selected a groupmarker";
             sizeEx = 10 * (0.0016835 * 2);
@@ -354,15 +355,15 @@ class ca_hierarchydialog
         class applySRradios: RscButton 
         {
             idc = -1;
-            text = "Apply to SR radios";
-            tooltip = "Changes the 343 radio channel of all units in selected group";
+            text = "Apply radio CHs to group";
+            tooltip = "Applies specified radio channels to currently selected group";
             sizeEx = 10 * (0.0016835 * 2);
             style = ST_LEFT;
             x = 145 * 0.00126263 * 8 + safeZoneX;
             y = 63 * 0.0016835 * 8 + safeZoneY;
             w = 90 * (0.00126263 * 2);
             h = 20 * (0.0016835 * 2);
-            action =  "[] spawn ca_fnc_updategroupSRchannels";
+            action =  "[] spawn ca_fnc_applyradiochannels";
             //closeDialog 0;
         };     
         class tickinfo: RscText  
