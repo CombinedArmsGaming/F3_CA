@@ -199,8 +199,8 @@ _DMriflemagamount = 10;
 
 // Light anti tank. To indicate that a weapon is single shot, write _RATmag = "";
 _RAT = "launch_NLAW_F";
-_RATmag = "NLAW_F";
-_RATmagamount = 0; // In Ace, NLAW_F is single shot
+_RATmag = ""; // In Ace the ammo, "NLAW_F" is single shot, and thus not used
+_RATmagamount = 0; 
 
 // Medium AT - Tanks DLC
 _MAT = "launch_MRAWS_green_rail_F";
