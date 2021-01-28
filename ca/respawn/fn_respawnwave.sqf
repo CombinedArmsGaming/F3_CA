@@ -27,9 +27,9 @@ _allWestPlayerGroupsfill = []; //Filter
 _allEastPlayerGroupsfill = [];
 _allIndependentPlayerGroupsfill = [];
 {
-    if (side _x == west) then {_allWestPlayerGroupsfill pushBackUnique _x};
-    if (side _x == east) then {_allEastPlayerGroupsfill pushBackUnique _x};
-    if (side _x == independent) then {_allIndependentPlayerGroupsfill pushBackUnique _x};
+    if (side _x == west && (isObjectHidden _x)) then {_allWestPlayerGroupsfill pushBackUnique _x};
+    if (side _x == east && (isObjectHidden _x)) then {_allEastPlayerGroupsfill pushBackUnique _x};
+    if (side _x == independent && (isObjectHidden _x)) then {_allIndependentPlayerGroupsfill pushBackUnique _x};
 } forEach _specplayers;
 
 _sidetickets = ca_WestTickets;
@@ -56,7 +56,7 @@ _numbertorespawn = count _listplayers;
 			_enemiesclose = true;
 		};
 	};
-}foreach allUnits;
+} foreach allUnits;
 
 if (_enemiesclose) exitWith {Systemchat "Enemies nearby, try again later";};
 //=================================================================
@@ -165,7 +165,6 @@ if (!_isadmin) then {
 
 [] spawn {
 // Set variables so it cannot be spammed
-missionNamespace setVariable ['ca_respawnwave',true, true];
 missionNamespace setVariable ['ca_respawnready',false, true];
 // Post message letting everyone know there is a wave on.
 

@@ -156,6 +156,10 @@ _actuallyrespawned = [];
 	if ((count _actuallyrespawned) == _numbertorespawn) then {
 		_goodtorespawn = false;
 	};
+	// Don't respawn people who are unconcious. Might possibly respawn zeus, but camera should be instantly moved anyways based on experience.
+	if !(isObjectHidden _x) then {
+		_goodtorespawn = false;
+	};
     if(_goodtorespawn) then {
 		_actuallyrespawned pushBackUnique _x;
     [[player],{
