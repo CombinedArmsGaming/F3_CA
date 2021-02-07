@@ -57,15 +57,14 @@ _allWestPlayerGroupsfill = [];
 _allEastPlayerGroupsfill = [];
 _allIndependentPlayerGroupsfill = [];
 
-_specplayers = [] call ace_spectator_fnc_players;
 
 {
-	if (side _x == west) then {_allWestPlayerGroupsfill pushBackUnique group _x};
-	if (side _x == east) then {_allEastPlayerGroupsfill pushBackUnique group _x};
-	if (side _x == independent) then {_allIndependentPlayerGroupsfill pushBackUnique group _x};
+	if (side group _x == west) then {_allWestPlayerGroupsfill pushBackUnique group _x};
+	if (side group _x == east) then {_allEastPlayerGroupsfill pushBackUnique group _x};
+	if (side group _x == independent) then {_allIndependentPlayerGroupsfill pushBackUnique group _x};
 } forEach allunits;
 
-switch (_side) do {
+switch (_side) do { 
 	case west: {
     _allplayergroups = _allWestPlayerGroupsfill;
 	};
@@ -164,12 +163,11 @@ _overflowIndex = _tree tvAdd [[],"Overflow/Dead"];
     if ((groupid _x) in _zeusGroups) then {
         
     } else {
-            _childIndex = _tree tvAdd [[_overflowIndex],(groupid _x)];
-    _rawcolor = "";
-    _rawcolor = _x getVariable ["ca_groupcolor","ColorGrey"];
-    _color = _rawcolor call _findcolor;
-    _tree tvSetColor [[_overflowIndex,_childIndex], _color];
-
+        _overflowchildIndex = _tree tvAdd [[_overflowIndex],(groupid _x)];
+        _rawcolor = "";
+        _rawcolor = _x getVariable ["ca_groupcolor","ColorGrey"];
+        _color = _rawcolor call _findcolor;
+        _tree tvSetColor [[_overflowIndex,_overflowchildIndex], _color];
     }
 } forEach _overflow;
 
