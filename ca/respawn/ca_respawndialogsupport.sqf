@@ -1,7 +1,7 @@
 // CA - Filling listbox for the ca marker management system.
 _display = findDisplay 1996;
 _isadmin = serverCommandAvailable '#kick';
-if((ca_respawnmode != 2 && rankid player > ca_corank) && !_isadmin) exitWith {systemChat "This mission does not allow respawn!"; _display closeDisplay 1};
+if((ca_respawnmode = 0 && rankid player > ca_corank) && !_isadmin) exitWith {systemChat "This mission does not allow respawn!"; _display closeDisplay 1};
 _side = side player;
 
 
