@@ -5,6 +5,7 @@
 // DECLARE PRIVATE VARIABLES
 
 private ["_unit","_mkrType","_mkrColor","_mkrName","_mkr","_mkrBorder","_pos"];
+if (IS_TRUE(f_var_smoothFTMarkers_hide)) exitWith {};
 
 // ====================================================================================
 

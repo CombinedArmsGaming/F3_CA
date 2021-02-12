@@ -1,6 +1,6 @@
 // ============================================================================================
 // F3_CA Version
-version = "5.1.1";
+version = "5.1.2";
 
 
 // F3 - Mission Header
@@ -316,6 +316,14 @@ class CfgFunctions
 		{
 			file = "f\medical";
 			class WoundUnitRandomly{};
+		};
+		class zen
+		{
+			file = "f\zen";
+			class zen_removeJammers{};
+			class zen_createJammer{};
+			class zen_doRemoveJammers{};
+			class zen_doCreateJammer{};	
 		};
 		class zeus
 		{
