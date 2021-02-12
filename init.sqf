@@ -126,3 +126,16 @@ if(isServer) then {
 
 // This line permits specific units by variable name to access the DMS launcher. Do not put variable names in quotes.
 //[] spawn {sleep 1; dmsAuthorizedUnits=[launchman]};
+
+if !(isNil 'zen_custom_modules_fnc_register') then
+{
+
+    _jammerCreate = {[_this#1] call f_fnc_zen_createJammer};
+
+    ["[F3_CA] Electronic Warfare", "Create Jammer", _jammerCreate] call zen_custom_modules_fnc_register;
+
+    _jammerRemove = {[_this#1] call f_fnc_zen_removeJammers};
+
+    ["[F3_CA] Electronic Warfare", "Remove Jammer", _jammerRemove] call zen_custom_modules_fnc_register;
+
+};
