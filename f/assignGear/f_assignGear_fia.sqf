@@ -511,6 +511,7 @@ switch (_typeofUnit) do
 		_unit addWeapon _binocular;		
 		_unit linkItem "ItemGPS";
 		_unit addItem "ACE_microDAGR";
+		_unit addItem "FSGm_ItemMedicBagMil"; //Comment out if not using reopening wounds
 		_unit addItem "ACE_surgicalKit"; //Comment out if not using reopening wounds
 		_unit addItem "ACE_personalAidKit"; //Comment out if not using reopening wounds
 	};
