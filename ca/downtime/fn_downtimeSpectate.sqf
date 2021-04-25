@@ -11,8 +11,7 @@ _whenGhost =
 
     [player, "CA2_Downtime"] call ace_common_fnc_hideUnit;
     [player, "CA2_Downtime"] call ace_common_fnc_muteUnit;
-
-
+   
     [] spawn
     {
         uiSleep 1;
@@ -21,6 +20,9 @@ _whenGhost =
         {
             "CA2_CutDowntime" cutRsc ["CA2_DowntimeDead", "PLAIN", -1, false];
         };
+         // Add Freecam 
+    [[0,1],[0,1,2]] call ace_spectator_fnc_updateCameraModes;
+    [CA2_Downtime_SpectatorVisionModes, [-1,0,1,2,3,4,5,6,7]] call ace_spectator_fnc_updateVisionModes;
 
     };
 
@@ -34,7 +36,6 @@ _whenAlive =
 
     [player, "CA2_Downtime"] call ace_common_fnc_unhideUnit;
     [player, "CA2_Downtime"] call ace_common_fnc_unmuteUnit;
-
     [] spawn
     {
         uiSleep 1;
@@ -43,6 +44,9 @@ _whenAlive =
         {
             "CA2_CutDowntime" cutRsc ["CA2_DowntimeUnconscious", "PLAIN", -1, false];
         };
+    // Restrict camera modes
+    [CA2_Downtime_SpectatorCameraModes,[0,1,2]] call ace_spectator_fnc_updateCameraModes;
+    [CA2_Downtime_SpectatorVisionModes, [-1,0,1,2,3,4,5,6,7]] call ace_spectator_fnc_updateVisionModes;
 
     };
 
@@ -53,7 +57,9 @@ _whenDone =
 {
     player allowDamage true;
     player setVariable ["ace_medical_allowDamage", true];
-
+    // Restrict camera modes
+    [CA2_Downtime_SpectatorCameraModes,[0,1,2]] call ace_spectator_fnc_updateCameraModes;
+    [CA2_Downtime_SpectatorVisionModes, [-1,0,1,2,3,4,5,6,7]] call ace_spectator_fnc_updateVisionModes;
     [player, "CA2_Downtime"] call ace_common_fnc_unhideUnit;
     [player, "CA2_Downtime"] call ace_common_fnc_unmuteUnit;
 
