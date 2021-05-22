@@ -15,27 +15,27 @@ case "ui_init": {
 
 		switch (toLower _class) do {
 			case "controlsgroup": {
-				_ctrl = _zeusUI ctrlCreate ["RscControlsGroup", _idc];
-				_ctrl ctrlSetPixelPrecision 2;
+				_ctrl = _zeusUI ctrlCreate ["RscControlsGroupNoScrollbars", _idc];
+				//_ctrl ctrlSetPixelPrecision 2;
 			};
 			case "box": {
 				_ctrl = _zeusUI ctrlCreate ["CA_ZeusUI_ScriptedBox", _idc, _ctrlGrp];
 				_ctrl ctrlSetBackgroundColor (_this select 7);
-				_ctrl ctrlSetPixelPrecision 2;
+				//_ctrl ctrlSetPixelPrecision 2;
 			};
 			case "frame": {
 				_ctrl = _zeusUI ctrlCreate ["CA_ZeusUI_ScriptedFrame", _idc, _ctrlGrp];
 				_ctrl ctrlSetBackgroundColor (_this select 7);
-				_ctrl ctrlSetPixelPrecision 2;
+				//_ctrl ctrlSetPixelPrecision 2;
 			};
 			case "outline": {
 				_ctrl = _zeusUI ctrlCreate ["CA_ZeusUI_ScriptedOutline", _idc, _ctrlGrp];
 				_ctrl ctrlSetTextColor (_this select 7);
-				_ctrl ctrlSetPixelPrecision 2;
+				//_ctrl ctrlSetPixelPrecision 2;
 			};
 			case "listbox": {
 				_ctrl = _zeusUI ctrlCreate ["CA_ZeusUI_ScriptedListBox", _idc, _ctrlGrp];
-				_ctrl ctrlSetPixelPrecision 2;
+				//_ctrl ctrlSetPixelPrecision 2;
 			};
 			case "text": {
 				_ctrl = _zeusUI ctrlCreate ["CA_ZeusUI_ScriptedText", _idc, _ctrlGrp];
@@ -56,31 +56,31 @@ case "ui_init": {
 				if !(_colour isEqualTo []) then {
 					private _ctrlBackground = _zeusUI ctrlCreate ["CA_ZeusUI_ScriptedBox", -1, _ctrlGrp];
 					_ctrlBackground ctrlSetBackgroundColor _colour;
-					_ctrlBackground ctrlSetPixelPrecision 2;
+					//_ctrlBackground ctrlSetPixelPrecision 2;
 					_ctrlBackground ctrlSetPosition [_x, _y, _w, _h];
 					_ctrlBackground ctrlCommit 0;
 					_additionalCtrls pushBack _ctrlBackground;
 				};
 
 				_ctrl = _zeusUI ctrlCreate ["RscCheckBox", _idc, _ctrlGrp];
-				_ctrl ctrlSetPixelPrecision 2;
+				//_ctrl ctrlSetPixelPrecision 2;
 			};
 			case "slider": {
 				private _ctrlBackground = _zeusUI ctrlCreate ["CA_ZeusUI_ScriptedBox", -1, _ctrlGrp];
 				_ctrlBackground ctrlSetBackgroundColor SQUARE(MACRO_COLOUR_BACKGROUND);
-				_ctrlBackground ctrlSetPixelPrecision 2;
+				//_ctrlBackground ctrlSetPixelPrecision 2;
 				_ctrlBackground ctrlSetPosition [_x, _y, _w, _h];
 				_ctrlBackground ctrlCommit 0;
 
 				private _ctrlFill = _zeusUI ctrlCreate ["CA_ZeusUI_ScriptedBox", -1, _ctrlGrp];
 				_ctrlFill ctrlSetBackgroundColor SQUARE(MACRO_COLOUR_WHITE_SLIDER);
-				_ctrlFill ctrlSetPixelPrecision 2;
+				//_ctrlFill ctrlSetPixelPrecision 2;
 				_ctrlFill ctrlSetPosition [_x, _y, _w / 2, _h];
 				_ctrlFill ctrlCommit 0;
 
 				private _ctrlOutline = _zeusUI ctrlCreate ["CA_ZeusUI_ScriptedOutline", -1, _ctrlGrp];
 				_ctrlOutline ctrlSetTextColor SQUARE(MACRO_COLOUR_WHITE_OPAQUE);
-				_ctrlOutline ctrlSetPixelPrecision 2;
+				//_ctrlOutline ctrlSetPixelPrecision 2;
 				_ctrlOutline ctrlSetPosition [_x, _y, _w, _h];
 				_ctrlOutline ctrlCommit 0;
 
@@ -88,14 +88,14 @@ case "ui_init": {
 
 				_ctrl = _zeusUI ctrlCreate ["CA_ZeusUI_ScriptedFrame", _idc, _ctrlGrp];
 				_ctrl ctrlSetBackgroundColor [0,0,0,0];
-				_ctrl ctrlSetPixelPrecision 2;
+				//_ctrl ctrlSetPixelPrecision 2;
 				_ctrl setVariable [MACRO_VARNAME_UI_SLIDER_MAXSIZE, _w];
 				_ctrl setVariable [MACRO_VARNAME_UI_SLIDER_CTRLFILL, _ctrlFill];
 			};
 			case "textbox": {
 				_ctrl = _zeusUI ctrlCreate ["CA_ZeusUI_ScriptedTextBox", _idc, _ctrlGrp];
 				_ctrl ctrlSetBackgroundColor SQUARE(MACRO_COLOUR_BACKGROUND);
-				_ctrl ctrlSetPixelPrecision 2;
+				//_ctrl ctrlSetPixelPrecision 2;
 			};
 		};
 
@@ -140,21 +140,35 @@ case "ui_init": {
 
 
 
+
 	// Select the UI to initialise
 	switch (_menuID) do {
 
 		// Main UI
 		case MACRO_VARNAME_UI_ID_MAIN: {
 
-			// Mark the UI as being shown
-			missionNamespace setVariable [MACRO_VARNAME_UI_ISSHOWN, true];
-
 			// Create the controls
+				private _posX_def = safeZoneX + safeZoneW * 0.25;
+				private _posY_def = safeZoneY + safeZoneH * (1 - MACRO_POS_MAIN_HEIGHT - 0.01);
+				private _mainWidth = safeZoneW * MACRO_POS_MAIN_WIDTH;
+				private _mainHeight = safeZoneH * MACRO_POS_MAIN_HEIGHT;
+
 				// Fetch the last main control group position from the profile namespace
-				(profileNamespace getVariable [MACRO_VARNAME_UI_POS_MAINCTRLGRP, [
-					safeZoneX + safeZoneW * 0.25,
-					safeZoneY + safeZoneH * (1 - MACRO_POS_MAIN_HEIGHT - 0.01)
-				]]) params ["_posX", "_posY"];
+				(profileNamespace getVariable [MACRO_VARNAME_UI_POS_MAINCTRLGRP, [_posX_def, _posY_def]]) params ["_posX", "_posY"];
+
+				// Failsafe: if the player's screen resolution changed, ensure that the UI is still within the new borders
+				if (
+					_posX < safeZoneX
+					or {_posX + _mainWidth >= safeZoneX + safeZoneW}
+					or {_posY < safeZoneY}
+					or {_posY + _mainHeight >= safeZoneY + safeZoneH}
+				) then {
+					_posX = _posX_def;
+					_posY = _posY_def;
+
+					profileNamespace setVariable [MACRO_VARNAME_UI_POS_MAINCTRLGRP, [_posX, _posY]];
+					saveProfileNamespace;
+				};
 
 				// Main Control Group
 				_zeusUI_mainCtrlGrp = [
@@ -162,8 +176,8 @@ case "ui_init": {
 					MACRO_IDC_MAIN_CTRLGRP,
 					_posX,
 					_posY,
-					safeZoneW * MACRO_POS_MAIN_WIDTH,
-					safeZoneH * MACRO_POS_MAIN_HEIGHT
+					_mainWidth,
+					_mainHeight
 				] call _createCtrl;
 
 				uiNamespace setVariable [MACRO_VARNAME_UI_MAINCTRLGRP, _zeusUI_mainCtrlGrp];
@@ -322,7 +336,7 @@ case "ui_init": {
 
 			// Add all the category names to the listbox
 			{
-				_ctrlLBPresets lbAdd format ["> %1", _x];
+				_ctrlLBPresets lbAdd format ["*  %1", _x];
 			} forEach (_allPresetsNamespace getVariable [MACRO_VARNAME_NAMESPACE_ALLVARIABLES, []]);
 
 			// If the custom preset was selected, reselect it now (before we re-add the EH)
@@ -344,32 +358,15 @@ case "ui_init": {
 			};
 
 
-			// Hide the UI when pressing backspace
-			_zeusUI displayAddEventHandler ["KeyDown", {
-				params ["_zeusUI", "_key"];
+			// Sync the UI visiblity to the Zeus interface
+			removeMissionEventHandler ["Draw3D", missionNamespace getVariable [MACRO_VARNAME_UI_DRAW3D_EH, -1]];
+			missionNamespace setVariable [MACRO_VARNAME_UI_DRAW3D_EH, addMissionEventHandler ["Draw3D", {
+				private _watermark = (findDisplay 312) displayCtrl 15717;
 
-				// If the backspace key was pressed, toggle the UI visibility
-				if (_key == 14) then {
-
-					// Only detect the first keyDown event (so that holding down the key doesn't toggle the UI every frame)
-					if !(_zeusUI getVariable [MACRO_VARNAME_UI_SHOULDHIDE_KEYDOWN, false]) then {
-						_zeusUI setVariable [MACRO_VARNAME_UI_SHOULDHIDE_KEYDOWN, true];
-
-						private _isShown = !(missionNamespace getVariable [MACRO_VARNAME_UI_ISSHOWN, true]);
-						missionNamespace setVariable [MACRO_VARNAME_UI_ISSHOWN, _isShown];
-
-						["ui_toggle", [_isShown]] call ca_fnc_zeusUI;
-					};
+				if (!isNull _watermark) then {
+					["ui_toggle", [!ctrlShown _watermark]] call ca_fnc_zeusUI;
 				};
-			}];
-			_zeusUI displayAddEventHandler ["KeyUp", {
-				params ["_zeusUI", "_key"];
-
-				// If the backspace key was pressed, toggle the UI visibility
-				if (_key == 14) then {
-					_zeusUI setVariable [MACRO_VARNAME_UI_SHOULDHIDE_KEYDOWN, false];
-				};
-			}];
+			}]];
 		};
 
 
@@ -385,6 +382,13 @@ case "ui_init": {
 			// Fetch the main UI's position
 			(ctrlPosition _zeusUI_mainCtrlGrp) params ["_posX", "_posY"];
 
+			// Determine the height of the presets window in advance
+			// NOTE: When modifying the presets menu, you need to recalculate this value so it fits all settings!
+			private _posHeight = MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 3 + MACRO_POS_GAP_Y * 14 + MACRO_POS_PRESETS_SETTING_HEIGHT * 14;
+
+			// Add some buffer to the total height
+			_posHeight = _posHeight + MACRO_POS_GAP_Y;
+
 			// Determine the position of the presets control group based on the main control group's position
 			if (_posX + safeZoneW * (MACRO_POS_MAIN_WIDTH / 2) > 0.5) then {
 				_posX = _posX - safeZoneW * MACRO_POS_PRESETS_WIDTH;
@@ -392,7 +396,7 @@ case "ui_init": {
 				_posX = _posX + safeZoneW * MACRO_POS_MAIN_WIDTH;
 			};
 			if (_posY + safeZoneH * (MACRO_POS_MAIN_HEIGHT / 2) > 0.5) then {
-				_posY = _posY + safeZoneH * (MACRO_POS_MAIN_HEIGHT - MACRO_POS_PRESETS_HEIGHT);
+				_posY = _posY + safeZoneH * (MACRO_POS_MAIN_HEIGHT - _posHeight);
 			};
 
 
@@ -406,7 +410,7 @@ case "ui_init": {
 					_posX,
 					_posY,
 					safeZoneW * MACRO_POS_PRESETS_WIDTH,
-					safeZoneH * MACRO_POS_PRESETS_HEIGHT
+					safeZoneH * _posHeight
 				] call _createCtrl;
 				uiNamespace setVariable [MACRO_VARNAME_UI_PRESETSCTRLGRP, _zeusUI_presetsCtrlGrp];
 
@@ -417,7 +421,7 @@ case "ui_init": {
 					0,
 					0,
 					safeZoneW * MACRO_POS_PRESETS_WIDTH,
-					safeZoneH * MACRO_POS_PRESETS_HEIGHT,
+					safeZoneH * _posHeight,
 					_zeusUI_presetsCtrlGrp,
 					SQUARE(MACRO_COLOUR_BACKGROUND)
 				] call _createCtrl;
@@ -429,7 +433,7 @@ case "ui_init": {
 					0,
 					0,
 					safeZoneW * MACRO_POS_PRESETS_WIDTH,
-					safeZoneH * MACRO_POS_PRESETS_HEIGHT,
+					safeZoneH * _posHeight,
 					_zeusUI_presetsCtrlGrp,
 					SQUARE(MACRO_COLOUR_WHITE_OPAQUE)
 				] call _createCtrl;
@@ -462,7 +466,7 @@ case "ui_init": {
 
 
 				// -----------------------------------------------------------------------------------------------------------------------------
-				// Suppressive AI - Settings Cover
+				// Guerrilla AI - Settings Cover
 				private _ctrlBox_GAI_settingsCover = [
 					"Box",
 					MACRO_IDC_PRESETS_GAI_SETTINGS_COVER,
@@ -474,7 +478,7 @@ case "ui_init": {
 					SQUARE(MACRO_COLOUR_RED_DIM)
 				] call _createCtrl;
 
-				// Guerrilla AI Checkbox Text
+				// Guerrilla AI - Checkbox Text
 				[
 					"Text",
 					-1,
@@ -486,7 +490,7 @@ case "ui_init": {
 					"Enable Guerrilla AI:"
 				] call _createCtrl;
 
-				// Guerrilla AI Checkbox
+				// Guerrilla AI - Checkbox
 				private _ctrlCB_GAI = [
 					"CheckBox",
 					MACRO_IDC_PRESETS_GAI_CHECKBOX,
@@ -698,37 +702,38 @@ case "ui_init": {
 					_zeusUI_presetsCtrlGrp
 				] call _createCtrl;
 
+
 				// -----------------------------------------------------------------------------------------------------------------------------
 				// Suppressive AI - Settings Cover
 				private _ctrlBox_SAI_settingsCover = [
 					"Box",
 					MACRO_IDC_PRESETS_SAI_SETTINGS_COVER,
 					safeZoneW * MACRO_POS_GAP_X,
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 8 + MACRO_POS_PRESETS_SETTING_HEIGHT * 7),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 7 + MACRO_POS_PRESETS_SETTING_HEIGHT * 7),
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_GAP_X * 2),
 					safeZoneH * (MACRO_POS_GAP_Y * 4 + MACRO_POS_PRESETS_SETTING_HEIGHT * 4),
 					_zeusUI_presetsCtrlGrp,
 					SQUARE(MACRO_COLOUR_RED_DIM)
 				] call _createCtrl;
 
-				// Suppressive AI Checkbox Text
+				// Suppressive AI - Checkbox Text
 				[
 					"Text",
 					-1,
 					safeZoneW * MACRO_POS_GAP_X,
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 8 + MACRO_POS_PRESETS_SETTING_HEIGHT * 7),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 7 + MACRO_POS_PRESETS_SETTING_HEIGHT * 7),
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_GAP_X * 2),
 					safeZoneH * MACRO_POS_CHECKBOX_HEIGHT,
 					_zeusUI_presetsCtrlGrp,
 					"Enable Suppressive AI:"
 				] call _createCtrl;
 
-				// Suppressive AI Checkbox
+				// Suppressive AI - Checkbox
 				private _ctrlCB_SAI = [
 					"CheckBox",
 					MACRO_IDC_PRESETS_SAI_CHECKBOX,
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_CHECKBOX_WIDTH - MACRO_POS_GAP_X),
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 8 + MACRO_POS_PRESETS_SETTING_HEIGHT * 7),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 7 + MACRO_POS_PRESETS_SETTING_HEIGHT * 7),
 					safeZoneW * MACRO_POS_CHECKBOX_WIDTH,
 					safeZoneH * MACRO_POS_CHECKBOX_HEIGHT,
 					_zeusUI_presetsCtrlGrp,
@@ -741,7 +746,7 @@ case "ui_init": {
 					"Text",
 					-1,
 					safeZoneW * MACRO_POS_GAP_X,
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 9 + MACRO_POS_PRESETS_SETTING_HEIGHT * 8),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 8 + MACRO_POS_PRESETS_SETTING_HEIGHT * 8),
 					safeZoneW * (MACRO_POS_PRESETS_INDENT_SLIDER_X - MACRO_POS_GAP_X),
 					safeZoneH * MACRO_POS_PRESETS_SETTING_HEIGHT,
 					_zeusUI_presetsCtrlGrp,
@@ -753,18 +758,18 @@ case "ui_init": {
 					"Slider",
 					MACRO_IDC_PRESETS_SAI_SUPPRESSIONMUL_SLIDER,
 					safeZoneW * MACRO_POS_PRESETS_INDENT_SLIDER_X,
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 9 + MACRO_POS_PRESETS_SETTING_HEIGHT * 8),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 8 + MACRO_POS_PRESETS_SETTING_HEIGHT * 8),
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_PRESETS_INDENT_SLIDER_X - MACRO_POS_GAP_X * 2 - MACRO_POS_TEXTBOX_WIDTH),
 					safeZoneH * MACRO_POS_PRESETS_SETTING_HEIGHT,
 					_zeusUI_presetsCtrlGrp
 				] call _createCtrl;
 
-				// Suppressive AI - Suppression Multiplie TextBox
+				// Suppressive AI - Suppression Multiplier TextBox
 				private _ctrlTextBox_SAI_suppressionMul = [
 					"TextBox",
 					MACRO_IDC_PRESETS_SAI_SUPPRESSIONMUL_TEXT,
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_GAP_X - MACRO_POS_TEXTBOX_WIDTH),
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 9 + MACRO_POS_PRESETS_SETTING_HEIGHT * 8),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 8 + MACRO_POS_PRESETS_SETTING_HEIGHT * 8),
 					safeZoneW * MACRO_POS_TEXTBOX_WIDTH,
 					safeZoneH * MACRO_POS_PRESETS_SETTING_HEIGHT,
 					_zeusUI_presetsCtrlGrp
@@ -776,7 +781,7 @@ case "ui_init": {
 					"Text",
 					-1,
 					safeZoneW * MACRO_POS_GAP_X,
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 10 + MACRO_POS_PRESETS_SETTING_HEIGHT * 9),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 9 + MACRO_POS_PRESETS_SETTING_HEIGHT * 9),
 					safeZoneW * (MACRO_POS_PRESETS_INDENT_SLIDER_X - MACRO_POS_GAP_X),
 					safeZoneH * MACRO_POS_PRESETS_SETTING_HEIGHT,
 					_zeusUI_presetsCtrlGrp,
@@ -788,7 +793,7 @@ case "ui_init": {
 					"Slider",
 					MACRO_IDC_PRESETS_SAI_SUPPRESSIONDURATIONMUL_SLIDER,
 					safeZoneW * MACRO_POS_PRESETS_INDENT_SLIDER_X,
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 10 + MACRO_POS_PRESETS_SETTING_HEIGHT * 9),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 9 + MACRO_POS_PRESETS_SETTING_HEIGHT * 9),
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_PRESETS_INDENT_SLIDER_X - MACRO_POS_GAP_X * 2 - MACRO_POS_TEXTBOX_WIDTH),
 					safeZoneH * MACRO_POS_PRESETS_SETTING_HEIGHT,
 					_zeusUI_presetsCtrlGrp
@@ -799,19 +804,19 @@ case "ui_init": {
 					"TextBox",
 					MACRO_IDC_PRESETS_SAI_SUPPRESSIONDURATIONMUL_TEXT,
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_GAP_X - MACRO_POS_TEXTBOX_WIDTH),
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 10 + MACRO_POS_PRESETS_SETTING_HEIGHT * 9),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 9 + MACRO_POS_PRESETS_SETTING_HEIGHT * 9),
 					safeZoneW * MACRO_POS_TEXTBOX_WIDTH,
 					safeZoneH * MACRO_POS_PRESETS_SETTING_HEIGHT,
 					_zeusUI_presetsCtrlGrp
 				] call _createCtrl;
 
 				// -----------------------------------------------------------------------------------------------------------------------------
-				// Suppressive AI - USe Anims Text
+				// Suppressive AI - Use Anims Text
 				[
 					"Text",
 					-1,
 					safeZoneW * MACRO_POS_GAP_X,
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 11 + MACRO_POS_PRESETS_SETTING_HEIGHT * 10),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 10 + MACRO_POS_PRESETS_SETTING_HEIGHT * 10),
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_PRESETS_INDENT_SLIDER_X - MACRO_POS_GAP_X * 3 - MACRO_POS_TEXTBOX_WIDTH),
 					safeZoneH * MACRO_POS_CHECKBOX_HEIGHT,
 					_zeusUI_presetsCtrlGrp,
@@ -823,7 +828,45 @@ case "ui_init": {
 					"CheckBox",
 					MACRO_IDC_PRESETS_SAI_USEANIMS_CHECKBOX,
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_CHECKBOX_WIDTH - MACRO_POS_GAP_X),
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 11 + MACRO_POS_PRESETS_SETTING_HEIGHT * 10),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y + MACRO_POS_GAP_Y * 10 + MACRO_POS_PRESETS_SETTING_HEIGHT * 10),
+					safeZoneW * MACRO_POS_CHECKBOX_WIDTH,
+					safeZoneH * MACRO_POS_CHECKBOX_HEIGHT,
+					_zeusUI_presetsCtrlGrp,
+					SQUARE(MACRO_COLOUR_BACKGROUND)
+				] call _createCtrl;
+
+
+				// -----------------------------------------------------------------------------------------------------------------------------
+				// Lambs AI - Settings Cover
+				private _ctrlBox_LambsAI_settingsCover = [
+					"Box",
+					MACRO_IDC_PRESETS_LAMBS_SETTINGS_COVER,
+					safeZoneW * MACRO_POS_GAP_X,
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 2 + MACRO_POS_GAP_Y * 11 + MACRO_POS_PRESETS_SETTING_HEIGHT * 11),
+					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_GAP_X * 2),
+					safeZoneH * (MACRO_POS_GAP_Y * 2 + MACRO_POS_PRESETS_SETTING_HEIGHT * 2),
+					_zeusUI_presetsCtrlGrp,
+					SQUARE(MACRO_COLOUR_RED_DIM)
+				] call _createCtrl;
+
+				// Lambs AI - Checkbox Text
+				[
+					"Text",
+					-1,
+					safeZoneW * MACRO_POS_GAP_X,
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 2 + MACRO_POS_GAP_Y * 11 + MACRO_POS_PRESETS_SETTING_HEIGHT * 11),
+					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_GAP_X * 2),
+					safeZoneH * MACRO_POS_CHECKBOX_HEIGHT,
+					_zeusUI_presetsCtrlGrp,
+					"Enable Lambs AI:"
+				] call _createCtrl;
+
+				// Lambs AI - Checkbox
+				private _ctrlCB_LambsAI = [
+					"CheckBox",
+					MACRO_IDC_PRESETS_LAMBS_CHECKBOX,
+					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_CHECKBOX_WIDTH - MACRO_POS_GAP_X),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 2 + MACRO_POS_GAP_Y * 11 + MACRO_POS_PRESETS_SETTING_HEIGHT * 11),
 					safeZoneW * MACRO_POS_CHECKBOX_WIDTH,
 					safeZoneH * MACRO_POS_CHECKBOX_HEIGHT,
 					_zeusUI_presetsCtrlGrp,
@@ -831,14 +874,40 @@ case "ui_init": {
 				] call _createCtrl;
 
 				// -----------------------------------------------------------------------------------------------------------------------------
+				// Lambs AI - Reinforce Text
+				[
+					"Text",
+					-1,
+					safeZoneW * MACRO_POS_GAP_X,
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 2 + MACRO_POS_GAP_Y * 12 + MACRO_POS_PRESETS_SETTING_HEIGHT * 12),
+					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_PRESETS_INDENT_SLIDER_X - MACRO_POS_GAP_X * 3 - MACRO_POS_TEXTBOX_WIDTH),
+					safeZoneH * MACRO_POS_CHECKBOX_HEIGHT,
+					_zeusUI_presetsCtrlGrp,
+					"*  Enable reinforce:"
+				] call _createCtrl;
+
+				// Lambs AI - Reinforce Checkbox
+				private _ctrlCB_LambsAI_reinforce = [
+					"CheckBox",
+					MACRO_IDC_PRESETS_LAMBS_REINFORCE_CHECKBOX,
+					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_CHECKBOX_WIDTH - MACRO_POS_GAP_X),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 2 + MACRO_POS_GAP_Y * 12 + MACRO_POS_PRESETS_SETTING_HEIGHT * 12),
+					safeZoneW * MACRO_POS_CHECKBOX_WIDTH,
+					safeZoneH * MACRO_POS_CHECKBOX_HEIGHT,
+					_zeusUI_presetsCtrlGrp,
+					SQUARE(MACRO_COLOUR_BACKGROUND)
+				] call _createCtrl;
+
+
+				// -----------------------------------------------------------------------------------------------------------------------------
 				// VCOM - Settings Cover
 				private _ctrlBox_VCOM_settingsCover = [
 					"Box",
 					MACRO_IDC_PRESETS_VCOM_SETTINGS_COVER,
 					safeZoneW * MACRO_POS_GAP_X,
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 2 + MACRO_POS_GAP_Y * 12 + MACRO_POS_PRESETS_SETTING_HEIGHT * 11),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 3 + MACRO_POS_GAP_Y * 13 + MACRO_POS_PRESETS_SETTING_HEIGHT * 13),
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_GAP_X * 2),
-					safeZoneH * (MACRO_POS_GAP_Y * 1 + MACRO_POS_PRESETS_SETTING_HEIGHT * 1),
+					safeZoneH * (MACRO_POS_GAP_Y + MACRO_POS_PRESETS_SETTING_HEIGHT),
 					_zeusUI_presetsCtrlGrp,
 					SQUARE(MACRO_COLOUR_RED_DIM)
 				] call _createCtrl;
@@ -848,7 +917,7 @@ case "ui_init": {
 					"Text",
 					-1,
 					safeZoneW * MACRO_POS_GAP_X,
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 2 + MACRO_POS_GAP_Y * 12 + MACRO_POS_PRESETS_SETTING_HEIGHT * 11),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 3 + MACRO_POS_GAP_Y * 13 + MACRO_POS_PRESETS_SETTING_HEIGHT * 13),
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_GAP_X * 2),
 					safeZoneH * MACRO_POS_CHECKBOX_HEIGHT,
 					_zeusUI_presetsCtrlGrp,
@@ -860,7 +929,7 @@ case "ui_init": {
 					"CheckBox",
 					MACRO_IDC_PRESETS_VCOM_CHECKBOX,
 					safeZoneW * (MACRO_POS_PRESETS_WIDTH - MACRO_POS_CHECKBOX_WIDTH - MACRO_POS_GAP_X),
-					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 2 + MACRO_POS_GAP_Y * 12 + MACRO_POS_PRESETS_SETTING_HEIGHT * 11),
+					safeZoneH * (MACRO_POS_MAIN_GAP_DRAGGING_Y + MACRO_POS_PRESETS_SETTING_GAP_Y * 3 + MACRO_POS_GAP_Y * 13 + MACRO_POS_PRESETS_SETTING_HEIGHT * 13),
 					safeZoneW * MACRO_POS_CHECKBOX_WIDTH,
 					safeZoneH * MACRO_POS_CHECKBOX_HEIGHT,
 					_zeusUI_presetsCtrlGrp,
@@ -896,6 +965,8 @@ case "ui_init": {
 					_ctrlCB_GAI_flankOnly,
 					_ctrlCB_SAI,
 					_ctrlCB_SAI_useAnims,
+					_ctrlCB_LambsAI,
+					_ctrlCB_LambsAI_reinforce,
 					_ctrlCB_VCOM
 				];
 
@@ -904,6 +975,8 @@ case "ui_init": {
 				["ui_checkbox_changed", [_ctrlCB_GAI_flankOnly,		missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_FLANKONLY, false]]] call ca_fnc_zeusUI;
 				["ui_checkbox_changed", [_ctrlCB_SAI,			missionNamespace getVariable [MACRO_VARNAME_PRESET_SAI, false]]] call ca_fnc_zeusUI;
 				["ui_checkbox_changed", [_ctrlCB_SAI_useAnims,		missionNamespace getVariable [MACRO_VARNAME_PRESET_SAI_USEANIMS, false]]] call ca_fnc_zeusUI;
+				["ui_checkbox_changed", [_ctrlCB_LambsAI,		missionNamespace getVariable [MACRO_VARNAME_PRESET_LAMBS, false]]] call ca_fnc_zeusUI;
+				["ui_checkbox_changed", [_ctrlCB_LambsAI_reinforce,	missionNamespace getVariable [MACRO_VARNAME_PRESET_LAMBS_REINFORCE, false]]] call ca_fnc_zeusUI;
 				["ui_checkbox_changed", [_ctrlCB_VCOM,			missionNamespace getVariable [MACRO_VARNAME_PRESET_VCOM, false]]] call ca_fnc_zeusUI;
 
 				["ui_textbox_changed", [_ctrlTextBox_GAI_maxApproachVariation, nil, nil, nil, nil,	missionNamespace getVariable [MACRO_VARNAME_PRESET_GAI_MAXAPPROACHVARIATION, 45]]] call ca_fnc_zeusUI;

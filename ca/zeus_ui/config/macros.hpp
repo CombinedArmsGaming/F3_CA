@@ -55,9 +55,14 @@
 	#define MACRO_IDC_PRESETS_SAI_SUPPRESSIONDURATIONMUL_TEXT               2205
 	#define MACRO_IDC_PRESETS_SAI_USEANIMS_CHECKBOX                         2206
 
+	// Presets - Lambs AI
+	#define MACRO_IDC_PRESETS_LAMBS_CHECKBOX                                2300
+	#define MACRO_IDC_PRESETS_LAMBS_SETTINGS_COVER                          2301
+	#define MACRO_IDC_PRESETS_LAMBS_REINFORCE_CHECKBOX                      2302
+
 	// Presets - VCOM
-	#define MACRO_IDC_PRESETS_VCOM_CHECKBOX                                 2300
-	#define MACRO_IDC_PRESETS_VCOM_SETTINGS_COVER                           2301
+	#define MACRO_IDC_PRESETS_VCOM_CHECKBOX                                 2400
+	#define MACRO_IDC_PRESETS_VCOM_SETTINGS_COVER                           2401
 
 
 
@@ -77,7 +82,6 @@
 
 	// Presets UI
 	#define MACRO_POS_PRESETS_WIDTH                                         0.25
-	#define MACRO_POS_PRESETS_HEIGHT                                        0.35
 	#define MACRO_POS_PRESETS_INDENT_X                                      0.01
 	#define MACRO_POS_PRESETS_INDENT_SLIDER_X                               0.1
 
@@ -107,10 +111,10 @@
 	#define MACRO_VARNAME_UI_CATEGORYINDEX                                  "ca_zeusUI_categoryIndex"
 	#define MACRO_VARNAME_UI_UNITINDEX                                      "ca_zeusUI_unitIndex"
 	#define MACRO_VARNAME_UI_PRESETINDEX                                    "ca_zeusUI_presetIndex"
-	#define MACRO_VARNAME_UI_ISSHOWN                                        "ca_zeusUI_isShown"
 	#define MACRO_VARNAME_UI_PRESETS_ISSHOWN                                "ca_zeusUI_presets_isShown"
 	#define MACRO_VARNAME_UI_POS_MAINCTRLGRP                                "ca_zeusUI_pos_mainCtrlGrp"
 	#define MACRO_VARNAME_UI_ACTIVESLIDER                                   "ca_zeusUI_activeCtrl"
+	#define MACRO_VARNAME_UI_DRAW3D_EH                                      "ca_zeusUI_draw3D_EH"
 
 	#define MACRO_VARNAME_UI_CHILDCONTROLS                                  "childControls"
 	#define MACRO_VARNAME_UI_ISBEINGDRAGGED                                 "isBeingDragged"
@@ -125,7 +129,6 @@
 	#define MACRO_VARNAME_UI_SLIDER_MAXSIZE                                 "maxSize"
 	#define MACRO_VARNAME_UI_SETTING_MIN                                    "min"
 	#define MACRO_VARNAME_UI_SETTING_MAX                                    "max"
-	#define MACRO_VARNAME_UI_SHOULDHIDE_KEYDOWN                             "shouldHide_keyDown"
 
 	// Custom Preset Settings
 	#define MACRO_VARNAME_PRESET_GAI                                        "ca_zeusUI_preset_gAI"
@@ -140,6 +143,8 @@
 	#define MACRO_VARNAME_PRESET_SAI_SUPPRESSIONDURATIONMUL                 "ca_zeusUI_preset_sAI_suppressionDurationMul"
 	#define MACRO_VARNAME_PRESET_SAI_USEANIMS                               "ca_zeusUI_preset_sAI_useAnims"
 	#define MACRO_VARNAME_PRESET_VCOM                                       "ca_zeusUI_preset_VCOM"
+	#define MACRO_VARNAME_PRESET_LAMBS                                      "ca_zeusUI_preset_Lambs"
+	#define MACRO_VARNAME_PRESET_LAMBS_REINFORCE                            "ca_zeusUI_preset_Lambs_reinforce"
 
 	// Namespaces
 	#define MACRO_VARNAME_NAMESPACE_CATEGORIES                              "ca_zeusUI_categories"
@@ -153,7 +158,9 @@
 	#define MACRO_VARNAME_UNIT_VEHICLE                                      "vehicle"
 
 	// Third-party mods/scripts
-	#define MACRO_VCOM_VARNAME_NOAI                                         "Vcm_Disable"		// Taken from "vcomai\Vcom\Functions\VcomAI_DefaultSettings.sqf"
+	#define MACRO_VARNAME_LAMBS_NOAI                                        "lambs_danger_disableAI"		// Found at https://github.com/nk3nny/LambsDanger/wiki/variables
+	#define MACRO_VARNAME_LAMBS_REINFORCE                                   "lambs_danger_enableGroupReinforce"	// Found at https://github.com/nk3nny/LambsDanger/wiki/variables
+	#define MACRO_VARNAME_VCOM_NOAI                                         "Vcm_Disable"				// Found in "vcomai\Vcom\Functions\VcomAI_DefaultSettings.sqf"
 
 
 

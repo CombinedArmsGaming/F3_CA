@@ -43,9 +43,10 @@ case "ui_spawn": {
 				private _pos = screenToWorld [0.5, 0.5];
 
 				// Set up our preset variables
-				private _enableVCOM = false;
 				private _guerrillaAI = false;
 				private _suppressiveAI = false;
+				private _LambsAI = false;
+				private _enableVCOM = false;
 
 				// If the custom preset is selected, fetch the settings from the menu
 				if (_presetIndex == 0) then {
@@ -71,6 +72,13 @@ case "ui_spawn": {
 						];
 					};
 
+					// If Lambs AI is enabled, fetch its settings
+					if (missionNamespace getVariable [MACRO_VARNAME_PRESET_LAMBS, false]) then {
+						_LambsAI = [
+							missionNamespace getVariable [MACRO_VARNAME_PRESET_LAMBS_REINFORCE, false]
+						];
+					};
+
 					_enableVCOM = missionNamespace getVariable [MACRO_VARNAME_PRESET_VCOM, false];
 
 				// Otherwise, fetch the selected preset
@@ -80,15 +88,14 @@ case "ui_spawn": {
 					private _presetNamespace = _allPresetsNamespace getVariable [_allPresetsVars select (_presetIndex - 1), locationNull];
 
 					// Fetch the settings from the selected preset
+					_guerrillaAI = _presetNamespace getVariable [MACRO_VARNAME_PRESET_GAI, false];
+					_suppressiveAI = _presetNamespace getVariable [MACRO_VARNAME_PRESET_SAI, false];
+					_LambsAI = _presetNamespace getVariable [MACRO_VARNAME_PRESET_LAMBS, false];
 					_enableVCOM = _presetNamespace getVariable [MACRO_VARNAME_PRESET_VCOM, false];
-					_guerrillaAI = _presetNamespace getVariable [MACRO_VARNAME_PRESET_GAI, []];
-					_suppressiveAI = _presetNamespace getVariable [MACRO_VARNAME_PRESET_SAI, []];
 				};
 
-
 				// Tell the server to spawn the group
-				ca_fnc_server_spawnGroup = compile preprocessFileLineNumbers "ca\zeus_ui\fn_server_spawnGroup.sqf";
-				[_roles, _pos, _gear, _side, _vehicleClass, _enableVCOM, _guerrillaAI, _suppressiveAI] remoteExec ["ca_fnc_server_spawnGroup", 2, false];
+				[_roles, _pos, _gear, _side, _vehicleClass, _guerrillaAI, _suppressiveAI, _LambsAI, _enableVCOM] remoteExec ["ca_fnc_server_spawnGroup", 2, false];
 			};
 		};
 	};

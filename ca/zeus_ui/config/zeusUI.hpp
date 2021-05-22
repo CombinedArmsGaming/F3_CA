@@ -1,8 +1,3 @@
-__EXEC(_startX = safeZoneX + 0.5)
-__EXEC(_startY = safeZoneY + safeZoneH * 0.6)
-__EXEC(uiNamespace setVariable ["CA_ZeusUI_StartX", _startX])
-__EXEC(uiNamespace setVariable ["CA_ZeusUI_StartY", _startY])
-
 #include "macros.hpp"
 
 

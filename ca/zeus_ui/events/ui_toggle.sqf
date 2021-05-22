@@ -1,4 +1,4 @@
-// Toggle the UI visibility (hide or show)
+// Toggle the UI visibility (hidden or shown)
 case "ui_toggle": {
 	_eventExists = true;
 
@@ -8,15 +8,6 @@ case "ui_toggle": {
 	// Fetch the presets control group (if it exists)
 	private _zeusUI_presetsCtrlGrp = uiNamespace getVariable [MACRO_VARNAME_UI_PRESETSCTRLGRP, controlNull];
 
-	// Iterate through the control groups
-	{
-		// Iterate through the control group's child controls
-		{
-			_x ctrlShow _shouldShow;
-		} forEach (_x getVariable [MACRO_VARNAME_UI_CHILDCONTROLS, []]);
-
-	} forEach [
-		_zeusUI_mainCtrlGrp,
-		_zeusUI_presetsCtrlGrp
-	];
+	_zeusUI_mainCtrlGrp ctrlShow _shouldShow;
+	_zeusUI_presetsCtrlGrp ctrlShow _shouldShow;
 };
