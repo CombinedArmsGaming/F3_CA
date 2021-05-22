@@ -21,40 +21,39 @@ private ["_units","_unit","_faction","_known","_unitFactions","_unitClasses"];
 _unitFactions = ["blu_f", "opf_f", "ind_f","blu_g_f","opf_g_f","ind_g_f"];
 
 // The default class picked when no corresponding entry is found in the _unitClasses array
-_defaultclass = "r";
+_defaultclass = "rif";
 
 // The unit classes and their corresponding F3 Assign Gear Component type
 _unitClasses = [
 
 	["_officer_"	,	"co"	],
 	["_colonel_"	,	"co"	],
-	["_sl_"			,	"dc"	],
+	["_sl_"			,	"sl"	],
 	["_tl_"			,	"ftl"	],
 	["_lite_"		,	"car"	],
 	["_ar_"			,	"ar"	],
 	["_aar_"		,	"aar"	],
 	["_a_"			,	"aar"	],
-	["_lat_"		,	"rat"	],
-	["_medic_"		,	"m"		],
+	["_lat_"		,	"lat"	],
+	["_medic_"		,	"med"	],
 	["_gl_"			,	"gren"	],
-	["_exp_"		,	"eng"	],
-	["_engineer_"	,	"engm"	],
-	["_mg_"			,	"mmgg"	],
-	["_amg_"		,	"mmgag"	],
-	["_at_"			,	"matg"	],
-	["_aat_"		,	"matag"	],
-	["_aa_"			,	"msamg"	],
-	["_aaa_"		,	"msamag"],
+	["_exp_"		,	"dem"	],
+	["_engineer_"	,	"eng"	],
+	["_mg_"			,	"mmg"	],
+	["_amg_"		,	"ammg"	],
+	["_at_"			,	"mat"	],
+	["_aat_"		,	"amat"	],
+	["_aa_"			,	"sam"	],
+	["_aaa_"		,	"asam"	],
 	["_uav_"		,	"uav"	],
 	["_m_"			,	"dm"	],
 	["_sniper_"		,	"sn"	],
 	["_spotter_"	,	"sp"	],
-	["_diver_"		,	"div"	],
 	["_repair_"		,	"vd"	],
 	["_crew_"		,	"vd"	],
-	["_helipilot_"	,	"pp"	],
-	["_helicrew_"	,	"pc"	],
-	["_pilot_"		,	"pp"	]
+	["_helipilot_"	,	"pil"	],
+	["_helicrew_"	,	"pcc"	],
+	["_pilot_"		,	"pil"	]
 
 ];
 

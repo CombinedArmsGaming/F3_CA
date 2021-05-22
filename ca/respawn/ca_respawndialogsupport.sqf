@@ -1,7 +1,7 @@
 // CA - Filling listbox for the ca marker management system.
 _display = findDisplay 1996;
 _isadmin = serverCommandAvailable '#kick';
-if((ca_respawnmode != 2 && rankid player > ca_corank) && !_isadmin) exitWith {systemChat "This mission does not allow respawn!"; _display closeDisplay 1};
+if((ca_respawnmode == 0 && rankid player > ca_corank) && !_isadmin) exitWith {systemChat "This mission does not allow respawn!"; _display closeDisplay 1};
 _side = side player;
 
 
@@ -13,31 +13,30 @@ while {!(isnull findDisplay 1996)} do {
     lbClear _lb1ctrl;
     _listplayers = [];
     _specplayers = [] call ace_spectator_fnc_players;
-    _allWestPlayerGroupsfill = [];
-    _allEastPlayerGroupsfill = [];
-    _allIndependentPlayerGroupsfill = [];
+    _allWestPlayers = []; 
+    _allEastPlayers = [];
+    _allIndependentPlayers = [];
     {
-        if (side _x == west) then {_allWestPlayerGroupsfill pushBackUnique _x};
-        if (side _x == east) then {_allEastPlayerGroupsfill pushBackUnique _x};
-        if (side _x == independent) then {_allIndependentPlayerGroupsfill pushBackUnique _x};
+        if (side _x == west && (isObjectHidden _x)) then {_allWestPlayers pushBackUnique _x};
+        if (side _x == east && (isObjectHidden _x)) then {_allEastPlayers pushBackUnique _x};
+        if (side _x == independent && (isObjectHidden _x)) then {_allIndependentPlayers pushBackUnique _x};
     } forEach _specplayers;
 
     _sidetickets = ca_WestTickets;
     if (_isadmin) then {
-        _listplayers = _specplayers;
-
+        _listplayers = _allWestPlayers + _allEastPlayers + _allIndependentPlayers;
     } else {
         switch (_side) do {
             case west: {
-            _listplayers = _allWestPlayerGroupsfill;
+            _listplayers = _allWestPlayers;
             _sidetickets = ca_WestTickets;
             };
             case east: {
-            _listplayers = _allEastPlayerGroupsfill;
+            _listplayers = _allEastPlayers;
             _sidetickets = ca_EastTickets;
             };
             case independent: {
-            _listplayers = _allIndependentPlayerGroupsfill;
+            _listplayers = _allIndependentPlayers;
             _sidetickets = ca_IndependentTickets;
             };
         };

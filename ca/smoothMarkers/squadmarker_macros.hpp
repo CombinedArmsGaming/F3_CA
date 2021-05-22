@@ -24,11 +24,15 @@
 
 #define HELO        "res\images\squadMarkers\squad_air.paa"
 #define ANTIAIR     "res\images\squadMarkers\squad_antiair.paa"
+#define ANTITANK     "res\images\squadMarkers\squad_antitank.paa"
+#define HEAVYANTITANK     "res\images\squadMarkers\squad_heavyantitank.paa"
 #define ARMOR       "res\images\squadMarkers\squad_armor.paa"
 #define ARTILLERY   "res\images\squadMarkers\squad_art.paa"
+#define HEAVYWEAPONS "res\images\squadMarkers\squad_heavyweapons.paa"
 #define HQ          "res\images\squadMarkers\squad_hq.paa"
 #define INFANTRY    "res\images\squadMarkers\squad_inf.paa"
 #define REPAIR      "res\images\squadMarkers\squad_maint.paa"
+#define EOD      "res\images\squadMarkers\squad_eod.paa"
 #define MECHINF     "res\images\squadMarkers\squad_mech_inf.paa"
 #define MEDIC       "res\images\squadMarkers\squad_med.paa"
 #define MORTAR      "res\images\squadMarkers\squad_mortar.paa"
@@ -37,6 +41,7 @@
 #define PLANE       "res\images\squadMarkers\squad_plane.paa"
 #define RECON       "res\images\squadMarkers\squad_recon.paa"
 #define SUPPLY      "res\images\squadMarkers\squad_supply.paa"
+#define SPECIALFORCES     "res\images\squadMarkers\squad_sf.paa"
 #define UNKNOWN     "res\images\squadMarkers\squad_unknown.paa"
 
 #define INIT_SQUADS() DICT_CREATE(SQUADS)

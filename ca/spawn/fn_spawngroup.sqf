@@ -1,6 +1,7 @@
 
 /*
- * Author: Poulern
+ * F3 CA edition
+ * Function: Spawn Group 
  * Spawns a group according to F3 assign gear
  *
  * Arguments:
@@ -13,25 +14,37 @@
  * Group
  *
  * Example:
- * [["ftl","r","ar","m"],"spawnmarker","opf_f",west] spawn ca_fnc_spawngroup;
- * [["ftl","r","ar","m"],player,"opf_f",west] spawn ca_fnc_spawngroup;
- * [["ftl","r","ar","m"],[123,67,0],"blu_f",east] spawn ca_fnc_spawngroup;
+ * [["ftl","rif","med","lat","ar","aar"],"spawnmarker","opf_f",west] spawn ca_fnc_spawngroup;
+ * [["ftl","rif","med","lat","ar","aar"],player,"opf_f",west] spawn ca_fnc_spawngroup;
+ * [["ftl","rif","med","lat","ar","aar"],[123,67,0],"blu_f",east] spawn ca_fnc_spawngroup;
  */
 
 params ["_unitarray","_position",["_faction",""],["_side", ca_defaultside]];
 private ["_spawnpos","_unittype","_unit","_group","_posdir","_unittype"];
 
-_ishc = !hasInterface && !isDedicated;
-//Use headless instead?
-if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
-//if there is no headless client, and is player, spawn on the server instead.
-if (!ca_hc && hasInterface && !isServer) exitWith {
-     [_this,_fnc_scriptName] spawn ca_fnc_hcexec;
-};
+//If the script is not executed on a server or a headless client, exit as it is likely to be executed on all clients, causing more spawns than intended. 
+if (!isServer) exitWith {};
+
 
 //Getting a good position from the parsed values
 _posdir = _position call ca_fnc_getdirpos;
 _spawnpos = _posdir select 0;
+
+/* 
+Unit identity options
+Classnames to use for specific nationality combinations, gear is irrelevant as the unit gets stripped down by assignGear anyway
+Be mindful of mod dependencies if editing Vanilla+, WW2, etc
+
+American: rhsusf_usmc_marpat_wd_rifleman_m4
+British: UK3CB_BAF_Rifleman_DPMW
+Russian: rhs_vdv_rifleman
+Greek: I_Soldier_F
+African/ Tanoan French: O_GEN_Soldier_F
+Middle Eastern: O_Soldier_F
+African: UK3CB_ADA_B_RIF_1
+East Asian: C_man_polo_1_F_asia
+
+*/
 
 switch(_side) do {
 	case west: {_group = createGroup [west,true]; _unittype = "B_Soldier_F";};

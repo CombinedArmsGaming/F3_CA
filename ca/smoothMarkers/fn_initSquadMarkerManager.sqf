@@ -27,9 +27,9 @@ waitUntil
             if !(isNull _group or {{alive _x} count _units <= 0}) then
         	{
                 _name = groupId _group;
-                _zeusGroup = missionNamespace getVariable ["f_var_smoothMarkers_zeusGroupName", ""];
+                _zeusGroups = missionNamespace getVariable ["f_var_hiddenGroups", []];
 
-                if (_name isEqualTo _zeusGroup) exitWith {};
+                if (_name in _zeusGroups) exitWith {};
 
                 _icon = "";
                 _visible = true;

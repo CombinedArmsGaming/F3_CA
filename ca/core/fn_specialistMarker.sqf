@@ -78,13 +78,14 @@ _mkrName setMarkerTextLocal _mkrText;
 
 while {_unt getVariable ["ca_specialistmarker",true]} do
 {
+    _zeusGroups = missionNamespace getVariable ["f_var_hiddenGroups", []];
     _grp = group _unt;
     _newMkrColor = _grp getVariable ["ca_groupcolor","ColorGrey"];
     _mkrName setMarkerColorLocal _newMkrColor;
 
     _specplayers = [] call ace_spectator_fnc_players;
     _hasmarker = _unt getVariable ["ca_specialistmarker",true];
-    if (_unt in _specplayers || isnull _unt || (leader group _unt == _unt)|| !_hasmarker) then {
+    if (_unt in _specplayers || isnull _unt || (leader group _unt == _unt)|| !_hasmarker || (_grpId in _zeusGroups)) then {
         _mkrName setMarkerAlphaLocal 0;
         _unt setVariable ["ca_specialistmarker",false];
     } else {
@@ -95,8 +96,8 @@ while {_unt getVariable ["ca_specialistmarker",true]} do
     _leader = leader _grp;
     _vehicle = objectParent _leader;
     switch (true) do {
-        case ([_unt] call ace_common_fnc_isEngineer): {_newMkrType = "b_maint";};
-        case ([_unt] call ACE_common_fnc_isMedic): {_newMkrType = "b_med";};        
+        case (_unt getUnitTrait "Engineer"): {_newMkrType = "b_maint";};
+        case (_unt getUnitTrait "Medic"): {_newMkrType = "b_med";};        
         case (_vehicle isKindOf "Ship"): { _newMkrType = "b_naval";};
         case (_vehicle isKindOf "Helicopter"): { _newMkrType = "b_air";};
         case (_vehicle isKindOf "Plane"): { _newMkrType = "b_plane"; };
@@ -104,8 +105,9 @@ while {_unt getVariable ["ca_specialistmarker",true]} do
         case (isnull _vehicle): { _newMkrType = "b_recon";};
     };
 
-
-    _newmkrText = format ["%1",groupId _grp];
+     
+    _unitRole = toUpper (_unt getVariable ["f_var_assignGear", ""]);
+    _newmkrText = format ["%1 %2", (groupId _grp), _unitRole];
     _mkrName setMarkerTextLocal _newmkrText;
 
 

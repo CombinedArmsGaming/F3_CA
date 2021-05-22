@@ -1,5 +1,6 @@
 /*
- * Author: Poulern
+ * F3 CA edition
+ * Function: Spawn attack
  * Spawns a group that attacks a location or area.
  *
  * Arguments:
@@ -13,16 +14,13 @@
  * Group.
  *
  * Example:
- * [["ftl","r","m","rat","ar","aar"],"SC1_CA","SC1_CA_A","opf_f",east] spawn ca_fnc_spawnattack;
+ * [["ftl","rif","med","lat","ar","aar"],"SC1_CA","SC1_CA_A","opf_f",east] spawn ca_fnc_spawnattack;
  *
  */
-_ishc = !hasInterface && !isDedicated;
-//Use headless instead?
-if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
-//if there is no headless client, and is player, spawn on the server instead.
-if (!ca_hc && hasInterface && !isServer) exitWith {
-		[_this,_fnc_scriptName] spawn ca_fnc_hcexec;
-};
+
+//If the script is not executed on a server or a headless client, exit as it is likely to be executed on all clients, causing more spawns than intended. 
+if (!isServer) exitWith {};
+
 
 params ["_unitarray","_position","_attackposition",["_faction",""],["_side", ca_defaultside]];
 private ["_group"];
@@ -32,12 +30,12 @@ _attackpos = _posdir select 0;
 
 if (typename _attackposition == "STRING") then {
   if (markerShape _attackposition ==  "RECTANGLE" || markerShape _attackposition == "ELLIPSE") then {
-    [_group,_attackposition] call CBA_fnc_taskSearchArea;
+    [_group,500,15,[],_attackpos] call lambs_wp_fnc_taskHunt;
   }else{
-    [_group,_attackpos] call CBA_fnc_taskAttack;
+    [_group,_attackpos] call lambs_wp_fnc_taskAssault;
   };
 }else{
-  [_group,_attackpos] call CBA_fnc_taskAttack;
+  [_group,_attackpos] call lambs_wp_fnc_taskAssault;
 };
 
 _group

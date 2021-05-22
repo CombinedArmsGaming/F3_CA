@@ -1,5 +1,5 @@
 /*
- * Author: Poulern
+ * Function: Set rank
  * Sets rank (BIS fnc is unreliable, setrank is unreliable in MP).
  *
  * Arguments:

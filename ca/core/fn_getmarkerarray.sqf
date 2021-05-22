@@ -1,5 +1,5 @@
 /*
- * Author: Poulern
+ * Function: Get marker array
  * Returns array of markers in the fashion you get when you copy paste markers in the editor.
  *
  * Arguments:

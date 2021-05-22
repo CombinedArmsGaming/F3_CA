@@ -1,18 +1,40 @@
-// CA - Filling listbox for the ca marker management system.
+/*
+ * CA Hierarchy Dialog
+ * Create the treeview and fill the hierarchy interface.
+ * 
+ * Called on opening the interface
+ * fn_treeselect updates the interface when a group has been selected in the three view.
+*/
 
 disableSerialization;
 _display = findDisplay 1809;
 _tree = _display displayCtrl 1811;
 _side = side player;
+_zeusGroups = missionNamespace getVariable ["f_var_hiddenGroups", []];
 
-_allsquads = [];
-_allplayergroups = [];
+//If the mission does not use group tickets, hide those elements from the UI. Except group respawn for admin.
+_groupticketdisplays = [1804,1805,1806,1807,1808,1817,1820];
+if (serverCommandAvailable '#kick') then {
+    _groupticketdisplays deleteAt 1;
+};
 
+if (ca_respawnmode < 3) then {
+    {
+        _controltohide = _display displayCtrl _x;
+        ctrlDelete _controltohide; 
+    } forEach _groupticketdisplays;
+};
+// If using smoothmarkers delete non functional button. 
+if (f_var_smoothMarkers) then {
+        _controltohide = _display displayCtrl 1822;
+        ctrlDelete _controltohide; 
+};
+tvClear _tree;
 
 if(isnil {ca_platoonsetup}) exitwith {systemChat "Hierarchy setup is not done yet, try again"; _display closeDisplay 1};
 
 if (ca_respawnmode == 0) exitWith {systemChat "This mission does not allow respawn!"; _display closeDisplay 1};
-
+//Create a code block to give the hierarchy squads the right color
 _findcolor = {
         params ["_input"];  
         _output = [];  
@@ -29,19 +51,20 @@ _findcolor = {
     _rgbarray
 };
 
+//Get every group in the game and sort based on side
+_allplayergroups = [];
 _allWestPlayerGroupsfill = [];
 _allEastPlayerGroupsfill = [];
 _allIndependentPlayerGroupsfill = [];
 
-_specplayers = [] call ace_spectator_fnc_players;
 
 {
-	if (side _x == west) then {_allWestPlayerGroupsfill pushBackUnique group _x};
-	if (side _x == east) then {_allEastPlayerGroupsfill pushBackUnique group _x};
-	if (side _x == independent) then {_allIndependentPlayerGroupsfill pushBackUnique group _x};
+	if (side group _x == west) then {_allWestPlayerGroupsfill pushBackUnique group _x};
+	if (side group _x == east) then {_allEastPlayerGroupsfill pushBackUnique group _x};
+	if (side group _x == independent) then {_allIndependentPlayerGroupsfill pushBackUnique group _x};
 } forEach allunits;
 
-switch (_side) do {
+switch (_side) do { 
 	case west: {
     _allplayergroups = _allWestPlayerGroupsfill;
 	};
@@ -53,10 +76,6 @@ switch (_side) do {
 	};
 };
 _allCOgroups = [];
-/*
-_allSLgroups = [];
-_allFTLgroups = [];
-*/
 _overflow = [];
 {
     _d = _x getVariable ["ca_superior",[]];
@@ -65,17 +84,10 @@ _overflow = [];
     }else
     {
         _rankid = (rankid leader _x);
-        if (_rankid >= ca_corank) then {
+        if (_rankid >= ca_corank && !(groupid _x in _zeusGroups)) then {
             _allCOgroups pushBackUnique _x;
         };
-        /*
-        if (_rankid == ca_slrank) then {
-            _allSLgroups pushBackUnique _x;
-        };
-        if (_rankid == ca_ftlrank) then {
-            _allFTLgroups pushBackUnique _x;
-        };
-        */
+
     };
 } forEach _allplayergroups;
 
@@ -141,7 +153,6 @@ _noncogroups = _allplayergroups - _allCOgroups;
 if (count _noncogroups > 0) then {
     {
         _overflow pushBackUnique _x;
-        
     } forEach _noncogroups;
 };
 
@@ -149,12 +160,15 @@ if (count _noncogroups > 0) then {
 _overflowIndex = _tree tvAdd [[],"Overflow/Dead"];
 
 {
-    _childIndex = _tree tvAdd [[_overflowIndex],(groupid _x)];
-    _rawcolor = "";
-    _rawcolor = _x getVariable ["ca_groupcolor","ColorGrey"];
-    _color = _rawcolor call _findcolor;
-    _tree tvSetColor [[_overflowIndex,_childIndex], _color];
-
+    if ((groupid _x) in _zeusGroups) then {
+        
+    } else {
+        _overflowchildIndex = _tree tvAdd [[_overflowIndex],(groupid _x)];
+        _rawcolor = "";
+        _rawcolor = _x getVariable ["ca_groupcolor","ColorGrey"];
+        _color = _rawcolor call _findcolor;
+        _tree tvSetColor [[_overflowIndex,_overflowchildIndex], _color];
+    }
 } forEach _overflow;
 
 
@@ -168,4 +182,3 @@ _tree ctrlAddEventHandler ["TreeSelChanged", {
 }
 ];
 
-//_tree tvSetCurSel [0];

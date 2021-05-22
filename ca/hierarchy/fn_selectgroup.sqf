@@ -28,6 +28,9 @@ if (_rankid < ca_corank) exitWith {systemChat "You do not have the sufficient au
 if (isnil {ca_switchgroupthiscycle}) then {
 	ca_switchgroupthiscycle = false;
 };
+_check = ca_selectedgroup getVariable ['ca_groupsetup',false]; 
+
+if (!_check) exitwith { systemChat "Group you are trying to pin is not registered!"; };
 
 
 if (ca_switchgroupthiscycle) then {

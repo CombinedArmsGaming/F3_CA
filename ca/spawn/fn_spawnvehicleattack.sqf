@@ -1,5 +1,5 @@
 /*
- * Author: Poulern
+ * Function: spawnvehicleattack
  * Spawns a vehicle that attacks a location or area.
  *
  * Arguments:
@@ -14,16 +14,13 @@
  * Array of [group,vehicle]
  *
  * Example:
- * [["ftl","r","ar","m"],"SC1_CA","SC1_CA_A","C_Offroad_default_F","opf_f",east] spawn ca_fnc_spawnvehicleattack;
+ * [["ftl","rif","med","ar","aar"],"SC1_CA","SC1_CA_A","C_Offroad_default_F","opf_f",east] spawn ca_fnc_spawnvehicleattack;
  *
  */
-_ishc = !hasInterface && !isDedicated;
-//Use headless instead?
-if (ca_hc && !_ishc) exitwith {	[_this,_fnc_scriptName] spawn ca_fnc_hcexec;};
-//if there is no headless client, and is player, spawn on the server instead.
-if (!ca_hc && hasInterface && !isServer) exitWith {
-     [_this,_fnc_scriptName] spawn ca_fnc_hcexec;
-};
+ 
+//If the script is not executed on a server, exit as it is likely to be executed on all clients, causing more spawns than intended. 
+if (!isServer) exitWith {};
+
 
 params ["_unitarray","_position","_attackposition","_vehicletype",["_faction",""],["_side", ca_defaultside]];
 

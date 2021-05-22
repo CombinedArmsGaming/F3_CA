@@ -10,6 +10,7 @@ _shortrangech = _display displayCtrl 1814;
 _longrangechannels = _display displayCtrl 1815;
 _sideticketcontrol = _display displayCtrl 1816;
 _squadticketcontrol = _display displayCtrl 1817;
+_selectedgroupcontrol = _display displayCtrl 1818;
 
 _group = ca_selectedgroup;
 _groupid = ca_selectedgroupid;
@@ -17,7 +18,7 @@ _groupid = ca_selectedgroupid;
 
 // ---------------------------------------------------------------------
 _rankid = rankid player;
-if (_rankid < ca_corank) exitWith {systemChat "You do not have the sufficient authority to change the hierarchy!";};
+if (_rankid < ca_corank && !(serverCommandAvailable '#kick')) exitWith {systemChat "You do not have the sufficient authority to change the hierarchy!";};
 
 if (_groupid == "Overflow/Dead") exitWith {
 		systemChat "Select a real group to move to.";
@@ -31,6 +32,9 @@ if (ca_previousgroup == ca_selectedgroup ) exitwith {
 	systemChat "That is the same group!";
 };
 
+_check = ca_selectedgroup getVariable ['ca_groupsetup',false]; 
+
+if (!_check) exitwith { systemChat "Group you are trying to pin to is not registered!"; };
 if (ca_switchgroupthiscycle) then {
 	_grouptomove = ca_previousgroup;
 
@@ -41,7 +45,7 @@ if (ca_switchgroupthiscycle) then {
 
 	_description = "Fire team";
 	_shortrangechannel = (_newgrouplead) getVariable ["ca_SRradioCH",1];
-	_longrangeArray = (_newgrouplead) getVariable ["ca_LRradioarray",[4]];
+	_longrangeArray = (_newgrouplead) getVariable ["ca_LRradioarray",[1]];
 
 
 	_ranklead = rankid (leader _newgrouplead);
@@ -67,6 +71,7 @@ if (ca_switchgroupthiscycle) then {
 	_rank = toLower rank (leader _grouptomove);
 	systemchat format ["Moved group (%1) to the command of: %2",groupid _grouptomove,groupid _newgrouplead];
 	systemChat format ["Deselected %1, a %2 lead by %4 %3",_grouptomoveid,_description,_name,_rank];
+	_selectedgroupcontrol ctrlSetText ("None");
 
 	tvClear _tree;
 	sleep 1;

@@ -15,7 +15,7 @@ if (!isDedicated && (isNull player)) then
 
 private ["_unitSide"];
 
-waitUntil {!isnil "f_var_debugMode"};
+waitUntil {!isnil "ca_initserver"};
 
 // ====================================================================================
 
@@ -25,11 +25,6 @@ waitUntil {!isnil "f_var_debugMode"};
 
 _unitSide = side player;
 
-// DEBUG
-	if (f_var_debugMode == 1) then
-	{
-	player sideChat format ["DEBUG (briefing.sqf): Player faction: %1",str _unitSide];
-	};
 
 // ====================================================================================
 
@@ -41,11 +36,6 @@ if (serverCommandAvailable "#kick") then {
 
 #include "f_briefing_admin.sqf"
 
-// DEBUG
-	if (f_var_debugMode == 1) then
-	{
-		player sideChat format ["DEBUG (briefing.sqf): Briefing for host selected."];
-	};
 };
 
 // ====================================================================================
@@ -58,11 +48,6 @@ if (_unitSide == west) exitwith {
 
 #include "f_briefing_west.sqf"
 
-// DEBUG
-	if (f_var_debugMode == 1) then
-	{
-	player sideChat format ["DEBUG (briefing.sqf): Briefing for %1 slot selected.",str _unitSide];
-	};
 };
 
 // ====================================================================================
@@ -74,12 +59,6 @@ if (_unitSide == west) exitwith {
 if (_unitSide == east) exitwith {
 
 #include "f_briefing_east.sqf"
-
-// DEBUG
-	if (f_var_debugMode == 1) then
-	{
-	player sideChat format ["DEBUG (briefing.sqf): Briefing for %1 slot selected.",str _unitSide];
-	};
 };
 // ====================================================================================
 
@@ -91,11 +70,6 @@ if (_unitSide == resistance) exitwith {
 
 #include "f_briefing_resistance.sqf"
 
-// DEBUG
-	if (f_var_debugMode == 1) then
-	{
-	player sideChat format ["DEBUG (briefing.sqf): Briefing for %1 slot selected.",str _unitSide];
-	};
 };
 
 // ====================================================================================
@@ -108,11 +82,6 @@ if (_unitSide == civilian) exitwith {
 
 #include "f_briefing_civ.sqf"
 
-// DEBUG
-	if (f_var_debugMode == 1) then
-	{
-	player sideChat format ["DEBUG (briefing.sqf): Briefing for %1 slot selected.",str _unitSide];
-	};
 };
 
 

@@ -1,5 +1,9 @@
 
 _side = side player;
+
+if (count _this > 0) then {
+    _side = _this select 0;
+};
 _isadmin = serverCommandAvailable '#kick';
 
 
@@ -23,29 +27,24 @@ _allWestPlayerGroupsfill = []; //Filter
 _allEastPlayerGroupsfill = [];
 _allIndependentPlayerGroupsfill = [];
 {
-    if (side _x == west) then {_allWestPlayerGroupsfill pushBackUnique _x};
-    if (side _x == east) then {_allEastPlayerGroupsfill pushBackUnique _x};
-    if (side _x == independent) then {_allIndependentPlayerGroupsfill pushBackUnique _x};
+    if (side _x == west && (isObjectHidden _x)) then {_allWestPlayerGroupsfill pushBackUnique _x};
+    if (side _x == east && (isObjectHidden _x)) then {_allEastPlayerGroupsfill pushBackUnique _x};
+    if (side _x == independent && (isObjectHidden _x)) then {_allIndependentPlayerGroupsfill pushBackUnique _x};
 } forEach _specplayers;
 
 _sidetickets = ca_WestTickets;
-if (_isadmin) then {
-    _listplayers = _specplayers;
-
-} else {
-    switch (_side) do {
-        case west: {
-        _listplayers = _allWestPlayerGroupsfill;
-        _sidetickets = ca_WestTickets;
-        };
-        case east: {
-        _listplayers = _allEastPlayerGroupsfill;
-        _sidetickets = ca_EastTickets;
-        };
-        case independent: {
-        _listplayers = _allIndependentPlayerGroupsfill;
-        _sidetickets = ca_IndependentTickets;
-        };
+switch (_side) do {
+    case west: {
+    _listplayers = _allWestPlayerGroupsfill;
+    _sidetickets = ca_WestTickets;
+    };
+    case east: {
+    _listplayers = _allEastPlayerGroupsfill;
+    _sidetickets = ca_EastTickets;
+    };
+    case independent: {
+    _listplayers = _allIndependentPlayerGroupsfill;
+    _sidetickets = ca_IndependentTickets;
     };
 };
 _numbertorespawn = count _listplayers;
@@ -57,7 +56,7 @@ _numbertorespawn = count _listplayers;
 			_enemiesclose = true;
 		};
 	};
-}foreach allUnits;
+} foreach allUnits;
 
 if (_enemiesclose) exitWith {Systemchat "Enemies nearby, try again later";};
 //=================================================================
@@ -85,12 +84,12 @@ if (ca_respawnmode == 2 || ca_respawnmode == 3) then {
 		ca_respawnwave = true;  
 		sleep 2;
 		if ((vehicle _respawnerguy) != _respawnerguy) then {
-            player setpos (getPosATL  _respawnerguy);
+            player setposASL (getPosASL _respawnerguy);
             sleep random 5;
 			player moveincargo (vehicle _respawnerguy);
 			systemchat format ["You've been respawned in %1's vehicle",(name _respawnerguy)];
 		} else {
-			player setpos (getPosATL  _respawnerguy);
+			player setposASL (getPosASL  _respawnerguy);
 			systemchat format ["You've been respawned at %1's position",(name _respawnerguy)];
 		};
         player action ["WeaponOnBack", player];
@@ -128,7 +127,7 @@ if (ca_respawnmode == 1) then {
     ca_respawnwave = true;  
     sleep 2;
     player action ["WeaponOnBack", player];
-    player setPos (getMarkerPos [_respawnmarker, true]);
+    player setposASL (getMarkerPos [_respawnmarker, true]);
 
     systemchat format ["You've been respawned at %1's base",(_side)];
 
@@ -166,7 +165,6 @@ if (!_isadmin) then {
 
 [] spawn {
 // Set variables so it cannot be spammed
-missionNamespace setVariable ['ca_respawnwave',true, true];
 missionNamespace setVariable ['ca_respawnready',false, true];
 // Post message letting everyone know there is a wave on.
 

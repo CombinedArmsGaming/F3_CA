@@ -56,7 +56,7 @@ if (_squadtickets + _ticketdifference < 0) exitWith {
 	systemChat "Not possible to subtract more tickets from this group";
 };
 
-if (ca_respawnmode == 3) exitWith {systemChat "This mission does use group respawn!"; _display closeDisplay 1};
+if (!(ca_respawnmode == 3)) exitWith {systemChat "This mission doesn't use group respawn!"; _display closeDisplay 1};
 
 _rankid = rankid player;
 _newticketnumb = 0;

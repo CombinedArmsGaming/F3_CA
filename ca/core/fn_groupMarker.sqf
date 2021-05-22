@@ -1,5 +1,6 @@
 /*
- * Author: Poulern
+ * Author: F3
+ * Function: Group marker
  * Create a groupmarker that follows and changes depending on leader vehicle.
  *
  * Arguments:
@@ -8,7 +9,7 @@
  *
  *
  * Example:
- * [group player, "ColorBlack"] call ca_fnc_groupMarker;
+ * [group player] spawn ca_fnc_groupMarker;
  *
 */
 
@@ -74,7 +75,10 @@ _mkrName setMarkerTextLocal _newmkrText;
 while {true} do
 {
     _specplayers = [] call ace_spectator_fnc_players;
-    if ( (leader _grp in _specplayers)) then {
+    _grpId = groupId (_grp);
+    _zeusGroups = missionNamespace getVariable ["f_var_hiddenGroups", []];
+
+    if ( (leader _grp in _specplayers) || (_grpId in _zeusGroups)) then {
         _mkrName setMarkerAlphaLocal 0;
     } else {
         _mkrName setMarkerAlphaLocal 1;
