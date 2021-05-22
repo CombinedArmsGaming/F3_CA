@@ -21,8 +21,33 @@ _posdir = _position call ca_fnc_getdirpos;
 _spawnpos = _posdir select 0;
 _dir = _posdir select 1;
 
-_vehicle = createVehicle  [_vehicletype, _spawnpos, [], 15, "NONE"];
+_vehicle = createVehicle  [_vehicletype, _spawnpos, [], 0, "CAN_COLLIDE"];
 _vehicle setDir _dir;
+
+// Reapply the position change so that the vehicle aligns with the terrain properly
+ switch (typename _position) do {
+	case "STRING": {
+		_vehicle setPos getMarkerPos _position;
+	};
+	case "OBJECT": {
+		_vehicle setPosATL getPosATL _position;
+	};
+	case "GROUP": {
+		_vehicle setPosATL getPosATL leader _position;
+	};
+	case "LOCATION": {
+		_vehicle setPos position _position;
+	};
+	case "ARRAY": {
+		if (count _position > 2 and {_position # 2 >= 0.1}) then {
+			_position setPosATL (_position vectorAdd [0, 0, 0.5]);	// Additional offset, in case the surface is not horizontal
+			_vehicle setVectorUp [0,0,1];
+		} else {
+			_position resize 2; // Ignore the Z component
+			_vehicle setPos _position;
+		};
+	};
+ };
 
 _vehicle lock _locknumber;
 clearWeaponCargoGlobal _vehicle;
