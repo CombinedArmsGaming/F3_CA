@@ -40,7 +40,7 @@ _vehicle setDir _dir;
 	};
 	case "ARRAY": {
 		if (count _position > 2 and {_position # 2 >= 0.1}) then {
-			_position setPosATL (_position vectorAdd [0, 0, 0.5]);	// Additional offset, in case the surface is not horizontal
+			_vehicle setPosATL (_position vectorAdd [0, 0, 0.5]);	// Additional offset, in case the surface is not horizontal
 			_vehicle setVectorUp [0,0,1];
 		} else {
 			_position resize 2; // Ignore the Z component
