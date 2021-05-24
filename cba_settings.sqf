@@ -77,3 +77,9 @@ force acex_headless_transferLoadout = 1;
 force acre_sys_core_terrainLoss = 0;	
 
 
+// ACE Crew Served Weapons - If using player operated CSWs you may want to remove this and update the settings to use the ammo handling, but be aware the AI does not interact well with this system so if you intend to use AI turrets leave this be
+force ace_csw_ammoHandling = 0;
+force ace_csw_defaultAssemblyMode = false;
+ace_csw_dragAfterDeploy = false;
+force ace_csw_handleExtraMagazines = false;
+force ace_csw_progressBarTimeCoefficent = 1;

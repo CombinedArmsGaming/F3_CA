@@ -7,6 +7,9 @@ if (!isDedicated && (isNull player)) then
 
 _briefing = "";
 _briefing = _briefing + "
+<font size='20'>F3_CA admin settings</font><br/>
+Tweaking things mid mission since 2016. <br/>
+<br/>
 <font size='18'>Side ticket control</font><br/>
 
 |- <execute expression=""_newnumb = ca_WestTickets + 10; missionNamespace setVariable ['ca_WestTickets',_newnumb, true]; systemChat 'Tickets added to west'; "">
@@ -16,7 +19,7 @@ Give side east +10 tickets</execute><br/>
 |- <execute expression=""_newnumb = ca_IndependentTickets + 10; missionNamespace setVariable ['ca_IndependentTickets',_newnumb, true]; systemChat 'Tickets added to independent';"">
 Give side independent +10 tickets</execute><br/>
 
-<font size='18'>Side ticket control</font><br/>
+<font size='18'>Side tickets control</font><br/>
 
 |- <execute expression=""missionNamespace setVariable ['ca_WestTickets',0, true];systemChat 'Tickets reset for west';"">
 Remove all tickets from west</execute><br/>
@@ -72,7 +75,30 @@ Hide smooth fireteam markers</execute><br/>
 Show smooth fireteam markers</execute><br/>
 <font size='18'>High command markers option</font><br/>
 |- <execute expression=""missionNamespace setVariable ['AIC_Command_Controls',[],true]"">
-Hide High command markers for everyone</execute><br/>
+Hide High command markers for everyone</execute><br/><br/>
+
+<font size='18'>F3_CA Unconcious specator settings</font><br/>
+Kind of like our own CA-BA settings but for Mission admins only<br/><br/>
+|- <execute expression=""missionNamespace setVariable ['CA2_Downtime_OptOut',false, true];"">
+Disable unconcious spectator. Beware it won't take effect for those already in spectate or about to enter it.</execute><br/>
+|- <execute expression=""missionNamespace setVariable ['CA2_Downtime_OptOut',true, true];"">
+Enable unconcious spectator. Beware it won't take effect for those already in spectate or about to enter it.</execute><br/>
+<font size='17'>Unconcious camera modes</font><br/>
+Note 3rd person doesn't work because you'll get the unconcious effects. <br/>
+|- <execute expression=""missionNamespace setVariable ['CA2_Downtime_SpectatorCameraModes',[0,1], true];"">
+Allow all modes.</execute><br/>
+|- <execute expression=""missionNamespace setVariable ['CA2_Downtime_SpectatorCameraModes',[1], true];"">
+Disallow free-cam/1st-person only</execute><br/>
+<br/>
+|- <execute expression=""missionNamespace setVariable ['CA2_Downtime_SpectatorVisionModes',[-1,0,1], true];"">
+Enable all modes, NVG, Thermal.</execute><br/>
+|- <execute expression=""missionNamespace setVariable ['CA2_Downtime_SpectatorVisionModes',[-1], true];"">
+Disallow Thermals</execute><br/>
+|- <execute expression=""missionNamespace setVariable ['CA2_Downtime_SpectatorVisionModes',[-2], true];"">
+Disallow Thermals and NVGs</execute><br/>
+<br/>
+To adjust downtime timer midmission, run the following code in console (local effect). missionNamespace setVariable ['CA2_Downtime_SpectatorWaitTime',17, true];<br/>
+Change the 17 to whatever you want the amount of seconds to be until spectate when unconcious. <br/>
 ";
 
 // ====================================================================================

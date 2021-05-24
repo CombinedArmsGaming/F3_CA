@@ -35,6 +35,12 @@ missionNamespace setVariable ['f_var_hiddenGroups',["Zeus Crew","GOD"], true];
 
 missionNamespace setVariable ['ca_specialistMarkerClasses',["med","sur","uav"], true]; //Individual specialist markers (ie medic markers). Refer to assinggear files for a complete list of f3 loadout classes (eg dc, ftl, eng, sp, pp, vc etc.). Smooth markers and normal markers
 
+// CA UNCONCIOUS SPECTATOR
+missionNamespace setVariable ['CA2_Downtime_OptOut',false, true]; // Disable unconcious spectator entirely. Will still go into spectate on death. TRUE = NO UNCONCIOUS SPECTATOR
+missionNamespace setVariable ['CA2_Downtime_SpectatorWaitTime',17, true]; // Number of seconds before entering spectate. 17 seconds is the least amount found through testing to rule out temporary shock.
+missionNamespace setVariable ['CA2_Downtime_SpectatorCameraModes',[0,1], true]; // Which camera modes to allow. [0,1] All modes. [0] = Freecam. [1] = 1PP only. Do not use 3pp [2] as it requires an effects handler which isn't present. 
+missionNamespace setVariable ['CA2_Downtime_SpectatorVisionModes',[-1,0,1], true]; // Which visionmodes to allow (freecam). [-1,0,1] All modes. [-1] = NVG. [0] = White hot. [1] black hot. It goes all the way up to 7(Thermal red/green), but please ask for help before doing so. 
+
 // Allow init.sqf to go ahead
 missionNamespace setVariable ['ca_initserver',true, true];
 
