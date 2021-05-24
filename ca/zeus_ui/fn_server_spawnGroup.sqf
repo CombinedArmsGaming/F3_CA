@@ -10,9 +10,10 @@
 		2:	<STRING>	Faction of the group, as used in F3
 		3:	<SIDE>		Side of the group to be spawned (west, east, resistance, civilian)
 		4:	<STRING>	(optional) Class of the vehicle to spawn
-		5:	<BOOL>		(optional) Whether or not to enable VCOM AI
-		6:	<ARRAY>		(optional) Array with Guerrilla AI relevant settings; set to false to ignore
-		7:	<ARRAY>		(optional) Array with Suppressive AI relevant settings; set to false to ignore
+		5:	<ARRAY>		(optional) Array with Guerrilla AI relevant settings; set to false to disable
+		6:	<ARRAY>		(optional) Array with Suppressive AI relevant settings; set to false to disable
+		7:	<ARRAY>		(optional) Array with Lambs AI relevant settings; set to false to disable
+		8:	<BOOL>		(optional) Whether or not to enable VCOM AI
 	Returns:
 		(nothing)
 -------------------------------------------------------------------------------------------------------------------- */
@@ -20,7 +21,17 @@
 #include "config\macros.hpp"
 
 // Fetch our params
-params ["_roles", "_pos", "_gear", "_side", ["_vehicleClass", ""], ["_enableVCOM", false], ["_guerrillaAI", false], ["_suppressiveAI", false]];
+params [
+	"_roles",
+	"_pos",
+	"_gear",
+	"_side",
+	["_vehicleClass", ""],
+	["_guerrillaAI", false],
+	["_suppressiveAI", false],
+	["_LambsAI", false],
+	["_enableVCOM", false]
+];
 
 // Don't execute the function if this isn't the server
 if (!isServer) exitWith {};
@@ -54,17 +65,24 @@ private _allObjects = (units _group) + [_vehicle];
 
 
 
-// Disable VCOM, if desired
-if (!_enableVCOM) then {
-	_group setVariable [MACRO_VCOM_VARNAME_NOAI, true, true];
-};
-
-// Enable guerrilla AI, if desired
+// Enable guerrilla AI, if requested
 if (_guerrillaAI isEqualType []) then {
 	([_group] + _guerrillaAI) spawn ca_fnc_groupGuerrillaAI;
 };
 
-// Enable suppressive AI, if desired
+// Enable suppressive AI, if requested
 if (_suppressiveAI isEqualType []) then {
 	([_group] + _suppressiveAI) spawn ca_fnc_groupSuppressiveAI;
+};
+
+// Enable Lambs AI, if requested
+if (_lambsAI isEqualType []) then {
+	_group setVariable [MACRO_VARNAME_LAMBS_REINFORCE, _LambsAI param [0, false], true];
+} else {
+	_group setVariable [MACRO_VARNAME_LAMBS_NOAI, true, true];
+};
+
+// Disable VCOM, if requested
+if (!_enableVCOM) then {
+	_group setVariable [MACRO_VARNAME_VCOM_NOAI, true, true];
 };

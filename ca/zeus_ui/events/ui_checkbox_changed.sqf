@@ -16,43 +16,39 @@ case "ui_checkbox_changed": {
 	// Determine which checkbox is affected
 	switch (ctrlIDC _ctrl) do {
 		case MACRO_IDC_PRESETS_GAI_CHECKBOX: {
-
-			// Change the colour of the settings cover control
 			_ctrlSettingsCover = _zeusUI_presetsCtrlGrp controlsGroupCtrl MACRO_IDC_PRESETS_GAI_SETTINGS_COVER;
 
-			// Save the new value
 			missionNamespace setVariable [MACRO_VARNAME_PRESET_GAI, _isChecked, false];
-
-		};
-
-		case MACRO_IDC_PRESETS_SAI_CHECKBOX: {
-
-			// Change the colour of the settings cover control
-			_ctrlSettingsCover = _zeusUI_presetsCtrlGrp controlsGroupCtrl MACRO_IDC_PRESETS_SAI_SETTINGS_COVER;
-
-			// Save the new value
-			missionNamespace setVariable [MACRO_VARNAME_PRESET_SAI, _isChecked, false];
-		};
-
-		case MACRO_IDC_PRESETS_VCOM_CHECKBOX: {
-
-			// Change the colour of the settings cover control
-			_ctrlSettingsCover = _zeusUI_presetsCtrlGrp controlsGroupCtrl MACRO_IDC_PRESETS_VCOM_SETTINGS_COVER;
-
-			// Save the new value
-			missionNamespace setVariable [MACRO_VARNAME_PRESET_VCOM, _isChecked, false];
 		};
 
 		case MACRO_IDC_PRESETS_GAI_FLANKONLY_CHECKBOX: {
-
-			// Save the new value
 			missionNamespace setVariable [MACRO_VARNAME_PRESET_GAI_FLANKONLY, _isChecked, false];
 		};
 
-		case MACRO_IDC_PRESETS_SAI_USEANIMS_CHECKBOX: {
+		case MACRO_IDC_PRESETS_SAI_CHECKBOX: {
+			_ctrlSettingsCover = _zeusUI_presetsCtrlGrp controlsGroupCtrl MACRO_IDC_PRESETS_SAI_SETTINGS_COVER;
 
-			// Save the new value
+			missionNamespace setVariable [MACRO_VARNAME_PRESET_SAI, _isChecked, false];
+		};
+
+		case MACRO_IDC_PRESETS_SAI_USEANIMS_CHECKBOX: {
 			missionNamespace setVariable [MACRO_VARNAME_PRESET_SAI_USEANIMS, _isChecked, false];
+		};
+
+		case MACRO_IDC_PRESETS_LAMBS_CHECKBOX: {
+			_ctrlSettingsCover = _zeusUI_presetsCtrlGrp controlsGroupCtrl MACRO_IDC_PRESETS_LAMBS_SETTINGS_COVER;
+
+			missionNamespace setVariable [MACRO_VARNAME_PRESET_LAMBS, _isChecked, false];
+		};
+
+		case MACRO_IDC_PRESETS_LAMBS_REINFORCE_CHECKBOX: {
+			missionNamespace setVariable [MACRO_VARNAME_PRESET_LAMBS_REINFORCE, _isChecked, false];
+		};
+
+		case MACRO_IDC_PRESETS_VCOM_CHECKBOX: {
+			_ctrlSettingsCover = _zeusUI_presetsCtrlGrp controlsGroupCtrl MACRO_IDC_PRESETS_VCOM_SETTINGS_COVER;
+
+			missionNamespace setVariable [MACRO_VARNAME_PRESET_VCOM, _isChecked, false];
 		};
 	};
 

@@ -100,13 +100,14 @@ private _allPresetsVars = [];
 	// Check if this preset uses guerrilla AI
 	private _guerrillaAI = false;
 	if (isClass (_x >> "GuerrillaAI")) then {
+		private ["_varName", "_value"];
 
 		// Fetch the data from the guerrilla AI class
 		_guerrillaAI = [];
 		{
-			// Fetch the variable name and the associated value
-			private _varName = configName _x;
-			private _value = [_presetConfig >> "GuerrillaAI", _varName, 0] call BIS_fnc_returnConfigEntry;
+			_varName = configName _x;
+			//_value = [_presetConfig >> "GuerrillaAI", _varName, 0] call BIS_fnc_returnConfigEntry;
+			_value = getNumber (_presetConfig >> "GuerrillaAI" >> _varName);
 
 			switch (toLower _varName) do {
 				case "flankonly": {
@@ -134,13 +135,14 @@ private _allPresetsVars = [];
 	// Check if this preset uses suppressive AI
 	private _suppressiveAI = false;
 	if (isClass (_x >> "SuppressiveAI")) then {
+		private ["_varName", "_value"];
 
 		// Fetch the data from the suppressive AI class
 		_suppressiveAI = [];
 		{
-			// Fetch the variable name and the associated value
-			private _varName = configName _x;
-			private _value = [_presetConfig >> "SuppressiveAI", _varName, 0] call BIS_fnc_returnConfigEntry;
+			_varName = configName _x;
+			//_value = [_presetConfig >> "SuppressiveAI", _varName, 0] call BIS_fnc_returnConfigEntry;
+			_value = getNumber (_presetConfig >> "SuppressiveAI" >> _varName);
 
 			switch (toLower _varName) do {
 				case "suppressionmultiplier": {
@@ -149,16 +151,39 @@ private _allPresetsVars = [];
 				case "suppressiondurationmultiplier": {
 					_suppressiveAI set [1, _value];
 				};
-				case "useanims": {
+				case "useanimations": {
 					_suppressiveAI set [2, (_value > 0)];
 				};
 			};
 		} forEach configProperties [_x >> "SuppressiveAI", "!isClass _x", false];
 	};
 
+	// Check if this preset uses Lambs AI
+	private _lambsAI = false;
+	if (isClass (_x >> "LambsAI")) then {
+		private ["_varName", "_value"];
+
+		// Fetch the data from the Lambs AI class
+		_lambsAI = [];
+		{
+			_varName = configName _x;
+			_value = getNumber (_presetConfig >> "LambsAI" >> _varName);
+
+			switch (toLower _varName) do {
+				case "enablereinforce": {
+					_lambsAI set [0, (_value > 0)];
+				};
+			};
+		} forEach configProperties [_x >> "LambsAI", "!isClass _x", false];
+	};
+
+	// Check if this preset uses VCOM AI
+	private _enableVCOM = (([_x, "enableVCOM", 0] call BIS_fnc_returnConfigEntry) > 0);
+
 	// Fill the preset namespace with data
 	_presetNamespace setVariable [MACRO_VARNAME_PRESET_GAI, _guerrillaAI];
 	_presetNamespace setVariable [MACRO_VARNAME_PRESET_SAI, _suppressiveAI];
+	_presetNamespace setVariable [MACRO_VARNAME_PRESET_LAMBS, _lambsAI];
 	_presetNamespace setVariable [MACRO_VARNAME_PRESET_VCOM, _enableVCOM];
 
 	// Save the preset namespace
